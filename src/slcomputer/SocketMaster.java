@@ -72,7 +72,7 @@ public class SocketMaster implements Runnable{
     public static final int c_bb_q0=0x00026370;   // id, 用monster_check_extra
     public static final int c_bb_q1=0x00026363;   // id+0攻击/1防御试炼, 用festival_extra
     public static final int c_bb_q2=0x00026366;   // id+0/1/2/3/4, 用festival_extra
-    public static final int c_bb_battle=0x00026378; // id+0困难/1普通/2容易
+    public static final int c_bb_battle=0x00026378; // id+0困难/1普通/2容易，用
     public static int startSignal;
     public static final int commandCooldown=6000;
     public static Socket clientStatic;
@@ -1536,9 +1536,7 @@ public class SocketMaster implements Runnable{
         moreEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         moreKill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         lastNightLevel=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-        
-        updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
-                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber);
+
         if(moreBuff>0){
             // 选择Buff
             globalIndex=-1;
@@ -1578,14 +1576,390 @@ public class SocketMaster implements Runnable{
             buffDefM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             buffAttM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-            updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
-                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber);
+            
         }
+        updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
+                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, "");
         return true;
     }
     
+    public HeroLight referenceHero(HeroLight[] team, int ref){
+        for(int i=0; i<team.length; i++){
+            if(team[i].ref==ref){
+                return team[i];
+            }
+        }
+        return null;
+    }
+    
+    public String referenceSkill(int id){
+        for(Skill sk:SLComputer.skills){
+            if(sk.id==id){
+                return sk.name;
+            }
+        }
+        return "???";
+    }
+    
+    public int battle(int hardness){
+        if(!globalReady || clientStatic==null || osStatic==null || isStatic==null){
+            return 2;
+        }
+        int command=c_bb_battle;
+        byte[] extra=festival_extra(globalID, hardness);
+        byte[] recvData=communicate(osStatic, isStatic, command, extra);
+        if(recvData==null || recvData.length<76){
+            return 2;
+        }
+        int i, j, x, y, pos, length, starGain;
+        String battleDetails, skillDetail0, skillDetail1, attName, defName;
+        HeroLight[] attTeam, defTeam;
+        HeroLight attHero, defHero;
+        int rounds;
+        pos=8;
+        starGain=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=8;
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        attName=new String(recvData, pos, length); pos+=length;
+        pos+=4; // 角色等级
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        defName=new String(recvData, pos, length); pos+=length;
+        battleDetails=attName+"   VS   "+defName+"\n";
+        pos+=8; // 角色等级
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        attTeam=new HeroLight[length];
+        for(i=0; i<length; i++){
+            pos+=4;
+            attTeam[i]=new HeroLight();
+            attTeam[i].ref=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            attTeam[i].setName(j);
+            attTeam[i].id=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            attTeam[i].setProperty(attTeam[i].id);
+            pos+=4;
+            attTeam[i].hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=4;
+        }
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        defTeam=new HeroLight[length];
+        for(i=0; i<length; i++){
+            pos+=4;
+            defTeam[i]=new HeroLight();
+            defTeam[i].ref=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defTeam[i].setName(j);
+            defTeam[i].id=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defTeam[i].setProperty(defTeam[i].id);
+            pos+=4; // 忍者等级
+            defTeam[i].hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=4; // 6星+几
+        }
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=16*length; // 进攻方尾兽排布
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=16*length; // 防守方尾兽排布
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=16*length; // 进攻方作战建筑
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=16*length; // 防守方作战建筑
+        rounds=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        boolean skilled;
+        for(i=0; i<rounds; i++){
+            pos+=8;
+            j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            attHero=referenceHero(attTeam, j);
+            j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defHero=referenceHero(defTeam, j);
+            if(attHero==null || defHero==null){
+                System.out.println("Can't find reference hero in the team.");
+                return 3;
+            }
+            pos+=4;
+            attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
+            pos+=4;
+            skilled=false;
+            // 尾兽技能
+            skillDetail0="";
+            skillDetail1="";
+            j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(j!=0){
+                skillDetail0+=attName+" >>> "+referenceSkill(j)+"\n";
+                skilled=true;
+            }
+            j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(j!=0){
+                skillDetail1+="     "+referenceSkill(j)+" <<< "+defName+"\n";
+                skilled=true;
+            }
+            pos+=4;
+            length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            for(j=0; j<length; j++){
+                x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                skillDetail0+=referenceHero(attTeam, x).name+" 复活！\n";
+            }
+            length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            for(j=0; j<length; j++){
+                x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                skillDetail1+=referenceHero(defTeam, x).name+" 复活！\n";
+            }
+            pos+=8;
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=attHero.name+" "+(x>0?"+":"-")+x+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=defHero.name+" "+(x<0?"+":"-")+x+"\n";
+            }
+            pos+=12;
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=defHero.name+" "+(x>0?"+":"-")+x+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=attHero.name+" "+(x<0?"+":"-")+x+"\n";
+            }
+            battleDetails+=skillDetail0+skillDetail1;
+            pos+=12;
+            // 主动技能
+            skillDetail0="";
+            skillDetail1="";
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=attHero.name+" 发动 "+referenceSkill(x)+"\n";
+                skilled=true;
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=defHero.name+" 发动 "+referenceSkill(x)+"\n";
+                skilled=true;
+            }
+            pos+=4;
+            length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            for(j=0; j<length; j++){
+                x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                skillDetail0+=referenceHero(attTeam, x).name+" 复活！\n";
+            }
+            length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            for(j=0; j<length; j++){
+                x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                skillDetail1+=referenceHero(defTeam, x).name+" 复活！\n";
+            }
+            pos+=8;
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=attHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=defHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            pos+=12;
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=defHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=attHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            battleDetails+=skillDetail0+skillDetail1;
+            pos+=12;
+            attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(skilled){
+                battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
+            }
+            pos+=4;
+            // 属性相克
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            y=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(attHero.hp!=x && defHero.hp!=y){
+                battleDetails+=attHero.property+" "+(x-attHero.hp)+((x-attHero.hp)>0?" ---> ":" <--- ")+(y-defHero.hp)+" "+defHero.property+"\n";
+                attHero.hp=x;
+                defHero.hp=y;
+                battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
+            }
+            pos+=4;
+            // 战后技能
+            skillDetail0="";
+            skillDetail1="";
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=attHero.name+" 发动 "+referenceSkill(x)+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=defHero.name+" 发动 "+referenceSkill(x)+"\n";
+            }
+            pos+=8;
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=attHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail0+=defHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            pos+=12;
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=defHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(x!=0){
+                skillDetail1+=attHero.name+" "+(x>0?"+":"")+x+"\n";
+            }
+            pos+=12;
+            attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(attHero.hp>0){
+                battleDetails+=skillDetail0;
+            }
+            if(defHero.hp>0){
+                battleDetails+=skillDetail1;
+            }
+            if(attHero.hp==0){
+                battleDetails+=skillDetail0;
+            }
+            if(defHero.hp==0){
+                battleDetails+=skillDetail1;
+            }
+        }
+        // 每5关奖励
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        if(length==6){
+            pos+=24;
+        }
+        else if(length==7){
+            pos+=20;
+            length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=20*length+4;
+        }
+        else{
+            System.out.println("Award part unexpected item count: "+length);
+            return 3;
+        }
+        // 试炼概况
+        pos+=28;
+        // 试炼详情
+        length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        if(length>0){
+            length=starGain/(3-hardness);
+            switch(length){
+                case 3:
+                    battleDetails+="完胜！\n";
+                    break;
+                case 2:
+                    battleDetails+="胜利！\n";
+                    break;
+                case 1:
+                    battleDetails+="险胜！\n";
+                    break;
+                default:
+                    battleDetails+="未知数据："+hardness+"\n";
+            }
+            battleDetails+="获得星星："+starGain+"\n";
+            int mode, level, myNumber, enemyNumber, enemyHard, enemyNormal, enemyEasy, killFirst, moreBuff,
+                    buffDefP, buffAttP, buffEffectP, buffDefM, buffAttM, buffEffectM;
+            int moreHPP, moreEffectP, moreHPM, moreEffectM, moreKill, lastNightLevel;
+            mode=(((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff)); pos+=4;
+            level=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            myNumber=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=8;
+            enemyHard=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            enemyNumber=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=4;
+            enemyNormal=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=8;
+            enemyEasy=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=4;
+            killFirst=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            moreBuff=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=4;
+            starUsed=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            starTotal=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=8;
+            buffDefP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            buffAttP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            buffEffectP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            buffDefM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            buffAttM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=4;
+            moreHPP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            moreEffectP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            moreHPM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            moreEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            moreKill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            lastNightLevel=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
+                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails);
+            if(moreBuff>0){
+                // 选择Buff
+                globalIndex=-1;
+                new JDialogChooseBuff(SLComputer.mf, true, mode, starUsed, starTotal, moreHPP, moreEffectP, moreHPM, moreEffectM, moreKill, lastNightLevel);
+                if(globalIndex<0 || globalIndex>4){
+                    return 2;
+                }
+                command=c_bb_q2;
+                extra=festival_extra(globalID, globalIndex);
+                recvData=communicate(osStatic, isStatic, command, extra);
+                if(recvData==null || recvData.length<160){
+                    return 2;
+                }
+                pos=28;
+                if(mode!=(((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff))){
+                    return 2;
+                } pos+=4;
+                level=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                myNumber=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                pos+=8;
+                enemyHard=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                enemyNumber=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                pos+=4;
+                enemyNormal=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                pos+=8;
+                enemyEasy=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                pos+=4;
+                killFirst=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                moreBuff=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                pos+=4;
+                starUsed=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                starTotal=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                pos+=8;
+                buffDefP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                buffAttP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                buffEffectP=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                buffDefM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                buffAttM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+
+            }
+            updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
+                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails);
+        }
+        else{
+            battleDetails+="失败...\n";
+            updateSelection(-1, -1, -1, -1, -1, -1,
+                0, 0, 0, 0, 0, 0, battleDetails);
+            return 1;
+        }
+        return 0;
+    }
+    
+    public String hp(int hp){
+        if(hp/100000==0){
+            return ""+hp;
+        }
+        return hp/10000+"万";
+    }
+    
     public void updateSelection(int mode, int level, int buffDefP, int buffDefM, int buffEffectP, int buffEffectM,
-            int killFirst, int enemyHard, int enemyNormal, int enemyEasy, int myNumber, int enemyNumber){
+            int killFirst, int enemyHard, int enemyNormal, int enemyEasy, int myNumber, int enemyNumber, String battleDetails){
         UpdateSelection update=new UpdateSelection();
         update.mode=mode;
         update.level=level;
@@ -1599,12 +1973,13 @@ public class SocketMaster implements Runnable{
         update.enemyHard=enemyHard%100;
         update.myNumber=myNumber;
         update.enemyNumber=enemyNumber;
+        update.battle=battleDetails;
         SwingUtilities.invokeLater(update);
     }
     
     public void connectionBroken(){
         SLComputer.cleanLogin();
-        JOptionPane.showMessageDialog(SLComputer.mf, "连接被动中断，或用户操作不当导致主动中断，请重新登录", "连接中断", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(SLComputer.mf, "连接超时，被动中断，或用户操作不当导致主动中断，请重新登录", "连接中断", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
@@ -1633,7 +2008,15 @@ public class SocketMaster implements Runnable{
                 }
                 break;
             case c_bb_battle:
-                
+                int ret=battle((int)arguments[0]);
+                System.out.println("battle returns "+ret);
+                if(ret==1){
+                    SLComputer.cleanLogin();
+                    JOptionPane.showMessageDialog(SLComputer.mf, "挑战失败，返回普通模式。若要再次尝试请重新登录。", "结束", JOptionPane.ERROR_MESSAGE);
+                }
+                else if(ret>1){
+                    connectionBroken();
+                }
                 break;
             default:
         }

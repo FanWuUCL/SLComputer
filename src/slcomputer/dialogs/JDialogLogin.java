@@ -125,6 +125,9 @@ public class JDialogLogin extends javax.swing.JDialog {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         SLComputer.cleanLogin();
+        if(jComboBox1.getSelectedItem().equals("")){
+            return;
+        }
         SocketMaster.setGlobalIP(jComboBoxServer.getSelectedIndex());
         SocketMaster.arguments[0]=jComboBox1.getSelectedItem();
         SocketMaster.arguments[1]=jCheckBoxRemember.isSelected();

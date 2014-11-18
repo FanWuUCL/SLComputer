@@ -32,7 +32,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        setTitle("SLComputer "+SLComputer.major+"."+SLComputer.minor+(SLComputer.vip>0 && SLComputer.vip%(SLComputer.major+SLComputer.minor)==0?" 旗舰":" 免费"));
+        setTitle("SLComputer "+SLComputer.major+"."+SLComputer.minor+(SLComputer.vip>0 && SLComputer.vip%(SLComputer.major+SLComputer.minor)==0?" 旗舰":" 免费")+SLComputer.testVersion);
         trialNumber=100;
         mapComponents();
         jButtonFinalComputer.setText("<html><font color=#DF0101>试炼终结者</font></html>");
@@ -81,6 +81,7 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxMenuItemSmartNumber.setSelected(SLComputer.smartNumber);
         jCheckBoxMenuItemSaveBE.setSelected(SLComputer.saveBE);
         jCheckBoxMenuItemDreamMode.setSelected(SLComputer.dreamMode);
+        jMenuItemWatchBattle.setSelected(SLComputer.watchBattle);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = getPreferredSize();
         setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
@@ -2417,6 +2418,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void jButtonGoNormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGoNormActionPerformed
+        if(SocketMaster.globalReady){
+            SocketMaster.arguments[0]=1;
+            SocketMaster sm=new SocketMaster();
+            SocketMaster.cmdGlobal=SocketMaster.c_bb_battle;
+            new Thread(sm).start();
+            return;
+        }
         goNorm();
     }//GEN-LAST:event_jButtonGoNormActionPerformed
 
@@ -2462,6 +2470,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void jButtonGoEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGoEasyActionPerformed
+        if(SocketMaster.globalReady){
+            SocketMaster.arguments[0]=2;
+            SocketMaster sm=new SocketMaster();
+            SocketMaster.cmdGlobal=SocketMaster.c_bb_battle;
+            new Thread(sm).start();
+            return;
+        }
         goEasy();
     }//GEN-LAST:event_jButtonGoEasyActionPerformed
 
@@ -2644,7 +2659,9 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         int index=jComboBoxMyNumberNorm.getSelectedIndex();
-        jComboBoxEnemyNumberNorm.setSelectedIndex(index);
+        //if(jComboBoxEnemyNumberNorm.getSelectedIndex()!=index){
+            jComboBoxEnemyNumberNorm.setSelectedIndex(index);
+        //}
     }//GEN-LAST:event_jComboBoxMyNumberNormActionPerformed
 
     private void jComboBoxEnemyNumberNormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEnemyNumberNormActionPerformed
@@ -2652,9 +2669,9 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         int index=jComboBoxEnemyNumberNorm.getSelectedIndex();
-        if(index<12){
+        //if(index<14 && jComboBoxMyNumberEasy.getSelectedIndex()!=index){
             jComboBoxMyNumberEasy.setSelectedIndex(index);
-        }
+        //}
     }//GEN-LAST:event_jComboBoxEnemyNumberNormActionPerformed
 
     private void jComboBoxMyNumberEasyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMyNumberEasyActionPerformed
@@ -2662,8 +2679,12 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         int index=jComboBoxMyNumberEasy.getSelectedIndex();
-        jComboBoxEnemyNumberEasy.setSelectedIndex(index);
-        jComboBoxMyNumberHard.setSelectedIndex(index);
+        //if(jComboBoxEnemyNumberEasy.getSelectedIndex()!=index){
+            jComboBoxEnemyNumberEasy.setSelectedIndex(index);
+        //}
+        //if(jComboBoxMyNumberHard.getSelectedIndex()!=index){
+            jComboBoxMyNumberHard.setSelectedIndex(index);
+        //}
     }//GEN-LAST:event_jComboBoxMyNumberEasyActionPerformed
 
     private void jComboBoxMyNumberHardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMyNumberHardActionPerformed
@@ -2671,8 +2692,12 @@ public class MainFrame extends javax.swing.JFrame {
             return;
         }
         int index=jComboBoxMyNumberHard.getSelectedIndex();
-        jComboBoxEnemyNumberHard.setSelectedIndex(index);
-        jComboBoxMyNumberNorm.setSelectedIndex(index);
+        //if(jComboBoxEnemyNumberHard.getSelectedIndex()!=index){
+            jComboBoxEnemyNumberHard.setSelectedIndex(index);
+        //}
+        //if(jComboBoxMyNumberNorm.getSelectedIndex()!=index){
+            jComboBoxMyNumberNorm.setSelectedIndex(index);
+        //}
     }//GEN-LAST:event_jComboBoxMyNumberHardActionPerformed
 
     private void jButtonMyTeam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMyTeam1ActionPerformed
@@ -2900,12 +2925,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     // 设置模式
     public void setMode(int mode){
-        jComboBoxMode.setSelectedIndex(mode);
+        if(mode==0 || mode==1){
+            if(jComboBoxMode.getSelectedIndex()!=mode){
+                jComboBoxMode.setSelectedIndex(mode);
+            }
+        }
     }
     
     // 设置层数，输入level=0 为第一层
     public void setLevel(int level){
-        jTextFieldLevel.setText(level+1+"");
+        if(level>=0){
+            jTextFieldLevel.setText(level+1+"");
+        }
     }
     
     // 设置buff，所有数字将直接填写到对应位置，-1代表该buff不变
@@ -2950,6 +2981,10 @@ public class MainFrame extends javax.swing.JFrame {
             //jComboBoxEnemyNumberNorm.setSelectedIndex(myNumber-1);
             //jComboBoxEnemyNumberEasy.setSelectedIndex(2*myNumber-enemyHardNumber-1);
         }
+    }
+    
+    public void setDetails(String detail){
+        jTextPaneBattleField.setText(detail);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

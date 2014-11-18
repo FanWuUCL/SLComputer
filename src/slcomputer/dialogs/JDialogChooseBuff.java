@@ -27,11 +27,14 @@ public class JDialogChooseBuff extends javax.swing.JDialog {
         jLabelStar.setText("星星数 "+(starTotal-starUsed)+"/"+starTotal);
         int buff[]=new int[5];
         buff[0]=buffHPP; buff[1]=buffEP; buff[2]=buffHPM; buff[3]=buffEM; buff[4]=buffK;
-        if(base==0){
-            base=1;
+        boolean isRegularBuff;
+        if(buff[0]==0 && buff[1]==0 && buff[2]==0 && buff[3]==0 && buff[4]==0){
+            isRegularBuff=false;
+            buff[0]=buff[1]=buff[2]=1;
         }
         else{
-            buff[0]=buff[1]=buff[2]=1;
+            isRegularBuff=true;
+            base=1;
         }
         available=new int[3];
         int i, j=0;
@@ -112,7 +115,7 @@ public class JDialogChooseBuff extends javax.swing.JDialog {
             else{
                 buttons[i].setText(j+"%");
             }
-            buttons[i].setEnabled(enoughStar);
+            buttons[i].setEnabled(enoughStar||!isRegularBuff);
         }
         Dimension d=getPreferredSize();
         Rectangle b=parent.getBounds();

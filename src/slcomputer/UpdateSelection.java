@@ -21,6 +21,7 @@ public class UpdateSelection implements Runnable{
     public int enemyEasy;
     public int myNumber;
     public int enemyNumber;
+    public String battle;
     
     public UpdateSelection(){
         mode=1;
@@ -35,6 +36,7 @@ public class UpdateSelection implements Runnable{
         enemyEasy=1;
         myNumber=1;
         enemyNumber=1;
+        battle="";
     }
     
     @Override
@@ -46,6 +48,9 @@ public class UpdateSelection implements Runnable{
         SLComputer.mf.setNumbers(myNumber, enemyNumber);
         if(!SLComputer.watchBattle){
             SLComputer.mf.finalComputer();
+        }
+        else{
+            SLComputer.mf.setDetails(battle);
         }
     }
 }
