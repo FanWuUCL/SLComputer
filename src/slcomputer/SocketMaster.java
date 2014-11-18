@@ -905,7 +905,7 @@ public class SocketMaster implements Runnable{
                 j+=4;
                 k=(recvData[j] & 0xff) << 24 | (recvData[j+1] & 0xff) << 16 | (recvData[j+2] & 0xff) << 8 | recvData[j+3] & 0xff;
                 j+=4;
-                accName[i]=new String(recvData, j, k);
+                accName[i]=new String(recvData, j, k, "UTF-8");
                 j+=k;
                 accLevel[i]=(recvData[j] & 0xff) << 24 | (recvData[j+1] & 0xff) << 16 | (recvData[j+2] & 0xff) << 8 | recvData[j+3] & 0xff;
                 j+=4;
@@ -914,7 +914,7 @@ public class SocketMaster implements Runnable{
                 }
                 k=(recvData[j] & 0xff) << 24 | (recvData[j+1] & 0xff) << 16 | (recvData[j+2] & 0xff) << 8 | recvData[j+3] & 0xff;
                 j+=4;
-                accUsr[i]=new String(recvData, j, k);
+                accUsr[i]=new String(recvData, j, k, "UTF-8");
                 j+=k;
                 j+=4;
                 accName[i]="ID "+accID[i]+": "+accName[i]+" "+accLevel[i]+"级";
@@ -954,7 +954,7 @@ public class SocketMaster implements Runnable{
         cer[0] = (recvData[4] & 0xff) << 24 | (recvData[5] & 0xff) << 16 | (recvData[6] & 0xff) << 8 | recvData[7] & 0xff;
         cer[1] = (recvData[16] & 0xff) << 24 | (recvData[17] & 0xff) << 16 | (recvData[18] & 0xff) << 8 | recvData[19] & 0xff;
         i=((recvData[24]&0xff)<<24) | ((recvData[25]&0xff)<<16) | ((recvData[26]&0xff)<<8) | (recvData[27]&0xff);
-        name[0]=new String(recvData, 28, i);
+        name[0]=new String(recvData, 28, i, "UTF-8");
         if(verbose){
             System.out.println("ID "+cer[1]+": "+name[0]+" is prepared.");
         }
@@ -1620,10 +1620,20 @@ public class SocketMaster implements Runnable{
         starGain=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         pos+=8;
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-        attName=new String(recvData, pos, length); pos+=length;
+        try {
+            attName=new String(recvData, pos, length, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            attName="unsupportedEncoding";
+        }
+        pos+=length;
         pos+=4; // 角色等级
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-        defName=new String(recvData, pos, length); pos+=length;
+        try {
+            defName=new String(recvData, pos, length, "UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            defName="unsupportedEncoding";
+        }
+        pos+=length;
         battleDetails=attName+"   VS   "+defName+"\n";
         pos+=8; // 角色等级
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -1937,10 +1947,10 @@ public class SocketMaster implements Runnable{
                 buffDefM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 buffAttM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-
+                updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
+                    killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails);
             }
-            updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
-                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails);
+            
         }
         else{
             battleDetails+="失败...\n";

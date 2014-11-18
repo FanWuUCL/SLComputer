@@ -53,9 +53,10 @@ public class JDialogChooseBuff extends javax.swing.JDialog {
         
         ImageIcon icon;
         int imageIndex=4;
-        boolean enoughStar=false;
+        boolean enoughStar;
         for(i=0; i<buttons.length; i++){
             j=base;
+            enoughStar=false;
             switch(available[i]){
                 case 0:
                 case 2:
