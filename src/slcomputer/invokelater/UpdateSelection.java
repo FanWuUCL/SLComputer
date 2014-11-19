@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package slcomputer;
+package slcomputer.invokelater;
+
+import slcomputer.SLComputer;
 
 /**
  *
@@ -22,6 +24,7 @@ public class UpdateSelection implements Runnable{
     public int myNumber;
     public int enemyNumber;
     public String battle;
+    public boolean win;
     
     public UpdateSelection(){
         mode=1;
@@ -37,6 +40,7 @@ public class UpdateSelection implements Runnable{
         myNumber=1;
         enemyNumber=1;
         battle="";
+        win=true;
     }
     
     @Override
@@ -46,7 +50,7 @@ public class UpdateSelection implements Runnable{
         SLComputer.mf.setBuff(buffHPP, buffHPM, buffEffectP, buffEffectM, buffKill>0);
         SLComputer.mf.setEnemy(enemyHard, enemyNorm, enemyEasy);
         SLComputer.mf.setNumbers(myNumber, enemyNumber);
-        if(!SLComputer.watchBattle){
+        if(!SLComputer.watchBattle && win){
             SLComputer.mf.finalComputer();
         }
         else{

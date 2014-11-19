@@ -2983,8 +2983,23 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
+    // 设置战斗详情
     public void setDetails(String detail){
         jTextPaneBattleField.setText(detail);
+    }
+    
+    // 强调挑战按钮
+    public void emphasizeBattleButtons(boolean emph){
+        Color c;
+        if(emph){
+            c=Color.red;
+        }
+        else{
+            c=Color.black;
+        }
+        jButtonGoHard.setForeground(c);
+        jButtonGoNorm.setForeground(c);
+        jButtonGoEasy.setForeground(c);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

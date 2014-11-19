@@ -4,6 +4,7 @@
  */
 package slcomputer;
 
+import slcomputer.invokelater.UpdateSelection;
 import slcomputer.dialogs.*;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -30,6 +31,7 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import slcomputer.invokelater.Emphasize;
 
 /**
  *
@@ -88,6 +90,7 @@ public class SocketMaster implements Runnable{
     public static int cmdGlobal;
     public static int starUsed, starTotal;
     public static Object[] arguments=new Object[4];
+    public static boolean onWork=false;
 
     public static byte[] transform(int length, int certification, int command, int extralength, byte[] extra){
         byte[] data=new byte[34+extralength];
@@ -1579,7 +1582,7 @@ public class SocketMaster implements Runnable{
             
         }
         updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
-                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, "");
+                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, "", true);
         return true;
     }
     
@@ -1674,6 +1677,8 @@ public class SocketMaster implements Runnable{
         pos+=16*length; // 防守方作战建筑
         rounds=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         boolean skilled;
+        boolean shiwei;
+        String skillName;
         for(i=0; i<rounds; i++){
             pos+=8;
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -1690,17 +1695,26 @@ public class SocketMaster implements Runnable{
             battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
             pos+=4;
             skilled=false;
+            shiwei=false;
             // 尾兽技能
             skillDetail0="";
             skillDetail1="";
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(j!=0){
-                skillDetail0+=attName+" >>> "+referenceSkill(j)+"\n";
+                skillName=referenceSkill(j);
+                skillDetail0+=attName+" >>> "+skillName+"\n";
+                if(skillName.equals("神树降诞")){
+                    shiwei=true;
+                }
                 skilled=true;
             }
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(j!=0){
-                skillDetail1+="     "+referenceSkill(j)+" <<< "+defName+"\n";
+                skillName=referenceSkill(j);
+                skillDetail1+="     "+skillName+" <<< "+defName+"\n";
+                if(skillName.equals("神树降诞")){
+                    shiwei=true;
+                }
                 skilled=true;
             }
             pos+=4;
@@ -1776,19 +1790,21 @@ public class SocketMaster implements Runnable{
             if(x!=0){
                 skillDetail1+=attHero.name+" "+(x>0?"+":"")+x+"\n";
             }
-            battleDetails+=skillDetail0+skillDetail1;
+            if(!shiwei){
+                battleDetails+=skillDetail0+skillDetail1;
+            }
             pos+=12;
             attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             defHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-            if(skilled){
+            if(skilled && !shiwei){
                 battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
             }
             pos+=4;
             // 属性相克
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             y=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-            if(attHero.hp!=x && defHero.hp!=y){
-                battleDetails+=attHero.property+" "+(x-attHero.hp)+((x-attHero.hp)>0?" ---> ":" <--- ")+(y-defHero.hp)+" "+defHero.property+"\n";
+            if(attHero.hp!=x || defHero.hp!=y){
+                battleDetails+=attHero.property+" "+(x-attHero.hp)+((x-attHero.hp)>0?" ---> ":" <--- ")+((y-defHero.hp)>=0?"+"+(y-defHero.hp):""+(y-defHero.hp))+" "+defHero.property+"\n";
                 attHero.hp=x;
                 defHero.hp=y;
                 battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
@@ -1812,7 +1828,7 @@ public class SocketMaster implements Runnable{
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail0+=defHero.name+" "+(x>0?"+":"")+x+"\n";
+                skillDetail1+=attHero.name+" "+(x>0?"+":"")+x+"\n";
             }
             pos+=12;
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -1821,7 +1837,7 @@ public class SocketMaster implements Runnable{
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail1+=attHero.name+" "+(x>0?"+":"")+x+"\n";
+                skillDetail0+=defHero.name+" "+(x>0?"+":"")+x+"\n";
             }
             pos+=12;
             attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -1834,9 +1850,11 @@ public class SocketMaster implements Runnable{
             }
             if(attHero.hp==0){
                 battleDetails+=skillDetail0;
+                battleDetails+=attHero.name+" 死亡\n";
             }
             if(defHero.hp==0){
                 battleDetails+=skillDetail1;
+                battleDetails+=defHero.name+" 死亡\n";
             }
         }
         // 每5关奖励
@@ -1907,7 +1925,7 @@ public class SocketMaster implements Runnable{
             moreKill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             lastNightLevel=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
-                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails);
+                killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails, true);
             if(moreBuff>0){
                 // 选择Buff
                 globalIndex=-1;
@@ -1948,14 +1966,14 @@ public class SocketMaster implements Runnable{
                 buffAttM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 updateSelection(mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
-                    killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails);
+                    killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, battleDetails, true);
             }
             
         }
         else{
             battleDetails+="失败...\n";
             updateSelection(-1, -1, -1, -1, -1, -1,
-                0, 0, 0, 0, 0, 0, battleDetails);
+                0, 0, 0, 0, 0, 0, battleDetails, false);
             return 1;
         }
         return 0;
@@ -1969,7 +1987,7 @@ public class SocketMaster implements Runnable{
     }
     
     public void updateSelection(int mode, int level, int buffDefP, int buffDefM, int buffEffectP, int buffEffectM,
-            int killFirst, int enemyHard, int enemyNormal, int enemyEasy, int myNumber, int enemyNumber, String battleDetails){
+            int killFirst, int enemyHard, int enemyNormal, int enemyEasy, int myNumber, int enemyNumber, String battleDetails, boolean win){
         UpdateSelection update=new UpdateSelection();
         update.mode=mode;
         update.level=level;
@@ -1984,6 +2002,7 @@ public class SocketMaster implements Runnable{
         update.myNumber=myNumber;
         update.enemyNumber=enemyNumber;
         update.battle=battleDetails;
+        update.win=win;
         SwingUtilities.invokeLater(update);
     }
     
@@ -1994,6 +2013,10 @@ public class SocketMaster implements Runnable{
 
     @Override
     public void run() {
+        if(onWork){
+            return;
+        }
+        onWork=true;
         switch(cmdGlobal){
             case c_login:
                 if(globalLoginSocket((String)arguments[0], -1, true) && (boolean)arguments[1]){
@@ -2001,6 +2024,8 @@ public class SocketMaster implements Runnable{
                 }
                 if(globalReady){
                     SLComputer.mf.setTitle(SLComputer.mf.getTitle()+" ("+globalName+" 已登陆)");
+                    Emphasize buttons=new Emphasize(true);
+                    SwingUtilities.invokeLater(buttons);
                     JOptionPane.showMessageDialog(SLComputer.mf, globalName+" 已登陆，从现在开始点击任一挑战按钮将视为游戏内挑战对应难度试炼。\n若要退出此模式请用菜单栏里的注销。",
                             "登陆成功", JOptionPane.INFORMATION_MESSAGE);
                     SLComputer.smartNumber_bk=SLComputer.smartNumber;
@@ -2030,5 +2055,6 @@ public class SocketMaster implements Runnable{
                 break;
             default:
         }
+        onWork=false;
     }
 }

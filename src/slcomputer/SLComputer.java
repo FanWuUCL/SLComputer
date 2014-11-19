@@ -119,107 +119,25 @@
  * Version 4.0
  * 1. 120层以上第三个忍者修正成影忍。
  * 2. 优化潜力点的计算，请各位微调过剩余潜力点的朋友把剩余潜力点改回游戏里显示的数值。
- * 3. 
+ * 3. ！！！账号功能正式面世，通过菜单的账号->登陆功能，可以在此工具内登陆你的游戏账号，成功登陆后每个难度下的“挑战”按钮将有新的功能，点击任一“挑战”按钮将直接对应游戏里打对应难度的试炼，同时buff和下一层各难度队长和人数会自动更新。如果菜单里选中了观看战斗，还会在右侧文本框里显示战斗详情（但是不会自动计算下一层的胜率），取消观看战斗则会在每一层挑战成功后自动计算下一层的胜率。
+ * 4. 
  */
 package slcomputer;
 
-import slcomputer.equiq.EquiqLDXZ;
-import slcomputer.equiq.EquiqSZFY;
-import slcomputer.equiq.EquiqSYDL;
-import slcomputer.equiq.EquiqKL;
-import slcomputer.equiq.EquiqQHCM;
-import slcomputer.equiq.EquiqBZZF;
-import slcomputer.equiq.EquiqYWMJ;
-import slcomputer.equiq.EquiqZZZJ;
-import slcomputer.equiq.EquiqLDY;
-import slcomputer.equiq.EquiqTYDL;
-import slcomputer.equiq.EquiqMJHS;
-import slcomputer.equiq.EquiqXWZJ;
-import slcomputer.equiq.EquiqTZM;
-import slcomputer.equiq.EquiqHPJP;
-import slcomputer.equiq.EquiqYGHS;
-import slcomputer.equiq.EquiqAYZF;
-import slcomputer.equiq.EquiqMDHZ;
-import slcomputer.equiq.EquiqBJS;
-import slcomputer.equiq.EquiqZZY;
-import slcomputer.equiq.EquiqQXJ;
-import slcomputer.equiq.EquiqLYDL;
-import slcomputer.equiq.EquiqZZP;
-import slcomputer.equiq.EquiqQB;
-import slcomputer.equiq.EquiqXRZP;
-import slcomputer.equiq.EquiqQHZJ;
-import slcomputer.equiq.EquiqGYZP;
-import slcomputer.equiq.EquiqSQJ;
-import slcomputer.equiq.Equiq;
-import slcomputer.equiq.EquiqQHZP;
-import slcomputer.equiq.EquiqXXSYL;
-import slcomputer.equiq.EquiqZSDD;
-import slcomputer.equiq.EquiqBDFM;
-import slcomputer.equiq.EquiqFYQT;
-import slcomputer.equiq.EquiqSDPMD;
-import slcomputer.equiq.EquiqDDJJ;
-import slcomputer.equiq.EquiqGWSXS;
-import slcomputer.equiq.EquiqHYZS;
-import slcomputer.equiq.EquiqSSLD;
-import slcomputer.equiq.EquiqHHL;
-import slcomputer.equiq.EquiqHXQ;
-import slcomputer.equiq.EquiqHYDL;
-import slcomputer.equiq.EquiqJFZJ;
-import slcomputer.equiq.EquiqJZ;
-import slcomputer.equiq.EquiqSMMJ;
-import slcomputer.equiq.EquiqXFJZ;
-import slcomputer.equiq.EquiqABMJ;
-import slcomputer.equiq.EquiqTYZJ;
-import slcomputer.equiq.EquiqCTJ;
-import slcomputer.equiq.EquiqHJHS;
-import slcomputer.equiq.EquiqTZMJGG;
-import slcomputer.equiq.EquiqSGKW;
-import slcomputer.equiq.EquiqQHZF;
-import slcomputer.equiq.EquiqYGZJ;
-import slcomputer.equiq.EquiqASMKD;
-import slcomputer.equiq.EquiqHJKW;
-import slcomputer.equiq.EquiqHJS;
-import slcomputer.equiq.EquiqNTZH;
-import slcomputer.equiq.EquiqSJYKL;
-import slcomputer.equiq.EquiqLYFJJ;
-import slcomputer.equiq.EquiqLSZJ;
-import slcomputer.equiq.EquiqSHZD;
-import slcomputer.equiq.EquiqBMHS;
-import slcomputer.equiq.EquiqYGZK;
-import slcomputer.equiq.EquiqRD;
-import slcomputer.equiq.EquiqQDY;
-import slcomputer.equiq.EquiqCDFZ;
-import slcomputer.equiq.EquiqBCQGY;
-import slcomputer.equiq.EquiqRKL;
-import slcomputer.equiq.EquiqKQSZJ;
-import slcomputer.equiq.EquiqSHKJ;
-import slcomputer.equiq.EquiqLHZP;
-import slcomputer.equiq.EquiqFZ;
-import slcomputer.equiq.EquiqFYDL;
-import slcomputer.equiq.EquiqYLP;
-import slcomputer.equiq.EquiqHYZP;
-import slcomputer.equiq.EquiqZZHS;
-import slcomputer.equiq.EquiqCS;
-import slcomputer.equiq.EquiqSGZJ;
-import slcomputer.equiq.EquiqDDDG;
-import slcomputer.equiq.EquiqQBF;
-import slcomputer.equiq.EquiqJGRYB;
-import slcomputer.equiq.EquiqBCJ;
-import slcomputer.equiq.EquiqLLZP;
-import slcomputer.equiq.EquiqRZ;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
+import slcomputer.equiq.*;
 import slcomputer.heros.*;
+import slcomputer.invokelater.Emphasize;
 
 
 /**
@@ -266,7 +184,7 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=0;
     public static final int vip=100;
-    public static final String testVersion=" beta0";
+    public static final String testVersion=" beta1";
     public static final String usage="使用说明：\n"
             + "1. 在左上方选取试炼模式。\n"
             + "2. 在模式下方填写试炼层数，或用左右箭头修改。\n"
@@ -762,6 +680,8 @@ public class SLComputer {
         SocketMaster.globalID=0;
         SocketMaster.globalName="";
         smartNumber=smartNumber_bk;
+        Emphasize buttons=new Emphasize(false);
+        SwingUtilities.invokeLater(buttons);
         try{
             if(SocketMaster.isStatic!=null){
                 SocketMaster.isStatic.close();
@@ -1546,6 +1466,7 @@ public class SLComputer {
         readBuildingsFromFile();
         readConfigFromFile();
         readAccFromFile();
+        SocketMaster.onWork=false;
     }
 
     public static String yuanDescription(int yuan[]){
