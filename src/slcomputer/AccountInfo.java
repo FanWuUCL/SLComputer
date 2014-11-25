@@ -19,17 +19,25 @@ public class AccountInfo {
         fwq=0;
     }
     
-    public String encode(String s){
-        String encoded="";
-        return encoded;
+    public AccountInfo dup(){
+        AccountInfo acc=new AccountInfo();
+        acc.usr=usr;
+        acc.psd=psd;
+        acc.fwq=fwq;
+        return acc;
     }
     
-    public String decode(String s){
-        String decoded="";
-        return decoded;
+    public void setAll(String usr, String psd, int fwq){
+        this.usr=usr;
+        this.psd=psd;
+        this.fwq=fwq;
+    }
+    
+    public String convert() throws Exception{
+        return usr+"\t"+fwq+"\t"+SLComputer.des.encrypt(psd);
     }
     
     public String toString(){
-        return usr+"\t"+fwq+"\t"+psd;
+        return usr;
     }
 }

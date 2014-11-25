@@ -165,9 +165,9 @@ public class SocketMaster implements Runnable{
                 byte[] wrap=new byte[32];
                 if(is.read(wrap, 0, 31)!=31){
                     for(int j=0; j<31; j++){
-                        System.out.print(wrap[j]+" ");
+                        //System.out.print(wrap[j]+" ");
                     }
-                    System.out.println();
+                    //System.out.println("Certification has changed.");
                     return null;
                 }
                 if(!(wrap[0]==0x53 && wrap[1]==0x74 && wrap[2]==0x61 && wrap[3]==0x72 && wrap[4]==0x74)){
@@ -1804,7 +1804,7 @@ public class SocketMaster implements Runnable{
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             y=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(attHero.hp!=x || defHero.hp!=y){
-                battleDetails+=attHero.property+" "+(x-attHero.hp)+((x-attHero.hp)>0?" ---> ":" <--- ")+((y-defHero.hp)>=0?"+"+(y-defHero.hp):""+(y-defHero.hp))+" "+defHero.property+"\n";
+                battleDetails+=attHero.property+" "+(x-attHero.hp>=0?"+"+(x-attHero.hp):(x-attHero.hp))+((x-attHero.hp)>0?" ---> ":" <--- ")+((y-defHero.hp)>=0?"+"+(y-defHero.hp):""+(y-defHero.hp))+" "+defHero.property+"\n";
                 attHero.hp=x;
                 defHero.hp=y;
                 battleDetails+=attHero.name+" "+attHero.property+" "+hp(attHero.hp)+" VS "+hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
@@ -2019,17 +2019,15 @@ public class SocketMaster implements Runnable{
         onWork=true;
         switch(cmdGlobal){
             case c_login:
-                if(globalLoginSocket((String)arguments[0], -1, true) && (boolean)arguments[1]){
-                    SLComputer.updateAcc((String)arguments[0]);
+                if(globalLoginSocket((String)arguments[0], -1, true) && (boolean)arguments[3]){
+                    SLComputer.updateAcc((String)arguments[0], (String)arguments[1], (int)arguments[2]);
                 }
                 if(globalReady){
-                    SLComputer.mf.setTitle(SLComputer.mf.getTitle()+" ("+globalName+" 已登陆)");
+                    //SLComputer.mf.setTitle(SLComputer.mf.getTitle()+" ("+globalName+" 已登陆)");
                     Emphasize buttons=new Emphasize(true);
                     SwingUtilities.invokeLater(buttons);
                     JOptionPane.showMessageDialog(SLComputer.mf, globalName+" 已登陆，从现在开始点击任一挑战按钮将视为游戏内挑战对应难度试炼。\n若要退出此模式请用菜单栏里的注销。",
                             "登陆成功", JOptionPane.INFORMATION_MESSAGE);
-                    SLComputer.smartNumber_bk=SLComputer.smartNumber;
-                    SLComputer.smartNumber=true;
                     if(globalQueryBB()){
                         // 准备完成，开始试炼
                     }

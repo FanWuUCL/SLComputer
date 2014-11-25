@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import slcomputer.AccountInfo;
 import slcomputer.SLComputer;
 import slcomputer.SocketMaster;
 
@@ -23,7 +24,7 @@ public class JDialogLogin extends javax.swing.JDialog {
     public JDialogLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        for(String s:SLComputer.accounts){
+        for(AccountInfo s:SLComputer.accounts){
             jComboBox1.addItem(s);
         }
         Dimension d=getPreferredSize();
@@ -54,6 +55,11 @@ public class JDialogLogin extends javax.swing.JDialog {
         jLabel1.setText("账号");
 
         jComboBox1.setEditable(true);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jCheckBoxRemember.setText("记住账号");
 
@@ -125,12 +131,23 @@ public class JDialogLogin extends javax.swing.JDialog {
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         SLComputer.cleanLogin();
-        if(jComboBox1.getSelectedItem().equals("")){
-            return;
+        AccountInfo account;
+        if(jComboBox1.getSelectedIndex()<0){
+            account=new AccountInfo();
+            account.usr=(String)jComboBox1.getSelectedItem();
+            if(account.usr.equals("")){
+                return;
+            }
         }
-        SocketMaster.setGlobalIP(jComboBoxServer.getSelectedIndex());
-        SocketMaster.arguments[0]=jComboBox1.getSelectedItem();
-        SocketMaster.arguments[1]=jCheckBoxRemember.isSelected();
+        else{
+            account=(AccountInfo)jComboBox1.getSelectedItem();
+        }
+        account.fwq=jComboBoxServer.getSelectedIndex();
+        SocketMaster.setGlobalIP(account.fwq);
+        SocketMaster.arguments[0]=account.usr;
+        SocketMaster.arguments[1]=account.psd;
+        SocketMaster.arguments[2]=account.fwq;
+        SocketMaster.arguments[3]=jCheckBoxRemember.isSelected();
         SocketMaster.cmdGlobal=SocketMaster.c_login;
         SocketMaster sm=new SocketMaster();
         new Thread(sm).start();
@@ -138,13 +155,16 @@ public class JDialogLogin extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jButtonObliviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObliviaActionPerformed
-        String s=(String)jComboBox1.getSelectedItem();
+        if(jComboBox1.getSelectedIndex()<=0){
+            return;
+        }
+        AccountInfo s=(AccountInfo)jComboBox1.getSelectedItem();
         if(!s.equals("")){
-            for(String e:SLComputer.accounts){
+            for(AccountInfo e:SLComputer.accounts){
                 if(s.equals(e)){
                     SLComputer.accounts.removeElement(e);
                     jComboBox1.removeAllItems();
-                    for(String r:SLComputer.accounts){
+                    for(AccountInfo r:SLComputer.accounts){
                         jComboBox1.addItem(r);
                     }
                     SLComputer.saveAccToFile();
@@ -157,6 +177,17 @@ public class JDialogLogin extends javax.swing.JDialog {
     private void jComboBoxServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxServerActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if(jComboBox1.getSelectedIndex()<0){
+            return;
+        }
+        AccountInfo acc=(AccountInfo)jComboBox1.getSelectedItem();
+        //System.out.println(acc.fwq);
+        if(acc!=null && acc.fwq>=0 && acc.fwq<jComboBoxServer.getItemCount()){
+            this.jComboBoxServer.setSelectedIndex(acc.fwq);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;

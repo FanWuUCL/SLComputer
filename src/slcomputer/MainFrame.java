@@ -17,6 +17,7 @@ import javax.swing.ButtonModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import slcomputer.dialogs.JDialogAutoBB;
 
 /**
  *
@@ -521,6 +522,7 @@ public class MainFrame extends javax.swing.JFrame {
         jCheckBoxMenuItemDreamMode = new javax.swing.JCheckBoxMenuItem();
         jMenuAccount = new javax.swing.JMenu();
         jMenuItemLogin = new javax.swing.JMenuItem();
+        jMenuItemAutoBB = new javax.swing.JMenuItem();
         jMenuItemLogout = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItemWatchBattle = new javax.swing.JCheckBoxMenuItem();
@@ -1449,6 +1451,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jMenuAccount.add(jMenuItemLogin);
+
+        jMenuItemAutoBB.setText("自动试炼");
+        jMenuItemAutoBB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAutoBBActionPerformed(evt);
+            }
+        });
+        jMenuAccount.add(jMenuItemAutoBB);
 
         jMenuItemLogout.setText("注销");
         jMenuItemLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -2904,6 +2914,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jMenuItemLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoginActionPerformed
         //JOptionPane.showMessageDialog(this, "该功能正在完善中……\n功能预览：可以在此登陆你的账号，然后直接在此工具内查阵容和打试炼，和在游戏内打试炼是一样的。\n如果不需要换阵的话，可以支持自动打试炼，无脑困难点到手酸的日子将一去不复返。\n旗舰版用户还会有神秘功能哦！", "敬请期待", JOptionPane.INFORMATION_MESSAGE);
+        SLComputer.smartNumber_bk=SLComputer.smartNumber;
         new JDialogLogin(this, true);
     }//GEN-LAST:event_jMenuItemLoginActionPerformed
 
@@ -2922,6 +2933,10 @@ public class MainFrame extends javax.swing.JFrame {
         SLComputer.watchBattle=jMenuItemWatchBattle.isSelected();
         SLComputer.saveConfigToFile();
     }//GEN-LAST:event_jMenuItemWatchBattleActionPerformed
+
+    private void jMenuItemAutoBBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutoBBActionPerformed
+        new JDialogAutoBB(this, true);
+    }//GEN-LAST:event_jMenuItemAutoBBActionPerformed
 
     // 设置模式
     public void setMode(int mode){
@@ -3000,6 +3015,18 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonGoHard.setForeground(c);
         jButtonGoNorm.setForeground(c);
         jButtonGoEasy.setForeground(c);
+    }
+    
+    public void setSmartNumber(boolean sn){
+        jCheckBoxMenuItemSmartNumber.setSelected(sn);
+    }
+    
+    public boolean isSmartNumberMenuItemSelected(){
+        return jCheckBoxMenuItemSmartNumber.isSelected();
+    }
+    
+    public void enableAutoBB(boolean en){
+        this.jMenuItemAutoBB.setEnabled(en);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3095,6 +3122,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSumNorm;
     private javax.swing.JMenu jMenuAccount;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAutoBB;
     private javax.swing.JMenuItem jMenuItemLogin;
     private javax.swing.JMenuItem jMenuItemLogout;
     private javax.swing.JCheckBoxMenuItem jMenuItemWatchBattle;

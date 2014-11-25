@@ -120,7 +120,7 @@
  * 1. 120层以上第三个忍者修正成影忍。
  * 2. 优化潜力点的计算，请各位微调过剩余潜力点的朋友把剩余潜力点改回游戏里显示的数值。
  * 3. ！！！账号功能正式面世，通过菜单的账号->登陆功能，可以在此工具内登陆你的游戏账号，成功登陆后每个难度下的“挑战”按钮将有新的功能，点击任一“挑战”按钮将直接对应游戏里打对应难度的试炼，同时buff和下一层各难度队长和人数会自动更新。如果菜单里选中了观看战斗，还会在右侧文本框里显示战斗详情（但是不会自动计算下一层的胜率），取消观看战斗则会在每一层挑战成功后自动计算下一层的胜率。
- * 4. 
+ * 4. 登陆的时候可以选择记住账号，你的账号将会以加密的方式存放在本地。
  */
 package slcomputer;
 
@@ -138,6 +138,7 @@ import javax.swing.SwingUtilities;
 import slcomputer.equiq.*;
 import slcomputer.heros.*;
 import slcomputer.invokelater.Emphasize;
+import slcomputer.utils.DesUtils;
 
 
 /**
@@ -172,7 +173,9 @@ public class SLComputer {
     public static int[] buildingLevel;
     public static int[] buildingEffect;
     public static int accNumber;
-    public static Vector<String> accounts;
+    public static Vector<AccountInfo> accounts;
+    public static final byte[] zhengzhi={105, 110, 116, 101, 103, 114, 105, 116, 121};
+    public static DesUtils des;
     // configure
     public static int sNumber;
     public static boolean smartNumber;
@@ -621,13 +624,26 @@ public class SLComputer {
     }
     
     public static void saveAccToFile(){
-        int i;
+        if(des==null){
+            return;
+        }
+        int i=0;
         File f=new File("usr/accounts");
         try {
             BufferedWriter br=new BufferedWriter(new FileWriter(f));
-            for(String s:accounts){
-                if(!s.equals("")){
-                    br.write(s+"\n");
+            for(AccountInfo s:accounts){
+                if(i++==0){
+                    continue;
+                }
+                if(!s.usr.equals("")){
+                    String encoded="";
+                    try{
+                        encoded=s.convert();
+                    }
+                    catch(Exception e){
+                        continue;
+                    }
+                    br.write(encoded+"\n");
                 }
             }
             br.close();
@@ -636,10 +652,12 @@ public class SLComputer {
         }
     }
     
-    public static void readAccFromFile(){
+    public static void readAccFromFile() throws Exception{
         accNumber=0;
-        accounts=new Vector<String>();
-        accounts.add("");
+        accounts=new Vector<AccountInfo>();
+        AccountInfo ai=new AccountInfo();
+        accounts.add(ai);
+        des=new DesUtils(new String(zhengzhi));
         File f=new File("usr/accounts");
         if(!f.isFile() || !f.exists()){
             return;
@@ -647,10 +665,29 @@ public class SLComputer {
         try {
             BufferedReader br=new BufferedReader(new FileReader(f));
             String s=br.readLine();
+            String[] split;
             while(s!=null){
-                if(!s.equals("") && s.indexOf(" ")<0){
+                if(!s.equals("")){
+                    ai=new AccountInfo();
+                    split=s.split("\t");
+                    if(split.length>=1){
+                        ai.usr=split[0];
+                        if(split.length>=2){
+                            ai.fwq=Integer.parseInt(split[1]);
+                            if(split.length>=3){
+                                try{
+                                    ai.psd=des.decrypt(split[2]);
+                                }catch(Exception e){
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    accounts.add(ai);
+                    if(accNumber==0){
+                        accounts.elementAt(0).setAll(ai.usr, ai.psd, ai.fwq);
+                    }
                     accNumber++;
-                    accounts.add(s);
                 }
                 s=br.readLine();
             }
@@ -660,22 +697,29 @@ public class SLComputer {
         }
     }
     
-    public static void updateAcc(String usr){
-        for(String s:accounts){
-            if(s.equals(usr)){
-                return;
+    public static void updateAcc(String usr, String psd, int fwq){
+        int index=0;
+        for(AccountInfo acc:accounts){
+            if(index!=0){
+                if(acc.usr.equals(usr) && acc.fwq==fwq){
+                    if(!acc.psd.equals(psd)){
+                        acc.psd=psd;
+                        saveAccToFile();
+                    }
+                    return;
+                }
             }
+            index++;
         }
-        accounts.add(usr);
+        AccountInfo account=new AccountInfo();
+        account.usr=usr;
+        account.psd=psd;
+        account.fwq=fwq;
+        accounts.add(account);
         saveAccToFile();
     }
     
     public static void cleanLogin(){
-        String title=mf.getTitle();
-        int index=title.indexOf("(");
-        if(index>=0){
-            mf.setTitle(title.substring(0, index-1));
-        }
         SocketMaster.globalCer=0;
         SocketMaster.globalID=0;
         SocketMaster.globalName="";
@@ -1465,7 +1509,12 @@ public class SLComputer {
         buildingEffect=new int[6];
         readBuildingsFromFile();
         readConfigFromFile();
-        readAccFromFile();
+        try {
+            readAccFromFile();
+        } catch (Exception ex) {
+            System.out.println("Reading accounts fails.");
+            des=null;
+        }
         SocketMaster.onWork=false;
     }
 

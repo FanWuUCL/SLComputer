@@ -31,6 +31,9 @@ public class JDialogChooseBuff extends javax.swing.JDialog {
         if(buff[0]==0 && buff[1]==0 && buff[2]==0 && buff[3]==0 && buff[4]==0){
             isRegularBuff=false;
             buff[0]=buff[1]=buff[2]=1;
+            if(base>120){
+                base=120;
+            }
         }
         else{
             isRegularBuff=true;
