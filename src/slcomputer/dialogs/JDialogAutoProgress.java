@@ -4,11 +4,14 @@
  */
 package slcomputer.dialogs;
 
+import java.awt.Dimension;
+import java.awt.Rectangle;
+
 /**
  *
  * @author J
  */
-public class JDialogAutoProgress extends javax.swing.JDialog {
+public class JDialogAutoProgress extends javax.swing.JDialog implements Runnable {
 
     /**
      * Creates new form JDialogAutoProgress
@@ -16,6 +19,28 @@ public class JDialogAutoProgress extends javax.swing.JDialog {
     public JDialogAutoProgress(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        stopFlag=false;
+        Dimension d=getPreferredSize();
+        Rectangle b=parent.getBounds();
+        setBounds(b.x+b.width/3-d.width/2, b.y+b.height/2-d.height/2, d.width, d.height);
+    }
+    
+    public void run(){
+        setVisible(true);
+    }
+    
+    public void append(String line){
+        jTextAreaProgress.append(line+"\n");
+        jTextAreaProgress.setCaretPosition(jTextAreaProgress.getText().length());
+    }
+    
+    public boolean stop(){
+        return stopFlag;
+    }
+    
+    public void setStop(){
+        stopFlag=true;
+        jButtonStop.setText("退出");
     }
 
     /**
@@ -35,6 +60,11 @@ public class JDialogAutoProgress extends javax.swing.JDialog {
         setTitle("试炼进度");
 
         jButtonStop.setText("中止");
+        jButtonStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStopActionPerformed(evt);
+            }
+        });
 
         jTextAreaProgress.setEditable(false);
         jTextAreaProgress.setColumns(20);
@@ -70,47 +100,16 @@ public class JDialogAutoProgress extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDialogAutoProgress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDialogAutoProgress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDialogAutoProgress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDialogAutoProgress.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
+        if(!stopFlag){
+            setStop();
         }
-        //</editor-fold>
+        else{
+            dispose();
+        }
+    }//GEN-LAST:event_jButtonStopActionPerformed
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                JDialogAutoProgress dialog = new JDialogAutoProgress(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    private boolean stopFlag;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonStop;
     private javax.swing.JScrollPane jScrollPane1;

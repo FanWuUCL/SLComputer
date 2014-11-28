@@ -89,6 +89,7 @@ public class SocketMaster implements Runnable{
     public static boolean globalReady;
     public static int cmdGlobal;
     public static int starUsed, starTotal;
+    public static int mode;
     public static Object[] arguments=new Object[4];
     public static boolean onWork=false;
 
@@ -1473,7 +1474,7 @@ public class SocketMaster implements Runnable{
         if(recvData==null || recvData.length<36){
             return false;
         }
-        int pos, mode, challengeTimes, bestQX, bestFY, challengeMax, rank;
+        int pos, challengeTimes, bestQX, bestFY, challengeMax, rank;
         pos=8;
         mode=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         if(mode!=0 && mode!=1){
@@ -1586,7 +1587,7 @@ public class SocketMaster implements Runnable{
         return true;
     }
     
-    public HeroLight referenceHero(HeroLight[] team, int ref){
+    public static HeroLight referenceHero(HeroLight[] team, int ref){
         for(int i=0; i<team.length; i++){
             if(team[i].ref==ref){
                 return team[i];
@@ -1595,7 +1596,7 @@ public class SocketMaster implements Runnable{
         return null;
     }
     
-    public String referenceSkill(int id){
+    public static String referenceSkill(int id){
         for(Skill sk:SLComputer.skills){
             if(sk.id==id){
                 return sk.name;
@@ -1891,7 +1892,7 @@ public class SocketMaster implements Runnable{
                     battleDetails+="未知数据："+hardness+"\n";
             }
             battleDetails+="获得星星："+starGain+"\n";
-            int mode, level, myNumber, enemyNumber, enemyHard, enemyNormal, enemyEasy, killFirst, moreBuff,
+            int level, myNumber, enemyNumber, enemyHard, enemyNormal, enemyEasy, killFirst, moreBuff,
                     buffDefP, buffAttP, buffEffectP, buffDefM, buffAttM, buffEffectM;
             int moreHPP, moreEffectP, moreHPM, moreEffectM, moreKill, lastNightLevel;
             mode=(((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff)); pos+=4;
@@ -1979,7 +1980,7 @@ public class SocketMaster implements Runnable{
         return 0;
     }
     
-    public String hp(int hp){
+    public static String hp(int hp){
         if(hp/100000==0){
             return ""+hp;
         }
