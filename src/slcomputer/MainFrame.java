@@ -2175,7 +2175,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
             SLComputer.buildingEffect[i]=j;
         }
-        SLComputer.saveBuildingsToFile();
+        //SLComputer.saveBuildingsToFile();
         powerAtt-=BBuildingEffect(2);
         powerDef-=BBuildingEffect(3);
         int hardness;
@@ -2540,6 +2540,7 @@ public class MainFrame extends javax.swing.JFrame {
         SLComputer.myTeam.powerAtt+=BBuildingEffect(0);
         SLComputer.myTeam.powerDef+=BBuildingEffect(1);
         SLComputer.myTeam.skillRateMultiply+=(BBuildingEffect(4)+BBuildingEffect(5))/100;
+
         // determine numberMax
         for(i=0; i<jButtonHeroChoosers.length; i++){
             if(SLComputer.myTeam.heros[i]==null || SLComputer.myTeam.heros[i].id==0){
@@ -2855,6 +2856,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         rate[2]=(winTimes*100)/(double)trialNumber;
+        
+        System.out.println("困难 "+hard.heros[0].name+" "+normNum+"v"+hardNum+" "+rate[0]);
+        System.out.println("普通 "+norm.heros[0].name+" "+normNum+"v"+normNum+" "+rate[1]);
+        System.out.println("容易 "+easy.heros[0].name+" "+normNum+"v"+easyNum+" "+rate[2]);
         return rate;
     }
     

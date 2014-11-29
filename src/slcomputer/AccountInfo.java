@@ -34,7 +34,7 @@ public class AccountInfo {
     }
     
     public String convert() throws Exception{
-        return usr+"\t"+fwq+"\t"+SLComputer.des.encrypt(psd);
+        return SLComputer.des.encrypt(usr+":"+fwq+":"+psd);
     }
     
     public String toString(){

@@ -23,7 +23,7 @@ public class SocketAuto implements Runnable{
     private JDialogAutoProgress dialogProgress;
     
     private int maxLevel;
-    private int rate;
+    private double rate;
     private int HPPTarget;
     private int HPPMax;
     private int HPMTarget;
@@ -32,6 +32,7 @@ public class SocketAuto implements Runnable{
     private int EffectPMax;
     private int EffectMTarget;
     private int EffectMMax;
+    private int sleepTime;
     
     private int challengeTimes;
     private int bestQX;
@@ -60,7 +61,7 @@ public class SocketAuto implements Runnable{
     private int lastNightLevel;
     private int globalIndex;
     
-    public void setParameters(int level, int r, int hppt, int hppm, int hpmt, int hpmm, int ept, int epm, int emt, int emm){
+    public void setParameters(int level, double r, int hppt, int hppm, int hpmt, int hpmm, int ept, int epm, int emt, int emm, int sleep){
         maxLevel=level;
         rate=r;
         HPPTarget=hppt;
@@ -71,6 +72,10 @@ public class SocketAuto implements Runnable{
         EffectPMax=epm;
         EffectMTarget=emt;
         EffectMMax=emm;
+        sleepTime=sleep;
+        if(sleepTime<100){
+            sleepTime=100;
+        }
     }
     
     public static byte[] communicate(BufferedOutputStream os, BufferedInputStream is, int command, byte[] extra){
@@ -91,15 +96,93 @@ public class SocketAuto implements Runnable{
         return recvData;
     }
     
+    public void linkBuff(int moreBuff, int index, int[] more){
+        switch(moreBuff){
+            case 3:
+                more[0]=index;
+                break;
+            case 2:
+                more[1]=index;
+                break;
+            case 1:
+                more[2]=index;
+                break;
+        }
+    }
+    
     public int autoBuff(){
-        int ret=0;
-        
-        return 0;
+        int ret;
+        int[] buff=new int[5];
+        buff[0]=buffDefP-100;
+        buff[1]=buffEffectP;
+        buff[2]=-buffDefM;
+        buff[3]=-buffEffectM;
+        buff[4]=0;
+        int[] target=new int[5];
+        target[0]=HPPTarget;
+        target[1]=EffectPTarget;
+        target[2]=HPMTarget;
+        target[3]=EffectMTarget;
+        target[4]=0;
+        int[] max=new int[5];;
+        max[0]=HPPMax;
+        max[1]=EffectPMax;
+        max[2]=HPMMax;
+        max[3]=EffectMMax;
+        max[4]=0;
+        int[] more={4, 4, 4};
+        linkBuff(moreHPP, 0, more);
+        linkBuff(moreEffectP, 1, more);
+        linkBuff(moreHPM, 2, more);
+        linkBuff(moreEffectM, 3, more);
+        linkBuff(moreKill, 4, more);
+        int star=SocketMaster.starTotal-SocketMaster.starUsed;
+        if(buff[more[0]]<target[more[0]] && star>=30){
+            ret=more[0];
+        }
+        else if(buff[more[1]]<target[more[1]] && star>=15){
+            ret=more[1];
+        }
+        else if(buff[more[0]]<max[more[0]] && star>=30){
+            ret=more[0];
+        }
+        else if(buff[more[1]]<max[more[1]] && star>=15){
+            ret=more[1];
+        }
+        else if(buff[more[2]]<max[more[2]]){
+            ret=more[2];
+        }
+        else if(more[0]==4 && star>=30){
+            ret=4;
+        }
+        else{
+            ret=more[2];
+        }
+        return ret;
     }
     
     public int autoHardness(){
-        
-        return 0;
+        double[] rates=SLComputer.mf.finalComputerSilent(SocketMaster.mode, level+1, buffDefP-100, buffEffectP, buffDefM, buffEffectM, killFirst, 
+                enemyHard, enemyNormal, enemyEasy, enemyNumber, myNumber, 2*myNumber-enemyNumber);
+        int i, select;
+        for(i=0; i<rates.length; i++){
+            if(rates[i]>=rate){
+                break;
+            }
+        }
+        if(i<rates.length){
+            select=i;
+        }
+        else{
+            select=0;
+            for(i=1; i<rates.length; i++){
+                if(rates[i]>rates[select]){
+                    select=i;
+                }
+            }
+        }
+        System.out.println("Select:"+select);
+        return select;
     }
     
     public boolean globalQueryBB(){
@@ -197,6 +280,17 @@ public class SocketAuto implements Runnable{
         }
         else{
             report=attName;
+        }
+        switch(hardness){
+            case 0:
+                report+=" 困难";
+                break;
+            case 1:
+                report+=" 普通";
+                break;
+            case 2:
+                report+=" 容易";
+                break;
         }
         pos+=8; // 角色等级
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -440,15 +534,15 @@ public class SocketAuto implements Runnable{
             switch(length){
                 case 3:
                     battleDetails+="完胜！\n";
-                    report+=" 完胜！";
+                    report+=" 完胜！\n";
                     break;
                 case 2:
                     battleDetails+="胜利！\n";
-                    report+=" 胜利！";
+                    report+=" 胜利！\n";
                     break;
                 case 1:
                     battleDetails+="险胜！\n";
-                    report+=" 险胜！";
+                    report+=" 险胜！\n";
                     break;
                 default:
                     battleDetails+="未知数据："+hardness+"\n";
@@ -484,7 +578,11 @@ public class SocketAuto implements Runnable{
             moreEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             moreKill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             lastNightLevel=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-            
+            try {
+                Thread.sleep(sleepTime);
+            } catch (InterruptedException ex) {
+                System.out.println("Sleep interupted.");
+            }
             if(moreBuff>0){
                 // 选择Buff
                 globalIndex=autoBuff();
@@ -526,7 +624,7 @@ public class SocketAuto implements Runnable{
                 buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 
             }
-            
+            report+="攻防+"+(buffDefP-100)+"% 攻防-"+(-buffDefM)+"% 忍术+"+buffEffectP+"% 忍术-"+(-buffEffectM)+"% 星星:"+(SocketMaster.starTotal-SocketMaster.starUsed);
         }
         else{
             battleDetails+="失败...\n";
@@ -552,7 +650,7 @@ public class SocketAuto implements Runnable{
             SocketMaster.connectionBroken();
             return;
         }
-        while(!dialogProgress.stop() && status==0){
+        while(!dialogProgress.stop() && status==0 && level<maxLevel){
             status=battle(autoHardness());
         }
         if(status<=1){

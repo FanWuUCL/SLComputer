@@ -187,7 +187,7 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=0;
     public static final int vip=100;
-    public static final String testVersion=" beta1";
+    public static final String testVersion=" beta2";
     public static final String usage="使用说明：\n"
             + "1. 在左上方选取试炼模式。\n"
             + "2. 在模式下方填写试炼层数，或用左右箭头修改。\n"
@@ -205,7 +205,8 @@ public class SLComputer {
             + "14. 用菜单中的账号功能可以登录你的账号，一边查阵容一边就在本工具内把试炼打了，轻松加愉快。\n"
             + "15. 登陆账号后，单个的挑战按键将变为直接打该难度下的试炼，等同于游戏里直接点某个难度打试炼，打完后所有数据会自动刷新并自动计算下一层各难度的胜率"
                 + "（如果菜单里选择了观看战斗，则不会自动计算胜率，而是显示战斗详情，需要自行点一次试炼终结者计算胜率）。本工具暂时不支持调整阵容，若要调整阵容，请用手机登陆游戏进行调整。\n"
-            + "16. (开发中)如果不需要换阵容无脑打试炼的话，本工具可以提供自动打试炼的功能，会根据胜率自动打胜率最高的，另外旗舰版还会有神秘功能，试炼so easy。\n"
+            + "16. 如果不需要换阵容无脑打试炼的话，本工具可以提供自动打试炼的功能，会根据胜率自动打胜率最高的。\n"
+            + "17. 自动试炼前需要设置一些参数，用于指导自动试炼时选难度和加buff的策略，每个参数的含义可以通过“查看策略”按钮了解详情。\n"
             + "\n每次版本更新的时候，请把SLComputer/usr文件夹复制到新版本的对应位置，就可以把以前的阵容全部搬到新版本来了。\n";
     public static final String copyright="关于版权：\n此工具开源，"
             + "任何人可以以任何方式修改并重新发布此工具，但是原作者不对任何重新发布的工具负责。\n";
@@ -669,17 +670,18 @@ public class SLComputer {
             while(s!=null){
                 if(!s.equals("")){
                     ai=new AccountInfo();
-                    split=s.split("\t");
+                    try{
+                        split=des.decrypt(s).split(":");
+                    }catch(Exception e){
+                        s=br.readLine();
+                        continue;
+                    }
                     if(split.length>=1){
                         ai.usr=split[0];
                         if(split.length>=2){
                             ai.fwq=Integer.parseInt(split[1]);
                             if(split.length>=3){
-                                try{
-                                    ai.psd=des.decrypt(split[2]);
-                                }catch(Exception e){
-                                    continue;
-                                }
+                                ai.psd=des.decrypt(split[2]);
                             }
                         }
                     }

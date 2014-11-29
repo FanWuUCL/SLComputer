@@ -2043,7 +2043,6 @@ public class SocketMaster implements Runnable{
                 break;
             case c_bb_battle:
                 int ret=battle((int)arguments[0]);
-                System.out.println("battle returns "+ret);
                 if(ret==1){
                     SLComputer.cleanLogin();
                     JOptionPane.showMessageDialog(SLComputer.mf, "挑战失败，返回普通模式。若要再次尝试请重新登录。", "结束", JOptionPane.ERROR_MESSAGE);
