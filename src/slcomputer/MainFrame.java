@@ -1453,6 +1453,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuAccount.add(jMenuItemLogin);
 
         jMenuItemAutoBB.setText("自动试炼");
+        jMenuItemAutoBB.setEnabled(false);
         jMenuItemAutoBB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAutoBBActionPerformed(evt);
@@ -2116,6 +2117,149 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
+    public void computeEnemySilent(int mode, int level, double HPM, double effectM, Team hardTeam, Team normTeam, Team easyTeam){
+        Team t=null;
+        SLData slData;
+        if(mode==0){
+            slData=SLComputer.QXSL;
+        }
+        else{
+            slData=SLComputer.FYSL;
+        }
+        // 试炼每3层的减益
+        double powerDown=HPM/100;
+        double skillPowerDown=effectM/100;
+        double enemySkillPower=slData.skillPower[level-1];
+        double enemySkillRate=slData.skillRate[level-1];
+        // 尾兽造成的技能几率减成
+        double reducingSkillRate=0;
+        enemySkillPower-=skillPowerDown;
+        double powerAtt=0;
+        double powerDef=0;
+        int i, j;
+        SLComputer.sacLevel=jComboBoxSacLevel.getSelectedIndex();
+        for(i=0; i<5; i++){
+            switch(jComboBoxPets[i].getSelectedIndex()){
+                case 1:     // 一尾
+                case 2:     // 二尾
+                case 3:     // 三尾
+                case 4:     // 四尾
+                case 5:     // 五尾
+                case 8:     // 八尾
+                case 9:     // 九尾
+                    break;
+                case 6:     // 六尾
+                    powerAtt=-Team.petBenefit(6, jComboBoxPetsLevel[i].getSelectedIndex())*Team.sacLevelBenefit(i, 6, SLComputer.sacLevel);
+                    break;
+                case 7:     // 七尾
+                    reducingSkillRate-=Team.petBenefit(7, jComboBoxPetsLevel[i].getSelectedIndex())*Team.sacLevelBenefit(i, 7, SLComputer.sacLevel)/100;
+                    break;
+                case 10:
+                    break;
+                default:
+                    break;
+            }
+        }
+        // battle buildings
+        for(i=0; i<6; i++){
+            SLComputer.buildingLevel[i]=jComboBoxBBuildingLevel[i].getSelectedIndex();
+            ButtonModel bm=buttonGroup[i].getSelection();
+            for(j=0; j<5; j++){
+                if(bm==jRadioButtons[i*5+j].getModel()){
+                    break;
+                }
+            }
+            if(j>=5){
+                j=0;
+                System.out.println("Warning: out of boundary");
+            }
+            SLComputer.buildingEffect[i]=j;
+        }
+        SLComputer.saveBuildingsToFile();
+        powerAtt-=BBuildingEffect(2);
+        powerDef-=BBuildingEffect(3);
+        int hardness;
+        int heroLevel;
+        if(level<=10){
+            heroLevel=1;
+        }
+        else if(level<=30){
+            heroLevel=30;
+        }
+        else if(level<=120){
+            heroLevel=50;
+        }
+        else{
+            heroLevel=70;
+        }
+        double summary;
+        Team[] teams;
+        for(hardness=0; hardness<3; hardness++){
+            switch(hardness){
+                case 0:
+                    t=hardTeam;
+                    break;
+                case 1:
+                    t=normTeam;
+                    break;
+                case 2:
+                    t=easyTeam;
+                    break;
+                default:
+                    System.out.println("computeEnemySilent(): code should never be reached.");
+                    return;
+            }
+            t.skillPower=enemySkillPower;
+            t.skillRatePlus=enemySkillRate;
+            t.skillRateMultiply=reducingSkillRate;
+            t.powerAtt=powerAtt;
+            t.powerDef=powerDef;
+            for(i=0; i<t.number; i++){
+                t.heros[i].level=heroLevel;
+                if(t.heros[i].att_born>t.heros[i].def_born){
+                    t.heros[i].potential=10000;
+                }
+                else{
+                    t.heros[i].potential=10000;
+                }
+                if(i==0){
+                    if(heroLevel>1){
+                        t.heros[0].property_battle=20;
+                    }
+                    else{
+                        t.heros[0].property_battle=t.heros[0].property;
+                    }
+                }
+                else if(i==1){
+                    if(heroLevel>30){
+                        t.heros[1].property_battle=20;
+                    }
+                    else{
+                        t.heros[1].property_battle=t.heros[1].property;
+                    }
+                }
+                else if(i==2){
+                    if(heroLevel>50){
+                        t.heros[2].property_battle=20;
+                    }
+                    else{
+                        t.heros[2].property_battle=t.heros[1].property;
+                    }
+                }
+                else{
+                    t.heros[i].property_battle=t.heros[i].property;
+                }
+                if(t.heros[i].weapon!=null){
+                    t.heros[i].weapon.level=heroLevel;
+                }
+                if(t.heros[i].shield!=null){
+                    t.heros[i].shield.level=heroLevel;
+                }
+            }
+            summary=t.compute(1-mode, slData.basePlus[level-1][hardness], -powerDown*mode, -powerDown*(1-mode), slData.bodySkill[level-1][hardness], true);
+        }
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         computeEnemy();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -2330,6 +2474,86 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
+    public void showMyTeamSilent(int mode, double HPP, double effectP){
+        int i, j;
+        SLComputer.myTeam.skillPower=0;
+        SLComputer.myTeam.skillRatePlus=0;
+        SLComputer.myTeam.skillRateMultiply=0;
+        SLComputer.myTeam.powerAtt=0;
+        SLComputer.myTeam.powerDef=0;
+        // 尾兽
+        SLComputer.sacLevel=jComboBoxSacLevel.getSelectedIndex();
+        for(i=0; i<5; i++){
+            SLComputer.myTeam.powerUpbyProperty[i]=0;
+        }
+        for(i=0; i<5; i++){
+            SLComputer.myTeam.pet[i]=jComboBoxPets[i].getSelectedIndex();
+            SLComputer.myTeam.petLevel[i]=jComboBoxPetsLevel[i].getSelectedIndex();
+            switch(SLComputer.myTeam.pet[i]){
+                case 1:     // 一尾
+                    SLComputer.myTeam.powerUpbyProperty[1]=Team.petBenefit(1, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 1, SLComputer.sacLevel);
+                    break;
+                case 2:     // 二尾
+                    SLComputer.myTeam.powerUpbyProperty[0]=Team.petBenefit(2, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 2, SLComputer.sacLevel);
+                    break;
+                case 3:     // 三尾
+                    SLComputer.myTeam.powerUpbyProperty[2]=Team.petBenefit(3, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 3, SLComputer.sacLevel);
+                    break;
+                case 4:     // 四尾
+                    SLComputer.myTeam.powerUpbyProperty[3]=Team.petBenefit(4, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 4, SLComputer.sacLevel);
+                    break;
+                case 5:     // 五尾
+                    SLComputer.myTeam.powerUpbyProperty[4]=Team.petBenefit(5, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 5, SLComputer.sacLevel);
+                    break;
+                case 8:     // 八尾
+                    SLComputer.myTeam.powerDef=Team.petBenefit(8, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 8, SLComputer.sacLevel);
+                    break;
+                case 9:     // 九尾
+                    SLComputer.myTeam.powerAtt=Team.petBenefit(9, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 9, SLComputer.sacLevel);
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 10:
+                    SLComputer.myTeam.petSkillRate=Team.petBenefit(10, SLComputer.myTeam.petLevel[i])*Team.sacLevelBenefit(i, 10, SLComputer.sacLevel);
+                    break;
+                default:
+                    break;
+            }
+        }
+        // battle buildings
+        for(i=0; i<6; i++){
+            SLComputer.buildingLevel[i]=jComboBoxBBuildingLevel[i].getSelectedIndex();
+            ButtonModel bm=buttonGroup[i].getSelection();
+            for(j=0; j<5; j++){
+                if(bm==jRadioButtons[i*5+j].getModel()){
+                    break;
+                }
+            }
+            if(j>=5){
+                j=0;
+                System.out.println("Warning: out of boundary");
+            }
+            SLComputer.buildingEffect[i]=j;
+        }
+        SLComputer.myTeam.powerAtt+=BBuildingEffect(0);
+        SLComputer.myTeam.powerDef+=BBuildingEffect(1);
+        SLComputer.myTeam.skillRateMultiply+=(BBuildingEffect(4)+BBuildingEffect(5))/100;
+        // determine numberMax
+        for(i=0; i<jButtonHeroChoosers.length; i++){
+            if(SLComputer.myTeam.heros[i]==null || SLComputer.myTeam.heros[i].id==0){
+                break;
+            }
+        }
+        SLComputer.myTeam.numberMax=SLComputer.myTeam.number=i;
+        double SLup=HPP;
+        double SLSkillUp=effectP;
+        SLComputer.myTeam.skillPower+=SLSkillUp;
+        SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
+        
+    }
+    
     private void jButtonShowMyTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowMyTeamActionPerformed
         showMyTeam(true);
     }//GEN-LAST:event_jButtonShowMyTeamActionPerformed
@@ -2490,6 +2714,150 @@ public class MainFrame extends javax.swing.JFrame {
         goEasy();
     }//GEN-LAST:event_jButtonGoEasyActionPerformed
 
+    public double[] finalComputerSilent(int mode, int level, double HPP, double effectP, double HPM, double effectM, int killFirst,
+            int hardCaptain, int normCaptain, int easyCaptain,
+            int hardNum, int normNum, int easyNum){
+        SLComputer.bf.output=null;
+        int result, i;
+        Team[] teams;
+        Team hard, norm, easy;
+        
+        if(mode==0){
+            teams=SLComputer.QXSL.teamsHard;
+        }
+        else{
+            teams=SLComputer.FYSL.teamsHard;
+        }
+        hard=teams[0];
+        for(i=0; i<teams.length; i++){
+            hard=teams[i];
+            if(hard.heros[0].hid==hardCaptain){
+                break;
+            }
+        }
+        hard.number=hardNum;
+        
+        if(mode==0){
+            teams=SLComputer.QXSL.teamsNorm;
+        }
+        else{
+            teams=SLComputer.FYSL.teamsNorm;
+        }
+        norm=teams[0];
+        for(i=0; i<teams.length; i++){
+            norm=teams[i];
+            if(norm.heros[0].hid==normCaptain){
+                break;
+            }
+        }
+        norm.number=normNum;
+        
+        if(mode==0){
+            teams=SLComputer.QXSL.teamsEasy;
+        }
+        else{
+            teams=SLComputer.FYSL.teamsEasy;
+        }
+        easy=teams[0];
+        for(i=0; i<teams.length; i++){
+            easy=teams[i];
+            if(easy.heros[0].hid==easyCaptain){
+                break;
+            }
+        }
+        easy.number=easyNum;
+        
+        computeEnemySilent(mode, level, HPM, effectM, hard, norm, easy);
+        showMyTeamSilent(mode, HPP, effectP);
+        switch(SLComputer.sNumber){
+            case 1:
+                trialNumber=200;
+                break;
+            case 2:
+                trialNumber=500;
+                break;
+            case 3:
+                trialNumber=1000;
+                break;
+            case 4:
+                trialNumber=3000;
+                break;
+            case 5:
+                trialNumber=10000;
+                break;
+            default:
+                trialNumber=100;
+                break;
+        }
+        int winTimes;
+        String recommend;
+        double[] rate={0, 0, 0};
+        // 高难
+        winTimes=0;
+        SLComputer.myTeam.number=normNum;
+        if(SLComputer.myTeam.number>SLComputer.myTeam.numberMax){
+            SLComputer.myTeam.number=SLComputer.myTeam.numberMax;
+        }
+        for(i=0; i<trialNumber; i++){
+            if(mode==0){
+                result=SLComputer.bf.battle(SLComputer.myTeam, hard, killFirst);
+                if(result==1 || result==2){
+                    winTimes++;
+                }
+            }
+            else{
+                result=SLComputer.bf.battle(hard, SLComputer.myTeam, killFirst);
+                if(result==0){
+                    winTimes++;
+                }
+            }
+        }
+        rate[0]=(winTimes*100)/(double)trialNumber;
+        // 普通
+        winTimes=0;
+        SLComputer.myTeam.number=normNum;
+        if(SLComputer.myTeam.number>SLComputer.myTeam.numberMax){
+            SLComputer.myTeam.number=SLComputer.myTeam.numberMax;
+        }
+        for(i=0; i<trialNumber; i++){
+            if(mode==0){
+                result=SLComputer.bf.battle(SLComputer.myTeam, norm, killFirst);
+                if(result==1 || result==2){
+                    winTimes++;
+                }
+            }
+            else{
+                result=SLComputer.bf.battle(norm, SLComputer.myTeam, killFirst);
+                if(result==0){
+                    winTimes++;
+                }
+            }
+        }
+        rate[1]=(winTimes*100)/(double)trialNumber;
+        // 菜鸟
+        winTimes=0;
+        SLComputer.myTeam.number=normNum;
+        if(SLComputer.myTeam.number>SLComputer.myTeam.numberMax){
+            SLComputer.myTeam.number=SLComputer.myTeam.numberMax;
+        }
+        for(i=0; i<trialNumber; i++){
+            if(mode==0){
+                result=SLComputer.bf.battle(SLComputer.myTeam, easy, killFirst);
+                if(result==1 || result==2){
+                    winTimes++;
+                }
+            }
+            else{
+                result=SLComputer.bf.battle(easy, SLComputer.myTeam, killFirst);
+                if(result==0){
+                    winTimes++;
+                }
+            }
+        }
+        rate[2]=(winTimes*100)/(double)trialNumber;
+        return rate;
+    }
+    
     public void finalComputer(){
         SLComputer.bf.output=null;
         computeEnemy();

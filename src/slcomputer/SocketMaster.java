@@ -2007,7 +2007,7 @@ public class SocketMaster implements Runnable{
         SwingUtilities.invokeLater(update);
     }
     
-    public void connectionBroken(){
+    public static void connectionBroken(){
         SLComputer.cleanLogin();
         JOptionPane.showMessageDialog(SLComputer.mf, "连接超时，被动中断，或用户操作不当导致主动中断，请重新登录", "连接中断", JOptionPane.ERROR_MESSAGE);
     }

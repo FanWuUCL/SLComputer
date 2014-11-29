@@ -10,8 +10,10 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import slcomputer.dialogs.JDialogAutoProgress;
 import slcomputer.dialogs.JDialogChooseBuff;
+import slcomputer.invokelater.Report;
 
 /**
  *
@@ -90,12 +92,13 @@ public class SocketAuto implements Runnable{
     }
     
     public int autoBuff(){
-        // TODO
+        int ret=0;
+        
         return 0;
     }
     
     public int autoHardness(){
-        // TODO
+        
         return 0;
     }
     
@@ -528,9 +531,16 @@ public class SocketAuto implements Runnable{
         else{
             battleDetails+="失败...\n";
             report+=" 失败...";
+            report(report, false);
             return 1;
         }
+        report(report, true);
         return 0;
+    }
+    
+    public void report(String msg, boolean status){
+        Report r=new Report(dialogProgress, msg, status);
+        SwingUtilities.invokeLater(r);
     }
     
     @Override
@@ -539,12 +549,17 @@ public class SocketAuto implements Runnable{
         new Thread(dialogProgress).start();
         int status=0;
         if(!globalQueryBB()){
-            // TODO
+            SocketMaster.connectionBroken();
             return;
         }
         while(!dialogProgress.stop() && status==0){
             status=battle(autoHardness());
         }
-        // TODO
+        if(status<=1){
+            report("自动试炼结束", false);
+        }
+        else{
+            report("连接中断", false);
+    }
     }
 }
