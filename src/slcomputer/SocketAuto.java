@@ -158,11 +158,32 @@ public class SocketAuto implements Runnable{
         else{
             ret=more[2];
         }
+        for(int i=0; i<3; i++){
+            switch(more[i]){
+                case 0:
+                    System.out.print("0:加攻防 ");
+                    break;
+                case 1:
+                    System.out.print("1:加忍术 ");
+                    break;
+                case 2:
+                    System.out.print("2:减攻防 ");
+                    break;
+                case 3:
+                    System.out.print("3:减忍术 ");
+                    break;
+                case 4:
+                    System.out.print("4:秒杀 ");
+                    break;
+            }
+        }
+        System.out.println();
+        System.out.println("选择： "+ret);
         return ret;
     }
     
     public int autoHardness(){
-        double[] rates=SLComputer.mf.finalComputerSilent(SocketMaster.mode, level+1, buffDefP-100, buffEffectP, buffDefM, buffEffectM, killFirst, 
+        double[] rates=SLComputer.mf.finalComputerSilent(SocketMaster.mode, level+1, buffDefP-100, buffEffectP, -buffDefM, -buffEffectM, killFirst, 
                 enemyHard, enemyNormal, enemyEasy, enemyNumber, myNumber, 2*myNumber-enemyNumber);
         int i, select;
         for(i=0; i<rates.length; i++){

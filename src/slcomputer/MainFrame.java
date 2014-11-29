@@ -2716,9 +2716,15 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGoEasyActionPerformed
 
     public double[] finalComputerSilent(int mode, int level, double HPP, double effectP, double HPM, double effectM, int killFirst,
-            int hardCaptain, int normCaptain, int easyCaptain,
+            int hardTeamNum, int normTeamNum, int easyTeamNum,
             int hardNum, int normNum, int easyNum){
         SLComputer.bf.output=null;
+        if(killFirst>0){
+            killFirst=1-mode;
+        }
+        else{
+            killFirst=-1;
+        }
         int result, i;
         Team[] teams;
         Team hard, norm, easy;
@@ -2729,13 +2735,7 @@ public class MainFrame extends javax.swing.JFrame {
         else{
             teams=SLComputer.FYSL.teamsHard;
         }
-        hard=teams[0];
-        for(i=0; i<teams.length; i++){
-            hard=teams[i];
-            if(hard.heros[0].hid==hardCaptain){
-                break;
-            }
-        }
+        hard=teams[hardTeamNum%100-1];
         hard.number=hardNum;
         
         if(mode==0){
@@ -2744,13 +2744,7 @@ public class MainFrame extends javax.swing.JFrame {
         else{
             teams=SLComputer.FYSL.teamsNorm;
         }
-        norm=teams[0];
-        for(i=0; i<teams.length; i++){
-            norm=teams[i];
-            if(norm.heros[0].hid==normCaptain){
-                break;
-            }
-        }
+        norm=teams[normTeamNum%100-1];
         norm.number=normNum;
         
         if(mode==0){
@@ -2759,13 +2753,7 @@ public class MainFrame extends javax.swing.JFrame {
         else{
             teams=SLComputer.FYSL.teamsEasy;
         }
-        easy=teams[0];
-        for(i=0; i<teams.length; i++){
-            easy=teams[i];
-            if(easy.heros[0].hid==easyCaptain){
-                break;
-            }
-        }
+        easy=teams[easyTeamNum%100-1];
         easy.number=easyNum;
         
         computeEnemySilent(mode, level, HPM, effectM, hard, norm, easy);
