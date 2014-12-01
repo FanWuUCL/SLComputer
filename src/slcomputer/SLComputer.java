@@ -187,7 +187,7 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=0;
     public static final int vip=100;
-    public static final String testVersion=" beta2";
+    public static final String testVersion=" beta3";
     public static final String usage="使用说明：\n"
             + "1. 在左上方选取试炼模式。\n"
             + "2. 在模式下方填写试炼层数，或用左右箭头修改。\n"

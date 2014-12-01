@@ -30,7 +30,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
     public boolean getFields(){
         try{
             maxLevel=Integer.parseInt(jTextFieldLevel.getText());
-            rate=Integer.parseInt(jTextFieldRate.getText());
+            rate=Double.parseDouble(jTextFieldRate.getText());
             HPPTarget=Integer.parseInt(jTextFieldHPPTarget.getText());
             HPMTarget=Integer.parseInt(jTextFieldHPMTarget.getText());
             EffectPTarget=Integer.parseInt(jTextFieldEffectPTarget.getText());
@@ -39,6 +39,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
             HPMMax=Integer.parseInt(jTextFieldHPMMax.getText());
             EffectPMax=Integer.parseInt(jTextFieldEffectPMax.getText());
             EffectMMax=Integer.parseInt(jTextFieldEffectMMax.getText());
+            sleepTime=Integer.parseInt(jTextFieldSleep.getText());
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "请填写整数！", "出错啦！", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -74,6 +75,9 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jButtonStrategy = new javax.swing.JButton();
         jButtonStart = new javax.swing.JButton();
+        jTextFieldSleep = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldLevel = new javax.swing.JTextField();
@@ -209,6 +213,12 @@ public class JDialogAutoBB extends javax.swing.JDialog {
             }
         });
 
+        jTextFieldSleep.setText("1000");
+
+        jLabel12.setText("缓冲");
+
+        jLabel13.setText("ms");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -216,16 +226,27 @@ public class JDialogAutoBB extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonStart)
                     .addComponent(jButtonStrategy)
-                    .addComponent(jButtonStart))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldSleep, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonStrategy)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jTextFieldSleep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonStart)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -335,14 +356,14 @@ public class JDialogAutoBB extends javax.swing.JDialog {
             return;
         }
         SocketAuto auto=new SocketAuto();
-        auto.setParameters(maxLevel, rate, HPPTarget, HPPMax, HPMTarget, HPMMax, EffectPTarget, EffectPMax, EffectMTarget, EffectMMax);
+        auto.setParameters(maxLevel, rate, HPPTarget, HPPMax, HPMTarget, HPMMax, EffectPTarget, EffectPMax, EffectMTarget, EffectMMax, sleepTime);
         new Thread(auto).start();
         dispose();
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     
     private int maxLevel;
-    private int rate;
+    private double rate;
     private int HPPTarget;
     private int HPPMax;
     private int HPMTarget;
@@ -351,12 +372,15 @@ public class JDialogAutoBB extends javax.swing.JDialog {
     private int EffectPMax;
     private int EffectMTarget;
     private int EffectMMax;
+    private int sleepTime;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonStart;
     private javax.swing.JButton jButtonStrategy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -378,5 +402,6 @@ public class JDialogAutoBB extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldHPPTarget;
     private javax.swing.JTextField jTextFieldLevel;
     private javax.swing.JTextField jTextFieldRate;
+    private javax.swing.JTextField jTextFieldSleep;
     // End of variables declaration//GEN-END:variables
 }

@@ -697,6 +697,7 @@ public class BattleField {
     // return : 1 attacker wins, 0 defender wins, 2 even(meaning attacker wins)
     // killFirst: 1 强袭模式去掉首忍者， 0 防卫模式去掉首忍者
     public int battle(Team attacker, Team defender, int killFirst){
+        
         //if(output!=null){
         allMsg="     进攻方                VS                防御方\n";
         //}

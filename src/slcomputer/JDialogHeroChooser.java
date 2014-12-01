@@ -4,8 +4,10 @@
  */
 package slcomputer;
 
+import java.awt.Dimension;
 import slcomputer.equiq.Equiq;
 import java.awt.Image;
+import java.awt.Rectangle;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -196,6 +198,9 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             jComboBoxWeaponActionPerformed(null);
             jComboBoxShieldActionPerformed(null);
         }
+        Dimension d=getPreferredSize();
+        Rectangle b=SLComputer.mf.getBounds();
+        setBounds(b.x+b.width/3-d.width/2, b.y+b.height/3-d.height/2, d.width, d.height);
         setVisible(true);
     }
     

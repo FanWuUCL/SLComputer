@@ -22,6 +22,9 @@ public class Report implements Runnable{
     }
     
     public void run(){
+        if(dialogProgress==null){
+            return;
+        }
         dialogProgress.append(report);
         if(!status){
             dialogProgress.setStop();

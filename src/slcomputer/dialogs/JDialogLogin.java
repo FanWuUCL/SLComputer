@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import slcomputer.AccountInfo;
 import slcomputer.SLComputer;
 import slcomputer.SocketMaster;
@@ -129,6 +130,36 @@ public class JDialogLogin extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean checkVip(String usr){
+        try {
+            //System.out.println(SLComputer.des.encrypt("dodozanqie@163.com"));
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String[] myvip={"adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449",
+                "3b09935ab315abfe0e726668044a274a", // 客观的苍
+                "cda10db2bcf27b387f5e513568e6f2810e6c3f499b437449", // 队长
+                "64b72dd8fca10b501fb93a5807de4b0a792b4717e7c5b82f", // 雉鸡油奶
+                "cb43174fd03ed6806169fb07a0bcd03c", // 吐吐
+                "71fd54d8efab4ca75c089891c09ecea3896db44fb926a25b", // 吐吐
+                "cad8aff679c01be6fc609ae8dc7da6c8", // 吐吐
+                "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", // 吐吐
+                "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", // 青苑
+                ""};
+        boolean isvip=false;
+        for(String s:myvip){
+            try {
+                if(usr.equals(SLComputer.des.decrypt(s))){
+                    isvip=true;
+                    break;
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return isvip;
+    }
+    
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
         SLComputer.cleanLogin();
         AccountInfo account;
@@ -141,6 +172,10 @@ public class JDialogLogin extends javax.swing.JDialog {
         }
         else{
             account=(AccountInfo)jComboBox1.getSelectedItem();
+        }
+        if(!checkVip(account.usr)){
+            JOptionPane.showMessageDialog(this, "请支持正版！", "版权问题", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
         account.fwq=jComboBoxServer.getSelectedIndex();
         SocketMaster.setGlobalIP(account.fwq);

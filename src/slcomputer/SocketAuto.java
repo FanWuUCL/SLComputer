@@ -671,7 +671,7 @@ public class SocketAuto implements Runnable{
             SocketMaster.connectionBroken();
             return;
         }
-        while(!dialogProgress.stop() && status==0 && level<maxLevel){
+        while(dialogProgress!=null && !dialogProgress.stop() && status==0 && level<maxLevel){
             status=battle(autoHardness());
         }
         if(status<=1){

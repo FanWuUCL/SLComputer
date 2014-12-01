@@ -2112,7 +2112,7 @@ public class MainFrame extends javax.swing.JFrame {
                     }
                     break;
             }
-            //System.out.println("Summary "+hardness+": "+(int)summary);
+            //System.out.println("enemy"+hardness+" sum: "+summary);
             showEnemyTeam(hardness, t, mode);
         }
     }
@@ -2257,6 +2257,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
             summary=t.compute(1-mode, slData.basePlus[level-1][hardness], -powerDown*mode, -powerDown*(1-mode), slData.bodySkill[level-1][hardness], true);
+            //System.out.println("enemy"+hardness+" sum: "+summary);
         }
     }
     
@@ -2548,8 +2549,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         SLComputer.myTeam.numberMax=SLComputer.myTeam.number=i;
-        double SLup=HPP;
-        double SLSkillUp=effectP;
+        double SLup=HPP/100;
+        double SLSkillUp=effectP/100;
         SLComputer.myTeam.skillPower+=SLSkillUp;
         SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
         
@@ -2769,7 +2770,7 @@ public class MainFrame extends javax.swing.JFrame {
                 trialNumber=1000;
                 break;
             case 4:
-                trialNumber=3000;
+                trialNumber=5000;
                 break;
             case 5:
                 trialNumber=10000;
@@ -2877,7 +2878,7 @@ public class MainFrame extends javax.swing.JFrame {
                 trialNumber=1000;
                 break;
             case 4:
-                trialNumber=3000;
+                trialNumber=5000;
                 break;
             case 5:
                 trialNumber=10000;
