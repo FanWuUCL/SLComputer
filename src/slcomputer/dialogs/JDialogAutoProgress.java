@@ -21,6 +21,7 @@ public class JDialogAutoProgress extends javax.swing.JDialog implements Runnable
         super(parent, modal);
         initComponents();
         stopFlag=false;
+        status=0;
         Dimension d=getPreferredSize();
         Rectangle b=parent.getBounds();
         setBounds(b.x+b.width/3-d.width/2, b.y+b.height/2-d.height/2, d.width, d.height);
@@ -103,12 +104,15 @@ public class JDialogAutoProgress extends javax.swing.JDialog implements Runnable
             setStop();
         }
         else{
-            SLComputer.cleanLogin();
+            if(status!=0){
+                SLComputer.cleanLogin();
+            }
             dispose();
         }
     }//GEN-LAST:event_jButtonStopActionPerformed
 
     private boolean stopFlag;
+    public int status;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonStop;
     private javax.swing.JScrollPane jScrollPane1;

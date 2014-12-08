@@ -27,6 +27,27 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         setVisible(true);
     }
     
+    public JDialogAutoBB(java.awt.Frame parent, boolean modal, int ml,  double r, int HPPt, int HPMt, int EPt, int EMt, 
+            int HPPm, int HPMm, int EPm, int EMm, int sleep) {
+        super(parent, modal);
+        initComponents();
+        jTextFieldLevel.setText(ml+"");
+        jTextFieldRate.setText(r+"");
+        jTextFieldHPPTarget.setText(HPPt+"");
+        jTextFieldHPMTarget.setText(HPMt+"");
+        jTextFieldEffectPTarget.setText(EPt+"");
+        jTextFieldEffectMTarget.setText(EMt+"");
+        jTextFieldHPPMax.setText(HPPm+"");
+        jTextFieldHPMMax.setText(HPMm+"");
+        jTextFieldEffectPMax.setText(EPm+"");
+        jTextFieldEffectMMax.setText(EMm+"");
+        jTextFieldSleep.setText(sleep+"");
+        Dimension d=getPreferredSize();
+        Rectangle b=parent.getBounds();
+        setBounds(b.x+b.width/3-d.width/2, b.y+b.height/2-d.height/2, d.width, d.height);
+        setVisible(true);
+    }
+    
     public boolean getFields(){
         try{
             maxLevel=Integer.parseInt(jTextFieldLevel.getText());
@@ -41,7 +62,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
             EffectMMax=Integer.parseInt(jTextFieldEffectMMax.getText());
             sleepTime=Integer.parseInt(jTextFieldSleep.getText());
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "请填写整数！", "出错啦！", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "请填写合法的数字！", "出错啦！", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
@@ -162,11 +183,10 @@ public class JDialogAutoBB extends javax.swing.JDialog {
                                 .addComponent(jTextFieldHPMTarget, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldHPMMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldEffectPMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTextFieldEffectMMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                            .addComponent(jTextFieldEffectPMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldHPMMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEffectMMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +366,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
                 + "3. 如果30星的buff还未达到上限值（自身攻防+"+HPPMax+"%/敌人攻防-"+HPMMax+"%/忍术效果+"+EffectPMax+"%/忍术效果-"+EffectMMax+"%），加30星buff；否则\n"
                 + "4. 如果15星的buff还未达到上限值，加15星buff；否则\n"
                 + "5. 如果3星的buff还未达到上限值，加3星的buff；否则\n"
-                + "6. 如果有秒杀敌首忍者，则选秒杀敌首忍者；否则\n"
+                + "6. 如果有秒杀敌首忍者且4项buff都已达到目标值，则选秒杀敌首忍者；否则\n"
                 + "7. 加3星buff。";
         JOptionPane.showMessageDialog(this, strategy, "自动策略", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButtonStrategyActionPerformed

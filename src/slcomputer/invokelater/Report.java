@@ -4,6 +4,7 @@
  */
 package slcomputer.invokelater;
 
+import slcomputer.SLComputer;
 import slcomputer.dialogs.JDialogAutoProgress;
 
 /**
@@ -22,6 +23,7 @@ public class Report implements Runnable{
     }
     
     public void run(){
+        SLComputer.log(report);
         if(dialogProgress==null){
             return;
         }

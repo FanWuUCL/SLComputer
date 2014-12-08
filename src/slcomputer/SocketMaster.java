@@ -90,7 +90,8 @@ public class SocketMaster implements Runnable{
     public static int cmdGlobal;
     public static int starUsed, starTotal;
     public static int mode;
-    public static Object[] arguments=new Object[4];
+    public static Object[] arguments=new Object[5];
+    public static String usrSave;
     public static boolean onWork=false;
 
     public static byte[] transform(int length, int certification, int command, int extralength, byte[] extra){
@@ -235,15 +236,32 @@ public class SocketMaster implements Runnable{
         return ret;
     }
     
-    public static byte[] login_extra(String usr, int mode){
-        // app
-        if(mode==0){
-            usr="EMAIL-"+usr;
+    /**
+     * login数据封包
+     * @param usr user name
+     * @param mode 直接登录时为0，选择子账号时为1
+     * @param platform 平台：0 app, 1 and91
+     * @return 
+     */
+    public static byte[] login_extra(String usr, int mode, int platform){
+        String pss;
+        switch(platform){
+            case 1: // android 91，小米，安卓官方
+                pss="android_e78377e2b5d2b00e";
+                break;
+            case 2: // 苹果91
+                pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
+                break;
+            case 0: // app
+            default:
+                if(mode==0){
+                    usr="EMAIL-"+usr;
+                }
+                pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
+                break;
         }
-        // 混服
         
         int usrL=usr.length();
-        String pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
         int pssL=pss.length();
         byte[] extra=new byte[usrL+pssL+16];
         extra[0]=extra[1]=extra[2]=extra[3]=0;
@@ -881,7 +899,7 @@ public class SocketMaster implements Runnable{
         cer[0]=0;
         int i, j, k, max;
         int command=c_login;
-        byte[] extra=login_extra(usr, 0);
+        byte[] extra=login_extra(usr, 0, (int)arguments[4]);
         byte[] recvData=communicate(os, is, command, extra);
         if(recvData==null){
             throw new Exception();
@@ -943,7 +961,7 @@ public class SocketMaster implements Runnable{
                     throw new Exception();
                 }
             }
-            extra=login_extra(accUsr[accIndex], 1);
+            extra=login_extra(accUsr[accIndex], 1, (int)arguments[4]);
             recvData=communicate(os, is, command, extra);
             if(recvData==null){
                 throw new Exception();
@@ -960,7 +978,14 @@ public class SocketMaster implements Runnable{
         i=((recvData[24]&0xff)<<24) | ((recvData[25]&0xff)<<16) | ((recvData[26]&0xff)<<8) | (recvData[27]&0xff);
         name[0]=new String(recvData, 28, i, "UTF-8");
         if(verbose){
+            i=36+i;
+            int level=(recvData[i] & 0xff) << 24 | (recvData[i+1] & 0xff) << 16 | (recvData[i+2] & 0xff) << 8 | recvData[i+3] & 0xff;
+            i+=12;
+            int diamond=(recvData[i] & 0xff) << 24 | (recvData[i+1] & 0xff) << 16 | (recvData[i+2] & 0xff) << 8 | recvData[i+3] & 0xff;
+            i+=4;
+            int gold=(recvData[i] & 0xff) << 24 | (recvData[i+1] & 0xff) << 16 | (recvData[i+2] & 0xff) << 8 | recvData[i+3] & 0xff;
             System.out.println("ID "+cer[1]+": "+name[0]+" is prepared.");
+            System.out.println("Level: "+level+", Diamond: "+diamond+", Gold: "+gold);
         }
         return true;
     }
@@ -1436,6 +1461,198 @@ public class SocketMaster implements Runnable{
                 globalIP="121.199.24.70";
                 globalPort=8010;
                 break;
+            case 8:
+                    globalIP="115.29.230.178";
+                    globalPort=8000;
+                    break;
+            case 9:
+                    globalIP="112.124.23.169";
+                    globalPort=8000;
+                    break;
+            case 10:
+                    globalIP="112.124.5.199";
+                    globalPort=8020;
+                    break;
+            case 11:
+                    globalIP="112.124.5.199";
+                    globalPort=8030;
+                    break;
+            case 12:
+                    globalIP="112.124.5.199";
+                    globalPort=8040;
+                    break;
+            case 13:
+                    globalIP="112.124.5.199";
+                    globalPort=8050;
+                    break;
+            case 14:
+                    globalIP="115.29.230.178";
+                    globalPort=8010;
+                    break;
+            case 15:
+                    globalIP="121.199.29.109";
+                    globalPort=8000;
+                    break;
+            case 16:
+                    globalIP="121.199.29.109";
+                    globalPort=8010;
+                    break;
+            case 17:
+                    globalIP="121.199.29.109";
+                    globalPort=8020;
+                    break;
+            case 18:
+                    globalIP="121.199.29.109";
+                    globalPort=8030;
+                    break;
+            case 19:
+                    globalIP="115.29.9.49";
+                    globalPort=8000;
+                    break;
+            case 20:
+                    globalIP="115.29.9.48";
+                    globalPort=8000;
+                    break;
+            case 21:
+                    globalIP="115.29.9.49";
+                    globalPort=8010;
+                    break;
+            case 22:
+                    globalIP="112.124.23.169";
+                    globalPort=8010;
+                    break;
+            case 23:
+                    globalIP="115.29.234.133";
+                    globalPort=8000;
+                    break;
+            case 24:
+                    globalIP="115.29.234.133";
+                    globalPort=8010;
+                    break;
+            case 25:
+                    globalIP="115.29.9.48";
+                    globalPort=8010;
+                    break;
+            case 26:
+                    globalIP="115.29.9.48";
+                    globalPort=8020;
+                    break;
+            case 27:
+                    globalIP="115.29.190.63";
+                    globalPort=8000;
+                    break;
+            case 28:
+                    globalIP="115.29.234.133";
+                    globalPort=8020;
+                    break;
+            case 29:
+                    globalIP="115.29.190.63";
+                    globalPort=8010;
+                    break;
+            case 30:
+                    globalIP="115.29.9.48";
+                    globalPort=8030;
+                    break;
+            case 31:
+                    globalIP="115.29.9.49";
+                    globalPort=8020;
+                    break;
+            case 32:
+                    globalIP="115.29.9.49";
+                    globalPort=8030;
+                    break;
+            case 33:
+                    globalIP="115.29.234.133";
+                    globalPort=8030;
+                    break;
+            case 34:
+                    globalIP="218.244.146.146";
+                    globalPort=8000;
+                    break;
+            case 35:
+                    globalIP="218.244.146.146";
+                    globalPort=8010;
+                    break;
+            case 36:
+                    globalIP="112.124.23.169";
+                    globalPort=8020;
+                    break;
+            case 37:
+                    globalIP="218.244.146.146";
+                    globalPort=8020;
+                    break;
+            case 38:
+                    globalIP="114.215.198.67";
+                    globalPort=8000;
+                    break;
+            case 39:
+                    globalIP="114.215.198.67";
+                    globalPort=8010;
+                    break;
+            case 40:
+                    globalIP="114.215.198.67";
+                    globalPort=8020;
+                    break;
+            case 41:
+                    globalIP="114.215.198.67";
+                    globalPort=8030;
+                    break;
+            case 42:
+                    globalIP="114.215.198.67";
+                    globalPort=8040;
+                    break;
+            case 43:
+                    globalIP="115.29.230.178";
+                    globalPort=8020;
+                    break;
+            case 44:
+                    globalIP="115.29.190.63";
+                    globalPort=8020;
+                    break;
+            case 45:
+                    globalIP="115.29.230.178";
+                    globalPort=8030;
+                    break;
+            case 46:
+                    globalIP="115.29.190.63";
+                    globalPort=8030;
+                    break;
+            case 47:
+                    globalIP="115.29.9.49";
+                    globalPort=8040;
+                    break;
+            case 48:
+                    globalIP="115.29.234.133";
+                    globalPort=8040;
+                    break;
+            case 49:
+                    globalIP="115.29.190.63";
+                    globalPort=8040;
+                    break;
+            case 50:
+                    globalIP="115.29.9.48";
+                    globalPort=8040;
+                    break;
+            case 51:
+                    globalIP="115.29.224.81";
+                    globalPort=8000;
+                    break;
+            case 52:
+                    globalIP="218.244.141.250";
+                    globalPort=8000;
+                    break;
+            case 53:
+                    globalIP="115.29.224.81";
+                    globalPort=8010;
+                    break;
+            case 54:
+                    globalIP="218.244.141.250";
+                    globalPort=8010;
+                    break;
+            case 55:
+                    globalIP="218.244.146.146";
+                    globalPort=8030;
+                    break;
             case 0:
             default:
                 globalIP="112.124.41.217";
@@ -1987,7 +2204,7 @@ public class SocketMaster implements Runnable{
         return hp/10000+"万";
     }
     
-    public void updateSelection(int mode, int level, int buffDefP, int buffDefM, int buffEffectP, int buffEffectM,
+    public static void updateSelection(int mode, int level, int buffDefP, int buffDefM, int buffEffectP, int buffEffectM,
             int killFirst, int enemyHard, int enemyNormal, int enemyEasy, int myNumber, int enemyNumber, String battleDetails, boolean win){
         UpdateSelection update=new UpdateSelection();
         update.mode=mode;
@@ -2021,7 +2238,7 @@ public class SocketMaster implements Runnable{
         switch(cmdGlobal){
             case c_login:
                 if(globalLoginSocket((String)arguments[0], -1, true) && (boolean)arguments[3]){
-                    SLComputer.updateAcc((String)arguments[0], (String)arguments[1], (int)arguments[2]);
+                    SLComputer.updateAcc(usrSave, (String)arguments[1], (int)arguments[2]);
                 }
                 if(globalReady){
                     //SLComputer.mf.setTitle(SLComputer.mf.getTitle()+" ("+globalName+" 已登陆)");

@@ -119,8 +119,11 @@
  * Version 4.0
  * 1. 120层以上第三个忍者修正成影忍。
  * 2. 优化潜力点的计算，请各位微调过剩余潜力点的朋友把剩余潜力点改回游戏里显示的数值。
- * 3. ！！！账号功能正式面世，通过菜单的账号->登陆功能，可以在此工具内登陆你的游戏账号，成功登陆后每个难度下的“挑战”按钮将有新的功能，点击任一“挑战”按钮将直接对应游戏里打对应难度的试炼，同时buff和下一层各难度队长和人数会自动更新。如果菜单里选中了观看战斗，还会在右侧文本框里显示战斗详情（但是不会自动计算下一层的胜率），取消观看战斗则会在每一层挑战成功后自动计算下一层的胜率。
- * 4. 登陆的时候可以选择记住账号，你的账号将会以加密的方式存放在本地。
+ * 3. ！！！(vip)账号功能正式面世，通过菜单的账号->登陆功能，可以在此工具内登陆你的游戏账号，成功登陆后每个难度下的“挑战”按钮将有新的功能，点击任一“挑战”按钮将直接对应游戏里打对应难度的试炼，同时buff和下一层各难度队长和人数会自动更新。如果菜单里选中了观看战斗，还会在右侧文本框里显示战斗详情（但是不会自动计算下一层的胜率），取消观看战斗则会在每一层挑战成功后自动计算下一层的胜率。
+ * 4. (vip)登陆的时候可以选择记住账号，你的账号将会以加密的方式存放在本地。
+ * 5. (vip)终于可以自动试炼了，只需要设置一些参数用于指导你倾向的加buff和选难度的规则，就可以完全交给终结者帮你打试炼。当然前提是你不用换阵。
+ * 6. 既然vip有更好的功能体验，那么以前的vip功能现在可以开放给免费用户了。现在免费版开放全部备选阵容及排兵布阵功能。
+ * 7. 如果你是用launch运行终结者的，那么你将在程序初始化的时候看到一点小动画，你可以通过替换TP/loading.gif文件来更改成你喜欢的loading动画。
  */
 package slcomputer;
 
@@ -130,6 +133,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -174,7 +178,7 @@ public class SLComputer {
     public static int[] buildingEffect;
     public static int accNumber;
     public static Vector<AccountInfo> accounts;
-    public static final byte[] zhengzhi={105, 110, 116, 101, 103, 114, 105, 116, 121};
+    public static byte[] zhengzhi={105, 110, 116, 101, 103, 114, 105, 116, 121};
     public static DesUtils des;
     // configure
     public static int sNumber;
@@ -187,7 +191,9 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=0;
     public static final int vip=100;
-    public static final String testVersion=" beta3";
+    public static final String testVersion=".1";
+    public static final int debug=1;
+    public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
             + "1. 在左上方选取试炼模式。\n"
             + "2. 在模式下方填写试炼层数，或用左右箭头修改。\n"
@@ -214,12 +220,31 @@ public class SLComputer {
     public static final String author="关于作者：\n"
             + "此工具由百度贴吧<lightning2>开发，并通过我是火影官方吧发布，任何转载请注明【转载】。"
             + "本作者不对任何通过其他方式获取的此工具负责。\n"
-            + "若想购买旗舰版，请参考此帖： http://tieba.baidu.com/p/3401419635 。\n"
+            //+ "若想购买旗舰版，请参考此帖： http://tieba.baidu.com/p/3401419635 。\n"
             + "BUG提交：\n"
             + "如果你发现了程序的bug，欢迎发邮件到lightning2a@126.com，并请附上相关截图或文字信息。"
             + "如果你有好的建议或意见，也可以通过邮件联系我。谢谢支持！\n"
             + "                                lightning2\n"
             + "                              2014年11月10日\n";
+    
+    public static void log(String msg){
+        if(debug==0){
+            return;
+        }
+        if(logger==null){
+            try {
+                logger=new BufferedWriter(new FileWriter(new File("debug.txt")));
+            } catch (IOException ex) {
+                return;
+            }
+        }
+        try {
+            logger.write(msg+"\n");
+            logger.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(SLComputer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public static Hero dupHeroById(int id){
         int i;

@@ -98,15 +98,13 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="jTextFieldHPMMax" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldEffectPMax" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTextFieldEffectMMax" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEffectPMax" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jTextFieldHPMMax" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                              <Component id="jTextFieldEffectMMax" min="-2" pref="28" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

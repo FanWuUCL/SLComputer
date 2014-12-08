@@ -33,9 +33,11 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        setTitle("SLComputer "+SLComputer.major+"."+SLComputer.minor+(SLComputer.vip>0 && SLComputer.vip%(SLComputer.major+SLComputer.minor)==0?" 旗舰":" 免费")+SLComputer.testVersion);
+        setTitle("SLComputer "+SLComputer.major+"."+SLComputer.minor+SLComputer.testVersion+(SLComputer.vip>0 && SLComputer.vip%(SLComputer.major+SLComputer.minor)==0?" 旗舰":" 免费"));
         trialNumber=100;
         mapComponents();
+        setAutoBBSetting(100, 99, 200, 0, 40, 40, 
+            300, 0, 55, 50, 1000);
         jButtonFinalComputer.setText("<html><font color=#DF0101>试炼终结者</font></html>");
         SLComputer.bf=new BattleField(jTextPaneBattleField);
         jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsHard));
@@ -89,13 +91,13 @@ public class MainFrame extends javax.swing.JFrame {
         setVisible(true);
         jTextPaneBattleField.setText(SLComputer.usage+"\n"+SLComputer.author);
         jButtonMyTeam1.setForeground(Color.red);
-        /* 收费内容 */
+        /* 收费内容 
         if(SLComputer.vip<=0 || SLComputer.vip%(SLComputer.major+SLComputer.minor)!=0){
             jButtonMyTeam2.setEnabled(false);
             jButtonMyTeam3.setEnabled(false);
             jButtonMyTeam4.setEnabled(false);
             jToggleButtonSwitch.setEnabled(false);
-        }
+        }*/
         showMyTeam(false);
         switchEnabled=false;
         switchI=-1;
@@ -2112,7 +2114,7 @@ public class MainFrame extends javax.swing.JFrame {
                     }
                     break;
             }
-            //System.out.println("enemy"+hardness+" sum: "+summary);
+            SLComputer.log(t.heros[0].name+" sum: "+summary);
             showEnemyTeam(hardness, t, mode);
         }
     }
@@ -2257,6 +2259,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
             summary=t.compute(1-mode, slData.basePlus[level-1][hardness], -powerDown*mode, -powerDown*(1-mode), slData.bodySkill[level-1][hardness], true);
+            SLComputer.log(t.heros[0].name+" sum: "+summary);
             //System.out.println("enemy"+hardness+" sum: "+summary);
         }
     }
@@ -2368,7 +2371,8 @@ public class MainFrame extends javax.swing.JFrame {
         }
         SLComputer.myTeam.skillPower+=SLSkillUp;
         int mode=jComboBoxMode.getSelectedIndex();
-        SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
+        double summary=SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
+        SLComputer.log("My Team sum: "+summary);
         jLabelMyAtt.setText("总攻击："+(int)SLComputer.myTeam.sumUp(0));
         jLabelMyDef.setText("总防御："+(int)SLComputer.myTeam.sumUp(1));
         jPanelMyTeam.removeAll();
@@ -2552,8 +2556,8 @@ public class MainFrame extends javax.swing.JFrame {
         double SLup=HPP/100;
         double SLSkillUp=effectP/100;
         SLComputer.myTeam.skillPower+=SLSkillUp;
-        SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
-        
+        double summary=SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
+        SLComputer.log("My Team sum: "+summary);
     }
     
     private void jButtonShowMyTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowMyTeamActionPerformed
@@ -2846,9 +2850,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
         rate[2]=(winTimes*100)/(double)trialNumber;
         
-        System.out.println("困难 "+hard.heros[0].name+" "+normNum+"v"+hardNum+" "+rate[0]);
-        System.out.println("普通 "+norm.heros[0].name+" "+normNum+"v"+normNum+" "+rate[1]);
-        System.out.println("容易 "+easy.heros[0].name+" "+normNum+"v"+easyNum+" "+rate[2]);
+        SLComputer.log("困难 "+hard.heros[0].name+" "+normNum+"v"+hardNum+" "+rate[0]);
+        SLComputer.log("普通 "+norm.heros[0].name+" "+normNum+"v"+normNum+" "+rate[1]);
+        SLComputer.log("容易 "+easy.heros[0].name+" "+normNum+"v"+easyNum+" "+rate[2]);
         return rate;
     }
     
@@ -3297,7 +3301,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemWatchBattleActionPerformed
 
     private void jMenuItemAutoBBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutoBBActionPerformed
-        new JDialogAutoBB(this, true);
+        new JDialogAutoBB(this, true, maxLevel, rate, HPPTarget, HPMTarget, EffectPTarget, EffectMTarget, 
+                HPPMax, HPMMax, EffectPMax, EffectMMax, sleepTime);
     }//GEN-LAST:event_jMenuItemAutoBBActionPerformed
 
     // 设置模式
@@ -3389,6 +3394,21 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void enableAutoBB(boolean en){
         this.jMenuItemAutoBB.setEnabled(en);
+    }
+    
+    public void setAutoBBSetting(int ml, double r, int HPPt, int HPMt, int EPt, int EMt, 
+            int HPPm, int HPMm, int EPm, int EMm, int sleep){
+        maxLevel=ml;
+        rate=r;
+        HPPTarget=HPPt;
+        HPMTarget=HPMt;
+        EffectPTarget=EPt;
+        EffectMTarget=EMt;
+        HPPMax=HPPm;
+        HPMMax=HPMm;
+        EffectPMax=EPm;
+        EffectMMax=EMm;
+        sleepTime=sleep;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -3574,4 +3594,17 @@ public class MainFrame extends javax.swing.JFrame {
     public int trialNumber;
     public boolean switchEnabled;
     public int switchI;
+    
+    // autobb setting
+    private int maxLevel;
+    private double rate;
+    private int HPPTarget;
+    private int HPPMax;
+    private int HPMTarget;
+    private int HPMMax;
+    private int EffectPTarget;
+    private int EffectPMax;
+    private int EffectMTarget;
+    private int EffectMMax;
+    private int sleepTime;
 }

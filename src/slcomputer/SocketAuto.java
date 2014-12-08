@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 import slcomputer.dialogs.JDialogAutoProgress;
 import slcomputer.dialogs.JDialogChooseBuff;
 import slcomputer.invokelater.Report;
+import slcomputer.invokelater.UpdateSelection;
 
 /**
  *
@@ -137,6 +138,12 @@ public class SocketAuto implements Runnable{
         linkBuff(moreEffectM, 3, more);
         linkBuff(moreKill, 4, more);
         int star=SocketMaster.starTotal-SocketMaster.starUsed;
+        int buffBelowTarget;
+        for(buffBelowTarget=0; buffBelowTarget<4; buffBelowTarget++){
+            if(buff[buffBelowTarget]<target[buffBelowTarget]){
+                break;
+            }
+        }
         if(buff[more[0]]<target[more[0]] && star>=30){
             ret=more[0];
         }
@@ -152,33 +159,35 @@ public class SocketAuto implements Runnable{
         else if(buff[more[2]]<max[more[2]]){
             ret=more[2];
         }
-        else if(more[0]==4 && star>=30){
+        else if(more[0]==4 && buffBelowTarget==4 && star>=30){
             ret=4;
         }
         else{
             ret=more[2];
         }
+        String log="";
         for(int i=0; i<3; i++){
             switch(more[i]){
                 case 0:
-                    System.out.print("0:加攻防 ");
+                    log+="0:加攻防 ";
                     break;
                 case 1:
-                    System.out.print("1:加忍术 ");
+                    log+="1:加忍术 ";
                     break;
                 case 2:
-                    System.out.print("2:减攻防 ");
+                    log+="2:减攻防 ";
                     break;
                 case 3:
-                    System.out.print("3:减忍术 ");
+                    log+="3:减忍术 ";
                     break;
                 case 4:
-                    System.out.print("4:秒杀 ");
+                    log+="4:秒杀 ";
                     break;
             }
         }
-        System.out.println();
-        System.out.println("选择： "+ret);
+        
+        log+="\n选择： "+ret;
+        SLComputer.log(log);
         return ret;
     }
     
@@ -202,7 +211,7 @@ public class SocketAuto implements Runnable{
                 }
             }
         }
-        System.out.println("Select:"+select);
+        SLComputer.log("Select:"+select);
         return select;
     }
     
@@ -555,15 +564,15 @@ public class SocketAuto implements Runnable{
             switch(length){
                 case 3:
                     battleDetails+="完胜！\n";
-                    report+=" 完胜！\n";
+                    report+=" 完胜！";
                     break;
                 case 2:
                     battleDetails+="胜利！\n";
-                    report+=" 胜利！\n";
+                    report+=" 胜利！";
                     break;
                 case 1:
                     battleDetails+="险胜！\n";
-                    report+=" 险胜！\n";
+                    report+=" 险胜！";
                     break;
                 default:
                     battleDetails+="未知数据："+hardness+"\n";
@@ -643,13 +652,13 @@ public class SocketAuto implements Runnable{
                 buffDefM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 buffAttM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 buffEffectM=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-                
+                report+="\n攻防+"+(buffDefP-100)+"% 攻防-"+(-buffDefM)+"% 忍术+"+buffEffectP+"% 忍术-"+(-buffEffectM)+"% 星星:"+(SocketMaster.starTotal-SocketMaster.starUsed);
             }
-            report+="攻防+"+(buffDefP-100)+"% 攻防-"+(-buffDefM)+"% 忍术+"+buffEffectP+"% 忍术-"+(-buffEffectM)+"% 星星:"+(SocketMaster.starTotal-SocketMaster.starUsed);
+            
         }
         else{
             battleDetails+="失败...\n";
-            report+=" 失败...";
+            report+="失败...";
             report(report, false);
             return 1;
         }
@@ -674,11 +683,18 @@ public class SocketAuto implements Runnable{
         while(dialogProgress!=null && !dialogProgress.stop() && status==0 && level<maxLevel){
             status=battle(autoHardness());
         }
+        if(dialogProgress!=null){
+            dialogProgress.status=status;
+        }
         if(status<=1){
             report("自动试炼结束", false);
         }
         else{
             report("连接中断", false);
-    }
+        }
+        SocketMaster.updateSelection(SocketMaster.mode, level, buffDefP, buffDefM, buffEffectP, buffEffectM,
+                    killFirst, enemyHard, enemyNormal, enemyEasy, myNumber, enemyNumber, "", true);
+        SLComputer.mf.setAutoBBSetting(maxLevel, rate, HPPTarget, HPMTarget, EffectPTarget, EffectMTarget, 
+            HPPMax, HPMMax, EffectPMax, EffectMMax, sleepTime);
     }
 }

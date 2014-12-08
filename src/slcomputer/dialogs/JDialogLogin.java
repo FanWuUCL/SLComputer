@@ -28,6 +28,18 @@ public class JDialogLogin extends javax.swing.JDialog {
         for(AccountInfo s:SLComputer.accounts){
             jComboBox1.addItem(s);
         }
+        try {
+            //System.out.println(SLComputer.des.encrypt("ckick18"));
+            //System.out.println(SLComputer.des.encrypt("AND91_"+"611189187"));
+            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"U16540322A"));
+            //System.out.println(SLComputer.des.encrypt("IOS91_"+"483687974"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"29407673"));
+            //System.out.println(SLComputer.des.encrypt("AND36_"+"1334937241"));
+            //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"2751924"));
+        } catch (Exception ex) {
+            Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Dimension d=getPreferredSize();
         Rectangle b=SLComputer.mf.getBounds();
         setBounds(b.x+b.width/3-d.width/2, b.y+b.height/3-d.height/2, d.width, d.height);
@@ -78,7 +90,7 @@ public class JDialogLogin extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21" }));
+        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156" }));
         jComboBoxServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxServerActionPerformed(evt);
@@ -130,34 +142,90 @@ public class JDialogLogin extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean checkVip(String usr){
-        try {
-            //System.out.println(SLComputer.des.encrypt("dodozanqie@163.com"));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String[] myvip={"adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449",
-                "3b09935ab315abfe0e726668044a274a", // 客观的苍
-                "cda10db2bcf27b387f5e513568e6f2810e6c3f499b437449", // 队长
-                "64b72dd8fca10b501fb93a5807de4b0a792b4717e7c5b82f", // 雉鸡油奶
-                "cb43174fd03ed6806169fb07a0bcd03c", // 吐吐
-                "71fd54d8efab4ca75c089891c09ecea3896db44fb926a25b", // 吐吐
-                "cad8aff679c01be6fc609ae8dc7da6c8", // 吐吐
-                "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", // 吐吐
-                "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", // 青苑
+    private String checkVip(String usr){
+        String[] myvip={"adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449", "adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449",
+                "3b09935ab315abfe0e726668044a274a", "3b09935ab315abfe0e726668044a274a", // 客观的苍
+                "cda10db2bcf27b387f5e513568e6f2810e6c3f499b437449", "cda10db2bcf27b387f5e513568e6f2810e6c3f499b437449", // 队长
+                "64b72dd8fca10b501fb93a5807de4b0a792b4717e7c5b82f", "64b72dd8fca10b501fb93a5807de4b0a792b4717e7c5b82f", // 雉鸡油奶
+                "cb43174fd03ed6806169fb07a0bcd03c", "cb43174fd03ed6806169fb07a0bcd03c", // 吐吐
+                "71fd54d8efab4ca75c089891c09ecea3896db44fb926a25b", "71fd54d8efab4ca75c089891c09ecea3896db44fb926a25b", // 吐吐
+                "cad8aff679c01be6fc609ae8dc7da6c8", "cad8aff679c01be6fc609ae8dc7da6c8", // 吐吐
+                "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", // 吐吐
+                "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", // 青苑
+                "8f2fa65804fc1c4cce7cefedf89d623b792b4717e7c5b82f", "8f2fa65804fc1c4cce7cefedf89d623b792b4717e7c5b82f", // 海天隐神1203
+                "71c0706be3da1b6c896db44fb926a25b", "a280deb9ca54e12e6915ab28b45203bd", // 测试小号
+                "ae962dacfdfeb90af93963238cda7380", "7dff8bc041f8bab756732f9ae6f989dd", // 安卓91 1113
+                "e1f6663a678d20011fb93a5807de4b0a792b4717e7c5b82f", "e1f6663a678d20011fb93a5807de4b0a792b4717e7c5b82f", // 派大星
+                "81a62214b0e522408a1e54d926df55997bdeba206119285a", "81a62214b0e522408a1e54d926df55997bdeba206119285a", // hero京k
+                "6c870553e983466ae2eade6614fed130792b4717e7c5b82f", "6c870553e983466ae2eade6614fed130792b4717e7c5b82f", // app 1114
+                "486fd3239adca28b6eb8d6e588a0b1de792b4717e7c5b82f", "486fd3239adca28b6eb8d6e588a0b1de792b4717e7c5b82f", // app 1126_3
+                "8bb39860490206eebc83c3318d0721fa792b4717e7c5b82f", "8bb39860490206eebc83c3318d0721fa792b4717e7c5b82f", // app 1126_3
+                "bb3d83e56326d8f557c1a3d9ed967ad0", "bb3d83e56326d8f557c1a3d9ed967ad0", // app 1110_3
+                "befefc61d6d78b8357c1a3d9ed967ad0", "befefc61d6d78b8357c1a3d9ed967ad0", // app 1110_3
+                "be96812db1eea4ac0379a1b99e09efd7", "be96812db1eea4ac0379a1b99e09efd7", // app 1130
+                "0596ad1088673146fc609ae8dc7da6c8", "0596ad1088673146fc609ae8dc7da6c8", // app 1126_3
+                "e22ab43eb4fe5289a03d986f62ea6176792b4717e7c5b82f", "e22ab43eb4fe5289a03d986f62ea6176792b4717e7c5b82f", // app 1110_2
+                "a68935d7503eef35e2eade6614fed130792b4717e7c5b82f", "a68935d7503eef35e2eade6614fed130792b4717e7c5b82f", // app 1126
+                "3ef6765cf6990fa9792b4717e7c5b82f", "629d4d70126743e42be8dcab400b6988", // 安卓91 1120
+                "373c41a9ae1fb9025c4822926b1ed6d9", "373c41a9ae1fb9025c4822926b1ed6d9", // app 1130_2
+                "bb2b3d53f40aa3f01de5f6b2c8b18d23896db44fb926a25b", "bb2b3d53f40aa3f01de5f6b2c8b18d23896db44fb926a25b", // app 915
+                "bb8551f576be28ef3662da4685913df97bdeba206119285a", "bb8551f576be28ef3662da4685913df97bdeba206119285a", // app 810_2
+                "cd5746ab0ed3aa9f49cbe9d307ac7fd6c4d9babcce10a999896db44fb926a25b", "cd5746ab0ed3aa9f49cbe9d307ac7fd6c4d9babcce10a999896db44fb926a25b", // app 820
+                "e44a9c9fa37971be0313de0b2b3fb9fa", "e44a9c9fa37971be0313de0b2b3fb9fa", // app 816
+                "75086f4986334e2bfa68567e2cc32b8c0e6c3f499b437449", "75086f4986334e2bfa68567e2cc32b8c0e6c3f499b437449", // app 816
+                "ece53dbfbfa521c16169fb07a0bcd03c", "ece53dbfbfa521c16169fb07a0bcd03c", // app 816
+                "cb4d8a98f0eed1bb95d984ccb7dd0d7b", "ef7334693cec046f914dc6df4eb5a776", // 安卓91 1206
+                "1fd6c27e8d1fef0da034a7e7f4c090cc", "0cb854e5a7b8ca643f16a89889a8f85c782c808e22ce2edc", // 安卓官方 810_2
+                "db5bbdbf1b60fd3f9abae4f84c85e185", "0cb854e5a7b8ca64b13f2e7914d6e2fb782c808e22ce2edc", // 安卓官方 1110_4
+                "6b66be71ee6d620dc8d7ca48faed23fa", "df57a4a5f308b390eb4ece853b13f8b078273877bea8696d", // 安卓官方 1067200406@qq.com
+                "ab6fbbd84fcc05a5b00ea49f752ac4df", "0cb854e5a7b8ca64c1c2b0ef1992403b782c808e22ce2edc", // 安卓官方 1206
+                "b2dc6c2f2e71361e5c4822926b1ed6d9", "7f0ba163bc529b067105521757488edd", // 苹果91 373324498@qq.com
+                "af04145b7668c16bd933927383ee50d3", "2bcb75840125b2fc72c039bbb6891d36792b4717e7c5b82f", // 安卓官方 816_2
+                "94d419cc2c6ab95bc7d32219f85460487bdeba206119285a", "94d419cc2c6ab95bc7d32219f85460487bdeba206119285a", // app 1119_2
+                "6b2960eb552ae0fafc609ae8dc7da6c8", "6b2960eb552ae0fafc609ae8dc7da6c8", // app 1119_2
+                "6ffd6465c9a323b4297ccc304a073491792b4717e7c5b82f", "6ffd6465c9a323b4297ccc304a073491792b4717e7c5b82f", // app 1119_2
+                "3d9387097d23006cfc609ae8dc7da6c8", "3d9387097d23006cfc609ae8dc7da6c8", // app 506
+                "7f52de536e2cf309fc86b5bce4c00857", "f5299ea256db907ff2988319cfb771cf", // 苹果91 1123
+                "ba2365df5fb5220de9781f752361d8d0792b4717e7c5b82f", "ba2365df5fb5220de9781f752361d8d0792b4717e7c5b82f", // app 729
+                "e4bf3d88c3d86e7e2da15d48e6283fbb", "c4710aec5b292d089ecf580b1b8cd78f6c91194213444030", // 安卓官方 807
+                "753b2a3d406b9abd33d7f0ba7c12b57c", "3f410325d76797fb21159e65018d14d4", // 安卓豌豆荚 807
+                "5ebeaa53c0363775e9f3b1360bee876c792b4717e7c5b82f", "5ebeaa53c0363775e9f3b1360bee876c792b4717e7c5b82f", // app 5区水木花道
+                "ebcd8ca00785e62c", "d411fe1e00621444e4f61b8d21529e8e", // 安卓官方 1110_6
+                "563ae305833f60de792b4717e7c5b82f", "d411fe1e006214444ac91d5d7a4a3b9a", // 安卓官方 1110_6
+                "41f3626f7db425b69abae4f84c85e185", "0cb854e5a7b8ca642f17696b3eeeaa9d782c808e22ce2edc", // 安卓官方 1111_2
+                "2c8ea705990c99d36e62dafc6be4c0f6", "4e62caa539946e19430a67496ccc7ea7", // 安卓豌豆荚 1206_2
+                "5fee406e37c566462d5773e5eeef6bfc7bdeba206119285a", "5fee406e37c566462d5773e5eeef6bfc7bdeba206119285a", // app 1208
+                "13beca709ab376eaf93963238cda7380", "13beca709ab376eaf93963238cda7380", // app 1111_2
+                "ab7212b4299a81528658d1660c421e85792b4717e7c5b82f", "ab7212b4299a81528658d1660c421e85792b4717e7c5b82f", // 白色风车
+                "de049bd5f90eb888", "a280deb9ca54e12e6915ab28b45203bd", // 同步推 704
+                "5286a3dc0e624831d4cbe672327863cb", "6675566c7684aa81d2777ab0cc6f6745", // 同步推 811
+                "dd28f6497d2a8779e03674d3f07dc25b", "53a02c9766178081f7579f5de1af7fa9792b4717e7c5b82f", // 安卓360 1128
+                "9ab201d3ccb0a141ca53788e74b91101", "acbeae9a8a16c3163fd8a0ef1739055b", // 同步推 623
+                "8fba5c6606f2280cbc83c3318d0721fa792b4717e7c5b82f", "acbeae9a8a16c31683087a29a30551bc", // 同步推 623
+                "69deb023d2c06d34", "a280deb9ca54e12e8ffe12b884a87cae", // 同步推 704
                 ""};
-        boolean isvip=false;
-        for(String s:myvip){
+        int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+                0, 1, 1, 1, 1, 1, 2, 1, 0, 0,
+                0, 0, 2, 0, 1, 1, 0, 1, 1, 1,
+                1, 0, 0, 0, 2, 2, 1, 2, 2, 2};
+        String vip=null;
+        int i;
+        for(i=0; i+1<myvip.length; i+=2){
             try {
-                if(usr.equals(SLComputer.des.decrypt(s))){
-                    isvip=true;
+                if(usr.equals(SLComputer.des.decrypt(myvip[i]))){
+                    vip=SLComputer.des.decrypt(myvip[i+1]);
                     break;
                 }
             } catch (Exception ex) {
-                Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
+                vip=null;
             }
         }
-        return isvip;
+        if(i+1<myvip.length){
+            SocketMaster.arguments[4]=platform[i/2];
+        }
+        return vip;
     }
     
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
@@ -173,13 +241,17 @@ public class JDialogLogin extends javax.swing.JDialog {
         else{
             account=(AccountInfo)jComboBox1.getSelectedItem();
         }
-        if(!checkVip(account.usr)){
-            JOptionPane.showMessageDialog(this, "请支持正版！", "版权问题", JOptionPane.ERROR_MESSAGE);
-            System.exit(1);
+        SocketMaster.usrSave=account.usr;
+        String usr=checkVip(account.usr);
+        if(usr==null){
+            JOptionPane.showMessageDialog(this, "该功能只对vip用户开放。\nVip用户可以登记至多3个账号，只有登记过的账号才能使用此功能。", "版权", JOptionPane.ERROR_MESSAGE);
+            dispose();
+            return;
         }
+        //System.out.println(account.usr);
         account.fwq=jComboBoxServer.getSelectedIndex();
         SocketMaster.setGlobalIP(account.fwq);
-        SocketMaster.arguments[0]=account.usr;
+        SocketMaster.arguments[0]=usr;
         SocketMaster.arguments[1]=account.psd;
         SocketMaster.arguments[2]=account.fwq;
         SocketMaster.arguments[3]=jCheckBoxRemember.isSelected();
