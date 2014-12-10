@@ -191,7 +191,7 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=0;
     public static final int vip=100;
-    public static final String testVersion=".1";
+    public static final String testVersion=".2";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"

@@ -2741,7 +2741,7 @@ public class MainFrame extends javax.swing.JFrame {
             teams=SLComputer.FYSL.teamsHard;
         }
         hard=teams[hardTeamNum%100-1];
-        hard.number=hardNum;
+        hard.number=hardNum>hard.numberMax?hard.numberMax:hardNum;
         
         if(mode==0){
             teams=SLComputer.QXSL.teamsNorm;
@@ -2750,7 +2750,7 @@ public class MainFrame extends javax.swing.JFrame {
             teams=SLComputer.FYSL.teamsNorm;
         }
         norm=teams[normTeamNum%100-1];
-        norm.number=normNum;
+        norm.number=normNum>norm.numberMax?norm.numberMax:normNum;
         
         if(mode==0){
             teams=SLComputer.QXSL.teamsEasy;
@@ -2759,7 +2759,7 @@ public class MainFrame extends javax.swing.JFrame {
             teams=SLComputer.FYSL.teamsEasy;
         }
         easy=teams[easyTeamNum%100-1];
-        easy.number=easyNum;
+        easy.number=easyNum>easy.numberMax?easy.numberMax:easyNum;
         
         computeEnemySilent(mode, level, HPM, effectM, hard, norm, easy);
         showMyTeamSilent(mode, HPP, effectP);

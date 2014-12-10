@@ -29,14 +29,18 @@ public class JDialogLogin extends javax.swing.JDialog {
             jComboBox1.addItem(s);
         }
         try {
-            //System.out.println(SLComputer.des.encrypt("ckick18"));
-            //System.out.println(SLComputer.des.encrypt("AND91_"+"611189187"));
-            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"U16540322A"));
-            //System.out.println(SLComputer.des.encrypt("IOS91_"+"483687974"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"29407673"));
+            //System.out.println(SLComputer.des.encrypt("183000192@qq.com"));
+            //System.out.println(SLComputer.des.encrypt("AND91_"+"537219076"));
+            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"U17070106A"));
+            //System.out.println(SLComputer.des.encrypt("IOS91_"+"262212"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"15389929"));
             //System.out.println(SLComputer.des.encrypt("AND36_"+"1334937241"));
             //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"2751924"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"3187181"));
+            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"69379910"));
+            //System.out.println(SLComputer.des.encrypt("ANDSN_"+"2658416423"));
+            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"296425158"));
+            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"296425158"));
         } catch (Exception ex) {
             Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -153,7 +157,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", // 吐吐
                 "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", // 青苑
                 "8f2fa65804fc1c4cce7cefedf89d623b792b4717e7c5b82f", "8f2fa65804fc1c4cce7cefedf89d623b792b4717e7c5b82f", // 海天隐神1203
-                "71c0706be3da1b6c896db44fb926a25b", "a280deb9ca54e12e6915ab28b45203bd", // 测试小号
+                "71c0706be3da1b6c896db44fb926a25b", "da2e053cabd4f7d3f818f425a23eb770", // 测试小号
                 "ae962dacfdfeb90af93963238cda7380", "7dff8bc041f8bab756732f9ae6f989dd", // 安卓91 1113
                 "e1f6663a678d20011fb93a5807de4b0a792b4717e7c5b82f", "e1f6663a678d20011fb93a5807de4b0a792b4717e7c5b82f", // 派大星
                 "81a62214b0e522408a1e54d926df55997bdeba206119285a", "81a62214b0e522408a1e54d926df55997bdeba206119285a", // hero京k
@@ -203,13 +207,32 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "9ab201d3ccb0a141ca53788e74b91101", "acbeae9a8a16c3163fd8a0ef1739055b", // 同步推 623
                 "8fba5c6606f2280cbc83c3318d0721fa792b4717e7c5b82f", "acbeae9a8a16c31683087a29a30551bc", // 同步推 623
                 "69deb023d2c06d34", "a280deb9ca54e12e8ffe12b884a87cae", // 同步推 704
+                "7d48ec50e1e1b64b8e301f4640085ff5", "299ab10560fa340275f73460943670eb", // 苹果91 1111_3
+                "7d48ec50e1e1b64b90b8f9572ddf914f", "d146b8019f6b3a5818b84d42a78d9e9e", // 苹果91 1111_3
+                "6a2c5b94331d1840792b4717e7c5b82f", "22fc5305bf142c8283b57d6fa83e9f87", // 同步推 1111_5
+                "ae09f33b31cb39e96eb8d6e588a0b1de792b4717e7c5b82f", "ae09f33b31cb39e96eb8d6e588a0b1de792b4717e7c5b82f", // app 811
+                "52a3c3ef7767d46a617b78b4431d379d", "0cb854e5a7b8ca649fad22b51e4a68e5782c808e22ce2edc", // 安卓官方 711
+                "3a7d984cb9e1de11e5dcfff0e06f795a7bdeba206119285a", "3a7d984cb9e1de11e5dcfff0e06f795a7bdeba206119285a", // app 1209
+                "283daa32f6e0f220a871c937bc0e53b0", "6675566c7684aa81d63f4b674e4c1e4d", // 同步推 811
+                "f531fb2c8e0fef56792b4717e7c5b82f", "c4871494c9cbd9ec3e830469ce012bd3", // 苹果91 1209_2
+                "9f08662438d2f875f99d632dfe48e7ee", "34955b793e0288ecd68f29d98cd106d4", // 豌豆荚 1209_2
+                "91d8879c8468050cd6fa2eb3b588f7e3", "3597b2868e49c5c045acef625c693e30", // 安卓91 1209_3
+                "80a187d2c3da12778287270cb707b67c", "02f47d5166f785d61aa604bd3b81375e", // 安卓多酷 1067200406@qq.com
+                "550b0909f38660578d119c3a2922bca97bdeba206119285a", "550b0909f38660578d119c3a2922bca97bdeba206119285a", // app 1209_4
+                "e22372205082abaad4f4d4173c703eed792b4717e7c5b82f", "e22372205082abaad4f4d4173c703eed792b4717e7c5b82f", // app 1209_4
+                "57436f3d6505a305d4f4d4173c703eed792b4717e7c5b82f", "57436f3d6505a305d4f4d4173c703eed792b4717e7c5b82f", // app 729
+                "bbf5017ad19e855b792b4717e7c5b82f", "8a51e78261cd1b40eb9f492367749905", // 安卓多酷 1209_2
+                "db687a8b4b145cee", "417ed46f43fa84ce13266ed7559b1587", // 同步推 混61288039
+                "dde6ce56c214868b6eb8d6e588a0b1de792b4717e7c5b82f", "43f7eb23d15e1a00be98750672d7db28792b4717e7c5b82f", // 新浪 混58705770
                 ""};
         int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
                 0, 1, 1, 1, 1, 1, 2, 1, 0, 0,
                 0, 0, 2, 0, 1, 1, 0, 1, 1, 1,
-                1, 0, 0, 0, 2, 2, 1, 2, 2, 2};
+                1, 0, 0, 0, 2, 2, 1, 2, 2, 2,
+                2, 2, 2, 0, 1, 0, 2, 2, 1, 1,
+                1, 0, 0, 0, 1, 2, 1};
         String vip=null;
         int i;
         for(i=0; i+1<myvip.length; i+=2){
