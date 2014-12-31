@@ -5,7 +5,7 @@
 package slcomputer;
 
 import java.awt.Dimension;
-import slcomputer.equiq.Equiq;
+import slcomputer.equip.Equip;
 import java.awt.Image;
 import java.awt.Rectangle;
 import javax.swing.ComboBoxModel;
@@ -36,6 +36,7 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         jListHeros.setModel(new DefaultComboBoxModel(SLComputer.allHero));
         jComboBoxWeapon.setModel(new DefaultComboBoxModel(SLComputer.allEquiqAtt));
         jComboBoxShield.setModel(new DefaultComboBoxModel(SLComputer.allEquiqDef));
+        jComboBoxPact.setModel(new DefaultComboBoxModel(SLComputer.allEqpTf));
         jComboBoxProperty.setSelectedIndex(1);
         jTextFieldResist.setText("0");
         Hero h=SLComputer.myTeam.heros[index];
@@ -126,6 +127,45 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                 jCheckBoxSProperty.setSelected(false);
                 jCheckBoxSProperty.setEnabled(false);
             }
+            for(i=0; i<SLComputer.allEqpTf.length; i++){
+                if(h.pact.id==SLComputer.allEqpTf[i].id){
+                    jComboBoxPact.setSelectedIndex(i);
+                    break;
+                }
+            }
+            jTextFieldPact.setText(""+h.pact.level);
+            jComboBoxPD0.setSelectedIndex(h.pact.diamond[0]);
+            jComboBoxPDLevel0.setSelectedIndex(h.pact.diamondLevel[0]);
+            jComboBoxPD1.setSelectedIndex(h.pact.diamond[1]);
+            jComboBoxPDLevel1.setSelectedIndex(h.pact.diamondLevel[1]);
+            jComboBoxPD2.setSelectedIndex(h.pact.diamond[2]);
+            jComboBoxPDLevel2.setSelectedIndex(h.pact.diamondLevel[2]);
+            jComboBoxPD3.setSelectedIndex(h.pact.diamond[3]);
+            jComboBoxPDLevel3.setSelectedIndex(h.pact.diamondLevel[3]);
+            for(j=0; j<3; j++){
+                if(h.pact.hideProperty[j]!=0){
+                    break;
+                }
+            }
+            switch(j){
+                case 0:
+                    jCheckBoxPProperty.setText("攻击提高"+(int)h.pact.hideProperty[0]);
+                    break;
+                case 1:
+                    jCheckBoxPProperty.setText("防御提高"+(int)h.pact.hideProperty[1]);
+                    break;
+                default:
+                    jCheckBoxPProperty.setText("忍术几率提高"+(int)h.pact.hideProperty[2]+"%");
+                    break;
+            }
+            if(j<3){
+                jCheckBoxPProperty.setEnabled(true);
+                jCheckBoxPProperty.setSelected(h.pact.propertyEnabled);
+            }
+            else{
+                jCheckBoxPProperty.setSelected(false);
+                jCheckBoxPProperty.setEnabled(false);
+            }
             jComboBoxProperty.setSelectedIndex(propertyToIndex(h.property_battle));
             double powerFromPet=0;
             if(h.property_battle==20){
@@ -145,42 +185,16 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             jTextFieldDef.setText(""+(int)h.defSet);
             jTextFieldWeaponAtt.setText(""+(int)h.weaponAttSet);
             jTextFieldWeaponDef.setText(""+(int)h.weaponDefSet);
+            jTextFieldWeaponTf.setText(""+(int)h.weaponTfSet);
             jTextFieldWeaponEff.setText(""+h.weaponEffSet);
             jTextFieldShieldAtt.setText(""+(int)h.shieldAttSet);
             jTextFieldShieldDef.setText(""+(int)h.shieldDefSet);
+            jTextFieldShieldTf.setText(""+(int)h.shieldTfSet);
             jTextFieldShieldEff.setText(""+h.shieldEffSet);
-            if(SLComputer.dreamMode){
-                jTextFieldAtt.setEnabled(false);
-                jTextFieldDef.setEnabled(false);
-                jTextFieldWeaponAtt.setEnabled(false);
-                jTextFieldWeaponDef.setEnabled(false);
-                jTextFieldWeaponEff.setEnabled(false);
-                jTextFieldShieldAtt.setEnabled(false);
-                jTextFieldShieldDef.setEnabled(false);
-                jTextFieldShieldEff.setEnabled(false);
-            }
-            else{
-                jTextFieldHero.setEnabled(false);
-                jTextFieldPotential.setEnabled(false);
-                jTextFieldWeapon.setEnabled(false);
-                jComboBoxWD0.setEnabled(false);
-                jComboBoxWDLevel0.setEnabled(false);
-                jComboBoxWD1.setEnabled(false);
-                jComboBoxWDLevel1.setEnabled(false);
-                jComboBoxWD2.setEnabled(false);
-                jComboBoxWDLevel2.setEnabled(false);
-                jComboBoxWD3.setEnabled(false);
-                jComboBoxWDLevel3.setEnabled(false);
-                jTextFieldShield.setEnabled(false);
-                jComboBoxSD0.setEnabled(false);
-                jComboBoxSDLevel0.setEnabled(false);
-                jComboBoxSD1.setEnabled(false);
-                jComboBoxSDLevel1.setEnabled(false);
-                jComboBoxSD2.setEnabled(false);
-                jComboBoxSDLevel2.setEnabled(false);
-                jComboBoxSD3.setEnabled(false);
-                jComboBoxSDLevel3.setEnabled(false);
-            }
+            jTextFieldPactAtt.setText(""+(int)h.pactAttSet);
+            jTextFieldPactDef.setText(""+(int)h.pactDefSet);
+            jTextFieldPactTf.setText(""+(int)h.pactTfSet);
+            jTextFieldPactEff.setText(""+h.pactEffSet);
             
             fillSkills(jComboBoxSkill1, h.backupSkills);
             
@@ -197,6 +211,55 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         else{
             jComboBoxWeaponActionPerformed(null);
             jComboBoxShieldActionPerformed(null);
+            jComboBoxPactActionPerformed(null);
+            jListHeros.setSelectedIndex(0);
+        }
+        if(SLComputer.dreamMode){
+            jTextFieldAtt.setEnabled(false);
+            jTextFieldDef.setEnabled(false);
+            jTextFieldWeaponAtt.setEnabled(false);
+            jTextFieldWeaponDef.setEnabled(false);
+            jTextFieldWeaponTf.setEnabled(false);
+            jTextFieldWeaponEff.setEnabled(false);
+            jTextFieldShieldAtt.setEnabled(false);
+            jTextFieldShieldDef.setEnabled(false);
+            jTextFieldShieldTf.setEnabled(false);
+            jTextFieldShieldEff.setEnabled(false);
+            jTextFieldPactAtt.setEnabled(false);
+            jTextFieldPactDef.setEnabled(false);
+            jTextFieldPactTf.setEnabled(false);
+            jTextFieldPactEff.setEnabled(false);
+        }
+        else{
+            jTextFieldHero.setEnabled(false);
+            jTextFieldPotential.setEnabled(false);
+            jTextFieldWeapon.setEnabled(false);
+            jComboBoxWD0.setEnabled(false);
+            jComboBoxWDLevel0.setEnabled(false);
+            jComboBoxWD1.setEnabled(false);
+            jComboBoxWDLevel1.setEnabled(false);
+            jComboBoxWD2.setEnabled(false);
+            jComboBoxWDLevel2.setEnabled(false);
+            jComboBoxWD3.setEnabled(false);
+            jComboBoxWDLevel3.setEnabled(false);
+            jTextFieldShield.setEnabled(false);
+            jComboBoxSD0.setEnabled(false);
+            jComboBoxSDLevel0.setEnabled(false);
+            jComboBoxSD1.setEnabled(false);
+            jComboBoxSDLevel1.setEnabled(false);
+            jComboBoxSD2.setEnabled(false);
+            jComboBoxSDLevel2.setEnabled(false);
+            jComboBoxSD3.setEnabled(false);
+            jComboBoxSDLevel3.setEnabled(false);
+            jTextFieldPact.setEnabled(false);
+            jComboBoxPD0.setEnabled(false);
+            jComboBoxPDLevel0.setEnabled(false);
+            jComboBoxPD1.setEnabled(false);
+            jComboBoxPDLevel1.setEnabled(false);
+            jComboBoxPD2.setEnabled(false);
+            jComboBoxPDLevel2.setEnabled(false);
+            jComboBoxPD3.setEnabled(false);
+            jComboBoxPDLevel3.setEnabled(false);
         }
         Dimension d=getPreferredSize();
         Rectangle b=SLComputer.mf.getBounds();
@@ -294,6 +357,8 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         jTextFieldWeaponDef = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jTextFieldWeaponEff = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jTextFieldWeaponTf = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxShield = new javax.swing.JComboBox();
@@ -314,6 +379,8 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         jTextFieldShieldDef = new javax.swing.JTextField();
         jTextFieldShieldEff = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jTextFieldShieldTf = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jComboBoxSkill1 = new javax.swing.JComboBox();
@@ -338,6 +405,28 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         jTextFieldAtt = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jTextFieldDef = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        jComboBoxPact = new javax.swing.JComboBox();
+        jTextFieldPact = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jComboBoxPD0 = new javax.swing.JComboBox();
+        jComboBoxPD1 = new javax.swing.JComboBox();
+        jComboBoxPD2 = new javax.swing.JComboBox();
+        jComboBoxPD3 = new javax.swing.JComboBox();
+        jComboBoxPDLevel0 = new javax.swing.JComboBox();
+        jComboBoxPDLevel1 = new javax.swing.JComboBox();
+        jComboBoxPDLevel2 = new javax.swing.JComboBox();
+        jComboBoxPDLevel3 = new javax.swing.JComboBox();
+        jCheckBoxPProperty = new javax.swing.JCheckBox();
+        jLabel23 = new javax.swing.JLabel();
+        jTextFieldPactAtt = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jTextFieldPactDef = new javax.swing.JTextField();
+        jTextFieldPactEff = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jTextFieldPactTf = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("选取忍者");
@@ -422,6 +511,12 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         jTextFieldWeaponEff.setText("5");
         jTextFieldWeaponEff.setPreferredSize(new java.awt.Dimension(36, 20));
 
+        jLabel26.setText("体");
+
+        jTextFieldWeaponTf.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldWeaponTf.setText("0");
+        jTextFieldWeaponTf.setPreferredSize(new java.awt.Dimension(36, 20));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -456,13 +551,17 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldWeaponDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                    .addComponent(jTextFieldWeaponEff, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel17)
-                    .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
                 .addComponent(jCheckBoxWProperty))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jTextFieldWeaponEff, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel17))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldWeaponTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -502,8 +601,13 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                     .addComponent(jTextFieldWeaponDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jTextFieldWeaponTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldWeaponEff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)))
+                    .addComponent(jLabel17))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel3.setText("防具");
@@ -556,6 +660,12 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
 
         jLabel20.setText("%忍术效果");
 
+        jLabel27.setText("体");
+
+        jTextFieldShieldTf.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldShieldTf.setText("0");
+        jTextFieldShieldTf.setPreferredSize(new java.awt.Dimension(36, 20));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -595,6 +705,10 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                 .addComponent(jTextFieldShieldEff, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel20))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldShieldTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,8 +748,13 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                     .addComponent(jTextFieldShieldDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(jTextFieldShieldTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldShieldEff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20)))
+                    .addComponent(jLabel20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel11.setText("主要技能");
@@ -796,6 +915,155 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        jLabel21.setText("宝物");
+
+        jComboBoxPact.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxPact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPactActionPerformed(evt);
+            }
+        });
+
+        jTextFieldPact.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldPact.setText("60");
+
+        jLabel22.setText("级");
+
+        jComboBoxPD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+
+        jComboBoxPD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+
+        jComboBoxPD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+
+        jComboBoxPD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+
+        jComboBoxPDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+
+        jComboBoxPDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+
+        jComboBoxPDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+
+        jComboBoxPDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+
+        jCheckBoxPProperty.setText("jCheckBox2");
+
+        jLabel23.setText("攻");
+
+        jTextFieldPactAtt.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldPactAtt.setText("2000");
+        jTextFieldPactAtt.setPreferredSize(new java.awt.Dimension(36, 20));
+
+        jLabel24.setText("防");
+
+        jTextFieldPactDef.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldPactDef.setText("2000");
+        jTextFieldPactDef.setPreferredSize(new java.awt.Dimension(36, 20));
+
+        jTextFieldPactEff.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldPactEff.setText("5");
+        jTextFieldPactEff.setPreferredSize(new java.awt.Dimension(36, 20));
+
+        jLabel25.setText("%忍术效果");
+
+        jLabel28.setText("体");
+
+        jTextFieldPactTf.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldPactTf.setText("0");
+        jTextFieldPactTf.setPreferredSize(new java.awt.Dimension(36, 20));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel21)
+            .addComponent(jComboBoxPact, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jTextFieldPact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel22))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jComboBoxPD0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxPDLevel0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jComboBoxPD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxPDLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jComboBoxPD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxPDLevel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jComboBoxPD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxPDLevel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jCheckBoxPProperty)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldPactAtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldPactDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jTextFieldPactEff, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel25))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldPactTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxPact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxPD0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPDLevel0, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxPD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPDLevel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxPD2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPDLevel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxPD3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxPDLevel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBoxPProperty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jTextFieldPactAtt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(jTextFieldPactDef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(jTextFieldPactTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPactEff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel21.getAccessibleContext().setAccessibleName("宝物");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -809,6 +1077,14 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldResist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -818,16 +1094,10 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldResist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(8, 8, 8)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -836,20 +1106,24 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(jTextFieldResist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10)
-                                .addComponent(jButtonOK))))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(99, 99, 99)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextFieldResist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(jButtonOK)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -879,10 +1153,12 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             h.potential=10000;
         }
         h.level=level;
-        Equiq weapon;
-        Equiq shield;
-        weapon=((Equiq)jComboBoxWeapon.getSelectedItem()).dup();
-        shield=((Equiq)jComboBoxShield.getSelectedItem()).dup();
+        Equip weapon;
+        Equip shield;
+        Equip pact;
+        weapon=((Equip)jComboBoxWeapon.getSelectedItem()).dup();
+        shield=((Equip)jComboBoxShield.getSelectedItem()).dup();
+        pact=((Equip)jComboBoxPact.getSelectedItem()).dup();
         try{
             level = Integer.parseInt(jTextFieldWeapon.getText());
         }
@@ -919,8 +1195,27 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         if(jCheckBoxSProperty.isEnabled()){
             shield.propertyEnabled=jCheckBoxSProperty.isSelected();
         }
+        try{
+            level = Integer.parseInt(jTextFieldPact.getText());
+        }
+        catch(Exception e){
+            level=60;
+        }
+        pact.level=level;
+        pact.diamond[0]=jComboBoxPD0.getSelectedIndex();
+        pact.diamondLevel[0]=jComboBoxPDLevel0.getSelectedIndex();
+        pact.diamond[1]=jComboBoxPD1.getSelectedIndex();
+        pact.diamondLevel[1]=jComboBoxPDLevel1.getSelectedIndex();
+        pact.diamond[2]=jComboBoxPD2.getSelectedIndex();
+        pact.diamondLevel[2]=jComboBoxPDLevel2.getSelectedIndex();
+        pact.diamond[3]=jComboBoxPD3.getSelectedIndex();
+        pact.diamondLevel[3]=jComboBoxPDLevel3.getSelectedIndex();
+        if(jCheckBoxPProperty.isEnabled()){
+            pact.propertyEnabled=jCheckBoxPProperty.isSelected();
+        }
         h.weapon=weapon;
         h.shield=shield;
+        h.pact=pact;
         h.property_battle=indexToProperty(jComboBoxProperty.getSelectedIndex());
         try{
             h.attSet=Double.parseDouble(jTextFieldAtt.getText());
@@ -947,6 +1242,12 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             h.weaponDefSet=0;
         }
         try{
+            h.weaponTfSet=Double.parseDouble(jTextFieldWeaponTf.getText());
+        }
+        catch(Exception e){
+            h.weaponTfSet=0;
+        }
+        try{
             h.weaponEffSet=Double.parseDouble(jTextFieldWeaponEff.getText());
         }
         catch(Exception e){
@@ -965,10 +1266,40 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             h.shieldDefSet=0;
         }
         try{
+            h.shieldTfSet=Double.parseDouble(jTextFieldShieldTf.getText());
+        }
+        catch(Exception e){
+            h.shieldTfSet=0;
+        }
+        try{
             h.shieldEffSet=Double.parseDouble(jTextFieldShieldEff.getText());
         }
         catch(Exception e){
             h.shieldEffSet=100;
+        }
+        try{
+            h.pactAttSet=Double.parseDouble(jTextFieldPactAtt.getText());
+        }
+        catch(Exception e){
+            h.pactAttSet=0;
+        }
+        try{
+            h.pactDefSet=Double.parseDouble(jTextFieldPactDef.getText());
+        }
+        catch(Exception e){
+            h.pactDefSet=0;
+        }
+        try{
+            h.pactTfSet=Double.parseDouble(jTextFieldPactTf.getText());
+        }
+        catch(Exception e){
+            h.pactTfSet=0;
+        }
+        try{
+            h.pactEffSet=Double.parseDouble(jTextFieldPactEff.getText());
+        }
+        catch(Exception e){
+            h.pactEffSet=100;
         }
         try{
             h.resist=Double.parseDouble(jTextFieldResist.getText());
@@ -996,7 +1327,7 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     private void jComboBoxWeaponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxWeaponActionPerformed
-        Equiq weapon=(Equiq) jComboBoxWeapon.getSelectedItem();
+        Equip weapon=(Equip) jComboBoxWeapon.getSelectedItem();
         int j;
         for(j=0; j<3; j++){
             if(weapon.hideProperty[j]!=0){
@@ -1025,7 +1356,7 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
     }//GEN-LAST:event_jComboBoxWeaponActionPerformed
 
     private void jComboBoxShieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxShieldActionPerformed
-        Equiq shield=(Equiq) jComboBoxShield.getSelectedItem();
+        Equip shield=(Equip) jComboBoxShield.getSelectedItem();
         int j;
         for(j=0; j<3; j++){
             if(shield.hideProperty[j]!=0){
@@ -1124,10 +1455,49 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jListHerosValueChanged
 
+    private void jComboBoxPactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPactActionPerformed
+        Equip pact=(Equip) jComboBoxPact.getSelectedItem();
+        int j;
+        for(j=0; j<3; j++){
+            if(pact.hideProperty[j]!=0){
+                break;
+            }
+        }
+        switch(j){
+            case 0:
+                jCheckBoxPProperty.setText("攻击提高"+(int)pact.hideProperty[0]);
+                break;
+            case 1:
+                jCheckBoxPProperty.setText("防御提高"+(int)pact.hideProperty[1]);
+                break;
+            default:
+                jCheckBoxPProperty.setText("忍术几率提高"+(int)pact.hideProperty[2]+"%");
+                break;
+        }
+        if(j<3){
+            jCheckBoxPProperty.setEnabled(true);
+            jCheckBoxPProperty.setSelected(false);
+        }
+        else{
+            jCheckBoxPProperty.setSelected(false);
+            jCheckBoxPProperty.setEnabled(false);
+        }
+    }//GEN-LAST:event_jComboBoxPactActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonOK;
+    private javax.swing.JCheckBox jCheckBoxPProperty;
     private javax.swing.JCheckBox jCheckBoxSProperty;
     private javax.swing.JCheckBox jCheckBoxWProperty;
+    private javax.swing.JComboBox jComboBoxPD0;
+    private javax.swing.JComboBox jComboBoxPD1;
+    private javax.swing.JComboBox jComboBoxPD2;
+    private javax.swing.JComboBox jComboBoxPD3;
+    private javax.swing.JComboBox jComboBoxPDLevel0;
+    private javax.swing.JComboBox jComboBoxPDLevel1;
+    private javax.swing.JComboBox jComboBoxPDLevel2;
+    private javax.swing.JComboBox jComboBoxPDLevel3;
+    private javax.swing.JComboBox jComboBoxPact;
     private javax.swing.JComboBox jComboBoxProperty;
     private javax.swing.JComboBox jComboBoxSD0;
     private javax.swing.JComboBox jComboBoxSD1;
@@ -1162,6 +1532,14 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1182,20 +1560,28 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldAtt;
     private javax.swing.JTextField jTextFieldDef;
     private javax.swing.JTextField jTextFieldHero;
+    private javax.swing.JTextField jTextFieldPact;
+    private javax.swing.JTextField jTextFieldPactAtt;
+    private javax.swing.JTextField jTextFieldPactDef;
+    private javax.swing.JTextField jTextFieldPactEff;
+    private javax.swing.JTextField jTextFieldPactTf;
     private javax.swing.JTextField jTextFieldPotential;
     private javax.swing.JTextField jTextFieldResist;
     private javax.swing.JTextField jTextFieldShield;
     private javax.swing.JTextField jTextFieldShieldAtt;
     private javax.swing.JTextField jTextFieldShieldDef;
     private javax.swing.JTextField jTextFieldShieldEff;
+    private javax.swing.JTextField jTextFieldShieldTf;
     private javax.swing.JTextField jTextFieldWeapon;
     private javax.swing.JTextField jTextFieldWeaponAtt;
     private javax.swing.JTextField jTextFieldWeaponDef;
     private javax.swing.JTextField jTextFieldWeaponEff;
+    private javax.swing.JTextField jTextFieldWeaponTf;
     // End of variables declaration//GEN-END:variables
 
     private int index;

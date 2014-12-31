@@ -127,6 +127,7 @@
  */
 package slcomputer;
 
+import slcomputer.equip.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -139,7 +140,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
-import slcomputer.equiq.*;
 import slcomputer.heros.*;
 import slcomputer.invokelater.Emphasize;
 import slcomputer.utils.DesUtils;
@@ -164,8 +164,9 @@ public class SLComputer {
     public static MainFrame mf;
     public static Hero[] allHero;
     public static int num6StarHero;
-    public static Equiq[] allEquiqAtt;
-    public static Equiq[] allEquiqDef;
+    public static Equip[] allEquiqAtt;
+    public static Equip[] allEquiqDef;
+    public static Equip[] allEqpTf;
     public static SLData QXSL;
     public static SLData FYSL;
     public static Team myTeam;
@@ -191,7 +192,7 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=0;
     public static final int vip=100;
-    public static final String testVersion=".2";
+    public static final String testVersion=".3";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -260,9 +261,9 @@ public class SLComputer {
         return null;
     }
     
-    public static Equiq dupAttEqById(int id){
+    public static Equip dupAttEqById(int id){
         if(id==0){
-            return new Equiq();
+            return new Equip();
         }
         int i;
         for(i=0; i<allEquiqAtt.length; i++){
@@ -273,9 +274,9 @@ public class SLComputer {
         return null;
     }
     
-    public static Equiq dupDefEqById(int id){
+    public static Equip dupDefEqById(int id){
         if(id==0){
-            return new Equiq();
+            return new Equip();
         }
         int i;
         for(i=0; i<allEquiqDef.length; i++){
@@ -348,6 +349,23 @@ public class SLComputer {
                     br.write(t.heros[i].shield.diamond[3]+"\n");
                     br.write(t.heros[i].shield.diamondLevel[3]+"\n");
                     br.write(t.heros[i].shield.propertyEnabled+"\n");
+                }
+                else{
+                    br.write("0\n1\n");
+                }
+                if(t.heros[i].pact!=null){
+                    br.write(""+t.heros[i].pact.id+"\n");
+                    br.write(""+t.heros[i].pact.level+"\n");
+                    br.write("diamond\n");
+                    br.write(t.heros[i].pact.diamond[0]+"\n");
+                    br.write(t.heros[i].pact.diamondLevel[0]+"\n");
+                    br.write(t.heros[i].pact.diamond[1]+"\n");
+                    br.write(t.heros[i].pact.diamondLevel[1]+"\n");
+                    br.write(t.heros[i].pact.diamond[2]+"\n");
+                    br.write(t.heros[i].pact.diamondLevel[2]+"\n");
+                    br.write(t.heros[i].pact.diamond[3]+"\n");
+                    br.write(t.heros[i].pact.diamondLevel[3]+"\n");
+                    br.write(t.heros[i].pact.propertyEnabled+"\n");
                 }
                 else{
                     br.write("0\n1\n");
@@ -464,6 +482,38 @@ public class SLComputer {
                     s=br.readLine();
                     t.heros[i].shield.propertyEnabled=Boolean.parseBoolean(s);
                     s=br.readLine();
+                }
+                if(s.indexOf("resist")<0){
+                    tmp=Integer.parseInt(s);
+                    t.heros[i].pact=dupDefEqById(tmp);
+                    s=br.readLine();
+                    t.heros[i].pact.level=Integer.parseInt(s);
+                    s=br.readLine();
+                    // read diamond information
+                    if(s.indexOf("diamond")>=0){
+                        s=br.readLine();
+                        t.heros[i].pact.diamond[0]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamondLevel[0]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamond[1]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamondLevel[1]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamond[2]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamondLevel[2]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamond[3]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.diamondLevel[3]=Integer.parseInt(s);
+                        s=br.readLine();
+                        t.heros[i].pact.propertyEnabled=Boolean.parseBoolean(s);
+                        s=br.readLine();
+                    }
+                }
+                else{
+                    t.heros[i].pact=new EqpHJPK();
                 }
                 if(s.indexOf("resist")>=0){
                     s=br.readLine();
@@ -977,14 +1027,16 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=406;
+        int heroNumber=430;
         int equipAttNumber=41;
         int equipDefNumber=42;
+        int eqpTfNumber=47;
         int backupNumber=8;
         int i;
         allHero=new Hero[heroNumber+1];
-        allEquiqAtt=new Equiq[equipAttNumber+1];
-        allEquiqDef=new Equiq[equipDefNumber+1];
+        allEquiqAtt=new Equip[equipAttNumber+1];
+        allEquiqDef=new Equip[equipDefNumber+1];
+        allEqpTf=new Equip[eqpTfNumber+1];
         // Heros
         i=0;
         allHero[i++]=new HeroQSZJ_6(1);  // 五星升六星开始：千手柱间
@@ -1075,6 +1127,18 @@ public class SLComputer {
         allHero[i++]=new HeroXRMR_6(1);
         allHero[i++]=new HeroDHMXR_6(1);
         allHero[i++]=new HeroHTB_6(1);
+        allHero[i++]=new HeroLYDLY_6(1);
+        allHero[i++]=new HeroCDLY_6(1);
+        allHero[i++]=new HeroEDLY_6(1);
+        allHero[i++]=new HeroCDSY_6(1);
+        allHero[i++]=new HeroSDSY_6(1);
+        allHero[i++]=new HeroSYCSL_6(1);
+        allHero[i++]=new HeroCDTY_6(1);
+        allHero[i++]=new HeroHuangT_6(1);
+        allHero[i++]=new HeroTYHT_6(1);
+        allHero[i++]=new HeroCDFY_6(1);
+        allHero[i++]=new HeroEDFY_6(1);
+        allHero[i++]=new HeroHYMR_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1221,6 +1285,18 @@ public class SLComputer {
         allHero[i++]=new HeroXRMR(1);
         allHero[i++]=new HeroDHMXR(1);
         allHero[i++]=new HeroHTB(1);
+        allHero[i++]=new HeroLYDLY(1);
+        allHero[i++]=new HeroCDLY(1);
+        allHero[i++]=new HeroEDLY(1);
+        allHero[i++]=new HeroCDSY(1);
+        allHero[i++]=new HeroSDSY(1);
+        allHero[i++]=new HeroSYCSL(1);
+        allHero[i++]=new HeroCDTY(1);
+        allHero[i++]=new HeroHuangT(1);
+        allHero[i++]=new HeroTYHT(1);
+        allHero[i++]=new HeroCDFY(1);
+        allHero[i++]=new HeroEDFY(1);
+        allHero[i++]=new HeroHYMR(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -1440,7 +1516,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqRD(1);
         allEquiqAtt[i++]=new EquiqHJKW(1);
         //System.out.println("Total "+i+" weapons");
-        allEquiqAtt[equipAttNumber]=new Equiq();
+        allEquiqAtt[equipAttNumber]=new Equip();
         // Def equipment
         i=0;
         allEquiqDef[i++]=new EquiqAYZF(1);
@@ -1486,7 +1562,58 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqLLZP(1);
         allEquiqDef[i++]=new EquiqHJHS(1);
         //System.out.println("Total "+i+" shields");
-        allEquiqDef[equipDefNumber]=new Equiq();
+        allEquiqDef[equipDefNumber]=new Equip();
+        // Tf equipment
+        i=0;
+        allEqpTf[i++]=new EqpMM();
+        allEqpTf[i++]=new EqpTY();
+        allEqpTf[i++]=new EqpYDWS();
+        allEqpTf[i++]=new EqpEDWS();
+        allEqpTf[i++]=new EqpHMWT();
+        allEqpTf[i++]=new EqpBSXR();
+        allEqpTf[i++]=new EqpSZXR();
+        allEqpTf[i++]=new EqpZMXR();
+        allEqpTf[i++]=new EqpDHMXR();
+        allEqpTf[i++]=new EqpYM();
+        allEqpTf[i++]=new EqpWDMX();
+        allEqpTf[i++]=new EqpLY();  // 四星
+        allEqpTf[i++]=new EqpSTS();
+        allEqpTf[i++]=new EqpHMJian();
+        allEqpTf[i++]=new EqpHMG();
+        allEqpTf[i++]=new EqpTBHM();
+        allEqpTf[i++]=new EqpSJY();
+        allEqpTf[i++]=new EqpJX();
+        allEqpTf[i++]=new EqpBSL();
+        allEqpTf[i++]=new EqpDYZQ();
+        allEqpTf[i++]=new EqpBCN();
+        allEqpTf[i++]=new EqpGN();
+        allEqpTf[i++]=new EqpXN();
+        allEqpTf[i++]=new EqpXM();
+        allEqpTf[i++]=new EqpWG();
+        allEqpTf[i++]=new EqpS();
+        allEqpTf[i++]=new EqpXB();  // 三星
+        allEqpTf[i++]=new EqpBSK();
+        allEqpTf[i++]=new EqpAJN();
+        allEqpTf[i++]=new EqpGLK();
+        allEqpTf[i++]=new EqpWH();
+        allEqpTf[i++]=new EqpWLX();
+        allEqpTf[i++]=new EqpBL();
+        allEqpTf[i++]=new EqpPK();
+        allEqpTf[i++]=new EqpHMJ();
+        allEqpTf[i++]=new EqpHML();
+        allEqpTf[i++]=new EqpHMLi();
+        allEqpTf[i++]=new EqpHMY();
+        allEqpTf[i++]=new EqpRG();
+        allEqpTf[i++]=new EqpNG();
+        allEqpTf[i++]=new EqpZZ();
+        allEqpTf[i++]=new EqpHW();
+        allEqpTf[i++]=new EqpHuiW();
+        allEqpTf[i++]=new EqpCW();
+        allEqpTf[i++]=new EqpTT();
+        allEqpTf[i++]=new EqpHJPK();
+        allEqpTf[i++]=new EqpHJTT();
+        //System.out.println("Total "+i+" pact");
+        allEqpTf[eqpTfNumber]=new Equip();
         // skills
         initSkill();
 //        int flags[]={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -1653,7 +1780,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=1712;
+        int skillNumber=1728;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;
@@ -1728,7 +1855,7 @@ public class SLComputer {
                     //System.out.println("Cannot find hero "+j);
                     continue;
                 }
-                //System.out.print(allHero[i].name);
+                //System.out.println(allHero[i].name);
                 s=br.readLine();
                 while(s.indexOf("description")<0){
                     s=br.readLine();
@@ -2024,17 +2151,19 @@ public class SLComputer {
                 while(s.indexOf("updatedSkills")<0){
                     s=br.readLine();
                 }
-                // backupSkills
-                k=0;
-                s=br.readLine();    // [
-                while(s.length()>4 && s.charAt(4)!=']' && k<allHero[i].backupSkills.length){
-                    s=br.readLine();
-                    s=s.substring(0, s.lastIndexOf(",")).trim();
-                    j=Integer.parseInt(s);
-                    allHero[i].backupSkills[k++]=findSkill(j);
-                    s=br.readLine();
-                    s=br.readLine();
-                    s=br.readLine();
+                if(s.indexOf("]")<0){
+                    // backupSkills
+                    k=0;
+                    s=br.readLine();    // [
+                    while(s.length()>4 && s.charAt(4)!=']' && k<allHero[i].backupSkills.length){
+                        s=br.readLine();
+                        s=s.substring(0, s.lastIndexOf(",")).trim();
+                        j=Integer.parseInt(s);
+                        allHero[i].backupSkills[k++]=findSkill(j);
+                        s=br.readLine();
+                        s=br.readLine();
+                        s=br.readLine();
+                    }
                 }
                 //System.out.println(allHero[i].name+":"+k);
                 for(k=0; k<allHero[i].backupSkills.length; k++){

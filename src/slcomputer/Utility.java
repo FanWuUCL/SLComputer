@@ -4,7 +4,7 @@
  */
 package slcomputer;
 
-import slcomputer.equiq.Equiq;
+import slcomputer.equip.Equip;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -25,7 +25,7 @@ public class Utility {
         int i, j;
         double k;
         Hero h;
-        Equiq e;
+        Equip e;
         try {
             BufferedReader br=new BufferedReader(new FileReader(f1));
             BufferedWriter bw=new BufferedWriter(new FileWriter(f2));

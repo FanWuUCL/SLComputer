@@ -39,6 +39,7 @@ import slcomputer.invokelater.Emphasize;
  */
 public class SocketMaster implements Runnable{
     public static final int c_login=0x0002756c;
+    public static final int c_loginp=0x00027561;
     public static final int c_login2=0x0002616c;
     public static final int c_news=0x00026d61;
     public static final int c_addFateEnemy=0x00026663;
@@ -90,11 +91,12 @@ public class SocketMaster implements Runnable{
     public static int cmdGlobal;
     public static int starUsed, starTotal;
     public static int mode;
+    // usr, psd, fwq, saveAcc, 平台
     public static Object[] arguments=new Object[5];
     public static String usrSave;
     public static boolean onWork=false;
 
-    public static byte[] transform(int length, int certification, int command, int extralength, byte[] extra){
+    public static byte[] transform(int length, int version, int certification, int command, int extralength, byte[] extra){
         byte[] data=new byte[34+extralength];
         int i;
         for(i=0; i<data.length; i++){
@@ -106,11 +108,11 @@ public class SocketMaster implements Runnable{
         data[7]=(byte)((length & 0xff00)>>8);
         data[8]=(byte)(length & 0xff);
         // app 0x 00 1e 98 08
-        data[9]=0;
-        data[10]=(byte)0x1e;
-        data[11]=(byte)0x98;
-        data[12]=(byte)0x08;
-        /* 混服 0x 00 1e 88 69 */
+        data[9]=(byte)((version & 0xff000000)>>24);
+        data[10]=(byte)((version & 0xff0000)>>16);
+        data[11]=(byte)((version & 0xff00)>>8);
+        data[12]=(byte)(version & 0xff);
+        /* 混服 0x 00 1e 9b f0 */
         //data[12]=(byte)0x69;
         data[13]=(byte)((certification>>24) & 0xff);
         data[14]=(byte)((certification>>16) & 0xff);
@@ -131,34 +133,8 @@ public class SocketMaster implements Runnable{
         return data;
     }
     
-    public static int findEnd(BufferedInputStream is, byte[] recvData){
-        int ret=-1;
-        try {
-            int recvLength;
-            int total=0;
-            while(true){
-                while(is.available()<=0){
-                    Thread.sleep(100);
-                }
-                recvLength=is.read(recvData, 2, recvData.length-2);
-                total+=recvLength;
-                if(recvData[recvLength-1]=='E' && recvData[recvLength]=='n' && recvData[recvLength+1]=='d'){
-                    break;
-                }
-                if(recvData[0]=='E' && recvData[1]=='n' && recvData[2]=='d'){
-                    break;
-                }
-                recvData[0]=recvData[recvLength];
-                recvData[1]=recvData[recvLength+1];
-            }
-            ret=total;
-        } catch (Exception ex) {
-            Logger.getLogger(SocketMaster.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return ret;
-    }
-    
-    public static byte[] findEnd(BufferedInputStream is, int cmd){
+    public static byte[] findEnd(BufferedInputStream is, byte[] para){
+        int cmd=((para[8]&0xff)<<24) | ((para[9]&0xff)<<16) | ((para[10]&0xff)<<8) | (para[11]&0xff);
         byte[] ret=null;
         int i=0, tmp, time, sleepunit=10, timeout=10*1000/sleepunit, available=0;
         //waitFrame=new JFrameWait();
@@ -172,12 +148,12 @@ public class SocketMaster implements Runnable{
                     //System.out.println("Certification has changed.");
                     return null;
                 }
-                if(!(wrap[0]==0x53 && wrap[1]==0x74 && wrap[2]==0x61 && wrap[3]==0x72 && wrap[4]==0x74)){
+                if(!(wrap[0]==para[0] && wrap[1]==para[1] && wrap[2]==para[2] && wrap[3]==para[3] && wrap[4]==para[4])){
                     System.out.println("Can't find Start.");
                     return null;
                 }
                 int recvCmd=((wrap[23]&0xff)<<24) | ((wrap[24]&0xff)<<16) | ((wrap[25]&0xff)<<8) | (wrap[26]&0xff);
-                int length=((wrap[27]&0xff)<<24) | ((wrap[28]&0xff)<<16) | ((wrap[29]&0xff)<<8) | (wrap[30]&0xff);
+                int length=decrypt(wrap, 27);
                 if(recvCmd!=cmd){
                     tmp=0;
                     time=0;
@@ -196,7 +172,7 @@ public class SocketMaster implements Runnable{
                         tmp+=is.skip(available);
                     }
                     is.read(wrap, 0, 3);
-                    if(!(wrap[0]==0x45 && wrap[1]==0x6e && wrap[2]==0x64)){
+                    if(!(wrap[0]==para[5] && wrap[1]==para[6] && wrap[2]==para[7])){
                         System.out.println("Can't find End.");
                         return null;
                     }
@@ -220,7 +196,7 @@ public class SocketMaster implements Runnable{
                         tmp+=is.read(ret, tmp, available);
                     }
                     is.read(wrap, 0, 3);
-                    if(!(wrap[0]==0x45 && wrap[1]==0x6e && wrap[2]==0x64)){
+                    if(!(wrap[0]==para[5] && wrap[1]==para[6] && wrap[2]==para[7])){
                         System.out.println("Can't find End.");
                         return null;
                     }
@@ -251,6 +227,16 @@ public class SocketMaster implements Runnable{
                 break;
             case 2: // 苹果91
                 pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
+                break;
+            case 3: // 快用
+                if(mode==0){
+                    cmdGlobal=c_loginp;
+                    return login_extra(usr, "Wangsh51920", platform);
+                }
+                else{
+                    cmdGlobal=c_login;
+                    pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
+                }
                 break;
             case 0: // app
             default:
@@ -283,6 +269,36 @@ public class SocketMaster implements Runnable{
         extra[15+usrL]=(byte)(pssL & 0xff);
         for(i=0; i<pssL; i++){
             extra[16+usrL+i]=(byte)(pss.charAt(i));
+        }
+        return extra;
+    }
+    
+    /**
+     * login数据封包，带密码
+     * @param usr user name
+     * @param pss password
+     * @param platform 平台：0 app, 1 and91
+     * @return 
+     */
+    public static byte[] login_extra(String usr, String pss, int platform){
+        int usrL=usr.length();
+        int pssL=pss.length();
+        byte[] extra=new byte[usrL+pssL+20];
+        extra[0]=extra[1]=extra[2]=extra[3]=extra[4]=extra[5]=extra[6]=extra[7]=extra[8]=extra[9]=extra[10]=extra[11]=0;
+        extra[12]=(byte)((usrL >> 24) & 0xff);
+        extra[13]=(byte)((usrL >> 16) & 0xff);
+        extra[14]=(byte)((usrL >> 8) & 0xff);
+        extra[15]=(byte)(usrL & 0xff);
+        int i;
+        for(i=0; i<usrL; i++){
+            extra[16+i]=(byte)(usr.charAt(i));
+        }
+        extra[16+usrL]=(byte)((pssL >> 24) & 0xff);
+        extra[17+usrL]=(byte)((pssL >> 16) & 0xff);
+        extra[18+usrL]=(byte)((pssL >> 8) & 0xff);
+        extra[19+usrL]=(byte)(pssL & 0xff);
+        for(i=0; i<pssL; i++){
+            extra[20+usrL+i]=(byte)(pss.charAt(i));
         }
         return extra;
     }
@@ -504,347 +520,7 @@ public class SocketMaster implements Runnable{
         }
         return extra;
     }
-    
-    public static final int HARVEST=1;
-    public static final int REVENGE=2;
-    public static final int PETPIECES=4;
-    public static final int LEVELUP=8;
-    public static final int GUAGUAKA=16;
-    public static void one(String usr, int accIndex, int enemy, int options, int storySec, int storyLength){
-        try{
-            Socket client=new Socket(globalIP, globalPort);
-
-            BufferedOutputStream os=new BufferedOutputStream(client.getOutputStream());
-
-            BufferedInputStream is=new BufferedInputStream(client.getInputStream());
-
-            // 获取令牌
-            int i;
-            int cer=0;
-            int command;
-            byte[] extra, recvData;
-            int extralength;
-            int length;
-            byte[] data;
-            int[] arrCer=new int[2];
-            String[] arrName=new String[1];
-            loginAccount(os, is, usr, accIndex, arrCer, arrName, true);
-            cer=arrCer[0];
-            int myId=arrCer[1];
-            String myName=arrName[0];
-            Thread.sleep(1000);
-            if(options==999) return;
-            // 刮刮卡
-            if((options&GUAGUAKA)>0){
-                command=c_guaguaka;
-                extra=monster_check_extra(myId);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                os.write(data);
-                os.flush();
-                if(findEnd(is, command)==null) return;
-                Thread.sleep(1000);
-            }
-            /* 领取每日碎片 */
-            if((options&PETPIECES)>0){
-                command=c_recievePetPieces;
-                extra=monster_check_extra(myId);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                os.write(data);
-                os.flush();
-                if(findEnd(is, command)==null) return;
-                Thread.sleep(1000);
-            }
-            
-
-            int timeout;
-            int loop;
-            // 宿敌报仇大号
-            if((options&REVENGE)>0){
-                command=c_revenge;
-                extra=revenge_extra(myId, 6, enemy, 0);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                loop=10;
-                for(i=0; i<loop; i++){
-                    timeout=0;
-                    System.out.println(myName+" is revenging for the "+(i+1)+"/"+loop+" time.");
-                    os.write(data);
-                    os.flush();
-                    Thread.sleep(commandCooldown);
-                    if(findEnd(is, command)==null) return;
-                }
-            }
-            // 刷副本
-            int story=storySec;
-            if((options&LEVELUP)>0){
-                command=c_story_play;
-                extra=festival_extra(myId, story);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                for(i=0; i<storyLength; i++){
-                    timeout=0;
-                    System.out.print("*");
-                    os.write(data);
-                    os.flush();
-                    if(findEnd(is, command)==null) return;
-                }
-                Thread.sleep(5000);
-                command=c_story_boss;
-                extra=use_extra(myId, 0, story);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                os.write(data);
-                os.flush();
-                findEnd(is, command);
-                System.out.println("*");
-            }
-            
-            // 收菜
-            if((options&HARVEST)>0){
-                command=c_harvest;
-                for(i=4; i<8; i++){
-                    System.out.println(myName+" is harvesting building "+i+".");
-                    extra=harvest_extra(myId, i, 0);
-                    extralength=extra.length;
-                    length=extralength+22;
-                    data=transform(length, cer, command, extralength, extra);
-                    os.write(data);
-                    os.flush();
-                    if(findEnd(is, command)==null) return;
-                    //System.out.println("----");
-                    Thread.sleep(commandCooldown);
-                    extra=harvest_extra(myId, i, 1);
-                    extralength=extra.length;
-                    length=extralength+22;
-                    data=transform(length, cer, command, extralength, extra);
-                    os.write(data);
-                    os.flush();
-                    if(findEnd(is, command)==null) return;
-                    Thread.sleep(commandCooldown);
-                }
-            }
-            
-            // 再次报仇大号
-            if((options&REVENGE)>0 && (options&HARVEST)>0){
-                command=c_revenge;
-                extra=revenge_extra(myId, 6, enemy, 0);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                loop=10;
-                for(i=0; i<loop; i++){
-                    timeout=0;
-                    System.out.println(myName+" is revenging for the "+(i+1)+"/"+loop+" time.");
-                    os.write(data);
-                    os.flush();
-                    Thread.sleep(commandCooldown);
-                    if(findEnd(is, command)==null) return;
-                }
-            }
-            // 刷副本
-            if((options&LEVELUP)>0){
-                command=c_story_play;
-                extra=festival_extra(myId, story);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                for(i=0; i<storyLength; i++){
-                    timeout=0;
-                    System.out.print("*");
-                    os.write(data);
-                    os.flush();
-                    //Thread.sleep(commandCooldown);
-                    if(findEnd(is, command)==null) return;
-                }
-                Thread.sleep(5000);
-                command=c_story_boss;
-                extra=use_extra(myId, 0, story);
-                extralength=extra.length;
-                length=extralength+22;
-                data=transform(length, cer, command, extralength, extra);
-                os.write(data);
-                os.flush();
-                if(findEnd(is, command)==null) return;
-                System.out.println("*");
-            }
-           
-            os.close(); //关闭Socket输出流
-
-            is.close(); //关闭Socket输入流
-
-            client.close(); //关闭Socket
-
-            Thread.sleep(commandCooldown);
-        }catch(Exception e) {
-
-            System.out.println("Error"+e); //出错，则打印出错信息
-
-        }
-    }
-    
-    public static int findTributer(String usr, int accIndex, int server, int id){
-        try{
-            Socket client;
-            if(server==31){
-                client=new Socket(globalIP, globalPort); //31
-            }
-            else if(server==29){
-                client=new Socket("112.124.65.193", 8020); // 29
-            }
-            else if(server==27){
-                client=new Socket("112.124.65.130", 8020); // 27
-            }
-            else{
-                client=new Socket("115.29.230.226", 8000); // 66
-            }
-
-            BufferedOutputStream os=new BufferedOutputStream(client.getOutputStream());
-
-            BufferedInputStream is=new BufferedInputStream(client.getInputStream());
-
-            // some constants
-            int loginSizeTh=5000;
-            int revengeSizeTh=1850;
-            // 获取令牌
-            int i;
-            int cer=0;
-            int command;
-            byte[] extra, recvData;
-            int extralength;
-            int length;
-            byte[] data;
-            int[] arrCer=new int[2];
-            String[] arrName=new String[1];
-            loginAccount(os, is, usr, accIndex, arrCer, arrName, true);
-            cer=arrCer[0];
-            int myId=arrCer[1];
-            String myName=arrName[0];
-
-            // 加宿敌
-            command=c_addFateEnemy;
-            extra=addFateEnemy_extra(myId, id);
-            extralength=extra.length;
-            length=extralength+22;
-            data=transform(length, cer, command, extralength, extra);
-            os.write(data);
-            os.flush();
-            Thread.sleep(2000);
-            findEnd(is, command);
-
-            os.close(); //关闭Socket输出流
-
-            is.close(); //关闭Socket输入流
-
-            client.close(); //关闭Socket
-
-        }catch(Exception e) {
-
-            System.out.println("Error"+e); //出错，则打印出错信息
-
-        }
-        return 0;
-    }
-    
-    public static void sendMsg(int cer, int myId, int recieverID, int number, int timeGap, String msg){
-        try{
-            int i, recvLength;
-            if(osStatic==null || isStatic==null){
-                System.out.println("Open a socket first.");
-                return;
-            }
-            // 发消息
-            int command=c_messege;
-            byte[] extra=sendMsg_extra(myId, recieverID, msg);
-            int extralength=extra.length;
-            int length=extralength+22;
-            byte[] data=transform(length, cer, command, extralength, extra);
-            for(i=0; i<number; i++){
-                //System.out.println("Sending "+(i+1)+"/"+number+" msg.");
-                osStatic.write(data);
-                osStatic.flush();
-                Thread.sleep(timeGap*1000);
-                recvLength=isStatic.available();
-                //System.out.println("Skipping "+recvLength+" bytes.");
-                isStatic.skip(recvLength);
-            }
-
-        }catch(Exception e) {
-
-            System.out.println("Error"+e); //出错，则打印出错信息
-
-        }
-    }
-    
-    public static void sendMsg(String usr, int accIndex, int serverID, int recieverID, int number, int timeGap, String msg){
-        try{
-            Socket client;
-            if(serverID==31){
-                client=new Socket(globalIP, globalPort);
-            }
-            else if(serverID==29){
-                client=new Socket("112.124.65.193", 8020);
-            }
-            else{
-                System.out.println("No server ip available for NO. "+serverID);
-                return;
-            }
-
-            BufferedOutputStream os=new BufferedOutputStream(client.getOutputStream());
-
-            BufferedInputStream is=new BufferedInputStream(client.getInputStream());
-
-            // 获取令牌
-            int i;
-            int cer=0;
-            int command;
-            byte[] extra, recvData=new byte[1024];
-            int extralength;
-            int length;
-            byte[] data;
-            int[] arrCer=new int[2];
-            String[] arrName=new String[1];
-            loginAccount(os, is, usr, accIndex, arrCer, arrName, false);
-            cer=arrCer[0];
-            int myId=arrCer[1];
-            String myName=arrName[0];
-            int recvLength;
-
-            // 发消息
-            command=c_messege;
-            extra=sendMsg_extra(myId, recieverID, msg);
-            extralength=extra.length;
-            length=extralength+22;
-            data=transform(length, cer, command, extralength, extra);
-            for(i=0; i<number; i++){
-                //System.out.println("Sending "+(i+1)+"/"+number+" msg.");
-                os.write(data);
-                os.flush();
-                Thread.sleep(timeGap*1000);
-                recvLength=is.available();
-                //System.out.println("Skipping "+recvLength+" bytes.");
-                is.skip(recvLength);
-            }
-
-            os.close(); //关闭Socket输出流
-
-            is.close(); //关闭Socket输入流
-
-            client.close(); //关闭Socket
-
-        }catch(Exception e) {
-
-            System.out.println("Error"+e); //出错，则打印出错信息
-
-        }
-    }
-    
+   
     public static boolean globalLoginSocket(String usr, int accIndex, boolean verbose){
         try{
             
@@ -888,9 +564,7 @@ public class SocketMaster implements Runnable{
             name[0]=arrName[0];
 
         }catch(Exception e) {
-            System.out.println("Error"+e); //出错，则打印出错信息
             return false;
-
         }
         return true;
     }
@@ -898,9 +572,8 @@ public class SocketMaster implements Runnable{
     public static boolean loginAccount(BufferedOutputStream os, BufferedInputStream is, String usr, int accIndex, int[] cer, String[] name, boolean verbose) throws Exception{
         cer[0]=0;
         int i, j, k, max;
-        int command=c_login;
         byte[] extra=login_extra(usr, 0, (int)arguments[4]);
-        byte[] recvData=communicate(os, is, command, extra);
+        byte[] recvData=communicate(os, is, cmdGlobal, extra);
         if(recvData==null){
             throw new Exception();
         }
@@ -962,7 +635,7 @@ public class SocketMaster implements Runnable{
                 }
             }
             extra=login_extra(accUsr[accIndex], 1, (int)arguments[4]);
-            recvData=communicate(os, is, command, extra);
+            recvData=communicate(os, is, cmdGlobal, extra);
             if(recvData==null){
                 throw new Exception();
             }
@@ -988,447 +661,6 @@ public class SocketMaster implements Runnable{
             System.out.println("Level: "+level+", Diamond: "+diamond+", Gold: "+gold);
         }
         return true;
-    }
-    
-    public static void festival(String usr, int accIndex)
-    {
-            try
-            {
-                    Socket client = new Socket(globalIP, globalPort);
-                    BufferedOutputStream os = new BufferedOutputStream(client.getOutputStream());
-                    BufferedInputStream is = new BufferedInputStream(client.getInputStream());
-                    int cer=0;
-                    int command;
-                    byte[] extra, recvData;
-                    int extralength;
-                    int length;
-                    byte[] data;
-                    int[] arrCer=new int[2];
-                    String[] arrName=new String[1];
-                    loginAccount(os, is, usr, accIndex, arrCer, arrName, true);
-                    cer=arrCer[0];
-                    int myId=arrCer[1];
-                    String myName=arrName[0];
-                    int nextBonusScore = 0;
-                    do
-                    {
-                            GregorianCalendar c = new GregorianCalendar();
-                            int min = c.get(12);
-                            int sec = c.get(13);
-                            if (min == 0 || min == 59 && sec > 58)
-                                    break;
-                            command = c_festival_check;
-                            extra = monster_check_extra(myId);
-                            extralength = extra.length;
-                            length = extralength + 22;
-                            data = transform(length, cer, command, extralength, extra);
-                            os.write(data);
-                            os.flush();
-                            recvData=findEnd(is, command);
-                            if(recvData==null){
-                                break;
-                            }
-                            if(recvData.length<100){
-                                continue;
-                            }
-                            System.out.println(c.get(10)+":"+min+":"+sec);
-                            int myScore = (recvData[20] & 0xff) << 24 | (recvData[21] & 0xff) << 16 | (recvData[22] & 0xff) << 8 | recvData[23] & 0xff;
-                            int l = (recvData[52] & 0xff) << 24 | (recvData[53] & 0xff) << 16 | (recvData[54] & 0xff) << 8 | recvData[55] & 0xff;
-                            if (l > 50 || l < 1)
-                            {
-                                    System.out.println((new StringBuilder()).append("l=").append(l).toString());
-                            } else
-                            {
-                                    int highestScore = (recvData[56 + l] & 0xff) << 24 | (recvData[57 + l] & 0xff) << 16 | (recvData[58 + l] & 0xff) << 8 | recvData[59 + l] & 0xff;
-                                    if (nextBonusScore == 0)
-                                            nextBonusScore = (myScore / 100 + 1) * 100;
-                                    String highName = new String(recvData, 56, l, "UTF-8");
-                                    int m = (recvData[68 + l] & 0xff) << 24 | (recvData[69 + l] & 0xff) << 16 | (recvData[70 + l] & 0xff) << 8 | recvData[71 + l] & 0xff;
-                                    if (m > 50 || m < 1)
-                                    {
-                                            System.out.println((new StringBuilder()).append("m=").append(m).toString());
-                                    } else
-                                    {
-                                            int secondScore = (recvData[72 + l + m] & 0xff) << 24 | (recvData[73 + l + m] & 0xff) << 16 | (recvData[74 + l + m] & 0xff) << 8 | recvData[75 + l + m] & 0xff;
-                                            String secondName = new String(recvData, 72 + l, m, "UTF-8");
-                                            int n=(recvData[84+m + l] & 0xff) << 24 | (recvData[85+m + l] & 0xff) << 16 | (recvData[86+m + l] & 0xff) << 8 | recvData[87+m + l] & 0xff;
-                                            int thirdScore=(recvData[88+n + l + m] & 0xff) << 24 | (recvData[89+n + l + m] & 0xff) << 16 | (recvData[90+n + l + m] & 0xff) << 8 | recvData[91+n + l + m] & 0xff;
-                                            String thirdName=new String(recvData, 88+l+m, n, "UTF-8");
-                                            System.out.println(highName+" "+highestScore+", "+secondName+" "+secondScore+", "+thirdName+" "+thirdScore);
-                                            if (min != 59)
-                                                    Thread.sleep(10000L);
-                                            else
-                                            if (sec < 30)
-                                                    Thread.sleep(3000L);
-                                    }
-                            }
-                    } while (true);
-                    os.close();
-                    is.close();
-                    client.close();
-            }
-            catch (Exception e)
-            {
-                    System.out.println((new StringBuilder()).append("Error").append(e).toString());
-            }
-    }
-
-    public static void train(String usr, int accIndex, int heroIndex, int n, int times)
-    {
-            try
-            {
-                    Socket client = new Socket(globalIP, globalPort);
-                    BufferedOutputStream os = new BufferedOutputStream(client.getOutputStream());
-                    BufferedInputStream is = new BufferedInputStream(client.getInputStream());
-                    int cer=0;
-                    int command;
-                    byte[] extra, recvData;
-                    int extralength;
-                    int length;
-                    byte[] data;
-                    int[] arrCer=new int[2];
-                    String[] arrName=new String[1];
-                    loginAccount(os, is, usr, accIndex, arrCer, arrName, true);
-                    cer=arrCer[0];
-                    int myId=arrCer[1];
-                    String myName=arrName[0];
-                    command = c_train;
-                    extra = train_extra(myId, heroIndex, n, 10);
-                    extralength = extra.length;
-                    length = extralength + 22;
-                    data = transform(length, cer, command, extralength, extra);
-                    for (int i = 0; i < times; i+=10)
-                    {
-                            System.out.println((new StringBuilder()).append("Training ").append(i + 1).append("/").append(times).toString());
-                            os.write(data);
-                            os.flush();
-                            findEnd(is, command);
-                    }
-
-                    os.close();
-                    is.close();
-                    client.close();
-            }
-            catch (Exception e)
-            {
-                    System.out.println((new StringBuilder()).append("Error").append(e).toString());
-            }
-    }
-    
-    // usr[]中的每个号都做一套联军任务
-    // renew_assignment: 用金币或钻石刷新任务后，确定重置任务时为true
-    public static void union_assignment(String usr[], int loa[], boolean renew_assignment, int resume_i, int resume_j){
-        try{
-            if(usr.length!=loa.length){
-                System.out.println("Array lengths unmatch. Abort.");
-                return;
-            }
-            int i, j, k, l;
-            int loa_max=0;
-            int noa=0;
-            int sleepingBetweenAccounts=1;
-            for(j=0; j<loa.length; j++){
-                if(loa[j]>loa_max){
-                    loa_max=loa[j];
-                }
-                noa+=loa[j];
-            }
-            int sleeping_sec=330+loa_max*30-noa*3*2;
-            sleeping_sec=sleeping_sec-sleepingBetweenAccounts*usr.length;
-            if(sleeping_sec<2){
-                sleeping_sec=2;
-            }
-            for(i=0; i<5; i++){
-                if(i+1<resume_i){
-                    continue;
-                }
-                for(j=0; j<usr.length; j++){
-                    if(i+1==resume_i && j+1<resume_j){
-                        continue;
-                    }
-                    File f=new File("record.txt");
-                    BufferedWriter br=new BufferedWriter(new FileWriter(f));
-                    br.write((i+1)+" "+(j+1)+" "+renew_assignment);
-                    br.close();
-                    
-                    Socket client=new Socket(globalIP, globalPort);
-
-                    BufferedOutputStream os=new BufferedOutputStream(client.getOutputStream());
-
-                    BufferedInputStream is=new BufferedInputStream(client.getInputStream());
-
-                    System.out.println((i+1)+"-"+(j+1)+" connected.");
-                    // 获取令牌
-                    int cer=0;
-                    int command;
-                    byte[] extra, recvData;
-                    int extralength;
-                    int length;
-                    byte[] data;
-                    int[] arrCer=new int[2];
-                    String[] arrName=new String[1];
-                    loginAccount(os, is, usr[j], 1000, arrCer, arrName, true);
-                    cer=arrCer[0];
-                    int myId=arrCer[1];
-                    Thread.sleep(1000);
-
-                    // 尝试刷新任务
-                    if(i==0){
-                        command=c_union_query_assignment;
-                        extra=monster_check_extra(myId);
-                        extralength=extra.length;
-                        length=extralength+22;
-                        data=transform(length, cer, command, extralength, extra);
-                        os.write(data);
-                        os.flush();
-                        if(findEnd(is, command)==null) return;
-                        Thread.sleep(1000);
-                        
-                        if(renew_assignment){
-                            command=c_union_renew_assignment;
-                            extra=monster_check_extra(myId);
-                            extralength=extra.length;
-                            length=extralength+22;
-                            data=transform(length, cer, command, extralength, extra);
-                            os.write(data);
-                            os.flush();
-                            if(findEnd(is, command)==null) return;
-                            Thread.sleep(2000);
-                        }
-                    }
-                    
-                    // 联军任务
-                    command=c_union_assignment;
-                    for(k=0; k<loa[j]; k++){
-                        for(l=0; l<3; l++){
-                            extra=use_extra(myId, k+1, l);
-                            extralength=extra.length;
-                            length=extralength+22;
-                            data=transform(length, cer, command, extralength, extra);
-                            System.out.print(""+(k+1));
-                            os.write(data);
-                            os.flush();
-                            if(findEnd(is, command)==null) return;
-                            Thread.sleep(2000);
-                        }
-                    }
-
-                    os.close(); //关闭Socket输出流
-
-                    is.close(); //关闭Socket输入流
-
-                    client.close(); //关闭Socket
-                    
-                    System.out.println("#");
-                    
-                    Thread.sleep(sleepingBetweenAccounts*1000);
-                }
-                // 任务冷却时间
-                if(i<4){
-                    System.out.println("Finish "+(i+1)+"/5, sleeping "+sleeping_sec+" secs...");
-                    Thread.sleep(sleeping_sec*1000);
-                }
-                else{
-                    System.out.println("Finish "+(i+1)+"/5.");
-                }
-            }
-            File f=new File("record.txt");
-            f.delete();
-        }catch(Exception e) {
-
-            System.out.println("Error"+e); //出错，则打印出错信息
-
-        }
-    }
-    
-    public static void union_census(String usr, int accIndex)
-    {
-            try
-            {
-                    Socket client = new Socket(globalIP, globalPort);
-                    BufferedOutputStream os = new BufferedOutputStream(client.getOutputStream());
-                    BufferedInputStream is = new BufferedInputStream(client.getInputStream());
-                    int cer=0;
-                    int command;
-                    byte[] extra, recvData;
-                    int extralength;
-                    int length;
-                    byte[] data;
-                    int[] arrCer=new int[2];
-                    String[] arrName=new String[1];
-                    loginAccount(os, is, usr, accIndex, arrCer, arrName, true);
-                    cer=arrCer[0];
-                    int myId=arrCer[1];
-                    String myName=arrName[0];
-                    
-                    command=c_union_census;
-                    extra=monster_check_extra(myId);
-                    extralength=extra.length;
-                    length=extralength+22;
-                    data=transform(length, cer, command, extralength, extra);
-                    os.write(data);
-                    os.flush();
-                    recvData=findEnd(is, command);
-                    if(recvData.length<24){
-                        System.out.println(usr+" census fails.");
-                        return;
-                    }
-                    int total=(recvData[4] & 0xff) << 24 | (recvData[5] & 0xff) << 16 | (recvData[6] & 0xff) << 8 | recvData[7] & 0xff;
-                    String members[]=new String[total];
-                    int contribution[]=new int[total];
-                    int i, j=2, l;
-                    int p=12;
-                    for(i=0; i<total; i++){
-                        if(i==j){
-                            j+=(recvData[p] & 0xff) << 24 | (recvData[p+1] & 0xff) << 16 | (recvData[p+2] & 0xff) << 8 | recvData[p+3] & 0xff;
-                            p+=4;
-                        }
-                        l=(recvData[p+8] & 0xff) << 24 | (recvData[p+9] & 0xff) << 16 | (recvData[p+10] & 0xff) << 8 | recvData[p+11] & 0xff;
-                        if(l==0){
-                            i--;
-                            j--;
-                            p+=24;
-                            continue;
-                        }
-                        members[i]=new String(recvData, p+12, l, "UTF-8");
-                        contribution[i]=(recvData[p+l+16] & 0xff) << 24 | (recvData[p+l+17] & 0xff) << 16 | (recvData[p+l+18] & 0xff) << 8 | recvData[p+l+19] & 0xff;
-                        int tmp=(recvData[p+l+20] & 0xff) << 24 | (recvData[p+l+21] & 0xff) << 16 | (recvData[p+l+22] & 0xff) << 8 | recvData[p+l+23] & 0xff;
-                        p=p+l+24+tmp*4;
-                        System.out.println(members[i]+" "+contribution[i]);
-                    }
-                    
-                    String name;
-                    for(i=0; i<total-1; i++){
-                        p=i;
-                        for(j=i+1; j<total; j++){
-                            if(contribution[j]>contribution[p]){
-                                p=j;
-                            }
-                        }
-                        if(p!=i){
-                            l=contribution[i];
-                            name=members[i];
-                            contribution[i]=contribution[p];
-                            members[i]=members[p];
-                            contribution[p]=l;
-                            members[p]=name;
-                        }
-                    }
-                    
-                    File f=new File("census.txt");
-                    BufferedWriter br=new BufferedWriter(new FileWriter(f));
-                    GregorianCalendar c=new GregorianCalendar();
-                    br.write(c.get(Calendar.YEAR)+"-"+c.get(Calendar.MONTH)+"-"+c.get(Calendar.DATE)+" "+c.get(Calendar.HOUR)+":"+c.get(Calendar.MINUTE)+":"+c.get(Calendar.SECOND)+"\r\n");
-                    for(i=0; i<total; i++){
-                        br.write(members[i]+"\t"+contribution[i]+"\r\n");
-                    }
-                    br.close();
-                    
-                    os.close();
-                    is.close();
-                    client.close();
-            }
-            catch (Exception e)
-            {
-                    System.out.println((new StringBuilder()).append("Error").append(e).toString());
-            }
-    }
-    
-    public static void harvestFromFile(String filename){
-        File f=new File(filename);
-        if(!f.isFile() || !f.exists()){
-            System.out.println("File does not exist");
-            return;
-        }
-        try {
-            BufferedReader br=new BufferedReader(new FileReader(f));
-            String s;
-            while((s=br.readLine())!=null){
-                if(s.indexOf("#")>=0){
-                    continue;
-                }
-                if(s.indexOf("@")<=0){
-                    //continue;
-                }
-                one(s, 1000, 0, HARVEST, 0xea61, 10);
-            }
-            br.close();
-        } catch (Exception ex) {
-            System.out.println("Some error occured. Abort.");
-        }
-    }
-    
-    public static void story(int myId, int section, int minorTimes, int cer, BufferedOutputStream os, BufferedInputStream is){
-        try {
-            int command=0x00027465;
-            byte[] extra=festival_extra(myId, section);
-            int extralength=extra.length;
-            int length=extralength+22;
-            byte[] data=transform(length, cer, command, extralength, extra);
-            int i;
-            byte[] recvData=new byte[1024];
-            for(i=0; i<minorTimes; i++){
-                os.write(data);
-                os.flush();
-                findEnd(is, recvData);
-                System.out.print("*");
-            }
-            command=0x0002746c;
-            extra=use_extra(myId, 0, section);
-            extralength=extra.length;
-            length=extralength+22;
-            data=transform(length, cer, command, extralength, extra);
-            os.write(data);
-            os.flush();
-            findEnd(is, recvData);
-            System.out.println("*");
-            Thread.sleep(1000);
-        } catch (Exception ex) {
-            Logger.getLogger(SocketMaster.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public static void union_buy_assignment(String usr, int accIndex, int n)
-    {
-            try
-            {
-                    Socket client = new Socket(globalIP, globalPort);
-                    BufferedOutputStream os = new BufferedOutputStream(client.getOutputStream());
-                    BufferedInputStream is = new BufferedInputStream(client.getInputStream());
-                    int cer=0;
-                    int command;
-                    byte[] extra, recvData;
-                    int extralength;
-                    int length;
-                    byte[] data;
-                    int[] arrCer=new int[2];
-                    String[] arrName=new String[1];
-                    loginAccount(os, is, usr, accIndex, arrCer, arrName, true);
-                    cer=arrCer[0];
-                    int myId=arrCer[1];
-                    String myName=arrName[0];
-                    
-                    command=c_union_buy_assignment;
-                    for(int i=0; i<n; i++){
-                        extra=festival_extra(myId, i);
-                        extralength=extra.length;
-                        length=extralength+22;
-                        data=transform(length, cer, command, extralength, extra);
-                        os.write(data);
-                        os.flush();
-                        if(findEnd(is, command)==null){
-                            return;
-                        }
-                        Thread.sleep(2000);
-                    }
-                    os.close();
-                    is.close();
-                    client.close();
-            }
-            catch (Exception e)
-            {
-                    System.out.println((new StringBuilder()).append("Error").append(e).toString());
-            }
     }
     
     public static void setGlobalIP(int i){
@@ -1660,22 +892,71 @@ public class SocketMaster implements Runnable{
         }
     }
     
+    public static byte tran26(byte b){
+        int i=b & 0xff;
+        int j=i%8;
+        i=i/8;
+        j=(3-j/2)*2+j%2;
+        return (byte)(i*8+j);
+    }
+    
+    public static void encrypt(byte[] data){
+        int i, b;
+        for(i=0; i<data.length; i++){
+            data[i]=tran26(data[i]);
+        }
+    }
+    
+    public static void decrypt(byte[] data){
+        int i, b;
+        for(i=0; i<data.length; i++){
+            data[i]=tran26(data[i]);
+        }
+    }
+    
+    public static int decrypt(byte[] data, int pos){
+        byte[] numByte=new byte[4];
+        for(int i=0; i<numByte.length; i++){
+            if((int)arguments[4]!=0){
+                numByte[i]=tran26(data[pos+i]);
+            }
+            else{
+                numByte[i]=data[pos+i];
+            }
+        }
+        return ((numByte[0]&0xff)<<24) | ((numByte[1]&0xff)<<16) | ((numByte[2]&0xff)<<8) | (numByte[3]&0xff);
+    }
+    
     public static byte[] communicate(BufferedOutputStream os, BufferedInputStream is, int command, byte[] extra){
         if(os==null || is==null){
             return null;
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, globalCer, command, extralength, extra);
+        byte[] data=transform(length, (int)arguments[4]==0?2005000:2006000, globalCer, command, extralength, extra);
+        byte[] para=new byte[12];
+        para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
+        para[5]=0x45; para[6]=0x6e; para[7]=0x64;
+        para[8]=(byte)((command >> 24) & 0xff);
+        para[9]=(byte)((command >> 16) & 0xff);
+        para[10]=(byte)((command >> 8) & 0xff);
+        para[11]=(byte)(command & 0xff);
+        if((int)arguments[4]!=0){
+            encrypt(data);
+            encrypt(para);
+        }
         byte[] recvData;
         JWindowWait waitWindow=new JWindowWait();
         waitWindow.start();
         try {
             os.write(data);
             os.flush();
-            recvData=findEnd(is, command);
+            recvData=findEnd(is, para);
         } catch (IOException ex) {
             recvData=null;
+        }
+        if(recvData!=null && (int)arguments[4]!=0){
+            decrypt(recvData);
         }
         waitWindow.closeDiag();
         return recvData;
@@ -2237,7 +1518,7 @@ public class SocketMaster implements Runnable{
         onWork=true;
         switch(cmdGlobal){
             case c_login:
-                if(globalLoginSocket((String)arguments[0], -1, true) && (boolean)arguments[3]){
+                if(globalLoginSocket((String)arguments[0], -1, false) && (boolean)arguments[3]){
                     SLComputer.updateAcc(usrSave, (String)arguments[1], (int)arguments[2]);
                 }
                 if(globalReady){

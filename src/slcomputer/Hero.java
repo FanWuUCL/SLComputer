@@ -4,7 +4,7 @@
  */
 package slcomputer;
 
-import slcomputer.equiq.Equiq;
+import slcomputer.equip.Equip;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,8 +43,9 @@ public class Hero {
     public double def;
     public double att_battle;
     public double def_battle;
-    public Equiq weapon;
-    public Equiq shield;
+    public Equip weapon;
+    public Equip shield;
+    public Equip pact;
     // 固有属性：雷0, 土1, 水2, 火3, 风4, 
     //      超雷10, 超土11, 超水12, 超火13, 超风14, 全20
     public int property;
@@ -59,10 +60,16 @@ public class Hero {
     public double defSet;
     public double weaponAttSet;
     public double weaponDefSet;
+    public double weaponTfSet;
     public double weaponEffSet;
     public double shieldAttSet;
     public double shieldDefSet;
+    public double shieldTfSet;
     public double shieldEffSet;
+    public double pactAttSet;
+    public double pactDefSet;
+    public double pactTfSet;
+    public double pactEffSet;
     // 缘
     public int[] yuan1;
     public int[] yuan2;
@@ -94,6 +101,7 @@ public class Hero {
         level=1;
         weapon=null;
         shield=null;
+        pact=null;
         property=3;
         potential=0;
         skill1=null;
@@ -109,10 +117,16 @@ public class Hero {
         defSet=100;
         weaponAttSet=0;
         weaponDefSet=0;
+        weaponTfSet=0;
         weaponEffSet=0;
         shieldAttSet=0;
         shieldDefSet=0;
+        shieldTfSet=0;
         shieldEffSet=0;
+        pactAttSet=0;
+        pactDefSet=0;
+        pactTfSet=0;
+        pactEffSet=0;
         yuan1=null;
         yuan2=null;
         yuan3=null;
@@ -143,6 +157,12 @@ public class Hero {
         }
         else{
             h.shield=null;
+        }
+        if(pact!=null){
+            h.pact=pact.copy();
+        }
+        else{
+            h.pact=null;
         }
         h.property_battle=property_battle;
         for(int i=0; i<yuanActivated.length; i++){
@@ -181,10 +201,16 @@ public class Hero {
         h.defSet=defSet;
         h.weaponAttSet=weaponAttSet;
         h.weaponDefSet=weaponDefSet;
+        h.weaponTfSet=weaponTfSet;
         h.weaponEffSet=weaponEffSet;
         h.shieldAttSet=shieldAttSet;
         h.shieldDefSet=shieldDefSet;
+        h.shieldTfSet=shieldTfSet;
         h.shieldEffSet=shieldEffSet;
+        h.pactAttSet=pactAttSet;
+        h.pactDefSet=pactDefSet;
+        h.pactTfSet=pactTfSet;
+        h.pactEffSet=pactEffSet;
         h.yuan1=yuan1;
         h.yuan2=yuan2;
         h.yuan3=yuan3;
