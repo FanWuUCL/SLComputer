@@ -85,7 +85,7 @@ public class SocketAuto implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=SocketMaster.transform(length, (int)(SocketMaster.arguments[4])==0?2005000:2006000, SocketMaster.globalCer, command, extralength, extra);
+        byte[] data=SocketMaster.transform(length, (int)(SocketMaster.arguments[4])==0?2006000:2006000, SocketMaster.globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -97,6 +97,10 @@ public class SocketAuto implements Runnable{
             SocketMaster.encrypt(data);
             SocketMaster.encrypt(para);
         }
+        else{
+            SocketMaster.encrypt(data);
+            SocketMaster.encrypt(para);
+        }
         byte[] recvData;
         try {
             os.write(data);
@@ -105,8 +109,13 @@ public class SocketAuto implements Runnable{
         } catch (IOException ex) {
             recvData=null;
         }
-        if(recvData!=null && (int)(SocketMaster.arguments[4])!=0){
-            SocketMaster.decrypt(recvData);
+        if(recvData!=null){
+            if((int)(SocketMaster.arguments[4])!=0){
+                SocketMaster.decrypt(recvData);
+            }
+            else{
+                SocketMaster.decrypt(recvData);
+            }
         }
         return recvData;
     }

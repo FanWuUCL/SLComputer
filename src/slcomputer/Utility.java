@@ -20,8 +20,9 @@ import java.util.logging.Logger;
  */
 public class Utility {
     public static void readTask(){
-        File f1=new File("task.json");
-        File f2=new File("task.txt");
+        String name="hightask";
+        File f1=new File(name+".json");
+        File f2=new File(name+".txt");
         int i, j;
         double k;
         Hero h;
@@ -35,7 +36,7 @@ public class Utility {
                 if(s.indexOf("chapterId")<0){
                     continue;
                 }
-                t="第"+s.substring(s.lastIndexOf(":"), s.lastIndexOf(","))+" 章";
+                t="第"+s.substring(s.lastIndexOf(":")+1, s.lastIndexOf(","))+" 章";
                 s=br.readLine();
                 while(s.indexOf("phaseName")<0){
                     s=br.readLine();
@@ -62,8 +63,9 @@ public class Utility {
                 k=Double.parseDouble(s);
                 if(i==0){
                     h=SLComputer.dupHeroById(j);
+                    name="忍者";
                     if(h!=null){
-                        t=t+" "+h.name+" "+k+"%";
+                        t=t+" "+h.star+"星"+name+" "+h.name+" "+k+"%";
                     }
                     else{
                         t=t+" 你不关心的东西 "+k+"%";
@@ -71,21 +73,30 @@ public class Utility {
                 }
                 else if(i==1){
                     e=SLComputer.dupAttEqById(j);
+                    name="武器";
+                    if(e==null){
+                        e=SLComputer.dupTfEqById(j);
+                        name="宝物";
+                    }
                     if(e!=null){
-                        t=t+" "+e.name+" "+k+"%";
+                        t=t+" "+e.star+"星"+name+" "+e.name+" "+k+"%";
+                    }
+                    else{
+                        t=t+" 你不关心的东西 "+k+"%";
+                    }
+                }
+                else if(i==2){
+                    e=SLComputer.dupDefEqById(j);
+                    name="防具";
+                    if(e!=null){
+                        t=t+" "+e.star+"星"+name+" "+e.name+" "+k+"%";
                     }
                     else{
                         t=t+" 你不关心的东西 "+k+"%";
                     }
                 }
                 else{
-                    e=SLComputer.dupDefEqById(j);
-                    if(e!=null){
-                        t=t+" "+e.name+" "+k+"%";
-                    }
-                    else{
-                        t=t+" 你不关心的东西 "+k+"%";
-                    }
+                    System.out.println("Unknow type: "+i);
                 }
                 bw.write(t+"\r\n");
             }

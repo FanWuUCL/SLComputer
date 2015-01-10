@@ -84,15 +84,15 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldHPPTarget = new javax.swing.JTextField();
-        jTextFieldHPMTarget = new javax.swing.JTextField();
-        jTextFieldEffectPTarget = new javax.swing.JTextField();
-        jTextFieldEffectMTarget = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldHPPMax = new javax.swing.JTextField();
-        jTextFieldHPMMax = new javax.swing.JTextField();
-        jTextFieldEffectPMax = new javax.swing.JTextField();
-        jTextFieldEffectMMax = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jTextFieldHPMTarget = new javax.swing.JTextField();
+        jTextFieldHPMMax = new javax.swing.JTextField();
+        jTextFieldEffectPTarget = new javax.swing.JTextField();
+        jTextFieldEffectPMax = new javax.swing.JTextField();
+        jTextFieldEffectMTarget = new javax.swing.JTextField();
+        jTextFieldEffectMMax = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButtonStrategy = new javax.swing.JButton();
         jButtonStart = new javax.swing.JButton();
@@ -123,30 +123,30 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         jTextFieldHPPTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextFieldHPPTarget.setText("200");
 
-        jTextFieldHPMTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldHPMTarget.setText("0");
-
-        jTextFieldEffectPTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldEffectPTarget.setText("40");
-
-        jTextFieldEffectMTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldEffectMTarget.setText("40");
-
         jLabel4.setText("目标");
 
         jTextFieldHPPMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextFieldHPPMax.setText("300");
 
+        jLabel5.setText("上限");
+
+        jTextFieldHPMTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldHPMTarget.setText("0");
+
         jTextFieldHPMMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextFieldHPMMax.setText("20");
+
+        jTextFieldEffectPTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldEffectPTarget.setText("40");
 
         jTextFieldEffectPMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextFieldEffectPMax.setText("55");
 
+        jTextFieldEffectMTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTextFieldEffectMTarget.setText("40");
+
         jTextFieldEffectMMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextFieldEffectMMax.setText("50");
-
-        jLabel5.setText("上限");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,23 +168,19 @@ public class JDialogAutoBB extends javax.swing.JDialog {
                             .addComponent(jLabel5)
                             .addComponent(jTextFieldHPPMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldEffectMTarget))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldEffectPTarget))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldHPMTarget, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldHPMTarget, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(jTextFieldEffectPTarget)
+                            .addComponent(jTextFieldEffectMTarget))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldEffectPMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldHPMMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldEffectPMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldEffectMMax, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -216,7 +212,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
                     .addComponent(jLabel9)
                     .addComponent(jTextFieldEffectMTarget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldEffectMMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jButtonStrategy.setText("查看策略");
@@ -254,7 +250,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
                         .addComponent(jTextFieldSleep, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +330,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

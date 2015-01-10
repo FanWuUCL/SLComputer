@@ -921,7 +921,7 @@ public class SocketMaster implements Runnable{
                 numByte[i]=tran26(data[pos+i]);
             }
             else{
-                numByte[i]=data[pos+i];
+                numByte[i]=tran26(data[pos+i]);
             }
         }
         return ((numByte[0]&0xff)<<24) | ((numByte[1]&0xff)<<16) | ((numByte[2]&0xff)<<8) | (numByte[3]&0xff);
@@ -933,7 +933,7 @@ public class SocketMaster implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, (int)arguments[4]==0?2005000:2006000, globalCer, command, extralength, extra);
+        byte[] data=transform(length, (int)arguments[4]==0?2006000:2006000, globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -942,6 +942,10 @@ public class SocketMaster implements Runnable{
         para[10]=(byte)((command >> 8) & 0xff);
         para[11]=(byte)(command & 0xff);
         if((int)arguments[4]!=0){
+            encrypt(data);
+            encrypt(para);
+        }
+        else{
             encrypt(data);
             encrypt(para);
         }
@@ -955,8 +959,13 @@ public class SocketMaster implements Runnable{
         } catch (IOException ex) {
             recvData=null;
         }
-        if(recvData!=null && (int)arguments[4]!=0){
-            decrypt(recvData);
+        if(recvData!=null){
+            if((int)arguments[4]!=0){
+                decrypt(recvData);
+            }
+            else{
+                decrypt(recvData);
+            }
         }
         waitWindow.closeDiag();
         return recvData;

@@ -29,18 +29,18 @@ public class JDialogLogin extends javax.swing.JDialog {
             jComboBox1.addItem(s);
         }
         try {
-            //System.out.println(SLComputer.des.encrypt("caonimab@126.com"));
+            //System.out.println(SLComputer.des.encrypt("348000276@qq.com"));
             //System.out.println(SLComputer.des.encrypt("AND91_"+"686515813"));
-            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"366163984"));
+            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"njtest"));
             //System.out.println(SLComputer.des.encrypt("IOS91_"+"299743396"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"21307535"));
-            //System.out.println(SLComputer.des.encrypt("AND36_"+"413469112"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"27457065"));
+            //System.out.println(SLComputer.des.encrypt("AND36_"+"140076013"));
             //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"3615240"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"1171810"));
             //System.out.println(SLComputer.des.encrypt("ANDDK_"+"119879978"));
             //System.out.println(SLComputer.des.encrypt("ANDSN_"+"2658416423"));
-            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"296425158"));
-            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"296425158"));
+            //System.out.println(SLComputer.des.encrypt("ANDTX_"+"DCEFE6ED248534E398322888E37C241A"));
+            //System.out.println(SLComputer.des.encrypt("IOSKY_"+"s5477e9240c966"));
         } catch (Exception ex) {
             Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -193,7 +193,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "ba2365df5fb5220de9781f752361d8d0792b4717e7c5b82f", "ba2365df5fb5220de9781f752361d8d0792b4717e7c5b82f", // app 729
                 "e4bf3d88c3d86e7e2da15d48e6283fbb", "c4710aec5b292d089ecf580b1b8cd78f6c91194213444030", // 安卓官方 807
                 "753b2a3d406b9abd33d7f0ba7c12b57c", "3f410325d76797fb21159e65018d14d4", // 安卓豌豆荚 807
-                "5ebeaa53c0363775e9f3b1360bee876c792b4717e7c5b82f", "5ebeaa53c0363775e9f3b1360bee876c792b4717e7c5b82f", // app 5区水木花道
+                "b9ba2dfd91761633d4f4d4173c703eed792b4717e7c5b82f", "b9ba2dfd91761633d4f4d4173c703eed792b4717e7c5b82f", // app 1303
                 "ebcd8ca00785e62c", "d411fe1e00621444e4f61b8d21529e8e", // 安卓官方 1110_6
                 "563ae305833f60de792b4717e7c5b82f", "d411fe1e006214444ac91d5d7a4a3b9a", // 安卓官方 1110_6
                 "41f3626f7db425b69abae4f84c85e185", "0cb854e5a7b8ca642f17696b3eeeaa9d782c808e22ce2edc", // 安卓官方 1111_2
@@ -262,6 +262,32 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "7d48ec50e1e1b64b1f4d60d9df2b99fe", "299ab10560fa3402d18887740273c709", // 苹果91 1111_3
                 "f7ef70d3570a468554882121955904cd", "3a8cc69f9ce6185e0ad8757c07c600c7792b4717e7c5b82f", // 安卓官方 1227
                 "339f1cf366d64d0ea03d986f62ea6176792b4717e7c5b82f", "339f1cf366d64d0ea03d986f62ea6176792b4717e7c5b82f", // app Hero京k
+                "ab67c5a490bac0eb23b4cc3b3a570165", "ef22ede47171aea3e36b4c7615c70657", // 豌豆荚 1206_2
+                "0a468c40caddc48ee9781f752361d8d0792b4717e7c5b82f", "0a468c40caddc48ee9781f752361d8d0792b4717e7c5b82f", // app 1119_2
+                "66d03250ef80f8fa5c270bbad40e982b792b4717e7c5b82f", "66d03250ef80f8fa5c270bbad40e982b792b4717e7c5b82f", // app 1119_2
+                "113892b28e15970a6169fb07a0bcd03c", "113892b28e15970a6169fb07a0bcd03c", // app 1119_2
+                "91fdcc84cc90d2718658d1660c421e85792b4717e7c5b82f", "91fdcc84cc90d2718658d1660c421e85792b4717e7c5b82f", // app 1119_2
+                "834fac0d873fe512fc609ae8dc7da6c8", "834fac0d873fe512fc609ae8dc7da6c8", // 湮灭
+                "ee2c88c8311e75db792b4717e7c5b82f", "ee2c88c8311e75db792b4717e7c5b82f", // app 1119_2
+                "59f70675e9691ac76169fb07a0bcd03c", "59f70675e9691ac76169fb07a0bcd03c", // app 1119_2
+                "408c0f3d871e528dd4f4d4173c703eed792b4717e7c5b82f", "408c0f3d871e528dd4f4d4173c703eed792b4717e7c5b82f", // app 1303
+                "33b57de8aed9e88c792b4717e7c5b82f", "e881eda7e70db8ec66b285689872d7ee64bdb7f1b71108a2a9025b6b3d141119d962cc8d1e635fee", // 应用宝 1207
+                "c15c2677e90072d040f53c3e1d6b5021", "c15c2677e90072d040f53c3e1d6b5021", // app 1303_2
+                "a596138c2cff5494e0371f5a00f107ae", "a596138c2cff5494e0371f5a00f107ae", // app 1303_2
+                "9f877dc3f336ede2792b4717e7c5b82f", "4e71167c8065007c6521c8a802d25bc9", // 安卓官方 621
+                "78777dce60690ab8896db44fb926a25b", "78777dce60690ab8896db44fb926a25b", // app 1304_2
+                "78dd76a226e098af", "36b28424153432f5b773c34de3de2e7c", // 安卓官方 1304
+                "694e1a6d9aede331", "a5b011a61cd4e9eca269238981b9d920", // 安卓官方 1304
+                "cb773c9ae440953aade889759f6830c3", "40a177de836b33e68e8e4ce5b3d86e47", // 安卓360 1304
+                "178d0fe9846b653cf77c36cdb37e8a0a0e8bb46bb66f9bb6", "178d0fe9846b653cf77c36cdb37e8a0a0e8bb46bb66f9bb6", // app 湮灭
+                "27ae724779c2b83f57c1a3d9ed967ad0", "27ae724779c2b83f57c1a3d9ed967ad0", // app 1305
+                "55b9d6b8430076b2bd5bb8588fb8b7a77bdeba206119285a", "55b9d6b8430076b2bd5bb8588fb8b7a77bdeba206119285a", // app 1303
+                "08fb00f6b263bfcf", "08fb00f6b263bfcf", // app 1306_2
+                "53a00cfb4c096c8ca963fbd34da4a072", "53a00cfb4c096c8ca963fbd34da4a072", // app 1306_2
+                "afd46100f923494af4b498df8286b4ce", "d3c4994f40262889d3c1c8519e5816d0", // 同步推 1306
+                "e37b8805a24e02db54882121955904cd", "a8e66a3ea58e820dabd8bcefb262250370a0dc5cb6697e59", // 苹果快用 1309
+                "63c50650971e43b4bc83c3318d0721fa792b4717e7c5b82f", "f96d0b778e7bc2dff4ff5f5feffffdb7", // 安卓360 1305_2
+                "d8de78429af9de885c270bbad40e982b792b4717e7c5b82f", "4ecea3b1ec9db5af6d8b44c78ec53548", // 同步推 1310
                 ""};
         int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -274,7 +300,10 @@ public class JDialogLogin extends javax.swing.JDialog {
                 1, 0, 2, 1, 0, 0, 1, 3, 1, 2,
                 2, 1, 1, 2, 2, 2, 2, 2, 2, 1,
                 2, 1, 2, 2, 2, 2, 2, 2, 2, 2,
-                1, 2, 2, 1, 0};
+                1, 2, 2, 1, 0, 1, 0, 0, 0, 0,
+                0, 0, 0, 0, 1, 0, 0, 1, 0, 1,
+                1, 1, 0, 0, 0, 0, 0, 2, 2, 1,
+                2};
         String vip=null;
         int i;
         for(i=0; i+1<myvip.length; i+=2){

@@ -124,6 +124,9 @@
  * 5. (vip)终于可以自动试炼了，只需要设置一些参数用于指导你倾向的加buff和选难度的规则，就可以完全交给终结者帮你打试炼。当然前提是你不用换阵。
  * 6. 既然vip有更好的功能体验，那么以前的vip功能现在可以开放给免费用户了。现在免费版开放全部备选阵容及排兵布阵功能。
  * 7. 如果你是用launch运行终结者的，那么你将在程序初始化的时候看到一点小动画，你可以通过替换TP/loading.gif文件来更改成你喜欢的loading动画。
+ * 
+ * Version 4.1
+ * 1. 数据更新至2.6，添加宝物装备栏。
  */
 package slcomputer;
 
@@ -157,6 +160,7 @@ public class SLComputer {
     public static void main(String[] args) {
         initPublic();
         initSLTeams();
+        //Utility.readTask();
         mf=new MainFrame();
         //Utility.readTask();
     }
@@ -190,9 +194,9 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=4;
-    public static final int minor=0;
+    public static final int minor=1;
     public static final int vip=100;
-    public static final String testVersion=".3";
+    public static final String testVersion=".alpha";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -282,6 +286,19 @@ public class SLComputer {
         for(i=0; i<allEquiqDef.length; i++){
             if(allEquiqDef[i].id==id){
                 return allEquiqDef[i].dup();
+            }
+        }
+        return null;
+    }
+    
+    public static Equip dupTfEqById(int id){
+        if(id==0){
+            return new Equip();
+        }
+        int i;
+        for(i=0; i<allEqpTf.length; i++){
+            if(allEqpTf[i].id==id){
+                return allEqpTf[i].dup();
             }
         }
         return null;
@@ -485,7 +502,7 @@ public class SLComputer {
                 }
                 if(s.indexOf("resist")<0){
                     tmp=Integer.parseInt(s);
-                    t.heros[i].pact=dupDefEqById(tmp);
+                    t.heros[i].pact=dupTfEqById(tmp);
                     s=br.readLine();
                     t.heros[i].pact.level=Integer.parseInt(s);
                     s=br.readLine();
