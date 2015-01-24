@@ -29,18 +29,18 @@ public class JDialogLogin extends javax.swing.JDialog {
             jComboBox1.addItem(s);
         }
         try {
-            //System.out.println(SLComputer.des.encrypt("348000276@qq.com"));
-            //System.out.println(SLComputer.des.encrypt("AND91_"+"686515813"));
-            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"njtest"));
-            //System.out.println(SLComputer.des.encrypt("IOS91_"+"299743396"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"27457065"));
-            //System.out.println(SLComputer.des.encrypt("AND36_"+"140076013"));
+            //System.out.println(SLComputer.des.encrypt("379863580@qq.com"));
+            //System.out.println(SLComputer.des.encrypt("AND91_"+"264182664"));
+            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"qhldhr"));
+            //System.out.println(SLComputer.des.encrypt("IOS91_"+"559983812"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"22637847"));
+            //System.out.println(SLComputer.des.encrypt("AND36_"+"1293684068"));
             //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"1171810"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"3712664"));
             //System.out.println(SLComputer.des.encrypt("ANDDK_"+"119879978"));
             //System.out.println(SLComputer.des.encrypt("ANDSN_"+"2658416423"));
             //System.out.println(SLComputer.des.encrypt("ANDTX_"+"DCEFE6ED248534E398322888E37C241A"));
-            //System.out.println(SLComputer.des.encrypt("IOSKY_"+"s5477e9240c966"));
+            //System.out.println(SLComputer.des.encrypt("IOSPP_16659567"));
         } catch (Exception ex) {
             Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -147,7 +147,7 @@ public class JDialogLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private String checkVip(String usr){
-        String[] myvip={"adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449", "adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449",
+        String[] myvip={/**/"adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449", "adf3a08b5ba2b4de0f2059c1ce5e940b0e6c3f499b437449",
                 "3b09935ab315abfe0e726668044a274a", "3b09935ab315abfe0e726668044a274a", // 客观的苍
                 "cda10db2bcf27b387f5e513568e6f2810e6c3f499b437449", "cda10db2bcf27b387f5e513568e6f2810e6c3f499b437449", // 队长
                 "64b72dd8fca10b501fb93a5807de4b0a792b4717e7c5b82f", "64b72dd8fca10b501fb93a5807de4b0a792b4717e7c5b82f", // 雉鸡油奶
@@ -163,7 +163,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "81a62214b0e522408a1e54d926df55997bdeba206119285a", "81a62214b0e522408a1e54d926df55997bdeba206119285a", // hero京k
                 "6c870553e983466ae2eade6614fed130792b4717e7c5b82f", "6c870553e983466ae2eade6614fed130792b4717e7c5b82f", // app 1114
                 "486fd3239adca28b6eb8d6e588a0b1de792b4717e7c5b82f", "486fd3239adca28b6eb8d6e588a0b1de792b4717e7c5b82f", // app 1126_3
-                "8bb39860490206eebc83c3318d0721fa792b4717e7c5b82f", "8bb39860490206eebc83c3318d0721fa792b4717e7c5b82f", // app 1126_3
+                "486fd3239adca28b6eb8d6e588a0b1de792b4717e7c5b82f", "8bb39860490206eebc83c3318d0721fa792b4717e7c5b82f", // app 1126_3 改
                 "bb3d83e56326d8f557c1a3d9ed967ad0", "bb3d83e56326d8f557c1a3d9ed967ad0", // app 1110_3
                 "befefc61d6d78b8357c1a3d9ed967ad0", "befefc61d6d78b8357c1a3d9ed967ad0", // app 1110_3
                 "be96812db1eea4ac0379a1b99e09efd7", "be96812db1eea4ac0379a1b99e09efd7", // app 1130
@@ -288,6 +288,35 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "e37b8805a24e02db54882121955904cd", "a8e66a3ea58e820dabd8bcefb262250370a0dc5cb6697e59", // 苹果快用 1309
                 "63c50650971e43b4bc83c3318d0721fa792b4717e7c5b82f", "f96d0b778e7bc2dff4ff5f5feffffdb7", // 安卓360 1305_2
                 "d8de78429af9de885c270bbad40e982b792b4717e7c5b82f", "4ecea3b1ec9db5af6d8b44c78ec53548", // 同步推 1310
+                "354f8a05c6e4f265c7715ca4269a036b7bdeba206119285a", "29f7d4c83b1dbcd44e29a57820f1c877dcad588024763f15792b4717e7c5b82f", // 安卓官方 1111
+                "e54fe53653474769f3f4fd038c1c9549", "d146b8019f6b3a58ba7e88504070c775", // 苹果91 1311
+                "1ceacb95deeb960b2da15d48e6283fbb", "8a41b31a3cdff94dfbcfe4903b19fd4c", // 苹果91 1311_2
+                "5aaf9c20f87bf043f51888eea6094795", "af9e15e3dea2e53bd1a7adb1088dfa04", // 苹果pp 1311_2
+                "9281b3e4307be00316d5d3fedaca8f4c57c1a3d9ed967ad0", "9281b3e4307be00316d5d3fedaca8f4c57c1a3d9ed967ad0", // app 729
+                "15567a26c55f7f0ee9781f752361d8d0792b4717e7c5b82f", "15567a26c55f7f0ee9781f752361d8d0792b4717e7c5b82f", // app 512
+                "29128fbb360b54bff93963238cda7380", "79a903a00eb3b0e3cce476778c33061f", // 安卓91 1310
+                "d57097b15f693e5f956380f8c7875b6e", "2157a314dd1bee755f13efa70e44a0b9", // 苹果91 1310
+                "135ffb3ed7d0df9154882121955904cd", "0229ac33e81ff717b5db497dcbe76806792b4717e7c5b82f", // 安卓官方 1313
+                "9dbf02f5e60716e3", "f714a4e35507380b459ceaa2c1e0ab4d", // 安卓360 1313
+                "e73c4eca9bead0ef6592044ce2e86fca", "417ed46f43fa84cedcdbfa343354c877", // 同步推 1313
+                "41ec3135a6b9d0245a55ee61b73be852", "3597b2868e49c5c073539ddc1673b109", // 安卓91 1310
+                "18d314ce647d109654882121955904cd", "7dff8bc041f8bab7ea1b31039ff0b232", // 安卓91 1310
+                "886e8edead6253c6fc86b5bce4c00857", "3597b2868e49c5c04f63b7919d3813e8", // 安卓91 1310
+                "49e8202772e60cc2768eecd4f992be6357c1a3d9ed967ad0", "207a3ac06e6bd51f0cfc90989f50ffe2", // 混邮箱杨烈
+                "784a0cd095fb24e6fc609ae8dc7da6c8", "784a0cd095fb24e6fc609ae8dc7da6c8", // app 1314
+                "22e136d08a33459b", "8019bd19617e247fce3f078cb210aa10", // 安卓官方 混邮箱杨烈
+                "31ffb4d6750ce027", "417ed46f43fa84ce2ba44dc405d49adc", // 同步推 623
+                "0a0e0cf19c2ac1535c270bbad40e982b792b4717e7c5b82f", "0a0e0cf19c2ac1535c270bbad40e982b792b4717e7c5b82f", // app 1215
+                "1fbe1d13b0a9101b46f02067ade392260e6c3f499b437449", "1fbe1d13b0a9101b46f02067ade392260e6c3f499b437449", // app 1314_4
+                "3a7c8f13c5ebc76fe6a8dc6d976ba49a", "4d7284919b7b5bee16959d72f66546f4", // 同步推 1311_2
+                "4f9e5cd8c81638bdcd6782c330af57d3", "0f614eb92960d304c4b5f59878c60b3c792b4717e7c5b82f", // 安卓360 1205
+                "d7541bd3cf1be931f93963238cda7380", "7ae873ec4bb54491c80bdb55496901c0", // 苹果91 1315
+                "0f4c2a9d53e105890e8bb46bb66f9bb6", "411dc8641ab14917ddb55e469b39a8dc", // 安卓91 1317
+                "06209a370a8692cf58243f049bfe017c", "ab6d13c9f610d441007d38dcce2fc3e2", // 豌豆荚 1316
+                "f277cf0bfc29fa4f297ccc304a073491792b4717e7c5b82f", "f277cf0bfc29fa4f297ccc304a073491792b4717e7c5b82f", // app 1306_2
+                "f9ac65bbfc3ad60b05f932cb38c490577bdeba206119285a", "f9ac65bbfc3ad60b05f932cb38c490577bdeba206119285a", // app 1209_4
+                "fefc404cafc7bd88792b4717e7c5b82f", "48ade4fdf47dbeef28758e77a886a9f2", // 同步推 1321
+                "ebe4f00216585001ce7cefedf89d623b792b4717e7c5b82f", "4d793f055aa86fd2325c96d5fe8aa455", // 同步推 1322
                 ""};
         int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -303,7 +332,9 @@ public class JDialogLogin extends javax.swing.JDialog {
                 1, 2, 2, 1, 0, 1, 0, 0, 0, 0,
                 0, 0, 0, 0, 1, 0, 0, 1, 0, 1,
                 1, 1, 0, 0, 0, 0, 0, 2, 2, 1,
-                2};
+                2, 1, 2, 2, 2, 0, 0, 1, 2, 1,
+                1, 2, 1, 1, 1, 1, 0, 1, 2, 0,
+                0, 2, 1, 2, 1, 1, 0, 0, 2, 2};
         String vip=null;
         int i;
         for(i=0; i+1<myvip.length; i+=2){
@@ -338,7 +369,7 @@ public class JDialogLogin extends javax.swing.JDialog {
         SocketMaster.usrSave=account.usr;
         String usr=checkVip(account.usr);
         if(usr==null){
-            JOptionPane.showMessageDialog(this, "该功能只对vip用户开放。\nVip用户可以登记至多3个账号，只有登记过的账号才能使用此功能。", "版权", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "该功能只对vip用户开放。\nVip用户可以登记至多2个账号，只有登记过的账号才能使用此功能。", "版权", JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }

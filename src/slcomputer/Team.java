@@ -29,6 +29,8 @@ public class Team {
     // 爱心小屋
     public int backNumber;
     public Hero[] backHeros;
+    // 八门遁甲
+    public boolean[] bmActivated;
     
     public Team(){
         number=0;
@@ -52,6 +54,10 @@ public class Team {
         backHeros=new Hero[10];
         for(int i=0; i<backHeros.length; i++){
             backHeros[i]=null;
+        }
+        bmActivated=new boolean[8];
+        for(int i=0; i<bmActivated.length; i++){
+            bmActivated[i]=false;
         }
     }
     
@@ -85,9 +91,71 @@ public class Team {
     }
     
     public int retriveTough(Hero h){
+        //System.out.print(h.resist+"  ");
         double t=200000/(100-h.resist)-2000;
-        t=t-(h.tough_born+(h.level-1)*h.toughGrowth);
+        //System.out.print(t+" "+h.tough+" ");
+        t=t-(h.tough);
+        if(h.weapon!=null){
+            t=t-h.weapon.tough;
+        }
+        if(h.shield!=null){
+            t=t-h.shield.tough;
+        }
+        if(h.pact!=null){
+            //System.out.print(h.pact.tough+" ");
+            t=t-h.pact.tough;
+        }
+        //System.out.println(t);
         return (int)t;
+    }
+    
+    public String bmString(){
+        String bm="<html>";
+        int flag=0;
+        for(int i=0; i<8; i++){
+            if(i==0){
+                if(bmActivated[0]){
+                    bm+="<font color=#00CD00>";
+                    flag=1;
+                }
+            }
+            else if(flag==1 && !bmActivated[i]){
+                bm+="</font>";
+            }
+            switch(i){
+                case 0:
+                    bm+="开";
+                    break;
+                case 1:
+                    bm+="-休";
+                    break;
+                case 2:
+                    bm+="-生";
+                    break;
+                case 3:
+                    bm+="-伤";
+                    break;
+                case 4:
+                    bm+="-杜";
+                    break;
+                case 5:
+                    bm+="-景";
+                    break;
+                case 6:
+                    bm+="-惊";
+                    break;
+                case 7:
+                    bm+="-死";
+                    if(flag==1){
+                        bm+="</font>";
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        bm+="</html>";
+        return bm;
     }
     
     // att=(att_born+(level-1)*attGrowth+(potentialAll-potential))*(1+allYuan)*(1+0.01*powerAtt/Def)*(base+usrEx)+equip
@@ -126,41 +194,63 @@ public class Team {
             loveDef+=backHeros[i].def*d*0.01;
         }
         // 八门遁甲
+        for(i=0; i<bmActivated.length; i++){
+            bmActivated[i]=false;
+        }
         int bmAtt=0;
         int bmDef=0;
         int bmEq=0;
         if(mode>1){
+            for(i=0; i<number; i++){
+                heros[i].tough=(int)(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth);
+                if(heros[i].weapon!=null){
+                    heros[i].weapon.tough=(int)(heros[i].weapon.tough_born+(heros[i].weapon.level-1)*heros[i].weapon.toughGrowth);
+                }
+                if(heros[i].shield!=null){
+                    heros[i].shield.tough=(int)(heros[i].shield.tough_born+(heros[i].shield.level-1)*heros[i].shield.toughGrowth);
+                }
+                if(heros[i].pact!=null){
+                    heros[i].pact.tough=(int)(heros[i].pact.tough_born+(heros[i].pact.level-1)*heros[i].pact.toughGrowth);
+                }
+            }
             if(number>=9){  // 开门
-                bmAtt+=2;
-                //System.out.println("开门 开！");
+                bmAtt+=2; //System.out.print("开");
+                bmActivated[0]=true;
                 if(number>=10){ // 休门
-                    bmDef+=2; //System.out.println("休门 开！");
+                    bmDef+=2; //System.out.print("休");
+                    bmActivated[1]=true;
                     if(number>=11){ // 生门
-                        bmEq+=3; //System.out.println("生门 开！");
+                        bmEq+=3; //System.out.print("生");
+                        bmActivated[2]=true;
                         if(number>=12){ // 伤门
                             bmAtt+=3;
-                            bmDef+=3; //System.out.println("伤门 开！");
+                            bmDef+=3; //System.out.print("伤");
+                            bmActivated[3]=true;
                             int n4=0;
                             int n6=0;
                             for(i=0; i<number; i++){
                                 j=retriveTough(heros[i]);
-                                if(j>495){
+                                if(j>=490){
                                     n4++;
-                                    if(j>1045){
+                                    if(j>=1040){
                                         n6++;
                                     }
                                 }
                             }
                             //System.out.println("n4="+n4+", n6="+n6);
                             if(n4>=6){   // 杜门
-                                bmAtt+=3; //System.out.println("杜门 开！");
+                                bmAtt+=3; //System.out.print("杜");
+                                bmActivated[4]=true;
                                 if(n4>=8){  // 景门
-                                    bmDef+=3; //System.out.println("景门 开！");
+                                    bmDef+=3; //System.out.print("景");
+                                    bmActivated[5]=true;
                                     if(n6>=12){ // 惊门
-                                        bmEq+=3; //System.out.println("惊门 开！");
+                                        bmEq+=3; //System.out.print("惊");
+                                        bmActivated[6]=true;
                                         if(n6>=14){ // 死门
                                             bmAtt+=3;
-                                            bmDef+=3; //System.out.println("死门 开！");
+                                            bmDef+=3; //System.out.print("死");
+                                            bmActivated[7]=true;
                                         }
                                     }
                                 }
@@ -209,22 +299,9 @@ public class Team {
             }
             double bodyskill;
             if(extraBodyskill>0){
-                //System.out.println("bodyskill="+extraBodyskill);
-                if(heros[i].star==6){
-                    bodyskill=heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill;
-                    //heros[i].resist=(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill)*0.043;
-                    heros[i].resist=1/(20/bodyskill+0.01);
-                }
-                else if(heros[i].star==5){
-                    bodyskill=heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill;
-                    //heros[i].resist=(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill)*0.045;
-                    heros[i].resist=1/(20/bodyskill+0.01);
-                }
-                else{
-                    bodyskill=heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill;
-                    //heros[i].resist=(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill)*0.05;
-                    heros[i].resist=1/(20/bodyskill+0.01);
-                }
+                bodyskill=heros[i].tough+extraBodyskill;
+                //heros[i].resist=(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth+extraBodyskill)*0.043;
+                heros[i].resist=1/(20/bodyskill+0.01);
             }
             heros[i].powerRatio=0;
             heros[i].rateRatio=0;
@@ -287,18 +364,52 @@ public class Team {
                     heros[i].def+=heros[i].shield.def;
                     heros[i].powerRatio+=heros[i].shield.skillPower;
                 }
+                if(heros[i].pact!=null){
+                    heros[i].pact.att=(int)(heros[i].pact.att_born+(heros[i].pact.level-1)*heros[i].pact.attGrowth);
+                    heros[i].pact.def=(int)(heros[i].pact.def_born+(heros[i].pact.level-1)*heros[i].pact.defGrowth);
+                    heros[i].pact.skillPower=0;
+                    for(j=0; j<4; j++){
+                        switch(heros[i].pact.diamond[j]){
+                            case 1:
+                                heros[i].pact.att+=heros[i].pact.red[heros[i].pact.diamondLevel[j]];
+                                break;
+                            case 2:
+                                heros[i].pact.def+=heros[i].pact.blue[heros[i].pact.diamondLevel[j]];
+                                break;
+                            case 3:
+                                heros[i].pact.skillPower+=heros[i].pact.yellow[heros[i].pact.diamondLevel[j]];
+                                break;
+                            default:
+                        }
+                    }
+                    if(heros[i].pact.propertyEnabled){
+                        heros[i].pact.att+=heros[i].pact.hideProperty[0];
+                        heros[i].pact.def+=heros[i].pact.hideProperty[1];
+                        heros[i].rateRatio+=heros[i].pact.hideProperty[2];
+                    }
+                    heros[i].pact.att=(int)(heros[i].pact.att*(1+(double)bmEq/100));
+                    heros[i].pact.def=(int)(heros[i].pact.def*(1+(double)bmEq/100));
+                    heros[i].att+=heros[i].pact.att;
+                    heros[i].def+=heros[i].pact.def;
+                    heros[i].powerRatio+=heros[i].pact.skillPower;
+                }
             }
             else{
                 heros[i].weapon.att=heros[i].weaponAttSet;
                 heros[i].weapon.def=heros[i].weaponDefSet;
                 heros[i].shield.att=heros[i].shieldAttSet;
                 heros[i].shield.def=heros[i].shieldDefSet;
-                heros[i].powerRatio=heros[i].weaponEffSet+heros[i].shieldEffSet;
+                heros[i].pact.att=heros[i].pactAttSet;
+                heros[i].pact.def=heros[i].pactDefSet;
+                heros[i].powerRatio=heros[i].weaponEffSet+heros[i].shieldEffSet+heros[i].pactEffSet;
                 if(heros[i].weapon!=null && heros[i].weapon.propertyEnabled){
                     heros[i].rateRatio+=heros[i].weapon.hideProperty[2];
                 }
                 if(heros[i].shield!=null && heros[i].shield.propertyEnabled){
                     heros[i].rateRatio+=heros[i].shield.hideProperty[2];
+                }
+                if(heros[i].pact!=null && heros[i].pact.propertyEnabled){
+                    heros[i].rateRatio+=heros[i].pact.hideProperty[2];
                 }
             }
             // mode: 0 计算攻击值, 1 计算防御值

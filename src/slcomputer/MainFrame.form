@@ -399,6 +399,8 @@
               <Component id="jButtonMyTeam4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jToggleButtonSwitch" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabelBM" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -552,6 +554,7 @@
                   <Component id="jButtonMyTeam3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonMyTeam4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jToggleButtonSwitch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelBM" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="7" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -2395,6 +2398,11 @@
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[2, 2, 2, 2]"/>
         </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelBM">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x5f00;-&#x4f11;-&#x751f;-&#x4f24;-&#x675c;-&#x666f;-&#x60ca;-&#x6b7b;"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -331,11 +331,16 @@ public class Hero {
                 }
                 break;
             case 1:
-                if(!(weapon.id==yuan[2] || shield.id==yuan[2])) {
+                if(!(weapon.id==yuan[2] || shield.id==yuan[2] || (pact!=null && pact.id==yuan[2]))) {
                     sum=1;
                 }
                 if(yuan[0]>3){
-                    if(!(weapon.id==yuan[3] || shield.id==yuan[3])) {
+                    if(!(weapon.id==yuan[3] || shield.id==yuan[3] || (pact!=null && pact.id==yuan[3]))) {
+                        sum=1;
+                    }
+                }
+                if(yuan[0]>4){
+                    if(!(weapon.id==yuan[4] || shield.id==yuan[4] || (pact!=null && pact.id==yuan[4]))) {
                         sum=1;
                     }
                 }
@@ -380,16 +385,18 @@ public class Hero {
                     return ret;
                 }
                 break;
-            case 5:
+            case 5: // 光环
                 j=1;
+                // 判断该忍者是不是第一次出现
                 for(i=0; i<team.number; i++) {
                     if(team.heros[i]==this){
                         break;
                     }
-                    if(team.heros[i].hid==hid && team.heros[i]!=this){
+                    if(team.heros[i].id==id && team.heros[i]!=this){
                         j++;
                     }
                 }
+                // 检查除了该忍者外是否有指定group的忍者
                 for(i=0; i<team.number; i++) {
                     if(team.heros[i].style==yuan[2] && team.heros[i].hid!=this.hid){
                         sum=1;
@@ -402,10 +409,11 @@ public class Hero {
                         }
                     }
                 }
+                // 如果是第一次出现该忍者，则给其他同group的忍者加成
                 if(sum==1) {
                     if(j==1){
                         for(i=0; i<team.number; i++) {
-                            if(team.heros[i].style==yuan[2] && team.heros[i].hid!=this.hid){
+                            if(team.heros[i].style==yuan[2] && team.heros[i].id!=this.id){
                                 team.heros[i].yuanAtt+=yuan[12]/(double)100;
                                 team.heros[i].yuanDef+=yuan[13]/(double)100;
                             }

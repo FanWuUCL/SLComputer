@@ -12,7 +12,7 @@ public class EqpWDMX extends Equip{
     public EqpWDMX(){
         super();
         level=1;
-        id=42144;
+        id=42145;
         star=5;
         type=33;
         name="外道魔像";

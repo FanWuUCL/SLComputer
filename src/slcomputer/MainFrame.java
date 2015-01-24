@@ -509,6 +509,7 @@ public class MainFrame extends javax.swing.JFrame {
         jToggleButtonSwitch = new javax.swing.JToggleButton();
         jButtonLoveHut = new javax.swing.JButton();
         jButtonMyHero16 = new javax.swing.JButton();
+        jLabelBM = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSettings = new javax.swing.JMenu();
         jMenuSimulationTimes = new javax.swing.JMenu();
@@ -1353,6 +1354,8 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonMyHero16.setLabel("<未选取>");
         jButtonMyHero16.setMargin(new java.awt.Insets(2, 2, 2, 2));
 
+        jLabelBM.setText("开-休-生-伤-杜-景-惊-死");
+
         jMenuSettings.setText("设置");
 
         jMenuSimulationTimes.setText("模拟次数");
@@ -1673,6 +1676,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButtonMyTeam4)
                 .addGap(18, 18, 18)
                 .addComponent(jToggleButtonSwitch)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelBM)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -1793,7 +1798,8 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jButtonMyTeam2)
                     .addComponent(jButtonMyTeam3)
                     .addComponent(jButtonMyTeam4)
-                    .addComponent(jToggleButtonSwitch))
+                    .addComponent(jToggleButtonSwitch)
+                    .addComponent(jLabelBM))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -2372,6 +2378,7 @@ public class MainFrame extends javax.swing.JFrame {
         SLComputer.myTeam.skillPower+=SLSkillUp;
         int mode=jComboBoxMode.getSelectedIndex();
         double summary=SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
+        jLabelBM.setText(SLComputer.myTeam.bmString());
         SLComputer.log("My Team sum: "+summary);
         jLabelMyAtt.setText("总攻击："+(int)SLComputer.myTeam.sumUp(0));
         jLabelMyDef.setText("总防御："+(int)SLComputer.myTeam.sumUp(1));
@@ -3279,7 +3286,10 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLoveHutActionPerformed
 
     private void jMenuItemLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoginActionPerformed
-        //JOptionPane.showMessageDialog(this, "该功能正在完善中……\n功能预览：可以在此登陆你的账号，然后直接在此工具内查阵容和打试炼，和在游戏内打试炼是一样的。\n如果不需要换阵的话，可以支持自动打试炼，无脑困难点到手酸的日子将一去不复返。\n旗舰版用户还会有神秘功能哦！", "敬请期待", JOptionPane.INFORMATION_MESSAGE);
+        if(SLComputer.vip==0 || SLComputer.vip%(SLComputer.major+SLComputer.minor)!=0){
+            JOptionPane.showMessageDialog(this, "该功能不开放。", "这是个秘密", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         SLComputer.smartNumber_bk=SLComputer.smartNumber;
         new JDialogLogin(this, true);
     }//GEN-LAST:event_jMenuItemLoginActionPerformed
@@ -3494,6 +3504,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelBM;
     private javax.swing.JLabel jLabelMyAtt;
     private javax.swing.JLabel jLabelMyDef;
     private javax.swing.JLabel jLabelPEasy;

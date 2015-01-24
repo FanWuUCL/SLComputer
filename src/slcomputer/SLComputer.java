@@ -126,7 +126,9 @@
  * 7. 如果你是用launch运行终结者的，那么你将在程序初始化的时候看到一点小动画，你可以通过替换TP/loading.gif文件来更改成你喜欢的loading动画。
  * 
  * Version 4.1
- * 1. 数据更新至2.6，添加宝物装备栏。
+ * 1. 数据更新至2.6，添加宝物装备栏，宝物数据实装。
+ * 2. 修正同忍者不同星双buff加成。
+ * 3. 显示八门开启情况（根据自动计算的结果）。
  */
 package slcomputer;
 
@@ -196,7 +198,7 @@ public class SLComputer {
     public static final int major=4;
     public static final int minor=1;
     public static final int vip=100;
-    public static final String testVersion=".alpha";
+    public static final String testVersion=".1";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -219,18 +221,17 @@ public class SLComputer {
             + "16. 如果不需要换阵容无脑打试炼的话，本工具可以提供自动打试炼的功能，会根据胜率自动打胜率最高的。\n"
             + "17. 自动试炼前需要设置一些参数，用于指导自动试炼时选难度和加buff的策略，每个参数的含义可以通过“查看策略”按钮了解详情。\n"
             + "\n每次版本更新的时候，请把SLComputer/usr文件夹复制到新版本的对应位置，就可以把以前的阵容全部搬到新版本来了。\n";
-    public static final String copyright="关于版权：\n此工具开源，"
-            + "任何人可以以任何方式修改并重新发布此工具，但是原作者不对任何重新发布的工具负责。\n";
+
     // 作者信息，若你对本程序做了任何的修改，请保留下面的信息
     public static final String author="关于作者：\n"
-            + "此工具由百度贴吧<lightning2>开发，并通过我是火影官方吧发布，任何转载请注明【转载】。"
+            + "此工具由百度贴吧<lightning2>开发，并通过百度贴吧发布，任何转载请注明【转载】。"
             + "本作者不对任何通过其他方式获取的此工具负责。\n"
             //+ "若想购买旗舰版，请参考此帖： http://tieba.baidu.com/p/3401419635 。\n"
             + "BUG提交：\n"
             + "如果你发现了程序的bug，欢迎发邮件到lightning2a@126.com，并请附上相关截图或文字信息。"
             + "如果你有好的建议或意见，也可以通过邮件联系我。谢谢支持！\n"
             + "                                lightning2\n"
-            + "                              2014年11月10日\n";
+            + "                              2015年1月20日\n";
     
     public static void log(String msg){
         if(debug==0){
