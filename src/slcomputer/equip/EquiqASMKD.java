@@ -17,6 +17,7 @@ public class EquiqASMKD extends Equip{
         super();
         level=l;
         id=40135;
+        eid=id;
         star=5;
         type=0;
         name="阿斯玛狂刀";

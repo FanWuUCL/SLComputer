@@ -17,6 +17,7 @@ public class EquiqBMHS extends Equip{
         super();
         level=l;
         id=45122;
+        eid=id;
         star=5;
         type=1;
         name="冰脉护手";

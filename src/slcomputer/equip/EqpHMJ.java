@@ -13,6 +13,7 @@ public class EqpHMJ extends Equip{
         super();
         level=1;
         id=42116;
+        eid=id;
         star=3;
         type=33;
         name="蛤蟆吉";

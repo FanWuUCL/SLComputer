@@ -17,6 +17,7 @@ public class EquiqQBF extends Equip{
         super();
         level=l;
         id=40107;
+        eid=id;
         star=3;
         type=0;
         name="起爆符";

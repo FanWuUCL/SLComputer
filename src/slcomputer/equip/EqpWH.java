@@ -13,6 +13,7 @@ public class EqpWH extends Equip{
         super();
         level=1;
         id=42110;
+        eid=id;
         star=3;
         type=33;
         name="乌黑";

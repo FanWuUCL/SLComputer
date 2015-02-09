@@ -17,6 +17,7 @@ public class EquiqLSZJ extends Equip{
         super();
         level=l;
         id=40119;
+        eid=id;
         star=4;
         type=0;
         name="雷神之剑";

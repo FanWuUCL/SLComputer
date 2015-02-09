@@ -17,6 +17,7 @@ public class EquiqMDHZ extends Equip{
         super();
         level=l;
         id=40131;
+        eid=id;
         star=5;
         type=0;
         name="名刀黑泽";

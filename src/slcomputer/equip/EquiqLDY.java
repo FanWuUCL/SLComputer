@@ -17,6 +17,7 @@ public class EquiqLDY extends Equip{
         super();
         level=l;
         id=40116;
+        eid=id;
         star=4;
         type=0;
         name="雷刀-牙";

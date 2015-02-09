@@ -13,6 +13,7 @@ public class EqpGLK extends Equip{
         super();
         level=1;
         id=42109;
+        eid=id;
         star=3;
         type=33;
         name="古鲁克";

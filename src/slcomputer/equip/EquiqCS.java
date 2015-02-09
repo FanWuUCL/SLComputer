@@ -17,6 +17,7 @@ public class EquiqCS extends Equip{
         super();
         level=l;
         id=40104;
+        eid=id;
         star=3;
         type=0;
         name="吹矢";

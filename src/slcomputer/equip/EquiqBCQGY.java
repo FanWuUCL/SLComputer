@@ -17,6 +17,7 @@ public class EquiqBCQGY extends Equip{
         super();
         level=l;
         id=45132;
+        eid=id;
         star=5;
         type=1;
         name="八咫琼勾玉";

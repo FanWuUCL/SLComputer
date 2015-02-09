@@ -17,6 +17,7 @@ public class EquiqHPJP extends Equip{
         super();
         level=l;
         id=40137;
+        eid=id;
         star=5;
         type=0;
         name="琥珀净瓶";

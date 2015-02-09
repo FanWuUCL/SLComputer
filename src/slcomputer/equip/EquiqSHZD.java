@@ -17,6 +17,7 @@ public class EquiqSHZD extends Equip{
         super();
         level=l;
         id=45134;
+        eid=id;
         star=5;
         type=1;
         name="守鹤之盾";

@@ -17,6 +17,7 @@ public class EquiqGYZP extends Equip{
         super();
         level=l;
         id=45140;
+        eid=id;
         star=5;
         type=1;
         name="勾玉之袍";

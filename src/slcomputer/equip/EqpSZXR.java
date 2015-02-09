@@ -13,6 +13,7 @@ public class EqpSZXR extends Equip{
         super();
         level=1;
         id=42141;
+        eid=id;
         star=5;
         type=33;
         name="深作仙人";

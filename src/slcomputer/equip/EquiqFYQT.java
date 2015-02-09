@@ -17,6 +17,7 @@ public class EquiqFYQT extends Equip{
         super();
         level=l;
         id=40105;
+        eid=id;
         star=3;
         type=0;
         name="封印拳套";

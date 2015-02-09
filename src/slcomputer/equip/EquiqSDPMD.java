@@ -17,6 +17,7 @@ public class EquiqSDPMD extends Equip{
         super();
         level=l;
         id=40117;
+        eid=id;
         star=4;
         type=0;
         name="双刀-平目碟";

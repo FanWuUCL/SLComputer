@@ -17,6 +17,7 @@ public class EquiqYLP extends Equip{
         super();
         level=l;
         id=45111;
+        eid=id;
         star=3;
         type=1;
         name="医疗袍";

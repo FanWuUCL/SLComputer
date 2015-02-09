@@ -13,6 +13,7 @@ public class EqpDHMXR extends Equip{
         super();
         level=1;
         id=42143;
+        eid=id;
         star=5;
         type=33;
         name="大蛤蟆仙人";

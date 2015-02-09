@@ -13,6 +13,7 @@ public class EqpBSXR extends Equip{
         super();
         level=1;
         id=42140;
+        eid=id;
         star=5;
         type=33;
         name="白蛇仙人";

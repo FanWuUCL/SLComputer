@@ -17,6 +17,7 @@ public class EquiqCTJ extends Equip{
         super();
         level=l;
         id=40120;
+        eid=id;
         star=4;
         type=0;
         name="草薙剑";

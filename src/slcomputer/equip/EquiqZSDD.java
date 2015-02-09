@@ -17,6 +17,7 @@ public class EquiqZSDD extends Equip{
         super();
         level=l;
         id=40111;
+        eid=id;
         star=4;
         type=0;
         name="断刀-斩首大刀";

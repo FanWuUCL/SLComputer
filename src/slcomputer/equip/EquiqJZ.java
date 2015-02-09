@@ -17,6 +17,7 @@ public class EquiqJZ extends Equip{
         super();
         level=l;
         id=40108;
+        eid=id;
         star=3;
         type=0;
         name="卷轴";

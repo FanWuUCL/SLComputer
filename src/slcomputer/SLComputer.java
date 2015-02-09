@@ -129,6 +129,10 @@
  * 1. 数据更新至2.6，添加宝物装备栏，宝物数据实装。
  * 2. 修正同忍者不同星双buff加成。
  * 3. 显示八门开启情况（根据自动计算的结果）。
+ * 
+ * Version 4.2
+ * 1. 数据更新至2.7。
+ * 2. 
  */
 package slcomputer;
 
@@ -164,7 +168,6 @@ public class SLComputer {
         initSLTeams();
         //Utility.readTask();
         mf=new MainFrame();
-        //Utility.readTask();
     }
     
     public static MainFrame mf;
@@ -196,9 +199,9 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=4;
-    public static final int minor=1;
-    public static final int vip=100;
-    public static final String testVersion=".1";
+    public static final int minor=2;
+    public static final int vip=96;
+    public static final String testVersion=".0";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -305,6 +308,52 @@ public class SLComputer {
         return null;
     }
     
+    public static Equip findEquipById(int id){
+        if(id==0){
+            return null;
+        }
+        int i;
+        for(i=0; i<allEquiqAtt.length; i++){
+            if(allEquiqAtt[i].id==id){
+                return allEquiqAtt[i];
+            }
+        }
+        for(i=0; i<allEquiqDef.length; i++){
+            if(allEquiqDef[i].id==id){
+                return allEquiqDef[i];
+            }
+        }
+        for(i=0; i<allEqpTf.length; i++){
+            if(allEqpTf[i].id==id){
+                return allEqpTf[i];
+            }
+        }
+        return null;
+    }
+    
+    public static Equip findEquipByName(String name){
+        if(name==null){
+            return null;
+        }
+        int i;
+        for(i=allEquiqAtt.length-1; i>=0; i--){
+            if(allEquiqAtt[i].name.equals(name)){
+                return allEquiqAtt[i];
+            }
+        }
+        for(i=allEquiqDef.length-1; i>=0; i--){
+            if(allEquiqDef[i].name.equals(name)){
+                return allEquiqDef[i];
+            }
+        }
+        for(i=allEqpTf.length-1; i>=0; i--){
+            if(allEqpTf[i].name.equals(name)){
+                return allEqpTf[i];
+            }
+        }
+        return null;
+    }
+    
     public static Skill findSkill(int id){
         int i;
         for(i=0; i<skills.length; i++){
@@ -350,6 +399,8 @@ public class SLComputer {
                     br.write(t.heros[i].weapon.diamond[3]+"\n");
                     br.write(t.heros[i].weapon.diamondLevel[3]+"\n");
                     br.write(t.heros[i].weapon.propertyEnabled+"\n");
+                    br.write("step\n");
+                    br.write(t.heros[i].weapon.step+"\n");
                 }
                 else{
                     br.write("0\n1\n");
@@ -367,6 +418,8 @@ public class SLComputer {
                     br.write(t.heros[i].shield.diamond[3]+"\n");
                     br.write(t.heros[i].shield.diamondLevel[3]+"\n");
                     br.write(t.heros[i].shield.propertyEnabled+"\n");
+                    br.write("step\n");
+                    br.write(t.heros[i].shield.step+"\n");
                 }
                 else{
                     br.write("0\n1\n");
@@ -384,6 +437,8 @@ public class SLComputer {
                     br.write(t.heros[i].pact.diamond[3]+"\n");
                     br.write(t.heros[i].pact.diamondLevel[3]+"\n");
                     br.write(t.heros[i].pact.propertyEnabled+"\n");
+                    br.write("step\n");
+                    br.write(t.heros[i].pact.step+"\n");
                 }
                 else{
                     br.write("0\n1\n");
@@ -474,6 +529,12 @@ public class SLComputer {
                     t.heros[i].weapon.propertyEnabled=Boolean.parseBoolean(s);
                     s=br.readLine();
                 }
+                // read step information
+                if(s.indexOf("step")>=0){
+                    s=br.readLine();
+                    t.heros[i].weapon.step=Integer.parseInt(s);
+                    s=br.readLine();
+                }
                 tmp=Integer.parseInt(s);
                 t.heros[i].shield=dupDefEqById(tmp);
                 s=br.readLine();
@@ -499,6 +560,12 @@ public class SLComputer {
                     t.heros[i].shield.diamondLevel[3]=Integer.parseInt(s);
                     s=br.readLine();
                     t.heros[i].shield.propertyEnabled=Boolean.parseBoolean(s);
+                    s=br.readLine();
+                }
+                // read step information
+                if(s.indexOf("step")>=0){
+                    s=br.readLine();
+                    t.heros[i].shield.step=Integer.parseInt(s);
                     s=br.readLine();
                 }
                 if(s.indexOf("resist")<0){
@@ -527,6 +594,12 @@ public class SLComputer {
                         t.heros[i].pact.diamondLevel[3]=Integer.parseInt(s);
                         s=br.readLine();
                         t.heros[i].pact.propertyEnabled=Boolean.parseBoolean(s);
+                        s=br.readLine();
+                    }
+                    // read step information
+                    if(s.indexOf("step")>=0){
+                        s=br.readLine();
+                        t.heros[i].pact.step=Integer.parseInt(s);
                         s=br.readLine();
                     }
                 }
@@ -1045,10 +1118,10 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=430;
-        int equipAttNumber=41;
-        int equipDefNumber=42;
-        int eqpTfNumber=47;
+        int heroNumber=449;
+        int equipAttNumber=85;
+        int equipDefNumber=86;
+        int eqpTfNumber=88;
         int backupNumber=8;
         int i;
         allHero=new Hero[heroNumber+1];
@@ -1157,6 +1230,15 @@ public class SLComputer {
         allHero[i++]=new HeroCDFY_6(1);
         allHero[i++]=new HeroEDFY_6(1);
         allHero[i++]=new HeroHYMR_6(1);
+        allHero[i++]=new HeroDTMHY_6(1);
+        allHero[i++]=new HeroLDXR_6(1);
+        allHero[i++]=new HeroDTMYC_6(1);
+        allHero[i++]=new HeroAXL_6(1);
+        allHero[i++]=new HeroYTL_6(1);
+        allHero[i++]=new HeroXTMR_6(1);
+        allHero[i++]=new HeroXYZZ_6(1);
+        allHero[i++]=new HeroCJRZ_6(1);
+        allHero[i++]=new HeroXWBR_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1315,6 +1397,15 @@ public class SLComputer {
         allHero[i++]=new HeroCDFY(1);
         allHero[i++]=new HeroEDFY(1);
         allHero[i++]=new HeroHYMR(1);
+        allHero[i++]=new HeroDTMHY(1);
+        allHero[i++]=new HeroLDXR(1);
+        allHero[i++]=new HeroDTMYC(1);
+        allHero[i++]=new HeroAXL(1);
+        allHero[i++]=new HeroYTL(1);
+        allHero[i++]=new HeroXTMR(1);
+        allHero[i++]=new HeroXYZZ(1);
+        allHero[i++]=new HeroCJRZ(1);
+        allHero[i++]=new HeroXWBR_5(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -1427,6 +1518,7 @@ public class SLComputer {
         allHero[i++]=new HeroHMJ(1);
         allHero[i++]=new HeroFY(1);
         allHero[i++]=new HeroSJY(1);
+        allHero[i++]=new HeroXWBR(1);
         allHero[i++]=new HeroGDSY(1);  // 三星开始：鬼灯水月
         allHero[i++]=new HeroTCZW(1);
         allHero[i++]=new HeroXRH(1);
@@ -1492,7 +1584,38 @@ public class SLComputer {
         allHero[heroNumber]=new Hero();
         // Att equipment
         i=0;
-        allEquiqAtt[i++]=new EquiqQXJ(1);
+        allEquiqAtt[i++]=new EquiqQXJ_6(1);   // 五星升六星
+        allEquiqAtt[i++]=new EquiqHHL_6(1);
+        allEquiqAtt[i++]=new EquiqBJS_6(1);
+        allEquiqAtt[i++]=new EquiqSQJ_6(1);
+        allEquiqAtt[i++]=new EquiqHYZS_6(1);
+        allEquiqAtt[i++]=new EquiqMDHZ_6(1);
+        allEquiqAtt[i++]=new EquiqTZM_6(1);
+        allEquiqAtt[i++]=new EquiqLDXZ_6(1);
+        allEquiqAtt[i++]=new EquiqGWSXS_6(1);
+        allEquiqAtt[i++]=new EquiqASMKD_6(1);
+        allEquiqAtt[i++]=new EquiqSGKW_6(1);
+        allEquiqAtt[i++]=new EquiqHPJP_6(1);
+        allEquiqAtt[i++]=new EquiqSZFY_6(1);
+        allEquiqAtt[i++]=new EquiqSGZJ_6(1);
+        allEquiqAtt[i++]=new EquiqTZMJGG_6(1);
+        allEquiqAtt[i++]=new EquiqQDY_6(1);
+        allEquiqAtt[i++]=new EquiqXFJZ_6(1);
+        allEquiqAtt[i++]=new EquiqSSLD_6(1);
+        allEquiqAtt[i++]=new EquiqZSDD_6(1);  // 四星升六星
+        allEquiqAtt[i++]=new EquiqDDJJ_6(1);
+        allEquiqAtt[i++]=new EquiqCDFZ_6(1);
+        allEquiqAtt[i++]=new EquiqDDDG_6(1);
+        allEquiqAtt[i++]=new EquiqBDFM_6(1);
+        allEquiqAtt[i++]=new EquiqLDY_6(1);
+        allEquiqAtt[i++]=new EquiqSDPMD_6(1);
+        allEquiqAtt[i++]=new EquiqJGRYB_6(1);
+        allEquiqAtt[i++]=new EquiqLSZJ_6(1);
+        allEquiqAtt[i++]=new EquiqCTJ_6(1);
+        allEquiqAtt[i++]=new EquiqKQSZJ_6(1);
+        allEquiqAtt[i++]=new EquiqLYFJJ_6(1);
+        allEquiqAtt[i++]=new EquiqHJS_6(1);
+        allEquiqAtt[i++]=new EquiqQXJ(1);   // 五星
         allEquiqAtt[i++]=new EquiqHHL(1);
         allEquiqAtt[i++]=new EquiqBJS(1);
         allEquiqAtt[i++]=new EquiqSQJ(1);
@@ -1510,6 +1633,19 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqQDY(1);
         allEquiqAtt[i++]=new EquiqXFJZ(1);
         allEquiqAtt[i++]=new EquiqSSLD(1);
+        allEquiqAtt[i++]=new EquiqZSDD_5(1);  // 四星升五星
+        allEquiqAtt[i++]=new EquiqDDJJ_5(1);
+        allEquiqAtt[i++]=new EquiqCDFZ_5(1);
+        allEquiqAtt[i++]=new EquiqDDDG_5(1);
+        allEquiqAtt[i++]=new EquiqBDFM_5(1);
+        allEquiqAtt[i++]=new EquiqLDY_5(1);
+        allEquiqAtt[i++]=new EquiqSDPMD_5(1);
+        allEquiqAtt[i++]=new EquiqJGRYB_5(1);
+        allEquiqAtt[i++]=new EquiqLSZJ_5(1);
+        allEquiqAtt[i++]=new EquiqCTJ_5(1);
+        allEquiqAtt[i++]=new EquiqKQSZJ_5(1);
+        allEquiqAtt[i++]=new EquiqLYFJJ_5(1);
+        allEquiqAtt[i++]=new EquiqHJS_5(1);
         allEquiqAtt[i++]=new EquiqZSDD(1);  // 四星
         allEquiqAtt[i++]=new EquiqDDJJ(1);
         allEquiqAtt[i++]=new EquiqCDFZ(1);
@@ -1523,7 +1659,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqKQSZJ(1);
         allEquiqAtt[i++]=new EquiqLYFJJ(1);
         allEquiqAtt[i++]=new EquiqHJS(1);
-        allEquiqAtt[i++]=new EquiqCS(1);
+        allEquiqAtt[i++]=new EquiqCS(1);    // 三星
         allEquiqAtt[i++]=new EquiqFYQT(1);
         allEquiqAtt[i++]=new EquiqRZ(1);
         allEquiqAtt[i++]=new EquiqQBF(1);
@@ -1537,7 +1673,39 @@ public class SLComputer {
         allEquiqAtt[equipAttNumber]=new Equip();
         // Def equipment
         i=0;
-        allEquiqDef[i++]=new EquiqAYZF(1);
+        allEquiqDef[i++]=new EquiqAYZF_6(1);  // 五星升六星
+        allEquiqDef[i++]=new EquiqBMHS_6(1);
+        allEquiqDef[i++]=new EquiqXWZJ_6(1);
+        allEquiqDef[i++]=new EquiqXRZP_6(1);
+        allEquiqDef[i++]=new EquiqRKL_6(1);
+        allEquiqDef[i++]=new EquiqBCJ_6(1);
+        allEquiqDef[i++]=new EquiqBCQGY_6(1);
+        allEquiqDef[i++]=new EquiqSMMJ_6(1);
+        allEquiqDef[i++]=new EquiqSHZD_6(1);
+        allEquiqDef[i++]=new EquiqBZZF_6(1);
+        allEquiqDef[i++]=new EquiqHYDL_6(1);
+        allEquiqDef[i++]=new EquiqHYZP_6(1);
+        allEquiqDef[i++]=new EquiqNTZH_6(1);
+        allEquiqDef[i++]=new EquiqSJYKL_6(1);
+        allEquiqDef[i++]=new EquiqGYZP_6(1);
+        allEquiqDef[i++]=new EquiqSYDL_6(1);
+        allEquiqDef[i++]=new EquiqFYDL_6(1);
+        allEquiqDef[i++]=new EquiqTYDL_6(1);
+        allEquiqDef[i++]=new EquiqLYDL_6(1);
+        allEquiqDef[i++]=new EquiqYWMJ_6(1);
+        allEquiqDef[i++]=new EquiqABMJ_6(1);  // 四星升六星
+        allEquiqDef[i++]=new EquiqZZY_6(1);
+        allEquiqDef[i++]=new EquiqZZHS_6(1);
+        allEquiqDef[i++]=new EquiqZZZJ_6(1);
+        allEquiqDef[i++]=new EquiqZZP_6(1);
+        allEquiqDef[i++]=new EquiqKL_6(1);
+        allEquiqDef[i++]=new EquiqSHKJ_6(1);
+        allEquiqDef[i++]=new EquiqQHCM_6(1);
+        allEquiqDef[i++]=new EquiqQHZF_6(1);
+        allEquiqDef[i++]=new EquiqQHZJ_6(1);
+        allEquiqDef[i++]=new EquiqQHZP_6(1);
+        allEquiqDef[i++]=new EquiqHXQ_6(1);
+        allEquiqDef[i++]=new EquiqAYZF(1);  // 五星
         allEquiqDef[i++]=new EquiqBMHS(1);
         allEquiqDef[i++]=new EquiqXWZJ(1);
         allEquiqDef[i++]=new EquiqXRZP(1);
@@ -1557,6 +1725,18 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqTYDL(1);
         allEquiqDef[i++]=new EquiqLYDL(1);
         allEquiqDef[i++]=new EquiqYWMJ(1);
+        allEquiqDef[i++]=new EquiqABMJ_5(1);  // 四星升五星
+        allEquiqDef[i++]=new EquiqZZY_5(1);
+        allEquiqDef[i++]=new EquiqZZHS_5(1);
+        allEquiqDef[i++]=new EquiqZZZJ_5(1);
+        allEquiqDef[i++]=new EquiqZZP_5(1);
+        allEquiqDef[i++]=new EquiqKL_5(1);
+        allEquiqDef[i++]=new EquiqSHKJ_5(1);
+        allEquiqDef[i++]=new EquiqQHCM_5(1);
+        allEquiqDef[i++]=new EquiqQHZF_5(1);
+        allEquiqDef[i++]=new EquiqQHZJ_5(1);
+        allEquiqDef[i++]=new EquiqQHZP_5(1);
+        allEquiqDef[i++]=new EquiqHXQ_5(1);
         allEquiqDef[i++]=new EquiqABMJ(1);  // 四星
         allEquiqDef[i++]=new EquiqZZY(1);
         allEquiqDef[i++]=new EquiqZZHS(1);
@@ -1583,7 +1763,33 @@ public class SLComputer {
         allEquiqDef[equipDefNumber]=new Equip();
         // Tf equipment
         i=0;
-        allEqpTf[i++]=new EqpMM();
+        allEqpTf[i++]=new EqpMM_6();  // 五星升六星
+        allEqpTf[i++]=new EqpTY_6();
+        allEqpTf[i++]=new EqpYDWS_6();
+        allEqpTf[i++]=new EqpEDWS_6();
+        allEqpTf[i++]=new EqpHMWT_6();
+        allEqpTf[i++]=new EqpBSXR_6();
+        allEqpTf[i++]=new EqpSZXR_6();
+        allEqpTf[i++]=new EqpZMXR_6();
+        allEqpTf[i++]=new EqpDHMXR_6();
+        allEqpTf[i++]=new EqpYM_6();
+        allEqpTf[i++]=new EqpWDMX_6();
+        allEqpTf[i++]=new EqpLY_6();  // 四星升六星
+        allEqpTf[i++]=new EqpSTS_6();
+        allEqpTf[i++]=new EqpHMJian_6();
+        allEqpTf[i++]=new EqpHMG_6();
+        allEqpTf[i++]=new EqpTBHM_6();
+        allEqpTf[i++]=new EqpSJY_6();
+        allEqpTf[i++]=new EqpJX_6();
+        allEqpTf[i++]=new EqpBSL_6();
+        allEqpTf[i++]=new EqpDYZQ_6();
+        allEqpTf[i++]=new EqpBCN_6();
+        allEqpTf[i++]=new EqpGN_6();
+        allEqpTf[i++]=new EqpXN_6();
+        allEqpTf[i++]=new EqpXM_6();
+        allEqpTf[i++]=new EqpWG_6();
+        allEqpTf[i++]=new EqpS_6();
+        allEqpTf[i++]=new EqpMM();  // 五星
         allEqpTf[i++]=new EqpTY();
         allEqpTf[i++]=new EqpYDWS();
         allEqpTf[i++]=new EqpEDWS();
@@ -1594,6 +1800,21 @@ public class SLComputer {
         allEqpTf[i++]=new EqpDHMXR();
         allEqpTf[i++]=new EqpYM();
         allEqpTf[i++]=new EqpWDMX();
+        allEqpTf[i++]=new EqpLY_5();  // 四星升五星
+        allEqpTf[i++]=new EqpSTS_5();
+        allEqpTf[i++]=new EqpHMJian_5();
+        allEqpTf[i++]=new EqpHMG_5();
+        allEqpTf[i++]=new EqpTBHM_5();
+        allEqpTf[i++]=new EqpSJY_5();
+        allEqpTf[i++]=new EqpJX_5();
+        allEqpTf[i++]=new EqpBSL_5();
+        allEqpTf[i++]=new EqpDYZQ_5();
+        allEqpTf[i++]=new EqpBCN_5();
+        allEqpTf[i++]=new EqpGN_5();
+        allEqpTf[i++]=new EqpXN_5();
+        allEqpTf[i++]=new EqpXM_5();
+        allEqpTf[i++]=new EqpWG_5();
+        allEqpTf[i++]=new EqpS_5();
         allEqpTf[i++]=new EqpLY();  // 四星
         allEqpTf[i++]=new EqpSTS();
         allEqpTf[i++]=new EqpHMJian();
@@ -1798,7 +2019,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=1728;
+        int skillNumber=1788;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;
@@ -2210,6 +2431,143 @@ public class SLComputer {
                     allHero[i].backupSkills[k++]=allHero[i].skill2;
                 }
             }
+            // loading items
+            f=new File("item.json");
+            br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+            Equip currEq;
+            while((s=br.readLine())!=null){
+                if(s.length()<3 || s.charAt(2)!='\"'){
+                    continue;
+                }
+                // hero id
+                j=Integer.parseInt(s.substring(3, 8));
+                currEq=findEquipById(j);
+                if(currEq==null){
+                    //System.out.println("Cannot find item "+j);
+                    continue;
+                }
+                //System.out.println(currEq.name);
+                s=br.readLine();
+                while(s.indexOf("star")<0){
+                    s=br.readLine();
+                }
+                // star
+                currEq.star=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("name")<0){
+                    s=br.readLine();
+                }
+                // name
+                currEq.name=s.substring(s.indexOf(":")+3, s.lastIndexOf(",")-1);
+                //System.out.println(currEq.name+"\t"+currEq.star);
+                s=br.readLine();
+                while(s.indexOf("para1")<0){
+                    s=br.readLine();
+                }
+                // att_born
+                currEq.att_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("para2")<0){
+                    s=br.readLine();
+                }
+                // def_born
+                currEq.def_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("tough")<0){
+                    s=br.readLine();
+                }
+                // tough_born
+                currEq.tough_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("atkGrowth")<0){
+                    s=br.readLine();
+                }
+                // atkGrowth
+                currEq.attGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("defGrowth")<0){
+                    s=br.readLine();
+                }
+                // defGrowth
+                currEq.defGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("toughGrowth")<0){
+                    s=br.readLine();
+                }
+                // toughGrowth
+                currEq.toughGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("slot")<0){
+                    s=br.readLine();
+                }
+                // slot
+                currEq.slot=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("hideProperty")<0){
+                    s=br.readLine();
+                }
+                // hideProperty
+                if(s.endsWith("[")){
+                    s=br.readLine();
+                    currEq.hideProperty[0]=Double.parseDouble(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();
+                    currEq.hideProperty[1]=Double.parseDouble(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();
+                    currEq.hideProperty[2]=Double.parseDouble(s.trim());
+                }
+                s=br.readLine();
+                while(s.indexOf("starStepEffect")<0){
+                    s=br.readLine();
+                }
+                // starStepEffect
+                if(s.endsWith("[")){
+                    s=br.readLine();    // [
+                    s=br.readLine();    // +1 效果
+                    currEq.stepEffect[0][0]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +1 效果
+                    currEq.stepEffect[0][1]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +1 效果
+                    currEq.stepEffect[0][2]=Integer.parseInt(s.trim());
+                    s=br.readLine();    // ],
+                    s=br.readLine();    // [
+                    s=br.readLine();    // +2 效果
+                    currEq.stepEffect[1][0]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +2 效果
+                    currEq.stepEffect[1][1]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +2 效果
+                    currEq.stepEffect[1][2]=Integer.parseInt(s.trim());
+                }
+                else if(currEq.star>4){
+                    Equip tmpEq=findEquipByName(currEq.name);
+                    if(tmpEq==null || tmpEq.stepEffect[0][0]==0){
+                        System.out.println("Code should be reached.");
+                    }
+                    currEq.stepEffect=tmpEq.stepEffect;
+                }
+            }
+            /*
+            File dir=new File("newclass");
+            for(File newfile:dir.listFiles()){
+                BufferedReader newbr=new BufferedReader(new FileReader(newfile));
+                File cf=new File("cclass/"+newfile.getName());
+                BufferedWriter newbw=new BufferedWriter(new FileWriter(cf));
+                s=newbr.readLine();
+                while(s.indexOf("id=")<0){
+                    newbw.write(s+"\n");
+                    s=newbr.readLine();
+                }
+                j=s.indexOf("id=");
+                newbw.write(s.substring(0, j)+"e"+s.substring(j)+"\n");
+                s=newbr.readLine();
+                j=s.indexOf("eid=");
+                newbw.write(s.substring(0, j)+"id=eid"+s.substring(j+6)+"\n");
+                while((s=newbr.readLine())!=null){
+                    newbw.write(s+"\n");
+                }
+                newbr.close();
+                newbw.close();
+            }
+            * */
         } catch (Exception ex) {
             Logger.getLogger(SLComputer.class.getName()).log(Level.SEVERE, null, ex);
         }

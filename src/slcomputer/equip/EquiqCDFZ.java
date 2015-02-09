@@ -17,6 +17,7 @@ public class EquiqCDFZ extends Equip{
         super();
         level=l;
         id=40113;
+        eid=id;
         star=4;
         type=0;
         name="长刀-缝针";

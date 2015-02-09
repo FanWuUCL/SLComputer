@@ -13,6 +13,7 @@ public class EqpBCN extends Equip{
         super();
         level=1;
         id=42134;
+        eid=id;
         star=4;
         type=33;
         name="八咫鸟";

@@ -13,6 +13,7 @@ public class EqpYM extends Equip{
         super();
         level=1;
         id=42144;
+        eid=id;
         star=5;
         type=33;
         name="猿魔";

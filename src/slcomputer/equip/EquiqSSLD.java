@@ -17,6 +17,7 @@ public class EquiqSSLD extends Equip{
         super();
         level=l;
         id=40143;
+        eid=id;
         star=5;
         type=0;
         name="死神镰刀";

@@ -17,6 +17,7 @@ public class EquiqKQSZJ extends Equip{
         super();
         level=l;
         id=40121;
+        eid=id;
         star=4;
         type=0;
         name="孔雀双子剑";

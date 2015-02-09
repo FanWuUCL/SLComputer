@@ -17,6 +17,7 @@ public class EquiqXFJZ extends Equip{
         super();
         level=l;
         id=40142;
+        eid=id;
         star=5;
         type=0;
         name="仙法卷轴";

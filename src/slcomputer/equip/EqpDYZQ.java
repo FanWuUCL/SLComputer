@@ -13,6 +13,7 @@ public class EqpDYZQ extends Equip{
         super();
         level=1;
         id=42133;
+        eid=id;
         star=4;
         type=33;
         name="地狱之犬";

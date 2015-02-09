@@ -17,6 +17,7 @@ public class EquiqQB extends Equip{
         super();
         level=l;
         id=40128;
+        eid=id;
         star=3;
         type=0;
         name="千本";

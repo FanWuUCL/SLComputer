@@ -29,18 +29,18 @@ public class JDialogLogin extends javax.swing.JDialog {
             jComboBox1.addItem(s);
         }
         try {
-            //System.out.println(SLComputer.des.encrypt("379863580@qq.com"));
-            //System.out.println(SLComputer.des.encrypt("AND91_"+"264182664"));
-            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"qhldhr"));
+            //System.out.println(SLComputer.des.encrypt("whr413"));
+            //System.out.println(SLComputer.des.encrypt("AND91_"+"523993916"));
+            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"7788555"));
             //System.out.println(SLComputer.des.encrypt("IOS91_"+"559983812"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"22637847"));
-            //System.out.println(SLComputer.des.encrypt("AND36_"+"1293684068"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"23200407"));
+            //System.out.println(SLComputer.des.encrypt("AND36_"+"1283882136"));
             //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"3712664"));
-            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"119879978"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"6676833"));
+            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"163111641"));
             //System.out.println(SLComputer.des.encrypt("ANDSN_"+"2658416423"));
             //System.out.println(SLComputer.des.encrypt("ANDTX_"+"DCEFE6ED248534E398322888E37C241A"));
-            //System.out.println(SLComputer.des.encrypt("IOSPP_16659567"));
+            //System.out.println(SLComputer.des.encrypt("IOSPP_20499507"));
         } catch (Exception ex) {
             Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -317,6 +317,37 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "f9ac65bbfc3ad60b05f932cb38c490577bdeba206119285a", "f9ac65bbfc3ad60b05f932cb38c490577bdeba206119285a", // app 1209_4
                 "fefc404cafc7bd88792b4717e7c5b82f", "48ade4fdf47dbeef28758e77a886a9f2", // 同步推 1321
                 "ebe4f00216585001ce7cefedf89d623b792b4717e7c5b82f", "4d793f055aa86fd2325c96d5fe8aa455", // 同步推 1322
+                "9e8f5f92082168dbcd6782c330af57d3", "9e8f5f92082168dbcd6782c330af57d3", // app 1221
+                "6833fbaa05a538ac792b4717e7c5b82f", "560df42700b33376f20472a588206a8a", // 安卓91 1324
+                "c07c3716c433bf763693c831158eabbb", "1245200ebc438584cb85ad53ac76487fd0c4549a80ecd132", // 安卓官方 1325
+                "f42fee793ccc8fcace90328a0b7bc707", "a8e66a3ea58e820da691a7d29aa82914507a2c3d4c1c44e3", // 苹果快用 1327
+                "fec1bb1ac89554f188d5a8813edc3435", "a680aebfc213d957f467240c387abd79", // 安卓360 1329
+                "5ac485478ae2f438a034a7e7f4c090cc", "0cb854e5a7b8ca64088317015420d399782c808e22ce2edc", // 安卓官方 1315
+                "e21484b5f96bbe8889e9b3471b8dbdad", "1b76a53342c22f3303358e6a9cdaad60", // 同步推 1331
+                "47e09d8ee3c1f383", "cf9273d0b708c28e6c801ccd5f46f059", // 安卓多酷 1331
+                "f40bad4029602e47110b6f1530edec9a", "0d3eb6a3e86c0eb600026a21b2fc1732d7dc33e737aaab32", // 安卓官方 1218_3
+                "f2012d407443b0d0967a76dcc4d79bd9", "c821a96951d59d731880a4ac189c9e93", // 苹果pp 1218_3
+                "faad90e8475e7cca76e26f5a8db22280", "c821a96951d59d732fb33714d4d8e0e8", // 苹果pp 1401
+                "515b1234083b1f2bf82d0ac7f152fdf8", "7dff8bc041f8bab7f7d57cf3dc56b75b", // 安卓91 621
+                "14e720c4243a4cd63c3d85df9cc8227d", "8019bd19617e247f3693e0f61ab37242692931d8d02c0c2d", // 安卓官方 1404
+                "62716ddcfc510a7d", "62716ddcfc510a7d", // app 1404_2
+                "f5bd03145be9b9533542118ae5933e19", "f5bd03145be9b9533542118ae5933e19", // app 1404_2
+                "09f58b127a768c1de3a2c2c2d4b247da", "09f58b127a768c1de3a2c2c2d4b247da", // app 1404_2
+                "d0fbfc09e2f0a4024755c5660d3e86fe", "d0fbfc09e2f0a4024755c5660d3e86fe", // app 1404_3
+                "628b81569b7737edb4c4e755848e728a7bdeba206119285a", "628b81569b7737edb4c4e755848e728a7bdeba206119285a", // app 1404_3
+                "82d05fceed41d1d3376ac95ec7ca92a6", "82d05fceed41d1d3376ac95ec7ca92a6", // app 1130_2
+                "7baa0d822a09b50bcd6782c330af57d3", "7baa0d822a09b50bcd6782c330af57d3", // app 1130_2
+                "d4d0e487f09c0508e0371f5a00f107ae", "d4d0e487f09c0508e0371f5a00f107ae", // app 1405
+                "87a5be9835cc1932", "33cb3f3bbe395fe2623564485c05ec70", // 同步推 1405_2
+                "2b89630c1a843bf32a260e6a7fe69a167bdeba206119285a", "2b89630c1a843bf32a260e6a7fe69a167bdeba206119285a", // app 1405_3
+                "a169deeefc0168a657b3ff044c68307d7bdeba206119285a", "a169deeefc0168a657b3ff044c68307d7bdeba206119285a", // app 1405_3
+                "9f100d8dacd97267", "96ac30ec3076fc24f6e4502964eba13b", // 安卓官方 1404
+                "909255eb05e5b247bc83c3318d0721fa792b4717e7c5b82f", "909255eb05e5b247bc83c3318d0721fa792b4717e7c5b82f", // app 1405_3
+                "2e72e3d4766308eed86773cab19f30c0", "2e72e3d4766308eed86773cab19f30c0", // app 1407_2
+                "f8c153b2483ea8399e1a106a5a15d9a66428e3369bfadef1", "f8c153b2483ea8399e1a106a5a15d9a66428e3369bfadef1", // app 1407_2
+                "55be0704f40c791e8658d1660c421e85792b4717e7c5b82f", "55be0704f40c791e8658d1660c421e85792b4717e7c5b82f", // app 1407
+                "f9f67a395f1d1e2d806f6534669b4b60", "639a422ba124f50015c11a1a1b366d0a", // 豌豆荚 1209_3
+                "3e8a80693e958863", "0f614eb92960d304b01246ee5faa7300792b4717e7c5b82f", // 安卓360 1322
                 ""};
         int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -334,7 +365,11 @@ public class JDialogLogin extends javax.swing.JDialog {
                 1, 1, 0, 0, 0, 0, 0, 2, 2, 1,
                 2, 1, 2, 2, 2, 0, 0, 1, 2, 1,
                 1, 2, 1, 1, 1, 1, 0, 1, 2, 0,
-                0, 2, 1, 2, 1, 1, 0, 0, 2, 2};
+                0, 2, 1, 2, 1, 1, 0, 0, 2, 2,
+                0, 1, 1, 2, 1, 1, 2, 1, 1, 2,
+                2, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+                0, 2, 0, 0, 1, 0, 0, 0, 0, 1,
+                1};
         String vip=null;
         int i;
         for(i=0; i+1<myvip.length; i+=2){

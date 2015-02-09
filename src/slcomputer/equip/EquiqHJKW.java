@@ -17,6 +17,7 @@ public class EquiqHJKW extends Equip{
         super();
         level=l;
         id=40999;
+        eid=id;
         star=3;
         type=0;
         name="黄金苦无";

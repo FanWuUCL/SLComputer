@@ -17,6 +17,7 @@ public class EquiqJGRYB extends Equip{
         super();
         level=l;
         id=40118;
+        eid=id;
         star=4;
         type=0;
         name="金刚如意棒";

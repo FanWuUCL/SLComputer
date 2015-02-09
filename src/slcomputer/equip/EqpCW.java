@@ -13,6 +13,7 @@ public class EqpCW extends Equip{
         super();
         level=1;
         id=42105;
+        eid=id;
         star=2;
         type=33;
         name="赤丸";

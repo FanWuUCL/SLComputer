@@ -13,6 +13,7 @@ public class EqpNG extends Equip{
         super();
         level=1;
         id=42124;
+        eid=id;
         star=3;
         type=33;
         name="怒鬼";

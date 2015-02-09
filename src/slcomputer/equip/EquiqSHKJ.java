@@ -17,6 +17,7 @@ public class EquiqSHKJ extends Equip{
         super();
         level=l;
         id=45126;
+        eid=id;
         star=4;
         type=1;
         name="水虎铠甲";

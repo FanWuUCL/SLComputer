@@ -27,7 +27,7 @@ public class Hero {
     public String name;
     public String description;
     public int star;
-    // 木叶0, 雾忍1, 岩忍2, 砂忍3, 雨忍4, 音忍5, 晓6, 云忍7, 泷忍8， 雪忍9， 忍兽10，秽土转生11
+    // 木叶0, 雾忍1, 岩忍2, 砂忍3, 雨忍4, 音忍5, 晓6, 云忍7, 泷忍8， 雪忍9， 忍兽10，秽土转生11，忍宗12
     public int style;
     public int gender;
     public int attOrDef;
@@ -331,16 +331,16 @@ public class Hero {
                 }
                 break;
             case 1:
-                if(!(weapon.id==yuan[2] || shield.id==yuan[2] || (pact!=null && pact.id==yuan[2]))) {
+                if(!(weapon.eid==yuan[2] || shield.eid==yuan[2] || (pact!=null && pact.eid==yuan[2]))) {
                     sum=1;
                 }
                 if(yuan[0]>3){
-                    if(!(weapon.id==yuan[3] || shield.id==yuan[3] || (pact!=null && pact.id==yuan[3]))) {
+                    if(!(weapon.eid==yuan[3] || shield.eid==yuan[3] || (pact!=null && pact.eid==yuan[3]))) {
                         sum=1;
                     }
                 }
                 if(yuan[0]>4){
-                    if(!(weapon.id==yuan[4] || shield.id==yuan[4] || (pact!=null && pact.id==yuan[4]))) {
+                    if(!(weapon.eid==yuan[4] || shield.eid==yuan[4] || (pact!=null && pact.eid==yuan[4]))) {
                         sum=1;
                     }
                 }

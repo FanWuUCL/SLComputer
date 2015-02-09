@@ -17,6 +17,7 @@ public class EquiqBDFM extends Equip{
         super();
         level=l;
         id=40115;
+        eid=id;
         star=4;
         type=0;
         name="爆刀-飞沫";

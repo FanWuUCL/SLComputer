@@ -17,6 +17,7 @@ public class EquiqSMMJ extends Equip{
         super();
         level=l;
         id=45133;
+        eid=id;
         star=5;
         type=1;
         name="神秘面具";

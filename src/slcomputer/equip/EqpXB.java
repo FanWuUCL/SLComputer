@@ -13,6 +13,7 @@ public class EqpXB extends Equip{
         super();
         level=1;
         id=42106;
+        eid=id;
         star=3;
         type=33;
         name="西巴";

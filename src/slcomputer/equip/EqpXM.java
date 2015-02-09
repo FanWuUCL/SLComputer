@@ -13,6 +13,7 @@ public class EqpXM extends Equip{
         super();
         level=1;
         id=42137;
+        eid=id;
         star=4;
         type=33;
         name="熊猫";

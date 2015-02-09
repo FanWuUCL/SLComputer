@@ -13,6 +13,7 @@ public class EqpBSL extends Equip{
         super();
         level=1;
         id=42132;
+        eid=id;
         star=4;
         type=33;
         name="变色龙";

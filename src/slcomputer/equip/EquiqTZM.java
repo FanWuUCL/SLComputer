@@ -17,6 +17,7 @@ public class EquiqTZM extends Equip{
         super();
         level=l;
         id=40132;
+        eid=id;
         star=5;
         type=0;
         name="天沼矛";

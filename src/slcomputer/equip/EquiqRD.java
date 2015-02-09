@@ -17,6 +17,7 @@ public class EquiqRD extends Equip{
         super();
         level=l;
         id=40129;
+        eid=id;
         star=3;
         type=0;
         name="忍笛";

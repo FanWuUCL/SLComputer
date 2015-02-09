@@ -17,6 +17,7 @@ public class EquiqHJS extends Equip{
         super();
         level=l;
         id=40124;
+        eid=id;
         star=4;
         type=0;
         name="愰金绳";

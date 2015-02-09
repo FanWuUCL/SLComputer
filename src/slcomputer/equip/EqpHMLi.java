@@ -13,6 +13,7 @@ public class EqpHMLi extends Equip{
         super();
         level=1;
         id=42118;
+        eid=id;
         star=3;
         type=33;
         name="蛤蟆力";

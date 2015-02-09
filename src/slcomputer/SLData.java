@@ -20,9 +20,9 @@ public class SLData {
     
     public SLData(){
         maxLevel=0;
-        basePlus=new double[160][3];
-        bodySkill=new double[160][3];
-        skillPower=new double[160];
-        skillRate=new double[160];
+        basePlus=new double[170][3];
+        bodySkill=new double[170][3];
+        skillPower=new double[170];
+        skillRate=new double[170];
     }
 }

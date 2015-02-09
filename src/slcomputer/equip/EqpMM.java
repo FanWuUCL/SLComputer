@@ -13,6 +13,7 @@ public class EqpMM extends Equip{
         super();
         level=1;
         id=42125;
+        eid=id;
         star=5;
         type=33;
         name="梦貘";

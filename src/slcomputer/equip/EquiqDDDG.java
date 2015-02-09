@@ -17,6 +17,7 @@ public class EquiqDDDG extends Equip{
         super();
         level=l;
         id=40114;
+        eid=id;
         star=4;
         type=0;
         name="钝刀-兜割";

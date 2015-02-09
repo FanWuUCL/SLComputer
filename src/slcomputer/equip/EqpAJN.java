@@ -13,6 +13,7 @@ public class EqpAJN extends Equip{
         super();
         level=1;
         id=42108;
+        eid=id;
         star=3;
         type=33;
         name="阿基诺";

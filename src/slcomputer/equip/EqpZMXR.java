@@ -13,6 +13,7 @@ public class EqpZMXR extends Equip{
         super();
         level=1;
         id=42142;
+        eid=id;
         star=5;
         type=33;
         name="志麻仙人";

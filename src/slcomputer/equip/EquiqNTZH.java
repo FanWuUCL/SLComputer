@@ -17,6 +17,7 @@ public class EquiqNTZH extends Equip{
         super();
         level=l;
         id=45138;
+        eid=id;
         star=5;
         type=1;
         name="黏土の鹤";

@@ -17,6 +17,7 @@ public class EquiqTYZJ extends Equip{
         super();
         level=l;
         id=45108;
+        eid=id;
         star=3;
         type=1;
         name="踏云足具";

@@ -13,6 +13,7 @@ public class EqpSJY extends Equip{
         super();
         level=1;
         id=42126;
+        eid=id;
         star=4;
         type=33;
         name="山椒鱼";

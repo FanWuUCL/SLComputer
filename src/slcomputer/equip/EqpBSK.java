@@ -13,6 +13,7 @@ public class EqpBSK extends Equip{
         super();
         level=1;
         id=42107;
+        eid=id;
         star=3;
         type=33;
         name="比斯克";

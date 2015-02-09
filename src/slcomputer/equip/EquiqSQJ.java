@@ -17,6 +17,7 @@ public class EquiqSQJ extends Equip{
         super();
         level=l;
         id=40127;
+        eid=id;
         star=5;
         type=0;
         name="十拳剑";

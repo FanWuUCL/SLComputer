@@ -13,6 +13,7 @@ public class EqpTT extends Equip{
         super();
         level=1;
         id=42101;
+        eid=id;
         star=1;
         type=33;
         name="豚豚";

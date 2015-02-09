@@ -17,6 +17,7 @@ public class EquiqTZMJGG extends Equip{
         super();
         level=l;
         id=40140;
+        eid=id;
         star=5;
         type=0;
         name="天之麻迦古弓";

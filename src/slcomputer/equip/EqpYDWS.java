@@ -13,6 +13,7 @@ public class EqpYDWS extends Equip{
         super();
         level=1;
         id=42128;
+        eid=id;
         star=5;
         type=33;
         name="一代万蛇";

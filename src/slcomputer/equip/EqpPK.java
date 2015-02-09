@@ -13,6 +13,7 @@ public class EqpPK extends Equip{
         super();
         level=1;
         id=42113;
+        eid=id;
         star=3;
         type=33;
         name="帕克";

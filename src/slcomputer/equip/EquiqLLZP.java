@@ -17,6 +17,7 @@ public class EquiqLLZP extends Equip{
         super();
         level=l;
         id=45114;
+        eid=id;
         star=3;
         type=1;
         name="龙鳞之袍";

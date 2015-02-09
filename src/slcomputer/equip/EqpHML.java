@@ -13,6 +13,7 @@ public class EqpHML extends Equip{
         super();
         level=1;
         id=42117;
+        eid=id;
         star=3;
         type=33;
         name="蛤蟆龙";

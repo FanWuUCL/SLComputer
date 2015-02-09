@@ -13,6 +13,7 @@ public class EqpTY extends Equip{
         super();
         level=1;
         id=42127;
+        eid=id;
         star=5;
         type=33;
         name="蛞蝓";

@@ -17,6 +17,7 @@ public class EquiqGWSXS extends Equip{
         super();
         level=l;
         id=40134;
+        eid=id;
         star=5;
         type=0;
         name="鬼舞三星扇";

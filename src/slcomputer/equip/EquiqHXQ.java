@@ -17,6 +17,7 @@ public class EquiqHXQ extends Equip{
         super();
         level=l;
         id=45110;
+        eid=id;
         star=4;
         type=1;
         name="呼吸器";

@@ -17,6 +17,7 @@ public class EquiqKL extends Equip{
         super();
         level=l;
         id=45120;
+        eid=id;
         star=4;
         type=1;
         name="傀儡";

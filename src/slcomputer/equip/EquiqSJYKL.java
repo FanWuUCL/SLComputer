@@ -17,6 +17,7 @@ public class EquiqSJYKL extends Equip{
         super();
         level=l;
         id=45139;
+        eid=id;
         star=5;
         type=1;
         name="山椒鱼傀儡";

@@ -17,6 +17,7 @@ public class EquiqQHCM extends Equip{
         super();
         level=l;
         id=45127;
+        eid=id;
         star=4;
         type=1;
         name="漆黑长矛";

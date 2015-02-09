@@ -13,6 +13,7 @@ public class EqpTBHM extends Equip{
         super();
         level=1;
         id=42122;
+        eid=id;
         star=4;
         type=33;
         name="铁臂蛤蟆";

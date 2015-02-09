@@ -17,6 +17,7 @@ public class EquiqYGHS extends Equip{
         super();
         level=l;
         id=45107;
+        eid=id;
         star=3;
         type=1;
         name="玉钢护手";

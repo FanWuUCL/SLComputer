@@ -13,6 +13,7 @@ public class EqpHJPK extends Equip{
         super();
         level=1;
         id=42999;
+        eid=id;
         star=3;
         type=33;
         name="黄金帕克";

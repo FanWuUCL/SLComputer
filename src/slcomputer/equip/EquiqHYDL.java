@@ -17,6 +17,7 @@ public class EquiqHYDL extends Equip{
         super();
         level=l;
         id=45136;
+        eid=id;
         star=5;
         type=1;
         name="火影斗笠";

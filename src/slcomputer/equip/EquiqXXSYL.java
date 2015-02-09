@@ -17,6 +17,7 @@ public class EquiqXXSYL extends Equip{
         super();
         level=l;
         id=40110;
+        eid=id;
         star=3;
         type=0;
         name="血腥三月镰";

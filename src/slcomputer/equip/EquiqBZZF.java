@@ -17,6 +17,7 @@ public class EquiqBZZF extends Equip{
         super();
         level=l;
         id=45135;
+        eid=id;
         star=5;
         type=1;
         name="孢子之服";

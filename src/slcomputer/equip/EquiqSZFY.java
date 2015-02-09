@@ -17,6 +17,7 @@ public class EquiqSZFY extends Equip{
         super();
         level=l;
         id=40138;
+        eid=id;
         star=5;
         type=0;
         name="神之飞鸢";

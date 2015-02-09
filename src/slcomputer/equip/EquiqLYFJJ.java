@@ -17,6 +17,7 @@ public class EquiqLYFJJ extends Equip{
         super();
         level=l;
         id=40122;
+        eid=id;
         star=4;
         type=0;
         name="龙眼伏击剑";

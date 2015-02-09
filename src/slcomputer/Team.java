@@ -310,6 +310,31 @@ public class Team {
                     heros[i].weapon.att=(int)(heros[i].weapon.att_born+(heros[i].weapon.level-1)*heros[i].weapon.attGrowth);
                     heros[i].weapon.def=(int)(heros[i].weapon.def_born+(heros[i].weapon.level-1)*heros[i].weapon.defGrowth);
                     heros[i].weapon.skillPower=0;
+                    if(heros[i].weapon.step>=2){
+                        if(heros[i].weapon.stepEffect[1][0]==1){
+                            heros[i].weapon.att*=(1+(double)heros[i].weapon.stepEffect[1][1]/100);
+                            heros[i].weapon.def*=(1+(double)heros[i].weapon.stepEffect[1][2]/100);
+                        }
+                        else if(heros[i].weapon.stepEffect[1][0]==2){
+                            heros[i].weapon.att+=(double)heros[i].weapon.stepEffect[1][1];
+                            heros[i].weapon.def+=(double)heros[i].weapon.stepEffect[1][2];
+                        }
+                        else if(heros[i].weapon.stepEffect[1][0]==3){
+                            heros[i].weapon.skillPower+=5;
+                        }
+                    }
+                    if(heros[i].weapon.step>=1){
+                        if(heros[i].weapon.stepEffect[0][0]==1){
+                            heros[i].weapon.att*=(1+(double)heros[i].weapon.stepEffect[0][1]/100);
+                            heros[i].weapon.def*=(1+(double)heros[i].weapon.stepEffect[0][2]/100);
+                        }
+                        else if(heros[i].weapon.stepEffect[0][0]==2){
+                            heros[i].weapon.att+=(double)heros[i].weapon.stepEffect[0][1];
+                            heros[i].weapon.def+=(double)heros[i].weapon.stepEffect[0][2];
+                        }
+                        else if(heros[i].weapon.stepEffect[0][0]==3){
+                        }
+                    }
                     for(j=0; j<4; j++){
                         switch(heros[i].weapon.diamond[j]){
                             case 1:
@@ -339,6 +364,31 @@ public class Team {
                     heros[i].shield.att=(int)(heros[i].shield.att_born+(heros[i].shield.level-1)*heros[i].shield.attGrowth);
                     heros[i].shield.def=(int)(heros[i].shield.def_born+(heros[i].shield.level-1)*heros[i].shield.defGrowth);
                     heros[i].shield.skillPower=0;
+                    if(heros[i].shield.step>=2){
+                        if(heros[i].shield.stepEffect[1][0]==1){
+                            heros[i].shield.att*=(1+(double)heros[i].shield.stepEffect[1][1]/100);
+                            heros[i].shield.def*=(1+(double)heros[i].shield.stepEffect[1][2]/100);
+                        }
+                        else if(heros[i].shield.stepEffect[1][0]==2){
+                            heros[i].shield.att+=(double)heros[i].shield.stepEffect[1][1];
+                            heros[i].shield.def+=(double)heros[i].shield.stepEffect[1][2];
+                        }
+                        else if(heros[i].shield.stepEffect[1][0]==3){
+                            heros[i].shield.skillPower+=5;
+                        }
+                    }
+                    if(heros[i].shield.step>=1){
+                        if(heros[i].shield.stepEffect[0][0]==1){
+                            heros[i].shield.att*=(1+(double)heros[i].shield.stepEffect[0][1]/100);
+                            heros[i].shield.def*=(1+(double)heros[i].shield.stepEffect[0][2]/100);
+                        }
+                        else if(heros[i].shield.stepEffect[0][0]==2){
+                            heros[i].shield.att+=(double)heros[i].shield.stepEffect[0][1];
+                            heros[i].shield.def+=(double)heros[i].shield.stepEffect[0][2];
+                        }
+                        else if(heros[i].shield.stepEffect[0][0]==3){
+                        }
+                    }
                     for(j=0; j<4; j++){
                         switch(heros[i].shield.diamond[j]){
                             case 1:
@@ -368,6 +418,31 @@ public class Team {
                     heros[i].pact.att=(int)(heros[i].pact.att_born+(heros[i].pact.level-1)*heros[i].pact.attGrowth);
                     heros[i].pact.def=(int)(heros[i].pact.def_born+(heros[i].pact.level-1)*heros[i].pact.defGrowth);
                     heros[i].pact.skillPower=0;
+                    if(heros[i].pact.step>=2){
+                        if(heros[i].pact.stepEffect[1][0]==1){
+                            heros[i].pact.att*=(1+(double)heros[i].pact.stepEffect[1][1]/100);
+                            heros[i].pact.def*=(1+(double)heros[i].pact.stepEffect[1][2]/100);
+                        }
+                        else if(heros[i].pact.stepEffect[1][0]==2){
+                            heros[i].pact.att+=(double)heros[i].pact.stepEffect[1][1];
+                            heros[i].pact.def+=(double)heros[i].pact.stepEffect[1][2];
+                        }
+                        else if(heros[i].pact.stepEffect[1][0]==3){
+                            heros[i].pact.skillPower+=5;
+                        }
+                    }
+                    if(heros[i].pact.step>=1){
+                        if(heros[i].pact.stepEffect[0][0]==1){
+                            heros[i].pact.att*=(1+(double)heros[i].pact.stepEffect[0][1]/100);
+                            heros[i].pact.def*=(1+(double)heros[i].pact.stepEffect[0][2]/100);
+                        }
+                        else if(heros[i].pact.stepEffect[0][0]==2){
+                            heros[i].pact.att+=(double)heros[i].pact.stepEffect[0][1];
+                            heros[i].pact.def+=(double)heros[i].pact.stepEffect[0][2];
+                        }
+                        else if(heros[i].pact.stepEffect[0][0]==3){
+                        }
+                    }
                     for(j=0; j<4; j++){
                         switch(heros[i].pact.diamond[j]){
                             case 1:

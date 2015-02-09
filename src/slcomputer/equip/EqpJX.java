@@ -13,6 +13,7 @@ public class EqpJX extends Equip{
         super();
         level=1;
         id=42131;
+        eid=id;
         star=4;
         type=33;
         name="巨蟹";

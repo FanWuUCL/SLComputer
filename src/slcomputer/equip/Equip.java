@@ -13,6 +13,7 @@ import java.util.logging.Logger;
  */
 public class Equip {
     public int id;
+    public int eid;
     public int star;
     // 攻击0, 防御1
     public int type;
@@ -42,9 +43,13 @@ public class Equip {
     public final int[] red={30, 45, 68, 102, 153, 230, 345, 518, 777, 1166};
     public final int[] blue={30, 45, 68, 102, 153, 230, 345, 518, 777, 1166};
     public final double[] yellow={0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5};
+    // 进阶奖励
+    public int stepEffect[][];
+    public int step;
     
     public Equip(){
         id=0;
+        eid=0;
         star=0;
         type=0;
         name="未装备";
@@ -60,10 +65,17 @@ public class Equip {
         propertyEnabled=false;
         diamond=new int[4];
         diamondLevel=new int[4];
-        int i;
+        int i, j;
         for(i=0; i<4; i++){
             diamond[i]=diamondLevel[i]=0;
         }
+        stepEffect=new int[2][3];
+        for(i=0; i<stepEffect.length; i++){
+            for(j=0; j<stepEffect[0].length; j++){
+                stepEffect[i][j]=0;
+            }
+        }
+        step=0;
     }
     
     // 返回此类的一个新对象，并且复制所有内容
@@ -75,6 +87,7 @@ public class Equip {
         e.tough=tough;
         e.skillPower=skillPower;
         e.propertyEnabled=propertyEnabled;
+        e.step=step;
         for(int i=0; i<4; i++){
             e.diamond[i]=diamond[i];
             e.diamondLevel[i]=diamondLevel[i];
@@ -87,6 +100,18 @@ public class Equip {
         Equip e=null;
         try {
             e=this.getClass().newInstance();
+            e.star=star;
+            e.type=type;
+            e.name=name;
+            e.att_born=att_born;
+            e.def_born=def_born;
+            e.tough_born=tough_born;
+            e.attGrowth=attGrowth;
+            e.defGrowth=defGrowth;
+            e.toughGrowth=toughGrowth;
+            e.slot=slot;
+            e.hideProperty=hideProperty;
+            e.stepEffect=stepEffect;
         } catch (Exception ex) {
             Logger.getLogger(Equip.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,6 +122,9 @@ public class Equip {
     public String toString(){
         String s="<html><font color=";
         switch(star){
+            case 6:
+                s+="#FFD700>";
+                break;
             case 5:
                 s+="#FF8000>";
                 break;
