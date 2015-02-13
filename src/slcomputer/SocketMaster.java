@@ -231,7 +231,13 @@ public class SocketMaster implements Runnable{
             case 3: // 快用
                 if(mode==0){
                     cmdGlobal=c_loginp;
-                    return login_extra(usr, "Wangsh51920", platform);
+                    if(usr.startsWith("cqh3")){
+                        return login_extra(usr, "Wangsh51920", platform);
+                    }
+                    else if(usr.startsWith("9091")){
+                        return login_extra(usr, "21494029", platform);
+                    }
+                    else return login_extra(usr, "21494029", platform);
                 }
                 else{
                     cmdGlobal=c_login;
@@ -933,7 +939,7 @@ public class SocketMaster implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, (int)arguments[4]==0?2006000:2007000, globalCer, command, extralength, extra);
+        byte[] data=transform(length, (int)arguments[4]==0?2007000:2007000, globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;

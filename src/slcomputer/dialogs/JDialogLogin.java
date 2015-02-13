@@ -29,18 +29,18 @@ public class JDialogLogin extends javax.swing.JDialog {
             jComboBox1.addItem(s);
         }
         try {
-            //System.out.println(SLComputer.des.encrypt("whr413"));
+            //System.out.println(SLComputer.des.encrypt("18680555602"));
             //System.out.println(SLComputer.des.encrypt("AND91_"+"523993916"));
-            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"7788555"));
-            //System.out.println(SLComputer.des.encrypt("IOS91_"+"559983812"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"23200407"));
-            //System.out.println(SLComputer.des.encrypt("AND36_"+"1283882136"));
+            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"shiji004"));
+            //System.out.println(SLComputer.des.encrypt("IOS91_"+"679346643"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"55249909"));
+            //System.out.println(SLComputer.des.encrypt("AND36_"+"478871259"));
             //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"6676833"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"4037835"));
             //System.out.println(SLComputer.des.encrypt("ANDDK_"+"163111641"));
-            //System.out.println(SLComputer.des.encrypt("ANDSN_"+"2658416423"));
+            //System.out.println(SLComputer.des.encrypt("ANDSN_"+"3687192672"));
             //System.out.println(SLComputer.des.encrypt("ANDTX_"+"DCEFE6ED248534E398322888E37C241A"));
-            //System.out.println(SLComputer.des.encrypt("IOSPP_20499507"));
+            //System.out.println(SLComputer.des.encrypt("IOSPP_27720121"));
         } catch (Exception ex) {
             Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -348,6 +348,17 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "55be0704f40c791e8658d1660c421e85792b4717e7c5b82f", "55be0704f40c791e8658d1660c421e85792b4717e7c5b82f", // app 1407
                 "f9f67a395f1d1e2d806f6534669b4b60", "639a422ba124f50015c11a1a1b366d0a", // 豌豆荚 1209_3
                 "3e8a80693e958863", "0f614eb92960d304b01246ee5faa7300792b4717e7c5b82f", // 安卓360 1322
+                "041cdb3408f33bf8c35035ebd39a819b", "acbeae9a8a16c3167ad65990b1ca5d6f", // 同步推 1409
+                "f7b94605b6fdf950575f4495e9f23153", "2157a314dd1bee75bf1f4501c2a30bbb", // 苹果91 1409
+                "7c48d8a9415277df792b4717e7c5b82f", "2146af74e417255dd7e70567c979e0f9", // 安卓官方 1331
+                "8c566bff02908144cfcea5404067f208", "4d7284919b7b5beeb5aa59447a6fcda8", // 同步推 1410
+                "c8255816399a4c0bda5201bf61904638", "db7f75284c02bd30498f0b3d6b20d390792b4717e7c5b82f", // 新浪 1331
+                "b415ab43978e589aa0a5ab7c28b36768", "cf6cc35d0a8f867f0e6c3f499b437449", // 快用 1405_3
+                "470ecf14fbee2cf837f1ff736bc2cad5", "f2486383ccb9f37dff04bc227aea7c1f", // 安卓360 1413
+                "545c15f781174a93792b4717e7c5b82f", "545c15f781174a93792b4717e7c5b82f", // app 1111_5
+                "de8b2dcd9c026fbfd933927383ee50d3", "7f0ba163bc529b06a9e543f691f6088f", // 苹果91 1331
+                "470ecf14fbee2cf837f1ff736bc2cad5", "0841db1330328598328ea5adc3f20e11", // 苹果pp 1413
+                "d67d6146f9465b8273b36b2cad273f03", "391d9cbed94634792e3bac7f54daf9db", // 豌豆荚 1413_2
                 ""};
         int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -369,7 +380,8 @@ public class JDialogLogin extends javax.swing.JDialog {
                 0, 1, 1, 2, 1, 1, 2, 1, 1, 2,
                 2, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                 0, 2, 0, 0, 1, 0, 0, 0, 0, 1,
-                1};
+                1, 2, 2, 1, 2, 1, 3, 1, 0, 2,
+                2, 1};
         String vip=null;
         int i;
         for(i=0; i+1<myvip.length; i+=2){

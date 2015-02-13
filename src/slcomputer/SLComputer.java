@@ -1119,7 +1119,7 @@ public class SLComputer {
             f.mkdir();
         }
         int heroNumber=449;
-        int equipAttNumber=85;
+        int equipAttNumber=89;
         int equipDefNumber=86;
         int eqpTfNumber=88;
         int backupNumber=8;
@@ -1602,6 +1602,8 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqQDY_6(1);
         allEquiqAtt[i++]=new EquiqXFJZ_6(1);
         allEquiqAtt[i++]=new EquiqSSLD_6(1);
+        allEquiqAtt[i++]=new EquiqYTLZS_6(1);
+        allEquiqAtt[i++]=new EquiqAXLZL_6(1);
         allEquiqAtt[i++]=new EquiqZSDD_6(1);  // 四星升六星
         allEquiqAtt[i++]=new EquiqDDJJ_6(1);
         allEquiqAtt[i++]=new EquiqCDFZ_6(1);
@@ -1633,6 +1635,8 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqQDY(1);
         allEquiqAtt[i++]=new EquiqXFJZ(1);
         allEquiqAtt[i++]=new EquiqSSLD(1);
+        allEquiqAtt[i++]=new EquiqYTLZS(1);
+        allEquiqAtt[i++]=new EquiqAXLZL(1);
         allEquiqAtt[i++]=new EquiqZSDD_5(1);  // 四星升五星
         allEquiqAtt[i++]=new EquiqDDJJ_5(1);
         allEquiqAtt[i++]=new EquiqCDFZ_5(1);
