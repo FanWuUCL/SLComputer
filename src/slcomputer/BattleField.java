@@ -32,8 +32,11 @@ public class BattleField {
     private int petCacheDef;
     private boolean[] attSkillable;
     private boolean[] defSkillable;
+    private boolean[] attPoisoned;
+    private boolean[] defPoisoned;
     // 0: attacker首忍者stay dead, 1: defender首忍者stay dead
     private int stayDead;
+    private double anil;
     public static final double petRate[]={0.19, 0.24, 0.28, 0.33, 0.37, 0.42, 0.46, 0.51, 0.55, 0.60,
                                         0.065, 0.08, 0.095, 0.11, 0.125, 0.14, 0.155, 0.17, 0.185, 0.20,
                                         0.19, 0.24, 0.28, 0.33, 0.37, 0.42, 0.46, 0.51, 0.55, 0.60,
@@ -63,6 +66,8 @@ public class BattleField {
         output.setContentType("text/plain");
         attSkillable=new boolean[20];
         defSkillable=new boolean[20];
+        attPoisoned=new boolean[20];
+        defPoisoned=new boolean[20];
     }
     
     public void sendMsg(String s){
@@ -99,10 +104,10 @@ public class BattleField {
         //System.out.println(skill.name+": "+x);
         // 夺取差值型技能
         if(skill.type==14){
-            if(isDef==0 && !conditionAttStronger && Math.random()*100<x){
+            if(isDef==0 /*&& !conditionAttStronger*/ && Math.random()*100<x){
                 return skill;
             }
-            if(isDef==1 && conditionAttStronger && Math.random()*100<x){
+            if(isDef==1 /*&& conditionAttStronger*/ && Math.random()*100<x){
                 return skill;
             }
             return null;
@@ -299,14 +304,14 @@ public class BattleField {
                     diff=realSkillPower(skill, attTeam, attHero, defHero.resist)*defHero.def_battle;
                     //if(defHero.def_battle<=diff) diff=defHero.def_battle-1;
                     defHero.def_battle-=diff;
-                    if(defHero.def_battle<0) defHero.def_battle=0;
+                    //if(defHero.def_battle<0) defHero.def_battle=0;
                     sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
                 }
                 else{
                     diff=realSkillPower(skill, defTeam, defHero, attHero.resist)*attHero.att_battle;
                     //if(attHero.att_battle<=diff) diff=attHero.att_battle-1;
                     attHero.att_battle-=diff;
-                    if(attHero.att_battle<0) attHero.att_battle=0;
+                    //if(attHero.att_battle<0) attHero.att_battle=0;
                     sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
                 }
                 break;
@@ -333,7 +338,7 @@ public class BattleField {
                     diff=realSkillPower(skill, attTeam, attHero, defHero.resist)*defHero.def_battle;
                     //if(defHero.def_battle<=diff) diff=defHero.def_battle-1;
                     defHero.def_battle-=diff;
-                    if(defHero.def_battle<0) defHero.def_battle=0;
+                    //if(defHero.def_battle<0) defHero.def_battle=0;
                     sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
                 }
                 else{
@@ -344,7 +349,7 @@ public class BattleField {
                     diff=realSkillPower(skill, defTeam, defHero, attHero.resist)*attHero.att_battle;
                     //if(attHero.att_battle<=diff) diff=attHero.att_battle-1;
                     attHero.att_battle-=diff;
-                    if(attHero.att_battle<0) attHero.att_battle=0;
+                    //if(attHero.att_battle<0) attHero.att_battle=0;
                     sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
                 }
                 break;
@@ -356,7 +361,7 @@ public class BattleField {
                     //if(defHero.def_battle<=diff) diff=defHero.def_battle-1;
                     attHero.att_battle+=diff;
                     defHero.def_battle-=diff;
-                    if(defHero.def_battle<0) defHero.def_battle=0;
+                    //if(defHero.def_battle<0) defHero.def_battle=0;
                     sendMsg(attHero.name+" +"+(int)diff+" "+(int)attHero.att_battle);
                     sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
                 }
@@ -366,7 +371,7 @@ public class BattleField {
                     //if(attHero.att_battle<=diff) diff=attHero.att_battle-1;
                     defHero.def_battle+=diff;
                     attHero.att_battle-=diff;
-                    if(attHero.att_battle<0) attHero.att_battle=0;
+                    //if(attHero.att_battle<0) attHero.att_battle=0;
                     sendMsg(defHero.name+" +"+(int)diff+" "+(int)defHero.def_battle);
                     sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
                 }
@@ -385,10 +390,15 @@ public class BattleField {
                             continue;
                         }
                         if(!attStatus[i]){
-                            attStatus[i]=true;
-                            attSkillable[i]=true;
-                            attTeam.heros[i].att_battle=realSkillPower(skill, attTeam, attHero, defHero.resist)*attTeam.heros[i].att;
-                            sendMsg(attTeam.heros[i].name+" 复活！");
+                            if(attPoisoned[i]){
+                                sendMsg(attTeam.heros[i].name+" 中毒，无法复活！");
+                            }
+                            else{
+                                attStatus[i]=true;
+                                attSkillable[i]=true;
+                                attTeam.heros[i].att_battle=realSkillPower(skill, attTeam, attHero, defHero.resist)*attTeam.heros[i].att;
+                                sendMsg(attTeam.heros[i].name+" 复活！");
+                            }
                         }
                     }
                 }
@@ -398,10 +408,15 @@ public class BattleField {
                             continue;
                         }
                         if(!defStatus[i]){
-                            defStatus[i]=true;
-                            defSkillable[i]=true;
-                            defTeam.heros[i].def_battle=realSkillPower(skill, defTeam, defHero, attHero.resist)*defTeam.heros[i].def;
-                            sendMsg(defTeam.heros[i].name+" 复活！");
+                            if(defPoisoned[i]){
+                                sendMsg(defTeam.heros[i].name+" 中毒，无法复活！");
+                            }
+                            else{
+                                defStatus[i]=true;
+                                defSkillable[i]=true;
+                                defTeam.heros[i].def_battle=realSkillPower(skill, defTeam, defHero, attHero.resist)*defTeam.heros[i].def;
+                                sendMsg(defTeam.heros[i].name+" 复活！");
+                            }
                         }
                     }
                 }
@@ -429,10 +444,15 @@ public class BattleField {
                             j--;
                         }
                     }
-                    attStatus[--i]=true;
-                    attSkillable[i]=true;
-                    attTeam.heros[i].att_battle=realSkillPower(skill, attTeam, attHero, defHero.resist)*attTeam.heros[i].att;
-                    sendMsg(attTeam.heros[i].name+" 复活！");
+                    if(attPoisoned[--i]){
+                        sendMsg(attTeam.heros[i].name+" 中毒，无法复活！");
+                    }
+                    else{
+                        attStatus[i]=true;
+                        attSkillable[i]=true;
+                        attTeam.heros[i].att_battle=realSkillPower(skill, attTeam, attHero, defHero.resist)*attTeam.heros[i].att;
+                        sendMsg(attTeam.heros[i].name+" 复活！");
+                    }
                 }
                 else{
                     for(i=0; i<defTeam.number; i++){
@@ -454,10 +474,15 @@ public class BattleField {
                             j--;
                         }
                     }
-                    defStatus[--i]=true;
-                    defSkillable[i]=true;
-                    defTeam.heros[i].def_battle=realSkillPower(skill, defTeam, defHero, attHero.resist)*defTeam.heros[i].def;
-                    sendMsg(defTeam.heros[i].name+" 复活！");
+                    if(defPoisoned[--i]){
+                        sendMsg(defTeam.heros[i].name+" 中毒，无法复活！");
+                    }
+                    else{
+                        defStatus[i]=true;
+                        defSkillable[i]=true;
+                        defTeam.heros[i].def_battle=realSkillPower(skill, defTeam, defHero, attHero.resist)*defTeam.heros[i].def;
+                        sendMsg(defTeam.heros[i].name+" 复活！");
+                    }
                 }
                 break;
             // 加自身初始值的B%
@@ -481,15 +506,53 @@ public class BattleField {
                     diff=realSkillPower(skill, attTeam, attHero, defHero.resist)*(defHero.shield.def+defHero.weapon.def);
                     //if(defHero.def_battle<=diff) diff=defHero.def_battle-1;
                     defHero.def_battle-=diff;
-                    if(defHero.def_battle<0) defHero.def_battle=0;
+                    //if(defHero.def_battle<0) defHero.def_battle=0;
                     sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
                 }
                 else{
                     diff=realSkillPower(skill, defTeam, defHero, attHero.resist)*(attHero.weapon.att+attHero.shield.def);
                     //if(attHero.att_battle<=diff) diff=attHero.att_battle-1;
                     attHero.att_battle-=diff;
-                    if(attHero.att_battle<0) attHero.att_battle=0;
+                    //if(attHero.att_battle<0) attHero.att_battle=0;
                     sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
+                }
+                break;
+            // 中毒
+            case 31:
+                if(who==0){
+                    for(i=0; i<defTeam.number; i++){
+                        if(defTeam.heros[i]==defHero){
+                            break;
+                        }
+                    }
+                    if(i<defTeam.number){
+                        defPoisoned[i]=true;
+                    }
+                }
+                else{
+                    for(i=0; i<attTeam.number; i++){
+                        if(attTeam.heros[i]==attHero){
+                            break;
+                        }
+                    }
+                    if(i<attTeam.number){
+                        attPoisoned[i]=true;
+                    }
+                }
+                break;
+            // 轮回眼（恢复碰撞伤害）
+            case 32:
+                if(who==0){
+                    diff=realSkillPower(skill, attTeam, attHero, defHero.resist)*anil;
+                    diff=diff<1?0:diff;
+                    attHero.att_battle+=diff;
+                    sendMsg(attHero.name+" +"+(int)diff+" "+(int)attHero.att_battle);
+                }
+                else{
+                    diff=realSkillPower(skill, defTeam, defHero, attHero.resist)*anil;
+                    diff=diff<1?0:diff;
+                    defHero.def_battle+=diff;
+                    sendMsg(defHero.name+" +"+(int)diff+" "+(int)defHero.def_battle);
                 }
                 break;
             // 嘴遁
@@ -503,7 +566,7 @@ public class BattleField {
                     }
                     //if(defHero.def_battle<=diff) diff=defHero.def_battle-1;
                     defHero.def_battle-=diff;
-                    if(defHero.def_battle<0) defHero.def_battle=0;
+                    //if(defHero.def_battle<0) defHero.def_battle=0;
                     sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
                 }
                 else{
@@ -515,7 +578,7 @@ public class BattleField {
                     }
                     //if(attHero.att_battle<=diff) diff=attHero.att_battle-1;
                     attHero.att_battle-=diff;
-                    if(attHero.att_battle<0) attHero.att_battle=0;
+                    //if(attHero.att_battle<0) attHero.att_battle=0;
                     sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
                 }
                 break;
@@ -548,6 +611,21 @@ public class BattleField {
                     }
                     attSkillable[i]=false;
                     sendMsg(attHero.name+" 不能发动技能");
+                }
+                break;
+            // 神树降诞
+            case 35:
+                if(who==0){
+                    diff=defHero.def_battle-1;
+                    defHero.def_battle-=diff;
+                    //if(defHero.def_battle<0) defHero.def_battle=0;
+                    sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
+                }
+                else{
+                    diff=attHero.att_battle-1;
+                    attHero.att_battle-=diff;
+                    //if(attHero.att_battle<0) attHero.att_battle=0;
+                    sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
                 }
                 break;
             default:
@@ -712,6 +790,7 @@ public class BattleField {
             if(i<attacker.number && (i!=0 || killFirst!=0)){
                 attStatus[i]=true;
                 attSkillable[i]=true;
+                attPoisoned[i]=false;
                 attacker.heros[i].att_battle=attacker.heros[i].att;
                 if(!conditionAttDup){
                     for(j=i+1; j<attacker.number; j++){
@@ -725,10 +804,12 @@ public class BattleField {
             else{
                 attStatus[i]=false;
                 attSkillable[i]=false;
+                attPoisoned[i]=false;
             }
             if(i<defender.number && (i!=0 || killFirst!=1)){
                 defStatus[i]=true;
                 defSkillable[i]=true;
+                defPoisoned[i]=false;
                 defender.heros[i].def_battle=defender.heros[i].def;
                 if(!conditionDefDup){
                     for(j=i+1; j<defender.number; j++){
@@ -742,6 +823,7 @@ public class BattleField {
             else{
                 defStatus[i]=false;
                 defSkillable[i]=false;
+                defPoisoned[i]=false;
             }
         }
         // init pet status
@@ -773,6 +855,7 @@ public class BattleField {
         while(i>=0 && j>=0){
             attHero=attacker.heros[i];
             defHero=defender.heros[j];
+            anil=0;
             showValue(attHero, defHero);
             if(attHero.att_battle>defHero.def_battle){
                 conditionAttStronger=true;
@@ -963,6 +1046,74 @@ public class BattleField {
                     if(attSkillable[i] && (attSkill=activate(attHero.skill1, 0, 0, attacker.skillRateMultiply+attHero.rateRatio/100, attacker.skillRatePlus, attStatus, attacker.number))==null){
                         attSkill=activate(attHero.skill2, 0, 0, attacker.skillRateMultiply+attHero.rateRatio/100, attacker.skillRatePlus, attStatus, attacker.number);
                     }
+                    if(activePetDef==1){
+                        attSkill=null;
+                    }
+                    // 判断防御方是否发动技能
+                    if(defSkillable[j] && (defSkill=activate(defHero.skill1, 0, 1, defender.skillRateMultiply+defHero.rateRatio/100, defender.skillRatePlus, defStatus, defender.number))==null){
+                        defSkill=activate(defHero.skill2, 0, 1, defender.skillRateMultiply+defHero.rateRatio/100, defender.skillRatePlus, defStatus, defender.number);
+                    }
+                    if(activePetAtt==1){
+                        defSkill=null;
+                    }
+                    // 判断是否发动被动技能
+                    Skill tmpSkill=null;
+                    if(attSkill!=null){
+                        if(defSkillable[j] && (tmpSkill=activate(defHero.skill1, 1, 1, defender.skillRateMultiply+defHero.rateRatio/100, defender.skillRatePlus, defStatus, defender.number))==null){
+                            //tmpSkill=activate(defHero.skill2, 1, 1, defender.skillRateMultiply+defHero.rateRatio/100, defender.skillRatePlus, defStatus, defender.number);
+                        }
+                    }
+                    if(tmpSkill!=null){
+                        defSkill=tmpSkill;
+                    }
+                    tmpSkill=null;
+                    if(defSkill!=null && defSkill.type!=15 && defSkill.type!=16){
+                        if(attSkillable[i] && (tmpSkill=activate(attHero.skill1, 1, 0, attacker.skillRateMultiply+attHero.rateRatio/100, attacker.skillRatePlus, attStatus, attacker.number))==null){
+                            //tmpSkill=activate(attHero.skill2, 1, 0, attacker.skillRateMultiply+attHero.rateRatio/100, attacker.skillRatePlus, attStatus, attacker.number);
+                        }
+                    }
+                    if(tmpSkill!=null){
+                        attSkill=tmpSkill;
+                    }
+                    tmpSkill=null;
+                    if(activePetDef==1 && attSkill!=null && attSkill.type==15){
+                        attSkill=null;
+                    }
+                    if(activePetAtt==1 && defSkill!=null && defSkill.type==15){
+                        attSkill=null;
+                    }
+                    // 技能效果
+                    if(attSkill!=null && attSkill.timming()==0){
+                        if(attSkill.type!=14 || (attSkill.type==14 && !conditionAttStronger)){
+                            sendMsg(attHero.name+" 发动 "+attSkill.name);
+                            if(defSkill==null || defSkill.type!=16){
+                                effect(attSkill, 0, attacker, defender, attHero, defHero, attStatus, defStatus);
+                            }   
+                        }
+                    }
+                    if(defSkill!=null && defSkill.timming()==0){
+                        if(defSkill.type!=14 || (defSkill.type==14 && conditionAttStronger)){
+                            sendMsg(defHero.name+" 发动 "+defSkill.name);
+                            if(attSkill==null || attSkill.type!=16){
+                                effect(defSkill, 1, attacker, defender, attHero, defHero, attStatus, defStatus);
+                            }
+                        }
+                    }
+                    if(attSkill!=null && attSkill.timming()==1){
+                        sendMsg(attHero.name+" 发动 "+attSkill.name);
+                        if(attSkill.type==15 && defSkill!=null){
+                            effect(defSkill, 0, attacker, defender, attHero, defHero, attStatus, defStatus);
+                        }
+                    }
+                    if(defSkill!=null && defSkill.timming()==1){
+                        sendMsg(defHero.name+" 发动 "+defSkill.name);
+                        if(defSkill.type==15 && attSkill!=null){
+                            effect(attSkill, 1, attacker, defender, attHero, defHero, attStatus, defStatus);
+                        }
+                    }
+                    
+                    
+                    /*
                     // 若进攻方发动技能，判断防御方是否发动被动技能
                     if(attSkill!=null){
                         attSkilled=true;
@@ -1027,8 +1178,11 @@ public class BattleField {
                             }
                         }
                     }
+                    */
                     if(attSkill!=null || defSkill!=null) showValue(attHero, defHero);
                     // 属性效果
+                    if(attHero.att_battle<0) attHero.att_battle=0;
+                    if(defHero.def_battle<0) defHero.def_battle=0;
                     pc=checkProperty(attHero.property_battle, defHero.property_battle);
                     if((isActive6Att && pc[0]<0) || (isActive6Def && pc[1]<0)){
                         pc[0]=pc[1]=0;
@@ -1053,6 +1207,7 @@ public class BattleField {
                     if(defHero.def_battle<1) defHero.def_battle=1;
                     // 数值相减
                     tmpDouble=attHero.att_battle>defHero.def_battle? defHero.def_battle:attHero.att_battle;
+                    anil=tmpDouble;
                     attHero.att_battle-=tmpDouble;
                     defHero.def_battle-=tmpDouble;
                 }

@@ -62,6 +62,22 @@ public class SocketAuto implements Runnable{
     private int lastNightLevel;
     private int globalIndex;
     
+    private static final int MAX_NUMBER=20;
+    private String[] names;
+    private Skill[] skillNames;
+    private int[] skillActTimes;
+    
+    public SocketAuto(){
+        names=new String[MAX_NUMBER];
+        skillNames=new Skill[MAX_NUMBER*2];
+        skillActTimes=new int[MAX_NUMBER*4];
+        for(int i=0; i<MAX_NUMBER; i++){
+            names[i]=null;
+            skillNames[i*2]=null;
+            skillNames[i*2+1]=null;
+        }
+    }
+    
     public void setParameters(int level, double r, int hppt, int hppm, int hpmt, int hpmm, int ept, int epm, int emt, int emm, int sleep){
         maxLevel=level;
         rate=r;
@@ -85,7 +101,7 @@ public class SocketAuto implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=SocketMaster.transform(length, (int)(SocketMaster.arguments[4])==0?2007000:2007000, SocketMaster.globalCer, command, extralength, extra);
+        byte[] data=SocketMaster.transform(length, (int)(SocketMaster.arguments[4])==0?2008000:2008000, SocketMaster.globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -293,6 +309,16 @@ public class SocketAuto implements Runnable{
         return true;
     }
     
+    public int mappingName(String name){
+        int i;
+        for(i=0; i<names.length; i++){
+            if(names[i]!=null && names[i].equals(name)){
+                return i;
+            }
+        }
+        return names.length-1;
+    }
+    
     public int battle(int hardness){
         if(!SocketMaster.globalReady || SocketMaster.clientStatic==null || SocketMaster.osStatic==null || SocketMaster.isStatic==null){
             return 2;
@@ -309,6 +335,9 @@ public class SocketAuto implements Runnable{
         HeroLight[] attTeam, defTeam;
         HeroLight attHero, defHero;
         int rounds;
+        int nameIndex, skillNameIndex;
+        boolean attStronger;
+        Skill skill;
         pos=8;
         starGain=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         pos+=8;
@@ -359,6 +388,11 @@ public class SocketAuto implements Runnable{
             pos+=4;
             attTeam[i].hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             pos+=4;
+            if(SocketMaster.mode==0){
+                if(names[i]==null){
+                    names[i]=attTeam[i].name;
+                }
+            }
         }
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         defTeam=new HeroLight[length];
@@ -373,6 +407,11 @@ public class SocketAuto implements Runnable{
             pos+=4; // 忍者等级
             defTeam[i].hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             pos+=4; // 6星+几
+            if(SocketMaster.mode==1){
+                if(names[i]==null){
+                    names[i]=defTeam[i].name;
+                }
+            }
         }
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         pos+=16*length; // 进攻方尾兽排布
@@ -383,9 +422,8 @@ public class SocketAuto implements Runnable{
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         pos+=16*length; // 防守方作战建筑
         rounds=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
-        boolean skilled;
+        boolean skilled, attSkilled, defSkilled;
         boolean shiwei;
-        String skillName;
         for(i=0; i<rounds; i++){
             pos+=8;
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -395,6 +433,12 @@ public class SocketAuto implements Runnable{
             if(attHero==null || defHero==null){
                 System.out.println("Can't find reference hero in the team.");
                 return 3;
+            }
+            if(SocketMaster.mode==0){
+                nameIndex=mappingName(attHero.name);
+            }
+            else{
+                nameIndex=mappingName(defHero.name);
             }
             pos+=4;
             attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -408,18 +452,18 @@ public class SocketAuto implements Runnable{
             skillDetail1="";
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(j!=0){
-                skillName=SocketMaster.referenceSkill(j);
-                skillDetail0+=attName+" >>> "+skillName+"\n";
-                if(skillName.equals("神树降诞")){
+                skill=SocketMaster.referenceSkill(j);
+                skillDetail0+=attName+" >>> "+skill.name+"\n";
+                if(skill.name.equals("神树降诞")){
                     shiwei=true;
                 }
                 skilled=true;
             }
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(j!=0){
-                skillName=SocketMaster.referenceSkill(j);
-                skillDetail1+="     "+skillName+" <<< "+defName+"\n";
-                if(skillName.equals("神树降诞")){
+                skill=SocketMaster.referenceSkill(j);
+                skillDetail1+="     "+skill.name+" <<< "+defName+"\n";
+                if(skill.name.equals("神树降诞")){
                     shiwei=true;
                 }
                 skilled=true;
@@ -458,15 +502,65 @@ public class SocketAuto implements Runnable{
             // 主动技能
             skillDetail0="";
             skillDetail1="";
+            attSkilled=defSkilled=false;
+            skillNameIndex=-1;
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail0+=attHero.name+" 发动 "+SocketMaster.referenceSkill(x)+"\n";
+                skill=SocketMaster.referenceSkill(x);
+                skillDetail0+=attHero.name+" 发动 "+skill.name+"\n";
                 skilled=true;
+                attSkilled=true;
+                if(SocketMaster.mode==0){
+                    if(skillNames[2*nameIndex]==null || skillNames[2*nameIndex].id==skill.id){
+                        skillNameIndex=2*nameIndex;
+                    }
+                    else if(skillNames[2*nameIndex+1]==null || skillNames[2*nameIndex+1].id==skill.id){
+                        skillNameIndex=2*nameIndex+1;
+                    }
+                    else{
+                        System.out.println("Code should never be reached. Skill name: "+skill.name);
+                        skillNameIndex=-1;
+                    }
+                    if(skillNameIndex>=0){
+                        if(skillNames[skillNameIndex]==null){
+                            skillNames[skillNameIndex]=skill;
+                            skillActTimes[skillNameIndex*2]=0;
+                            skillActTimes[skillNameIndex*2+1]=shiwei?0:-1;
+                        }
+                        else if(!shiwei){
+                            skillActTimes[skillNameIndex*2]++;
+                        }
+                    }
+                }
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail1+=defHero.name+" 发动 "+SocketMaster.referenceSkill(x)+"\n";
+                skill=SocketMaster.referenceSkill(x);
+                skillDetail1+=defHero.name+" 发动 "+skill.name+"\n";
                 skilled=true;
+                defSkilled=true;
+                if(SocketMaster.mode==1){
+                    if(skillNames[2*nameIndex]==null || skillNames[2*nameIndex].id==skill.id){
+                        skillNameIndex=2*nameIndex;
+                    }
+                    else if(skillNames[2*nameIndex+1]==null || skillNames[2*nameIndex+1].id==skill.id){
+                        skillNameIndex=2*nameIndex+1;
+                    }
+                    else{
+                        System.out.println("Code should never be reached. Skill name: "+skill.name);
+                        skillNameIndex=-1;
+                    }
+                    if(skillNameIndex>=0){
+                        if(skillNames[skillNameIndex]==null){
+                            skillNames[skillNameIndex]=skill;
+                            skillActTimes[skillNameIndex*2]=0;
+                            skillActTimes[skillNameIndex*2+1]=shiwei?0:-1;
+                        }
+                        else if(!shiwei){
+                            skillActTimes[skillNameIndex*2]++;
+                        }
+                    }
+                }
             }
             pos+=4;
             length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -479,14 +573,94 @@ public class SocketAuto implements Runnable{
                 x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                 skillDetail1+=SocketMaster.referenceHero(defTeam, x).name+" 复活！\n";
             }
+            // 统计各技能是否可以在此时发动
+            if(!shiwei && nameIndex>=0 && SocketMaster.mode==0){
+                if(skillNames[nameIndex*2]!=null){
+                    x=skillNames[nameIndex*2].timming();
+                    if(x==0){
+                        if(skillNames[nameIndex*2].type==14){   // 夺取差值类技能
+                            if(attHero.hp<defHero.hp){
+                                skillActTimes[nameIndex*4+1]++;
+                            }
+                        }
+                        else{
+                            skillActTimes[nameIndex*4+1]++;
+                        }
+                    }
+                    else if(x==1){
+                        if(defSkilled){
+                            skillActTimes[nameIndex*4+1]++;
+                        }
+                    }
+                }
+                if(skillNames[nameIndex*2+1]!=null){
+                    x=skillNames[nameIndex*2+1].timming();
+                    if(x==0){
+                        if(skillNames[nameIndex*2+1].type==14){   // 夺取差值类技能
+                            if(attHero.hp<defHero.hp){
+                                skillActTimes[nameIndex*4+3]++;
+                            }
+                        }
+                        else{
+                            skillActTimes[nameIndex*4+3]++;
+                        }
+                    }
+                    else if(x==1){
+                        if(defSkilled){
+                            skillActTimes[nameIndex*4+3]++;
+                        }
+                    }
+                }
+            }
             pos+=8;
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
                 skillDetail0+=attHero.name+" "+(x>0?"+":"")+x+"\n";
+                attHero.hp+=x;
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
                 skillDetail0+=defHero.name+" "+(x>0?"+":"")+x+"\n";
+                defHero.hp+=x;
+            }
+            // 统计各技能是否可以在此时发动
+            if(!shiwei && nameIndex>=0 && SocketMaster.mode==1){
+                if(skillNames[nameIndex*2]!=null){
+                    x=skillNames[nameIndex*2].timming();
+                    if(x==0){
+                        if(skillNames[nameIndex*2].type==14){   // 夺取差值类技能
+                            if(attHero.hp>defHero.hp){
+                                skillActTimes[nameIndex*4+1]++;
+                            }
+                        }
+                        else{
+                            skillActTimes[nameIndex*4+1]++;
+                        }
+                    }
+                    else if(x==1){
+                        if(attSkilled){
+                            skillActTimes[nameIndex*4+1]++;
+                        }
+                    }
+                }
+                if(skillNames[nameIndex*2+1]!=null){
+                    x=skillNames[nameIndex*2+1].timming();
+                    if(x==0){
+                        if(skillNames[nameIndex*2+1].type==14){   // 夺取差值类技能
+                            if(attHero.hp>defHero.hp){
+                                skillActTimes[nameIndex*4+3]++;
+                            }
+                        }
+                        else{
+                            skillActTimes[nameIndex*4+3]++;
+                        }
+                    }
+                    else if(x==1){
+                        if(attSkilled){
+                            skillActTimes[nameIndex*4+3]++;
+                        }
+                    }
+                }
             }
             pos+=12;
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -517,16 +691,93 @@ public class SocketAuto implements Runnable{
                 battleDetails+=attHero.name+" "+attHero.property+" "+SocketMaster.hp(attHero.hp)+" VS "+SocketMaster.hp(defHero.hp)+" "+defHero.property+" "+defHero.name+"\n";
             }
             pos+=4;
+            int xydiff=x-y;
+            // 统计各技能是否可以在此时发动
+            if(!shiwei && nameIndex>=0){
+                if(skillNames[nameIndex*2]!=null){
+                    x=skillNames[nameIndex*2].timming();
+                    if(x==2){
+                        if(SocketMaster.mode==0 && xydiff<0 || SocketMaster.mode==1 && xydiff>0){
+                            skillActTimes[nameIndex*4+1]++;
+                        }
+                    }
+                    else if(x==3){
+                        if(SocketMaster.mode==0 && xydiff>0 || SocketMaster.mode==1 && xydiff<0){
+                            skillActTimes[nameIndex*4+1]++;
+                        }
+                    }
+                }
+                if(skillNames[nameIndex*2+1]!=null){
+                    x=skillNames[nameIndex*2+1].timming();
+                    if(x==2){
+                        if(SocketMaster.mode==0 && xydiff<0 || SocketMaster.mode==1 && xydiff>0){
+                            skillActTimes[nameIndex*4+3]++;
+                        }
+                    }
+                    else if(x==3){
+                        if(SocketMaster.mode==0 && xydiff>0 || SocketMaster.mode==1 && xydiff<0){
+                            skillActTimes[nameIndex*4+3]++;
+                        }
+                    }
+                }
+            }
+            
             // 战后技能
             skillDetail0="";
             skillDetail1="";
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail0+=attHero.name+" 发动 "+SocketMaster.referenceSkill(x)+"\n";
+                skill=SocketMaster.referenceSkill(x);
+                skillDetail0+=attHero.name+" 发动 "+skill.name+"\n";
+                if(SocketMaster.mode==0){
+                    if(skillNames[2*nameIndex]==null || skillNames[2*nameIndex].id==skill.id){
+                        skillNameIndex=2*nameIndex;
+                    }
+                    else if(skillNames[2*nameIndex+1]==null || skillNames[2*nameIndex+1].id==skill.id){
+                        skillNameIndex=2*nameIndex+1;
+                    }
+                    else{
+                        System.out.println("Code should never be reached. Skill name: "+skill.name);
+                        skillNameIndex=-1;
+                    }
+                    if(skillNameIndex>=0){
+                        if(skillNames[skillNameIndex]==null){
+                            skillNames[skillNameIndex]=skill;
+                            skillActTimes[skillNameIndex*2]=0;
+                            skillActTimes[skillNameIndex*2+1]=0;
+                        }
+                        else if(!shiwei){
+                            skillActTimes[skillNameIndex*2]++;
+                        }
+                    }
+                }
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail1+=defHero.name+" 发动 "+SocketMaster.referenceSkill(x)+"\n";
+                skill=SocketMaster.referenceSkill(x);
+                skillDetail1+=defHero.name+" 发动 "+skill.name+"\n";
+                if(SocketMaster.mode==1){
+                    if(skillNames[2*nameIndex]==null || skillNames[2*nameIndex].id==skill.id){
+                        skillNameIndex=2*nameIndex;
+                    }
+                    else if(skillNames[2*nameIndex+1]==null || skillNames[2*nameIndex+1].id==skill.id){
+                        skillNameIndex=2*nameIndex+1;
+                    }
+                    else{
+                        System.out.println("Code should never be reached. Skill name: "+skill.name);
+                        skillNameIndex=-1;
+                    }
+                    if(skillNameIndex>=0){
+                        if(skillNames[skillNameIndex]==null){
+                            skillNames[skillNameIndex]=skill;
+                            skillActTimes[skillNameIndex*2]=0;
+                            skillActTimes[skillNameIndex*2+1]=0;
+                        }
+                        else if(!shiwei){
+                            skillActTimes[skillNameIndex*2]++;
+                        }
+                    }
+                }
             }
             pos+=8;
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -689,6 +940,38 @@ public class SocketAuto implements Runnable{
         return 0;
     }
     
+    public String skillStatistics(){
+        String stat="技能几率统计：\n";
+        for(int i=0; i<names.length; i++){
+            if(names[i]!=null){
+                stat+=names[i]+"\n";
+                if(skillNames[i*2]!=null){
+                    stat+="    "+skillNames[i*2].name+"\t"+skillActTimes[i*4]+"/"+skillActTimes[i*4+1];
+                    if(skillActTimes[i*4+1]>0){
+                        stat+="  "+(double)skillActTimes[i*4]/skillActTimes[i*4+1]*100;
+                        if(stat.indexOf(".")>0){
+                            stat=stat.substring(0, stat.lastIndexOf(".")+2);
+                        }
+                        stat+="%";
+                    }
+                    stat+="\n";
+                }
+                if(skillNames[i*2+1]!=null){
+                    stat+="    "+skillNames[i*2+1].name+"\t"+skillActTimes[i*4+2]+"/"+skillActTimes[i*4+3];
+                    if(skillActTimes[i*4+3]>0){
+                        stat+="  "+(double)skillActTimes[i*4+2]/skillActTimes[i*4+3]*100;
+                        if(stat.indexOf(".")>0){
+                            stat=stat.substring(0, stat.lastIndexOf(".")+2);
+                        }
+                        stat+="%";
+                    }
+                    stat+="\n";
+                }
+            }
+        }
+        return stat;
+    }
+    
     public void report(String msg, boolean status){
         Report r=new Report(dialogProgress, msg, status);
         SwingUtilities.invokeLater(r);
@@ -710,7 +993,7 @@ public class SocketAuto implements Runnable{
             dialogProgress.status=status;
         }
         if(status<=1){
-            report("自动试炼结束", false);
+            report("自动试炼结束\n\n"+skillStatistics(), false);
         }
         else{
             report("连接中断", false);

@@ -231,7 +231,7 @@ public class SocketMaster implements Runnable{
             case 3: // 快用
                 if(mode==0){
                     cmdGlobal=c_loginp;
-                    if(usr.startsWith("cqh3")){
+                    if(usr.startsWith("381986154")){
                         return login_extra(usr, "Wangsh51920", platform);
                     }
                     else if(usr.startsWith("9091")){
@@ -671,33 +671,33 @@ public class SocketMaster implements Runnable{
     
     public static void setGlobalIP(int i){
         switch(i){
-            case 1:
-                globalIP="121.199.30.254";
-                globalPort=8000;
-                break;
-            case 2:
-                globalIP="121.199.30.254";
+            case 1:     // app 2
+                globalIP="112.124.41.217";
                 globalPort=8010;
                 break;
-            case 3:
+            case 2:     // app 3
+                globalIP="121.199.24.70";
+                globalPort=8000;
+                break;
+            case 3:     // app 5
                 globalIP="121.199.30.204";
                 globalPort=8000;
                 break;
-            case 4:
+            case 4:     // app 9
                 globalIP="121.199.30.204";
                 globalPort=8010;
                 break;
-            case 5:
+            case 5:     // app 11
                 globalIP="121.199.30.204";
                 globalPort=8020;
                 break;
-            case 6:
-                globalIP="121.199.24.70";
-                globalPort=8000;
-                break;
-            case 7:
+            case 6:     // app 13
                 globalIP="121.199.24.70";
                 globalPort=8010;
+                break;
+            case 7:     // app 21
+                globalIP="121.199.24.70";
+                globalPort=8020;
                 break;
             case 8:
                     globalIP="115.29.230.178";
@@ -891,6 +891,18 @@ public class SocketMaster implements Runnable{
                     globalIP="218.244.146.146";
                     globalPort=8030;
                     break;
+            case 56:    // 混157
+                    globalIP="115.29.224.81";
+                    globalPort=8020;
+                    break;
+            case 57:
+                    globalIP="218.244.141.250";
+                    globalPort=8020;
+                    break;
+            case 58:    // 混159
+                    globalIP="115.29.224.81";
+                    globalPort=8030;
+                    break;
             case 0:
             default:
                 globalIP="112.124.41.217";
@@ -939,7 +951,7 @@ public class SocketMaster implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, (int)arguments[4]==0?2007000:2007000, globalCer, command, extralength, extra);
+        byte[] data=transform(length, (int)arguments[4]==0?2008000:2008000, globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -1109,13 +1121,13 @@ public class SocketMaster implements Runnable{
         return null;
     }
     
-    public static String referenceSkill(int id){
+    public static Skill referenceSkill(int id){
         for(Skill sk:SLComputer.skills){
             if(sk.id==id){
-                return sk.name;
+                return sk;
             }
         }
-        return "???";
+        return new Skill();
     }
     
     public int battle(int hardness){
@@ -1215,7 +1227,7 @@ public class SocketMaster implements Runnable{
             skillDetail1="";
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(j!=0){
-                skillName=referenceSkill(j);
+                skillName=referenceSkill(j).name;
                 skillDetail0+=attName+" >>> "+skillName+"\n";
                 if(skillName.equals("神树降诞")){
                     shiwei=true;
@@ -1224,7 +1236,7 @@ public class SocketMaster implements Runnable{
             }
             j=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(j!=0){
-                skillName=referenceSkill(j);
+                skillName=referenceSkill(j).name;
                 skillDetail1+="     "+skillName+" <<< "+defName+"\n";
                 if(skillName.equals("神树降诞")){
                     shiwei=true;
@@ -1267,12 +1279,12 @@ public class SocketMaster implements Runnable{
             skillDetail1="";
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail0+=attHero.name+" 发动 "+referenceSkill(x)+"\n";
+                skillDetail0+=attHero.name+" 发动 "+referenceSkill(x).name+"\n";
                 skilled=true;
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail1+=defHero.name+" 发动 "+referenceSkill(x)+"\n";
+                skillDetail1+=defHero.name+" 发动 "+referenceSkill(x).name+"\n";
                 skilled=true;
             }
             pos+=4;
@@ -1329,11 +1341,11 @@ public class SocketMaster implements Runnable{
             skillDetail1="";
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail0+=attHero.name+" 发动 "+referenceSkill(x)+"\n";
+                skillDetail0+=attHero.name+" 发动 "+referenceSkill(x).name+"\n";
             }
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             if(x!=0){
-                skillDetail1+=defHero.name+" 发动 "+referenceSkill(x)+"\n";
+                skillDetail1+=defHero.name+" 发动 "+referenceSkill(x).name+"\n";
             }
             pos+=8;
             x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;

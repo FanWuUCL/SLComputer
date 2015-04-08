@@ -23,7 +23,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "40101": {
     "pid": "0",
@@ -49,7 +54,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "40102": {
     "pid": "0",
@@ -77,7 +87,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "40103": {
     "pid": "0",
@@ -103,7 +118,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "40104": {
     "pid": "0",
@@ -136,7 +156,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60003
+      ],
+      [
+        2,
+        60003
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40105": {
     "pid": "0",
@@ -170,7 +206,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60135
+      ],
+      [
+        2,
+        60135
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40106": {
     "pid": "0",
@@ -205,7 +257,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60021
+      ],
+      [
+        2,
+        60021
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40107": {
     "pid": "0",
@@ -239,7 +307,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60016
+      ],
+      [
+        2,
+        60016
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40108": {
     "pid": "0",
@@ -271,7 +355,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60006
+      ],
+      [
+        2,
+        60006
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40109": {
     "pid": "0",
@@ -305,7 +405,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60000
+      ],
+      [
+        2,
+        60000
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40110": {
     "pid": "0",
@@ -358,6 +474,19 @@
         1,
         20,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60001
+      ],
+      [
+        2,
+        60001
+      ],
+      [
+        5
       ]
     ]
   },
@@ -414,6 +543,19 @@
         1,
         20,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60097
+      ],
+      [
+        2,
+        60097
+      ],
+      [
+        5
       ]
     ]
   },
@@ -472,6 +614,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60062
+      ],
+      [
+        2,
+        60062
+      ],
+      [
+        5
+      ]
     ]
   },
   "40113": {
@@ -526,6 +681,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60131
+      ],
+      [
+        2,
+        60131
+      ],
+      [
+        5
+      ]
     ]
   },
   "40114": {
@@ -579,6 +747,19 @@
         1,
         20,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60141
+      ],
+      [
+        2,
+        60141
+      ],
+      [
+        5
       ]
     ]
   },
@@ -635,6 +816,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60040
+      ],
+      [
+        2,
+        60040
+      ],
+      [
+        5
+      ]
     ]
   },
   "40116": {
@@ -688,6 +882,19 @@
         1,
         20,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60108
+      ],
+      [
+        2,
+        60108
+      ],
+      [
+        5
       ]
     ]
   },
@@ -744,6 +951,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60078
+      ],
+      [
+        2,
+        60078
+      ],
+      [
+        5
+      ]
     ]
   },
   "40118": {
@@ -799,6 +1019,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60015
+      ],
+      [
+        2,
+        60015
+      ],
+      [
+        5
+      ]
     ]
   },
   "40119": {
@@ -852,6 +1085,23 @@
         1,
         20,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60069
+      ],
+      [
+        1,
+        60163
+      ],
+      [
+        2,
+        60163
+      ],
+      [
+        5
       ]
     ]
   },
@@ -908,6 +1158,30 @@
         1,
         20,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60035
+      ],
+      [
+        1,
+        60257
+      ],
+      [
+        2,
+        60035
+      ],
+      [
+        2,
+        60257
+      ],
+      [
+        5
+      ],
+      [
+        10
       ]
     ]
   },
@@ -966,6 +1240,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60088
+      ],
+      [
+        2,
+        60088
+      ],
+      [
+        5
+      ]
     ]
   },
   "40122": {
@@ -1020,6 +1307,19 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60122
+      ],
+      [
+        2,
+        60122
+      ],
+      [
+        5
+      ]
     ]
   },
   "40123": {
@@ -1071,6 +1371,25 @@
         1,
         25,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60162
+      ],
+      [
+        2,
+        60162
+      ],
+      [
+        5
+      ],
+      [
+        9
+      ],
+      [
+        10
       ]
     ]
   },
@@ -1126,6 +1445,27 @@
         20,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60118
+      ],
+      [
+        1,
+        60250
+      ],
+      [
+        2,
+        60118
+      ],
+      [
+        2,
+        60250
+      ],
+      [
+        5
+      ]
     ]
   },
   "40125": {
@@ -1179,6 +1519,22 @@
         1,
         25,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60124
+      ],
+      [
+        2,
+        60124
+      ],
+      [
+        5
+      ],
+      [
+        10
       ]
     ]
   },
@@ -1234,6 +1590,19 @@
         25,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60058
+      ],
+      [
+        2,
+        60058
+      ],
+      [
+        5
+      ]
     ]
   },
   "40127": {
@@ -1288,6 +1657,30 @@
         25,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60084
+      ],
+      [
+        1,
+        60238
+      ],
+      [
+        2,
+        60084
+      ],
+      [
+        2,
+        60238
+      ],
+      [
+        5
+      ],
+      [
+        9
+      ]
     ]
   },
   "40128": {
@@ -1320,7 +1713,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60133
+      ],
+      [
+        2,
+        60133
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40129": {
     "pid": "0",
@@ -1353,7 +1762,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60010
+      ],
+      [
+        2,
+        60010
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40130": {
     "pid": "0",
@@ -1409,6 +1834,14 @@
         25,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        10
+      ]
     ]
   },
   "40131": {
@@ -1463,6 +1896,14 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "40132": {
@@ -1514,6 +1955,14 @@
         1,
         30,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -1570,6 +2019,14 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "40134": {
@@ -1623,6 +2080,15 @@
         1,
         25,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60266
+      ],
+      [
+        5
       ]
     ]
   },
@@ -1678,6 +2144,19 @@
         25,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60174
+      ],
+      [
+        2,
+        60174
+      ],
+      [
+        5
+      ]
     ]
   },
   "40136": {
@@ -1732,6 +2211,17 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ],
+      [
+        9
+      ]
     ]
   },
   "40137": {
@@ -1759,7 +2249,7 @@
     "defGrowth": 31.54,
     "toughGrowth": 0,
     "para3": [
-      10305
+      10304
     ],
     "limit": 0,
     "slot": 4,
@@ -1785,6 +2275,14 @@
         1,
         30,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -1839,6 +2337,19 @@
         1,
         25,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60167
+      ],
+      [
+        2,
+        60167
+      ],
+      [
+        5
       ]
     ]
   },
@@ -1895,6 +2406,15 @@
         25,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60270
+      ],
+      [
+        5
+      ]
     ]
   },
   "40140": {
@@ -1948,6 +2468,14 @@
         1,
         30,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -2005,6 +2533,14 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "40142": {
@@ -2059,6 +2595,14 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "40143": {
@@ -2112,6 +2656,14 @@
         1,
         30,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -2168,6 +2720,14 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "40145": {
@@ -2223,6 +2783,74 @@
         30,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "40146": {
+    "pid": "0",
+    "updateId": "40246",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "40888",
+    "star": 5,
+    "drop": 0,
+    "type": 0,
+    "exp": 600,
+    "name": "神威手里剑",
+    "description": "【活动卡】<武器>卡卡西得到宇智波带土的两只写轮眼后,将神威的力量融合到手里剑中,具有强力的远程攻击力",
+    "para1": 400,
+    "para2": 283,
+    "tough": 0,
+    "atkGrowth": 44,
+    "defGrowth": 31.54,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      426,
+      0,
+      0
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        2,
+        400,
+        0
+      ],
+      [
+        1,
+        30,
+        0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "40210": {
@@ -2259,14 +2887,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40211": {
     "pid": "40111",
@@ -2304,14 +2933,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40212": {
     "pid": "40112",
@@ -2350,14 +2980,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40213": {
     "pid": "40113",
@@ -2393,14 +3024,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40214": {
     "pid": "40114",
@@ -2436,14 +3068,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40215": {
     "pid": "40115",
@@ -2480,14 +3113,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40216": {
     "pid": "40116",
@@ -2523,14 +3157,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40217": {
     "pid": "40117",
@@ -2567,14 +3202,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40218": {
     "pid": "40118",
@@ -2610,14 +3246,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40219": {
     "pid": "40119",
@@ -2653,14 +3290,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40220": {
     "pid": "40120",
@@ -2698,14 +3336,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40221": {
     "pid": "40121",
@@ -2744,14 +3383,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40222": {
     "pid": "40122",
@@ -2787,14 +3427,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40223": {
     "pid": "40123",
@@ -2828,14 +3469,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40224": {
     "pid": "40124",
@@ -2871,14 +3513,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40225": {
     "pid": "40125",
@@ -2914,14 +3557,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40226": {
     "pid": "40126",
@@ -2957,14 +3601,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40227": {
     "pid": "40127",
@@ -3000,14 +3645,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40230": {
     "pid": "40130",
@@ -3045,14 +3691,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40231": {
     "pid": "40131",
@@ -3073,7 +3720,7 @@
     "name": "名刀黑泽",
     "description": "【活动卡】<武器>非常忙的名刀，在海贼王中扮演黑刀秋水、在死神中扮演天锁斩月，身价昂贵，据说出场费高达100万元，世界上出场费最贵的刀。",
     "para1": 365,
-    "para2": 275,
+    "para2": 255,
     "tough": 0,
     "atkGrowth": 38.325,
     "defGrowth": 25.5,
@@ -3088,14 +3735,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40232": {
     "pid": "40132",
@@ -3116,7 +3764,7 @@
     "name": "天沼矛",
     "description": "【活动卡】<武器>号称是创世的神器，是日本神话中用来创造第一块大地的矛，又称作天之琼矛或天琼戈。火影中是六道仙人的法器之一。",
     "para1": 385,
-    "para2": 282,
+    "para2": 262,
     "tough": 0,
     "atkGrowth": 40.425,
     "defGrowth": 27.51,
@@ -3129,14 +3777,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40233": {
     "pid": "40133",
@@ -3157,7 +3806,7 @@
     "name": "六道锡杖",
     "description": "【活动卡】<武器>原为六道仙人右手所持武器，本身为阴阳遁制造出来，后斑成为十尾人柱力后得到。",
     "para1": 405,
-    "para2": 289,
+    "para2": 269,
     "tough": 0,
     "atkGrowth": 42.525,
     "defGrowth": 29.52,
@@ -3172,14 +3821,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40234": {
     "pid": "40134",
@@ -3215,14 +3865,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40235": {
     "pid": "40135",
@@ -3258,14 +3909,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40236": {
     "pid": "40136",
@@ -3286,7 +3938,7 @@
     "name": "闪光苦无",
     "description": "【活动卡】<武器>波风水门的独门武器，带有术式的特制苦无，当敌人的身体被留下术式时，就意味着被书写上了代表死亡的咒印。",
     "para1": 425,
-    "para2": 296,
+    "para2": 276,
     "tough": 0,
     "atkGrowth": 44.625,
     "defGrowth": 30.53,
@@ -3301,14 +3953,15 @@
       0,
       6
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40237": {
     "pid": "40137",
@@ -3329,13 +3982,13 @@
     "name": "琥珀净瓶",
     "description": "【活动卡】<武器>六道仙人在看过西游记后，激发灵感发明的武器，只要回应了持有人的话就会被封印进瓶中。",
     "para1": 445,
-    "para2": 303,
+    "para2": 283,
     "tough": 0,
     "atkGrowth": 46.725,
     "defGrowth": 31.54,
     "toughGrowth": 0,
     "para3": [
-      10305
+      10304
     ],
     "limit": 0,
     "slot": 4,
@@ -3344,14 +3997,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40238": {
     "pid": "40138",
@@ -3387,14 +4041,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40239": {
     "pid": "40139",
@@ -3431,14 +4086,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40240": {
     "pid": "40140",
@@ -3459,7 +4115,7 @@
     "name": "天之麻迦古弓",
     "description": "【活动卡】<武器>日本上古神器之一，佐助须佐能乎使用的兵器，威力与速度极大。",
     "para1": 415,
-    "para2": 293,
+    "para2": 273,
     "tough": 0,
     "atkGrowth": 43.575,
     "defGrowth": 32.55,
@@ -3474,14 +4130,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40241": {
     "pid": "40141",
@@ -3502,7 +4159,7 @@
     "name": "求道玉",
     "description": "【活动卡】<武器>只有获得十尾或六道之力方能操纵，可变化固液形态进行攻防，能使世间一切忍术无效化。",
     "para1": 455,
-    "para2": 313,
+    "para2": 293,
     "tough": 0,
     "atkGrowth": 47.775,
     "defGrowth": 32.23,
@@ -3517,14 +4174,15 @@
       0,
       6
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40242": {
     "pid": "40142",
@@ -3545,7 +4203,7 @@
     "name": "仙法卷轴",
     "description": "【活动卡】<武器>仙法大卷轴，源自妙木山的纯天然宝藏，自来也、水门、鸣人数代传承，不是每一个卷轴都叫仙法。",
     "para1": 445,
-    "para2": 303,
+    "para2": 283,
     "tough": 0,
     "atkGrowth": 46.725,
     "defGrowth": 31.54,
@@ -3560,14 +4218,15 @@
       0,
       6
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40243": {
     "pid": "40143",
@@ -3588,7 +4247,7 @@
     "name": "死神镰刀",
     "description": "【活动卡】<武器>斑爷的镰刀，与火焰之扇相连接的武器，象征着死神的裁决。",
     "para1": 445,
-    "para2": 303,
+    "para2": 283,
     "tough": 0,
     "atkGrowth": 46.725,
     "defGrowth": 31.54,
@@ -3603,14 +4262,15 @@
       0,
       6
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40244": {
     "pid": "40144",
@@ -3631,7 +4291,7 @@
     "name": "因陀罗之矢",
     "description": "【活动卡】<武器>须佐能乎已知的最强招式，射出的集合九大尾兽查克拉的非实体箭矢，威力震天动地！",
     "para1": 455,
-    "para2": 313,
+    "para2": 293,
     "tough": 0,
     "atkGrowth": 47.775,
     "defGrowth": 32.23,
@@ -3644,14 +4304,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40245": {
     "pid": "40145",
@@ -3672,7 +4333,7 @@
     "name": "阿修罗之力",
     "description": "【活动卡】<武器>鸣人在究极状态下，融合自然之力，形成的阴阳螺旋手里剑，查克拉凝结的非实体手里剑，威力极大。",
     "para1": 455,
-    "para2": 313,
+    "para2": 293,
     "tough": 0,
     "atkGrowth": 47.775,
     "defGrowth": 32.23,
@@ -3685,14 +4346,57 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "40246": {
+    "pid": "40146",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "40888",
+    "star": 6,
+    "drop": 0,
+    "type": 0,
+    "exp": 1000,
+    "name": "神威手里剑",
+    "description": "【活动卡】<武器>卡卡西得到宇智波带土的两只写轮眼后,将神威的力量融合到手里剑中,具有强力的远程攻击力",
+    "para1": 435,
+    "para2": 283,
+    "tough": 0,
+    "atkGrowth": 47.85,
+    "defGrowth": 31.54,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      466,
+      0,
+      0
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40310": {
     "pid": "40110",
@@ -3728,14 +4432,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40311": {
     "pid": "40111",
@@ -3773,14 +4478,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40312": {
     "pid": "40112",
@@ -3819,14 +4525,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40313": {
     "pid": "40113",
@@ -3862,14 +4569,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40314": {
     "pid": "40114",
@@ -3905,14 +4613,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40315": {
     "pid": "40115",
@@ -3949,14 +4658,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40316": {
     "pid": "40116",
@@ -3992,14 +4702,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40317": {
     "pid": "40117",
@@ -4036,14 +4747,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40318": {
     "pid": "40118",
@@ -4079,14 +4791,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40319": {
     "pid": "40119",
@@ -4122,14 +4835,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40320": {
     "pid": "40120",
@@ -4167,14 +4881,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40321": {
     "pid": "40121",
@@ -4213,14 +4928,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40322": {
     "pid": "40122",
@@ -4256,14 +4972,15 @@
       0,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40324": {
     "pid": "40124",
@@ -4299,14 +5016,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "40998": {
     "pid": "0",
@@ -4332,7 +5050,20 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60145
+      ],
+      [
+        2,
+        60145
+      ],
+      [
+        8
+      ]
+    ]
   },
   "40999": {
     "pid": "0",
@@ -4358,7 +5089,29 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60147
+      ],
+      [
+        2,
+        60147
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42101": {
     "pid": "0",
@@ -4384,7 +5137,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "42102": {
     "pid": "0",
@@ -4410,7 +5168,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "42103": {
     "pid": "0",
@@ -4436,7 +5199,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "42104": {
     "pid": "0",
@@ -4462,7 +5230,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "42105": {
     "pid": "0",
@@ -4488,7 +5261,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "42106": {
     "pid": "0",
@@ -4518,7 +5296,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60020
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42107": {
     "pid": "0",
@@ -4548,7 +5338,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60023
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42108": {
     "pid": "0",
@@ -4578,7 +5380,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60032
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42109": {
     "pid": "0",
@@ -4608,7 +5422,15 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42110": {
     "pid": "0",
@@ -4638,7 +5460,15 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42111": {
     "pid": "0",
@@ -4668,7 +5498,15 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42112": {
     "pid": "0",
@@ -4698,7 +5536,15 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42113": {
     "pid": "0",
@@ -4728,7 +5574,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60068
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42114": {
     "pid": "0",
@@ -4779,6 +5637,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60111
+      ],
+      [
+        5
       ]
     ]
   },
@@ -4832,6 +5699,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60038
+      ],
+      [
+        5
+      ]
     ]
   },
   "42116": {
@@ -4862,7 +5738,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60083
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42117": {
     "pid": "0",
@@ -4892,7 +5780,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60107
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42118": {
     "pid": "0",
@@ -4922,7 +5822,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60082
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42119": {
     "pid": "0",
@@ -4973,6 +5885,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60056
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5026,6 +5947,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60069
+      ],
+      [
+        5
+      ]
     ]
   },
   "42121": {
@@ -5056,7 +5986,15 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42122": {
     "pid": "0",
@@ -5108,6 +6046,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60064
+      ],
+      [
+        5
+      ]
     ]
   },
   "42123": {
@@ -5138,7 +6085,15 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42124": {
     "pid": "0",
@@ -5168,7 +6123,19 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        2,
+        60101
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "42125": {
     "pid": "0",
@@ -5219,6 +6186,15 @@
         3,
         5,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60186
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5272,6 +6248,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60074
+      ],
+      [
+        5
+      ]
     ]
   },
   "42127": {
@@ -5323,6 +6308,15 @@
         3,
         5,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60121
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5376,6 +6370,15 @@
         5,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60149
+      ],
+      [
+        5
+      ]
     ]
   },
   "42129": {
@@ -5395,7 +6398,7 @@
     "type": 33,
     "exp": 600,
     "name": "二代万蛇",
-    "description": "<宝物>针对万蛇所有的细胞都使用了药物使它活性化而创造出来的第二代万蛇，完全超越一代。",
+    "description": "<宝物>药师兜的通灵兽，针对万蛇所有的细胞都使用了药物使它活性化而创造出来的第二代万蛇，完全超越一代。",
     "para1": 215,
     "para2": 215,
     "tough": 310,
@@ -5427,6 +6430,15 @@
         3,
         5,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60155
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5480,6 +6492,15 @@
         5,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60251
+      ],
+      [
+        5
+      ]
     ]
   },
   "42131": {
@@ -5531,6 +6552,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60099
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5584,6 +6614,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60132
+      ],
+      [
+        5
+      ]
     ]
   },
   "42133": {
@@ -5635,6 +6674,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60066
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5688,6 +6736,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60136
+      ],
+      [
+        5
+      ]
     ]
   },
   "42135": {
@@ -5739,6 +6796,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60138
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5792,6 +6858,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60091
+      ],
+      [
+        5
+      ]
     ]
   },
   "42137": {
@@ -5843,6 +6918,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60235
+      ],
+      [
+        5
       ]
     ]
   },
@@ -5896,6 +6980,15 @@
         3,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60240
+      ],
+      [
+        5
+      ]
     ]
   },
   "42139": {
@@ -5947,6 +7040,15 @@
         3,
         3,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60246
+      ],
+      [
+        5
       ]
     ]
   },
@@ -6000,6 +7102,15 @@
         5,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60254
+      ],
+      [
+        5
+      ]
     ]
   },
   "42141": {
@@ -6051,6 +7162,15 @@
         3,
         5,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60126
+      ],
+      [
+        5
       ]
     ]
   },
@@ -6104,6 +7224,15 @@
         5,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60128
+      ],
+      [
+        5
+      ]
     ]
   },
   "42143": {
@@ -6155,6 +7284,15 @@
         3,
         5,
         0
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60258
+      ],
+      [
+        5
       ]
     ]
   },
@@ -6208,6 +7346,15 @@
         5,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60259
+      ],
+      [
+        5
+      ]
     ]
   },
   "42145": {
@@ -6234,7 +7381,9 @@
     "atkGrowth": 33,
     "defGrowth": 33,
     "toughGrowth": 20,
-    "para3": null,
+    "para3": [
+      10326
+    ],
     "limit": 0,
     "slot": 4,
     "hideProperty": [
@@ -6260,6 +7409,71 @@
         5,
         0
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "42146": {
+    "pid": "0",
+    "updateId": "42246",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "42898",
+    "star": 5,
+    "drop": 0,
+    "type": 33,
+    "exp": 600,
+    "name": "青蛇",
+    "description": "<宝物>在万蛇死后，佐助与蛇族新的契约通灵兽，称佐助为“佐助少爷”，动作很敏捷，攻击力很强。",
+    "para1": 235,
+    "para2": 235,
+    "tough": 350,
+    "atkGrowth": 25.85,
+    "defGrowth": 25.85,
+    "toughGrowth": 17.5,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      3
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        3,
+        0,
+        5
+      ],
+      [
+        3,
+        5,
+        0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ]
     ]
   },
   "42214": {
@@ -6282,26 +7496,27 @@
     "description": "<宝物>手鞠的通灵兽，行走如飞，敌人往往觉得一阵风吹过，身上已多了一处伤口。",
     "para1": 0,
     "para2": 0,
-    "tough": 196,
+    "tough": 176,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 9.8,
+    "toughGrowth": 8.8,
     "para3": null,
     "limit": 0,
-    "slot": 3,
+    "slot": 4,
     "hideProperty": [
       0,
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42215": {
     "pid": "42115",
@@ -6316,33 +7531,34 @@
     ],
     "_index": "48000",
     "star": 5,
-    "drop": 20,
+    "drop": 0,
     "type": 33,
     "exp": 600,
     "name": "三头蛇",
     "description": "<宝物>大蛇丸的崩溃木叶计划中破坏城墙的通灵兽，后被自来也通灵出蛤蟆文太使出忍术击杀。",
     "para1": 0,
     "para2": 0,
-    "tough": 180,
+    "tough": 160,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 9,
+    "toughGrowth": 8,
     "para3": null,
     "limit": 0,
-    "slot": 3,
+    "slot": 4,
     "hideProperty": [
       0,
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42219": {
     "pid": "42119",
@@ -6364,26 +7580,27 @@
     "description": "<宝物>自来也在与佩恩交战时通灵的蛤蟆，其后在佩恩攻击木叶时，也有被通灵出来协助鸣人，口头禅是“我很没用”。",
     "para1": 0,
     "para2": 0,
-    "tough": 204,
+    "tough": 184,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 10.2,
+    "toughGrowth": 9.2,
     "para3": null,
     "limit": 0,
-    "slot": 3,
+    "slot": 4,
     "hideProperty": [
       0,
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42220": {
     "pid": "42120",
@@ -6405,26 +7622,27 @@
     "description": "<宝物>在佩恩攻击木叶时，与蛤蟆文太、蛤蟆健一同被通灵出来协助鸣人，参与了第四次忍界大战。",
     "para1": 0,
     "para2": 0,
-    "tough": 212,
+    "tough": 192,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 10.6,
+    "toughGrowth": 9.6,
     "para3": null,
     "limit": 0,
-    "slot": 3,
+    "slot": 4,
     "hideProperty": [
       0,
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42222": {
     "pid": "42122",
@@ -6446,26 +7664,27 @@
     "description": "<宝物>妙木山蛤蟆忍村强大的通灵兽，在与鬼鲛、鼬的战斗中保护了鸣人，防御力很强。",
     "para1": 0,
     "para2": 0,
-    "tough": 188,
+    "tough": 168,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 9.4,
+    "toughGrowth": 8.4,
     "para3": null,
     "limit": 0,
-    "slot": 3,
+    "slot": 4,
     "hideProperty": [
       0,
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42225": {
     "pid": "42125",
@@ -6480,13 +7699,13 @@
     ],
     "_index": "48000",
     "star": 6,
-    "drop": 20,
+    "drop": 0,
     "type": 33,
     "exp": 1000,
     "name": "梦貘",
     "description": "<宝物>志村团藏的通灵兽，非常巨大，能够张大嘴巴利用风遁将前方物体吸过来并吞噬。",
-    "para1": 220,
-    "para2": 220,
+    "para1": 200,
+    "para2": 200,
     "tough": 310,
     "atkGrowth": 22,
     "defGrowth": 22,
@@ -6499,14 +7718,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42226": {
     "pid": "42126",
@@ -6528,10 +7748,10 @@
     "description": "<宝物>山椒鱼半藏的通灵兽，全身都是疙瘩,善于偷袭，通过5分钟的积蓄能喷射具有麻痹的功效毒雾。",
     "para1": 0,
     "para2": 0,
-    "tough": 220,
+    "tough": 200,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 11,
+    "toughGrowth": 10,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6540,14 +7760,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42227": {
     "pid": "42127",
@@ -6567,8 +7788,8 @@
     "exp": 1000,
     "name": "蛞蝓",
     "description": "<宝物>纲手的通灵兽，物理性的攻击对其无效，还拥有一次性治疗一个村子的医疗能力。",
-    "para1": 225,
-    "para2": 225,
+    "para1": 205,
+    "para2": 205,
     "tough": 320,
     "atkGrowth": 22.55,
     "defGrowth": 22.55,
@@ -6581,14 +7802,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42228": {
     "pid": "42128",
@@ -6608,8 +7830,8 @@
     "exp": 1000,
     "name": "一代万蛇",
     "description": "<宝物>曾被大蛇丸和佐助通灵，正常通灵需要100个活人当祭品，在佐助与迪达拉的战斗中被炸死。",
-    "para1": 230,
-    "para2": 230,
+    "para1": 210,
+    "para2": 210,
     "tough": 330,
     "atkGrowth": 23.1,
     "defGrowth": 23.1,
@@ -6622,14 +7844,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42229": {
     "pid": "42129",
@@ -6649,8 +7872,8 @@
     "exp": 1000,
     "name": "二代万蛇",
     "description": "<宝物>针对万蛇所有的细胞都使用了药物使它活性化而创造出来的第二代万蛇，完全超越一代。",
-    "para1": 235,
-    "para2": 235,
+    "para1": 215,
+    "para2": 215,
     "tough": 340,
     "atkGrowth": 23.65,
     "defGrowth": 23.65,
@@ -6663,14 +7886,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42230": {
     "pid": "42130",
@@ -6690,8 +7914,8 @@
     "exp": 1000,
     "name": "蛤蟆文太",
     "description": "<宝物>被四代火影，自来也和鸣人通灵过，参与过木叶村许多要事，被鸣人称为“蛤蟆老大”。",
-    "para1": 240,
-    "para2": 240,
+    "para1": 220,
+    "para2": 220,
     "tough": 350,
     "atkGrowth": 24.2,
     "defGrowth": 24.2,
@@ -6704,14 +7928,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42231": {
     "pid": "42131",
@@ -6733,10 +7958,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可以使用水遁泡沫乱波,使对手失去一定行动力或让其减速,曾洗去小南身上的油,借助庞大的钳子夹击对手。",
     "para1": 0,
     "para2": 0,
-    "tough": 228,
+    "tough": 208,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 11.4,
+    "toughGrowth": 10.4,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6745,14 +7970,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42232": {
     "pid": "42132",
@@ -6774,10 +8000,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可以依靠其使自己隐身并施展变色龙影分身保护自己不受到对方攻击同时观察对手。",
     "para1": 0,
     "para2": 0,
-    "tough": 236,
+    "tough": 216,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 11.8,
+    "toughGrowth": 10.8,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6786,14 +8012,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42233": {
     "pid": "42133",
@@ -6815,10 +8042,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可以分裂成多只，曾在与自来也对战中召唤，秽土转生的长门也曾召唤。",
     "para1": 0,
     "para2": 0,
-    "tough": 244,
+    "tough": 224,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 12.2,
+    "toughGrowth": 11.2,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6827,14 +8054,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42234": {
     "pid": "42134",
@@ -6856,10 +8084,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，极其变态的通灵兽，随随便便就使木叶村遭受严重破坏。",
     "para1": 0,
     "para2": 0,
-    "tough": 252,
+    "tough": 232,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 12.6,
+    "toughGrowth": 11.6,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6868,14 +8096,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42235": {
     "pid": "42135",
@@ -6897,10 +8126,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，通过自身庞大的体积把对手逼到无路可退,角也是刺穿敌人的致命武器。",
     "para1": 0,
     "para2": 0,
-    "tough": 260,
+    "tough": 240,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 13,
+    "toughGrowth": 12,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6909,14 +8138,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42236": {
     "pid": "42136",
@@ -6938,10 +8168,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，配合奔跑的冲撞式攻击破坏力极大，角也是刺穿敌人的致命武器。",
     "para1": 0,
     "para2": 0,
-    "tough": 268,
+    "tough": 248,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 13.4,
+    "toughGrowth": 12.4,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6950,14 +8180,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42237": {
     "pid": "42137",
@@ -6979,10 +8210,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可依靠其他的轮回眼共享防御住敌人的忍术。",
     "para1": 0,
     "para2": 0,
-    "tough": 276,
+    "tough": 256,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 13.8,
+    "toughGrowth": 12.8,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -6991,14 +8222,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42238": {
     "pid": "42138",
@@ -7020,10 +8252,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，尖牙利爪，移动速度奇快的杀戮机器。",
     "para1": 0,
     "para2": 0,
-    "tough": 284,
+    "tough": 264,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 14.2,
+    "toughGrowth": 13.2,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7032,14 +8264,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42239": {
     "pid": "42139",
@@ -7061,10 +8294,10 @@
     "description": "<宝物>二代目水影的通灵兽，可以制造海市蜃楼来隐藏自己，同时制造出让所有看到海市蜃楼的人中招的超大规模幻术。",
     "para1": 0,
     "para2": 0,
-    "tough": 292,
+    "tough": 272,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 14.6,
+    "toughGrowth": 13.6,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7073,14 +8306,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42240": {
     "pid": "42140",
@@ -7100,8 +8334,8 @@
     "exp": 1000,
     "name": "白蛇仙人",
     "description": "<宝物>龙地洞的蛇仙人，曾指导药师兜的仙术修行，大蛇丸也曾找过他修行，因三代目尸鬼封尽身体无法承受修行而失败。",
-    "para1": 245,
-    "para2": 245,
+    "para1": 225,
+    "para2": 225,
     "tough": 360,
     "atkGrowth": 24.75,
     "defGrowth": 24.75,
@@ -7114,14 +8348,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42241": {
     "pid": "42141",
@@ -7141,8 +8376,8 @@
     "exp": 1000,
     "name": "深作仙人",
     "description": "<宝物>两大仙蛤蟆之一，曾经与自来也融合进入仙人模式与佩恩交战，自来也死前在他身上留下了有关佩恩讯息的暗号。",
-    "para1": 250,
-    "para2": 250,
+    "para1": 230,
+    "para2": 230,
     "tough": 370,
     "atkGrowth": 25.3,
     "defGrowth": 25.3,
@@ -7155,14 +8390,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42242": {
     "pid": "42142",
@@ -7182,8 +8418,8 @@
     "exp": 1000,
     "name": "志麻仙人",
     "description": "<宝物>两大仙蛤蟆之一，深作的妻子，会称呼大蛤蟆仙人为“痴呆老头”，对于使用蛤蟆临唱似乎十分反感。",
-    "para1": 255,
-    "para2": 255,
+    "para1": 235,
+    "para2": 235,
     "tough": 380,
     "atkGrowth": 25.85,
     "defGrowth": 25.85,
@@ -7196,14 +8432,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42243": {
     "pid": "42143",
@@ -7223,8 +8460,8 @@
     "exp": 1000,
     "name": "大蛤蟆仙人",
     "description": "<宝物>居住在妙木山，蛤蟆们的首领，曾经预言自来也的弟子中将会出现“预言之子”，曾向六道仙人大筒木羽衣诉说自己的预言。",
-    "para1": 260,
-    "para2": 260,
+    "para1": 240,
+    "para2": 240,
     "tough": 390,
     "atkGrowth": 26.4,
     "defGrowth": 26.4,
@@ -7237,14 +8474,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42244": {
     "pid": "42144",
@@ -7264,8 +8502,8 @@
     "exp": 1000,
     "name": "猿魔",
     "description": "<宝物>号称金刚，是连大蛇丸都觉得麻烦的人物，因为猿魔化身的金刚棒可以和大蛇丸装备上古三神器之一的草薙剑匹敌。",
-    "para1": 265,
-    "para2": 265,
+    "para1": 245,
+    "para2": 245,
     "tough": 400,
     "atkGrowth": 26.95,
     "defGrowth": 26.95,
@@ -7278,14 +8516,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42245": {
     "pid": "42145",
@@ -7305,8 +8544,8 @@
     "exp": 1000,
     "name": "外道魔像",
     "description": "【活动卡】<宝物>本质是十尾的被抽离了查克拉的躯壳，被六道仙人封入月亮，后被宇智波斑通灵出来。",
-    "para1": 320,
-    "para2": 320,
+    "para1": 300,
+    "para2": 300,
     "tough": 430,
     "atkGrowth": 33,
     "defGrowth": 33,
@@ -7319,14 +8558,57 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "42246": {
+    "pid": "42146",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 33,
+    "exp": 1000,
+    "name": "青蛇",
+    "description": "<宝物>在万蛇死后，佐助与蛇族新的契约通灵兽，称佐助为“佐助少爷”，动作很敏捷，攻击力很强。",
+    "para1": 235,
+    "para2": 235,
+    "tough": 380,
+    "atkGrowth": 25.85,
+    "defGrowth": 25.85,
+    "toughGrowth": 19,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      3
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": [],
+    "dropSource": []
   },
   "42314": {
     "pid": "42114",
@@ -7348,10 +8630,10 @@
     "description": "<宝物>手鞠的通灵兽，行走如飞，敌人往往觉得一阵风吹过，身上已多了一处伤口。",
     "para1": 0,
     "para2": 0,
-    "tough": 236,
+    "tough": 206,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 11.8,
+    "toughGrowth": 10.3,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7360,14 +8642,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42315": {
     "pid": "42115",
@@ -7382,17 +8665,17 @@
     ],
     "_index": "48000",
     "star": 6,
-    "drop": 30,
+    "drop": 0,
     "type": 33,
     "exp": 1000,
     "name": "三头蛇",
     "description": "<宝物>大蛇丸的崩溃木叶计划中破坏城墙的通灵兽，后被自来也通灵出蛤蟆文太使出忍术击杀。",
     "para1": 0,
     "para2": 0,
-    "tough": 220,
+    "tough": 190,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 11,
+    "toughGrowth": 9.5,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7401,14 +8684,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42319": {
     "pid": "42119",
@@ -7430,10 +8714,10 @@
     "description": "<宝物>自来也在与佩恩交战时通灵的蛤蟆，其后在佩恩攻击木叶时，也有被通灵出来协助鸣人，口头禅是“我很没用”。",
     "para1": 0,
     "para2": 0,
-    "tough": 244,
+    "tough": 214,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 12.2,
+    "toughGrowth": 10.7,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7442,14 +8726,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42320": {
     "pid": "42120",
@@ -7471,10 +8756,10 @@
     "description": "<宝物>在佩恩攻击木叶时，与蛤蟆文太、蛤蟆健一同被通灵出来协助鸣人，参与了第四次忍界大战。",
     "para1": 0,
     "para2": 0,
-    "tough": 252,
+    "tough": 222,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 12.6,
+    "toughGrowth": 11.1,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7483,14 +8768,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42322": {
     "pid": "42122",
@@ -7512,10 +8798,10 @@
     "description": "<宝物>妙木山蛤蟆忍村强大的通灵兽，在与鬼鲛、鼬的战斗中保护了鸣人，防御力很强。",
     "para1": 0,
     "para2": 0,
-    "tough": 228,
+    "tough": 198,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 11.4,
+    "toughGrowth": 9.9,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7524,14 +8810,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42326": {
     "pid": "42126",
@@ -7553,10 +8840,10 @@
     "description": "<宝物>山椒鱼半藏的通灵兽，全身都是疙瘩,善于偷袭，通过5分钟的积蓄能喷射具有麻痹的功效毒雾。",
     "para1": 0,
     "para2": 0,
-    "tough": 260,
+    "tough": 230,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 13,
+    "toughGrowth": 11.5,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7565,14 +8852,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42331": {
     "pid": "42131",
@@ -7594,10 +8882,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可以使用水遁泡沫乱波,使对手失去一定行动力或让其减速,曾洗去小南身上的油,借助庞大的钳子夹击对手。",
     "para1": 0,
     "para2": 0,
-    "tough": 268,
+    "tough": 238,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 13.4,
+    "toughGrowth": 11.9,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7606,14 +8894,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42332": {
     "pid": "42132",
@@ -7635,10 +8924,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可以依靠其使自己隐身并施展变色龙影分身保护自己不受到对方攻击同时观察对手。",
     "para1": 0,
     "para2": 0,
-    "tough": 276,
+    "tough": 246,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 13.8,
+    "toughGrowth": 12.3,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7647,14 +8936,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42333": {
     "pid": "42133",
@@ -7676,10 +8966,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可以分裂成多只，曾在与自来也对战中召唤，秽土转生的长门也曾召唤。",
     "para1": 0,
     "para2": 0,
-    "tough": 284,
+    "tough": 254,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 14.2,
+    "toughGrowth": 12.7,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7688,14 +8978,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42334": {
     "pid": "42134",
@@ -7717,10 +9008,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，极其变态的通灵兽，随随便便就使木叶村遭受严重破坏。",
     "para1": 0,
     "para2": 0,
-    "tough": 292,
+    "tough": 262,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 14.6,
+    "toughGrowth": 13.1,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7729,14 +9020,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42335": {
     "pid": "42135",
@@ -7758,10 +9050,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，通过自身庞大的体积把对手逼到无路可退,角也是刺穿敌人的致命武器。",
     "para1": 0,
     "para2": 0,
-    "tough": 300,
+    "tough": 270,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 15,
+    "toughGrowth": 13.5,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7770,14 +9062,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42336": {
     "pid": "42136",
@@ -7799,10 +9092,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，配合奔跑的冲撞式攻击破坏力极大，角也是刺穿敌人的致命武器。",
     "para1": 0,
     "para2": 0,
-    "tough": 308,
+    "tough": 278,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 15.4,
+    "toughGrowth": 13.9,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7811,14 +9104,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42337": {
     "pid": "42137",
@@ -7840,10 +9134,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，可依靠其他的轮回眼共享防御住敌人的忍术。",
     "para1": 0,
     "para2": 0,
-    "tough": 316,
+    "tough": 286,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 15.8,
+    "toughGrowth": 14.3,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7852,14 +9146,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42338": {
     "pid": "42138",
@@ -7881,10 +9176,10 @@
     "description": "<宝物>畜生道召唤出的通灵兽，尖牙利爪，移动速度奇快的杀戮机器。",
     "para1": 0,
     "para2": 0,
-    "tough": 324,
+    "tough": 294,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 16.2,
+    "toughGrowth": 14.7,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7893,14 +9188,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42339": {
     "pid": "42139",
@@ -7922,10 +9218,10 @@
     "description": "<宝物>二代目水影的通灵兽，可以制造海市蜃楼来隐藏自己，同时制造出让所有看到海市蜃楼的人中招的超大规模幻术。",
     "para1": 0,
     "para2": 0,
-    "tough": 332,
+    "tough": 302,
     "atkGrowth": 0,
     "defGrowth": 0,
-    "toughGrowth": 16.6,
+    "toughGrowth": 15.1,
     "para3": null,
     "limit": 0,
     "slot": 4,
@@ -7934,14 +9230,15 @@
       0,
       2
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42998": {
     "pid": "0",
@@ -7967,7 +9264,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "42999": {
     "pid": "0",
@@ -7993,7 +9295,18 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        4
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45100": {
     "pid": "0",
@@ -8019,7 +9332,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "45101": {
     "pid": "0",
@@ -8045,7 +9363,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "45102": {
     "pid": "0",
@@ -8071,7 +9394,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "45103": {
     "pid": "0",
@@ -8097,7 +9425,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "45104": {
     "pid": "0",
@@ -8123,7 +9456,12 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        8
+      ]
+    ]
   },
   "45105": {
     "pid": "0",
@@ -8153,7 +9491,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60120
+      ],
+      [
+        2,
+        60120
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45106": {
     "pid": "0",
@@ -8183,7 +9537,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60137
+      ],
+      [
+        2,
+        60137
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45107": {
     "pid": "0",
@@ -8213,7 +9583,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60110
+      ],
+      [
+        2,
+        60110
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45108": {
     "pid": "0",
@@ -8245,7 +9631,31 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60115
+      ],
+      [
+        1,
+        60247
+      ],
+      [
+        2,
+        60115
+      ],
+      [
+        2,
+        60247
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45109": {
     "pid": "0",
@@ -8275,7 +9685,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60142
+      ],
+      [
+        2,
+        60142
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45110": {
     "pid": "0",
@@ -8329,6 +9755,19 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60125
+      ],
+      [
+        2,
+        60125
+      ],
+      [
+        5
+      ]
     ]
   },
   "45111": {
@@ -8362,7 +9801,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60005
+      ],
+      [
+        2,
+        60005
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45112": {
     "pid": "0",
@@ -8395,7 +9850,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60130
+      ],
+      [
+        2,
+        60130
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45113": {
     "pid": "0",
@@ -8425,7 +9896,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60007
+      ],
+      [
+        2,
+        60007
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45114": {
     "pid": "0",
@@ -8458,7 +9945,23 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": [
+      [
+        1,
+        60012
+      ],
+      [
+        2,
+        60012
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45115": {
     "pid": "0",
@@ -8511,6 +10014,19 @@
         1,
         0,
         20
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60089
+      ],
+      [
+        2,
+        60089
+      ],
+      [
+        5
       ]
     ]
   },
@@ -8566,6 +10082,27 @@
         1,
         0,
         20
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60127
+      ],
+      [
+        1,
+        60252
+      ],
+      [
+        2,
+        60127
+      ],
+      [
+        2,
+        60252
+      ],
+      [
+        5
       ]
     ]
   },
@@ -8625,6 +10162,27 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60117
+      ],
+      [
+        1,
+        60249
+      ],
+      [
+        2,
+        60117
+      ],
+      [
+        2,
+        60249
+      ],
+      [
+        5
+      ]
     ]
   },
   "45118": {
@@ -8681,6 +10239,19 @@
         1,
         0,
         20
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60106
+      ],
+      [
+        2,
+        60106
+      ],
+      [
+        5
       ]
     ]
   },
@@ -8740,6 +10311,23 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60099
+      ],
+      [
+        1,
+        60164
+      ],
+      [
+        2,
+        60164
+      ],
+      [
+        5
+      ]
     ]
   },
   "45120": {
@@ -8796,6 +10384,19 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60043
+      ],
+      [
+        2,
+        60043
+      ],
+      [
+        5
+      ]
     ]
   },
   "45121": {
@@ -8849,6 +10450,21 @@
         1,
         0,
         25
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60229
+      ],
+      [
+        5
+      ],
+      [
+        9
+      ],
+      [
+        10
       ]
     ]
   },
@@ -8905,6 +10521,15 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60241
+      ],
+      [
+        5
+      ]
     ]
   },
   "45123": {
@@ -8959,6 +10584,19 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60150
+      ],
+      [
+        2,
+        60150
+      ],
+      [
+        5
+      ]
     ]
   },
   "45124": {
@@ -9010,6 +10648,19 @@
         1,
         0,
         25
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60139
+      ],
+      [
+        2,
+        60139
+      ],
+      [
+        5
       ]
     ]
   },
@@ -9064,6 +10715,22 @@
         1,
         0,
         25
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60075
+      ],
+      [
+        2,
+        60075
+      ],
+      [
+        5
+      ],
+      [
+        10
       ]
     ]
   },
@@ -9120,6 +10787,19 @@
         1,
         0,
         20
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60093
+      ],
+      [
+        2,
+        60093
+      ],
+      [
+        5
       ]
     ]
   },
@@ -9178,6 +10858,22 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60102
+      ],
+      [
+        2,
+        60102
+      ],
+      [
+        5
+      ],
+      [
+        10
+      ]
     ]
   },
   "45128": {
@@ -9233,6 +10929,30 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60072
+      ],
+      [
+        1,
+        60232
+      ],
+      [
+        2,
+        60072
+      ],
+      [
+        2,
+        60232
+      ],
+      [
+        5
+      ],
+      [
+        10
+      ]
     ]
   },
   "45129": {
@@ -9286,6 +11006,23 @@
         1,
         0,
         20
+      ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60020
+      ],
+      [
+        1,
+        60166
+      ],
+      [
+        2,
+        60166
+      ],
+      [
+        5
       ]
     ]
   },
@@ -9341,6 +11078,30 @@
         0,
         20
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60060
+      ],
+      [
+        1,
+        60231
+      ],
+      [
+        2,
+        60060
+      ],
+      [
+        2,
+        60231
+      ],
+      [
+        5
+      ],
+      [
+        10
+      ]
     ]
   },
   "45131": {
@@ -9392,6 +11153,20 @@
         1,
         0,
         30
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ],
+      [
+        9
+      ],
+      [
+        10
       ]
     ]
   },
@@ -9447,6 +11222,20 @@
         0,
         30
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ],
+      [
+        9
+      ],
+      [
+        10
+      ]
     ]
   },
   "45133": {
@@ -9500,6 +11289,14 @@
         1,
         0,
         30
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -9555,6 +11352,11 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ]
     ]
   },
   "45135": {
@@ -9609,6 +11411,11 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ]
     ]
   },
   "45136": {
@@ -9662,6 +11469,14 @@
         1,
         0,
         30
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -9718,6 +11533,14 @@
         0,
         30
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "45138": {
@@ -9771,6 +11594,11 @@
         1,
         0,
         25
+      ]
+    ],
+    "dropSource": [
+      [
+        5
       ]
     ]
   },
@@ -9827,6 +11655,11 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ]
     ]
   },
   "45140": {
@@ -9881,6 +11714,14 @@
         1,
         0,
         30
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -9939,6 +11780,27 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60190
+      ],
+      [
+        1,
+        60245
+      ],
+      [
+        2,
+        60190
+      ],
+      [
+        2,
+        60245
+      ],
+      [
+        5
+      ]
     ]
   },
   "45142": {
@@ -9996,6 +11858,19 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60185
+      ],
+      [
+        2,
+        60185
+      ],
+      [
+        5
+      ]
     ]
   },
   "45143": {
@@ -10051,6 +11926,15 @@
         1,
         0,
         25
+      ]
+    ],
+    "dropSource": [
+      [
+        2,
+        60264
+      ],
+      [
+        5
       ]
     ]
   },
@@ -10108,6 +11992,19 @@
         0,
         25
       ]
+    ],
+    "dropSource": [
+      [
+        1,
+        60176
+      ],
+      [
+        2,
+        60176
+      ],
+      [
+        5
+      ]
     ]
   },
   "45145": {
@@ -10162,6 +12059,74 @@
         0,
         30
       ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "45146": {
+    "pid": "0",
+    "updateId": "45246",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "45892",
+    "star": 5,
+    "drop": 0,
+    "type": 1,
+    "exp": 600,
+    "name": "须佐能乎之铠",
+    "description": "【活动卡】<防具>须佐能乎身上披挂的铠甲，防御力极强，可以抵挡绝大多数攻击，并且也可以装备到尾兽的身上。",
+    "para1": 283,
+    "para2": 400,
+    "tough": 0,
+    "atkGrowth": 31.54,
+    "defGrowth": 44,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      5
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        2,
+        0,
+        400
+      ],
+      [
+        1,
+        0,
+        30
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
     ]
   },
   "45210": {
@@ -10198,14 +12163,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45215": {
     "pid": "45115",
@@ -10241,14 +12207,15 @@
       259,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45216": {
     "pid": "45116",
@@ -10285,14 +12252,15 @@
       246,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45217": {
     "pid": "45117",
@@ -10330,14 +12298,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45218": {
     "pid": "45118",
@@ -10374,14 +12343,15 @@
       233,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45219": {
     "pid": "45119",
@@ -10420,14 +12390,15 @@
       220,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45220": {
     "pid": "45120",
@@ -10465,14 +12436,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45221": {
     "pid": "45121",
@@ -10508,14 +12480,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45222": {
     "pid": "45122",
@@ -10552,14 +12525,15 @@
       448,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45223": {
     "pid": "45123",
@@ -10595,14 +12569,15 @@
       411,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45224": {
     "pid": "45124",
@@ -10636,14 +12611,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45225": {
     "pid": "45125",
@@ -10679,14 +12655,15 @@
       374,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45226": {
     "pid": "45126",
@@ -10724,14 +12701,15 @@
       299,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45227": {
     "pid": "45127",
@@ -10751,7 +12729,7 @@
     "exp": 600,
     "name": "漆黑长矛",
     "description": "<防具>可攻可守的装备，因为其坚固的特点，在多数的时候会用来进行防具使用，另外因为其独特的外形，用来烤鸡翅膀效果也很不错。",
-    "para1": 220,
+    "para1": 200,
     "para2": 296,
     "tough": 0,
     "atkGrowth": 21,
@@ -10770,14 +12748,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45228": {
     "pid": "45128",
@@ -10792,7 +12771,7 @@
     ],
     "_index": "48000",
     "star": 5,
-    "drop": 20,
+    "drop": 10,
     "type": 1,
     "exp": 600,
     "name": "漆黑之服",
@@ -10814,14 +12793,15 @@
       286,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45229": {
     "pid": "45129",
@@ -10857,14 +12837,15 @@
       272,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45230": {
     "pid": "45130",
@@ -10900,14 +12881,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       1,
       5
     ],
     "splitCost": 100000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45231": {
     "pid": "45131",
@@ -10927,7 +12909,7 @@
     "exp": 1000,
     "name": "八咫镜",
     "description": "【活动卡】<防具>日本传说中的三神器之一，据说是天照大神持有的装备。可以反弹所有类型的伤害，使用得当还可成为攻防一体的超厉害防具。",
-    "para1": 275,
+    "para1": 255,
     "para2": 365,
     "tough": 0,
     "atkGrowth": 25.5,
@@ -10941,14 +12923,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45232": {
     "pid": "45132",
@@ -10968,7 +12951,7 @@
     "exp": 1000,
     "name": "八咫琼勾玉",
     "description": "【活动卡】<防具>八尺琼勾玉是日本传说中有“三神器”之一，据说这个勾玉有冻结行动的能力，在火影中为六道仙人的法器之一。",
-    "para1": 282,
+    "para1": 262,
     "para2": 385,
     "tough": 0,
     "atkGrowth": 27.51,
@@ -10984,14 +12967,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45233": {
     "pid": "45133",
@@ -11011,7 +12995,7 @@
     "exp": 1000,
     "name": "神秘面具",
     "description": "【活动卡】<防具>充满传奇色彩的面具，据说是白绝身体的一部分，能通过其视野接受各种卫星信号。",
-    "para1": 289,
+    "para1": 269,
     "para2": 405,
     "tough": 0,
     "atkGrowth": 29.52,
@@ -11027,14 +13011,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45234": {
     "pid": "45134",
@@ -11070,14 +13055,15 @@
       466,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45235": {
     "pid": "45135",
@@ -11113,14 +13099,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45236": {
     "pid": "45136",
@@ -11140,7 +13127,7 @@
     "exp": 1000,
     "name": "火影斗笠",
     "description": "【活动卡】<防具>历代火影大大的专属斗笠，绝对力与爱的象征，无数木叶忍者为之疯狂。",
-    "para1": 296,
+    "para1": 276,
     "para2": 425,
     "tough": 0,
     "atkGrowth": 30.53,
@@ -11156,14 +13143,15 @@
       0,
       5
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45237": {
     "pid": "45137",
@@ -11183,7 +13171,7 @@
     "exp": 1000,
     "name": "火影之袍",
     "description": "【活动卡】<防具>四代火影的战袍，传说的象征，屹立于强敌之前，尽显王者之风，威风凛凛，霸气侧露。",
-    "para1": 303,
+    "para1": 283,
     "para2": 445,
     "tough": 0,
     "atkGrowth": 31.54,
@@ -11200,14 +13188,15 @@
       490,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45238": {
     "pid": "45138",
@@ -11243,14 +13232,15 @@
       448,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45239": {
     "pid": "45139",
@@ -11287,14 +13277,15 @@
       454,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45240": {
     "pid": "45140",
@@ -11314,7 +13305,7 @@
     "exp": 1000,
     "name": "勾玉之袍",
     "description": "【活动卡】<防具>六道仙人御用之服，胸前印有六个勾玉，忍界仙人的象征。",
-    "para1": 313,
+    "para1": 293,
     "para2": 455,
     "tough": 0,
     "atkGrowth": 32.23,
@@ -11328,14 +13319,15 @@
       0,
       6
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45241": {
     "pid": "45141",
@@ -11355,7 +13347,7 @@
     "exp": 1000,
     "name": "水影斗笠",
     "description": "<防具>历代水影大大的专属斗笠，绝对力与爱的象征，无数雾忍忍者为之疯狂。",
-    "para1": 20,
+    "para1": 0,
     "para2": 361,
     "tough": 0,
     "atkGrowth": 0,
@@ -11374,14 +13366,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45242": {
     "pid": "45142",
@@ -11401,7 +13394,7 @@
     "exp": 1000,
     "name": "风影斗笠",
     "description": "<防具>历代风影大大的专属斗笠，绝对力与爱的象征，无数砂忍忍者为之疯狂。",
-    "para1": 20,
+    "para1": 0,
     "para2": 361,
     "tough": 0,
     "atkGrowth": 0,
@@ -11420,14 +13413,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45243": {
     "pid": "45143",
@@ -11447,7 +13441,7 @@
     "exp": 1000,
     "name": "土影斗笠",
     "description": "<防具>历代土影大大的专属斗笠，绝对力与爱的象征，无数岩忍忍者为之疯狂。",
-    "para1": 20,
+    "para1": 0,
     "para2": 361,
     "tough": 0,
     "atkGrowth": 0,
@@ -11465,14 +13459,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45244": {
     "pid": "45144",
@@ -11492,7 +13487,7 @@
     "exp": 1000,
     "name": "雷影斗笠",
     "description": "<防具>历代雷影大大的专属斗笠，绝对力与爱的象征，无数云忍忍者为之疯狂。",
-    "para1": 20,
+    "para1": 0,
     "para2": 361,
     "tough": 0,
     "atkGrowth": 0,
@@ -11510,14 +13505,15 @@
       0,
       4
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45245": {
     "pid": "45145",
@@ -11537,7 +13533,7 @@
     "exp": 1000,
     "name": "月纹面具",
     "description": "【活动卡】<防具>面具男的进化面具，带三个眼，月读技术哪家强，忍村面具带你狂",
-    "para1": 313,
+    "para1": 293,
     "para2": 455,
     "tough": 0,
     "atkGrowth": 32.23,
@@ -11553,14 +13549,57 @@
       0,
       6
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "45246": {
+    "pid": "45146",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 1,
+    "exp": 1000,
+    "name": "须佐能乎之铠",
+    "description": "【活动卡】<防具>须佐能乎身上披挂的铠甲，防御力极强，可以抵挡绝大多数攻击，并且也可以装备到尾兽的身上。",
+    "para1": 283,
+    "para2": 435,
+    "tough": 0,
+    "atkGrowth": 31.54,
+    "defGrowth": 45.675,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      5
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45310": {
     "pid": "45110",
@@ -11573,7 +13612,7 @@
         20
       ]
     ],
-    "_index": "48999",
+    "_index": "48000",
     "star": 6,
     "drop": 10,
     "type": 1,
@@ -11596,14 +13635,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45315": {
     "pid": "45115",
@@ -11639,14 +13679,15 @@
       284,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45316": {
     "pid": "45116",
@@ -11683,14 +13724,15 @@
       270,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45317": {
     "pid": "45117",
@@ -11728,14 +13770,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45318": {
     "pid": "45118",
@@ -11772,14 +13815,15 @@
       256,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45319": {
     "pid": "45119",
@@ -11818,14 +13862,15 @@
       242,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45320": {
     "pid": "45120",
@@ -11863,14 +13908,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45326": {
     "pid": "45126",
@@ -11908,14 +13954,15 @@
       328,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45327": {
     "pid": "45127",
@@ -11935,7 +13982,7 @@
     "exp": 1000,
     "name": "漆黑长矛",
     "description": "<防具>可攻可守的装备，因为其坚固的特点，在多数的时候会用来进行防具使用，另外因为其独特的外形，用来烤鸡翅膀效果也很不错。",
-    "para1": 240,
+    "para1": 200,
     "para2": 331,
     "tough": 0,
     "atkGrowth": 21,
@@ -11954,14 +14001,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45328": {
     "pid": "45128",
@@ -11998,14 +14046,15 @@
       314,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45329": {
     "pid": "45129",
@@ -12041,14 +14090,15 @@
       299,
       0
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45330": {
     "pid": "45130",
@@ -12084,14 +14134,15 @@
       0,
       3
     ],
-    "isColl": 0,
+    "isColl": 1,
     "splitDrop": [
       47199,
       6,
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "45998": {
     "pid": "0",
@@ -12117,7 +14168,20 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": []
+    "starStepEffect": [],
+    "dropSource": [
+      [
+        1,
+        60151
+      ],
+      [
+        2,
+        60151
+      ],
+      [
+        8
+      ]
+    ]
   },
   "45999": {
     "pid": "0",
@@ -12143,7 +14207,29 @@
     "isColl": 1,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": []
+    "starStepEffect": [],
+    "dropSource": [
+      [
+        1,
+        60153
+      ],
+      [
+        2,
+        60153
+      ],
+      [
+        3
+      ],
+      [
+        4
+      ],
+      [
+        5
+      ],
+      [
+        8
+      ]
+    ]
   },
   "47099": {
     "pid": "0",
@@ -12169,7 +14255,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47100": {
     "pid": "0",
@@ -12195,7 +14282,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47101": {
     "pid": "0",
@@ -12221,7 +14309,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47102": {
     "pid": "0",
@@ -12247,7 +14336,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47103": {
     "pid": "0",
@@ -12273,7 +14363,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47104": {
     "pid": "0",
@@ -12299,7 +14390,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47105": {
     "pid": "0",
@@ -12325,7 +14417,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47106": {
     "pid": "0",
@@ -12351,7 +14444,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47107": {
     "pid": "0",
@@ -12377,7 +14471,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47108": {
     "pid": "0",
@@ -12403,7 +14498,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47109": {
     "pid": "0",
@@ -12429,7 +14525,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47110": {
     "pid": "0",
@@ -12455,7 +14552,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47111": {
     "pid": "0",
@@ -12481,7 +14579,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47112": {
     "pid": "0",
@@ -12507,7 +14606,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47113": {
     "pid": "0",
@@ -12526,14 +14626,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53001,
+    "para3": 52019,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47114": {
     "pid": "0",
@@ -12552,14 +14653,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53002,
+    "para3": 52020,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47115": {
     "pid": "0",
@@ -12578,14 +14680,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53005,
+    "para3": 52023,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47116": {
     "pid": "0",
@@ -12611,7 +14714,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47117": {
     "pid": "0",
@@ -12637,7 +14741,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47118": {
     "pid": "0",
@@ -12663,7 +14768,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47119": {
     "pid": "0",
@@ -12689,7 +14795,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47120": {
     "pid": "0",
@@ -12715,7 +14822,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47121": {
     "pid": "0",
@@ -12741,7 +14849,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47122": {
     "pid": "0",
@@ -12767,7 +14876,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47123": {
     "pid": "0",
@@ -12793,7 +14903,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47124": {
     "pid": "0",
@@ -12819,7 +14930,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47125": {
     "pid": "0",
@@ -12845,7 +14957,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47126": {
     "pid": "0",
@@ -12864,14 +14977,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53003,
+    "para3": 52021,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47127": {
     "pid": "0",
@@ -12890,14 +15004,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53004,
+    "para3": 52022,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47128": {
     "pid": "0",
@@ -12923,7 +15038,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47129": {
     "pid": "0",
@@ -12949,7 +15065,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47130": {
     "pid": "0",
@@ -12975,7 +15092,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47131": {
     "pid": "0",
@@ -12994,14 +15112,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53006,
+    "para3": 52024,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47132": {
     "pid": "0",
@@ -13020,14 +15139,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53007,
+    "para3": 52025,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47133": {
     "pid": "0",
@@ -13046,14 +15166,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53008,
+    "para3": 52026,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47134": {
     "pid": "0",
@@ -13072,14 +15193,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 53009,
+    "para3": 52027,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47135": {
     "pid": "0",
@@ -13105,7 +15227,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47136": {
     "pid": "0",
@@ -13131,7 +15254,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47137": {
     "pid": "0",
@@ -13157,7 +15281,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47138": {
     "pid": "0",
@@ -13183,7 +15308,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47139": {
     "pid": "0",
@@ -13209,7 +15335,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47140": {
     "pid": "0",
@@ -13235,7 +15362,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47141": {
     "pid": "0",
@@ -13261,7 +15389,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47142": {
     "pid": "0",
@@ -13287,7 +15416,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47143": {
     "pid": "0",
@@ -13313,7 +15443,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47144": {
     "pid": "0",
@@ -13332,14 +15463,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 57001,
+    "para3": 52028,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47145": {
     "pid": "0",
@@ -13365,7 +15497,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47146": {
     "pid": "0",
@@ -13384,14 +15517,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 57001,
+    "para3": null,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47147": {
     "pid": "0",
@@ -13417,7 +15551,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47148": {
     "pid": "0",
@@ -13443,7 +15578,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47149": {
     "pid": "0",
@@ -13469,7 +15605,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47150": {
     "pid": "0",
@@ -13495,7 +15632,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47151": {
     "pid": "0",
@@ -13521,7 +15659,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47152": {
     "pid": "0",
@@ -13547,7 +15686,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47153": {
     "pid": "0",
@@ -13573,7 +15713,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47154": {
     "pid": "0",
@@ -13599,7 +15740,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47155": {
     "pid": "0",
@@ -13625,7 +15767,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47156": {
     "pid": "0",
@@ -13651,7 +15794,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47157": {
     "pid": "0",
@@ -13677,7 +15821,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47158": {
     "pid": "0",
@@ -13703,7 +15848,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47159": {
     "pid": "0",
@@ -13729,7 +15875,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47160": {
     "pid": "0",
@@ -13755,7 +15902,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47161": {
     "pid": "0",
@@ -13774,14 +15922,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 57002,
+    "para3": 52029,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47162": {
     "pid": "0",
@@ -13800,14 +15949,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 57003,
+    "para3": 52030,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47163": {
     "pid": "0",
@@ -13826,14 +15976,15 @@
     "atkGrowth": 0,
     "defGrowth": 0,
     "toughGrowth": 0,
-    "para3": 57004,
+    "para3": 52031,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47164": {
     "pid": "0",
@@ -13859,7 +16010,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47165": {
     "pid": "0",
@@ -13885,7 +16037,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47166": {
     "pid": "0",
@@ -13911,7 +16064,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47167": {
     "pid": "0",
@@ -13937,7 +16091,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47168": {
     "pid": "0",
@@ -13963,7 +16118,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47169": {
     "pid": "0",
@@ -13989,7 +16145,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47170": {
     "pid": "0",
@@ -14015,7 +16172,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47171": {
     "pid": "0",
@@ -14041,7 +16199,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47172": {
     "pid": "0",
@@ -14067,7 +16226,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47173": {
     "pid": "0",
@@ -14093,7 +16253,35 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47174": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 1,
+    "type": 6,
+    "exp": 0,
+    "name": "4星装备扭蛋",
+    "description": "扭一扭，3或4星装备让你带回家，还不心动？",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": 52032,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47198": {
     "pid": "0",
@@ -14119,7 +16307,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "47199": {
     "pid": "0",
@@ -14145,7 +16334,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "49108": {
     "pid": "0",
@@ -14171,7 +16361,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "49113": {
     "pid": "0",
@@ -14197,7 +16388,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "49114": {
     "pid": "0",
@@ -14223,7 +16415,8 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "49116": {
     "pid": "0",
@@ -14249,6 +16442,7 @@
     "isColl": 0,
     "splitDrop": 0,
     "splitCost": 0,
-    "starStepEffect": 0
+    "starStepEffect": 0,
+    "dropSource": 0
   }
 }

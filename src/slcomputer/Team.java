@@ -200,19 +200,19 @@ public class Team {
         int bmAtt=0;
         int bmDef=0;
         int bmEq=0;
-        if(mode>1){
-            for(i=0; i<number; i++){
-                heros[i].tough=(int)(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth);
-                if(heros[i].weapon!=null){
-                    heros[i].weapon.tough=(int)(heros[i].weapon.tough_born+(heros[i].weapon.level-1)*heros[i].weapon.toughGrowth);
-                }
-                if(heros[i].shield!=null){
-                    heros[i].shield.tough=(int)(heros[i].shield.tough_born+(heros[i].shield.level-1)*heros[i].shield.toughGrowth);
-                }
-                if(heros[i].pact!=null){
-                    heros[i].pact.tough=(int)(heros[i].pact.tough_born+(heros[i].pact.level-1)*heros[i].pact.toughGrowth);
-                }
+        for(i=0; i<number; i++){
+            heros[i].tough=(int)(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth);
+            if(heros[i].weapon!=null){
+                heros[i].weapon.tough=(int)(heros[i].weapon.tough_born+(heros[i].weapon.level-1)*heros[i].weapon.toughGrowth);
             }
+            if(heros[i].shield!=null){
+                heros[i].shield.tough=(int)(heros[i].shield.tough_born+(heros[i].shield.level-1)*heros[i].shield.toughGrowth);
+            }
+            if(heros[i].pact!=null){
+                heros[i].pact.tough=(int)(heros[i].pact.tough_born+(heros[i].pact.level-1)*heros[i].pact.toughGrowth);
+            }
+        }
+        if(mode>1){
             if(number>=9){  // 开门
                 bmAtt+=2; //System.out.print("开");
                 bmActivated[0]=true;
@@ -230,6 +230,7 @@ public class Team {
                             int n6=0;
                             for(i=0; i<number; i++){
                                 j=retriveTough(heros[i]);
+                                //ystem.out.println(j);
                                 if(j>=490){
                                     n4++;
                                     if(j>=1040){

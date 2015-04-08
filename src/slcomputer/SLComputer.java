@@ -132,7 +132,14 @@
  * 
  * Version 4.2
  * 1. 数据更新至2.7。
- * 2. 
+ * 2. 更新战斗逻辑，优化技能数值计算。
+ * 3. 中毒技能实装，轮回眼技能实装，神树降诞技能实装。
+ * 4. 修复bug。
+ * 
+ * Version 4.3
+ * 1. 数据更新至2.8。
+ * 2. 修复已知bug。
+ * 3. 每次自动试炼结束后统计技能触发情况。
  */
 package slcomputer;
 
@@ -199,9 +206,9 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=4;
-    public static final int minor=2;
-    public static final int vip=96;
-    public static final String testVersion=".0";
+    public static final int minor=3;
+    public static final int vip=105;
+    public static final String testVersion=".1";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -1118,10 +1125,10 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=449;
-        int equipAttNumber=89;
-        int equipDefNumber=86;
-        int eqpTfNumber=88;
+        int heroNumber=453;
+        int equipAttNumber=91;
+        int equipDefNumber=88;
+        int eqpTfNumber=90;
         int backupNumber=8;
         int i;
         allHero=new Hero[heroNumber+1];
@@ -1238,7 +1245,8 @@ public class SLComputer {
         allHero[i++]=new HeroXTMR_6(1);
         allHero[i++]=new HeroXYZZ_6(1);
         allHero[i++]=new HeroCJRZ_6(1);
-        allHero[i++]=new HeroXWBR_6(1);
+        allHero[i++]=new HeroMYZZ_6(1);
+        allHero[i++]=new HeroDTMSR_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1296,6 +1304,7 @@ public class SLComputer {
         allHero[i++]=new HeroHMJ_6(1);
         allHero[i++]=new HeroFY_6(1);
         allHero[i++]=new HeroSJY_6(1);
+        allHero[i++]=new HeroXWBR_6(1);
         num6StarHero=i;
         allHero[i++]=new HeroQSZJ(1);  // 五星开始：千手柱间
         allHero[i++]=new HeroQSFJ(1);
@@ -1405,7 +1414,8 @@ public class SLComputer {
         allHero[i++]=new HeroXTMR(1);
         allHero[i++]=new HeroXYZZ(1);
         allHero[i++]=new HeroCJRZ(1);
-        allHero[i++]=new HeroXWBR_5(1);
+        allHero[i++]=new HeroMYZZ(1);
+        allHero[i++]=new HeroDTMSR(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -1463,6 +1473,7 @@ public class SLComputer {
         allHero[i++]=new HeroHMJ_5(1);
         allHero[i++]=new HeroFY_5(1);
         allHero[i++]=new HeroSJY_5(1);
+        allHero[i++]=new HeroXWBR_5(1);
         allHero[i++]=new HeroQMKKX(1);  // 四星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM(1);
         allHero[i++]=new HeroGSGJ(1);
@@ -1604,6 +1615,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqSSLD_6(1);
         allEquiqAtt[i++]=new EquiqYTLZS_6(1);
         allEquiqAtt[i++]=new EquiqAXLZL_6(1);
+        allEquiqAtt[i++]=new EquiqSWSLJ_6(1);
         allEquiqAtt[i++]=new EquiqZSDD_6(1);  // 四星升六星
         allEquiqAtt[i++]=new EquiqDDJJ_6(1);
         allEquiqAtt[i++]=new EquiqCDFZ_6(1);
@@ -1637,6 +1649,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqSSLD(1);
         allEquiqAtt[i++]=new EquiqYTLZS(1);
         allEquiqAtt[i++]=new EquiqAXLZL(1);
+        allEquiqAtt[i++]=new EquiqSWSLJ(1);
         allEquiqAtt[i++]=new EquiqZSDD_5(1);  // 四星升五星
         allEquiqAtt[i++]=new EquiqDDJJ_5(1);
         allEquiqAtt[i++]=new EquiqCDFZ_5(1);
@@ -1697,6 +1710,7 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqTYDL_6(1);
         allEquiqDef[i++]=new EquiqLYDL_6(1);
         allEquiqDef[i++]=new EquiqYWMJ_6(1);
+        allEquiqDef[i++]=new EquiqXZNHZK_6(1);
         allEquiqDef[i++]=new EquiqABMJ_6(1);  // 四星升六星
         allEquiqDef[i++]=new EquiqZZY_6(1);
         allEquiqDef[i++]=new EquiqZZHS_6(1);
@@ -1729,6 +1743,7 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqTYDL(1);
         allEquiqDef[i++]=new EquiqLYDL(1);
         allEquiqDef[i++]=new EquiqYWMJ(1);
+        allEquiqDef[i++]=new EquiqXZNHZK(1);
         allEquiqDef[i++]=new EquiqABMJ_5(1);  // 四星升五星
         allEquiqDef[i++]=new EquiqZZY_5(1);
         allEquiqDef[i++]=new EquiqZZHS_5(1);
@@ -1778,6 +1793,7 @@ public class SLComputer {
         allEqpTf[i++]=new EqpDHMXR_6();
         allEqpTf[i++]=new EqpYM_6();
         allEqpTf[i++]=new EqpWDMX_6();
+        allEqpTf[i++]=new EqpQS_6();
         allEqpTf[i++]=new EqpLY_6();  // 四星升六星
         allEqpTf[i++]=new EqpSTS_6();
         allEqpTf[i++]=new EqpHMJian_6();
@@ -1804,6 +1820,7 @@ public class SLComputer {
         allEqpTf[i++]=new EqpDHMXR();
         allEqpTf[i++]=new EqpYM();
         allEqpTf[i++]=new EqpWDMX();
+        allEqpTf[i++]=new EqpQS();
         allEqpTf[i++]=new EqpLY_5();  // 四星升五星
         allEqpTf[i++]=new EqpSTS_5();
         allEqpTf[i++]=new EqpHMJian_5();
@@ -1959,6 +1976,14 @@ public class SLComputer {
                                 break;
                             }
                         }
+                        if(j==allEquiqDef.length){
+                            for(j=0; j<allEqpTf.length; j++){
+                                if(yuan[i]==allEqpTf[j].id){
+                                    desc=desc+"["+allEqpTf[j].name+"]";
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
                 desc+="提高"+AD+p+"%";
@@ -2008,6 +2033,7 @@ public class SLComputer {
                     case 9: tmpS="雪忍忍者"; break;
                     case 10: tmpS="忍兽"; break;
                     case 11: tmpS="秽土转生忍者"; break;
+                    case 12: tmpS="忍宗忍者"; break;
                 }
                 desc=desc+tmpS+"时，提高"+AD+p+"%，同时其他上阵的"+tmpS+"提高"+AD+pe+"%";
                 break;
@@ -2023,7 +2049,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=1788;
+        int skillNumber=1798;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;
@@ -2050,6 +2076,7 @@ public class SLComputer {
                 }
                 // type
                 skills[i].type=Integer.parseInt(s.substring(j+7, s.lastIndexOf(",")));
+                //if(skills[i].timming()==-1) System.out.println("Unimplemented type: "+skills[i].type);
                 s=br.readLine();
                 while((j=s.indexOf("level"))<0){
                     s=br.readLine();
@@ -2081,6 +2108,120 @@ public class SLComputer {
             }
             br.close();
             //System.out.println("Read "+i+" skills in total.");
+            // loading items
+            f=new File("item.json");
+            br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+            Equip currEq;
+            while((s=br.readLine())!=null){
+                if(s.length()<3 || s.charAt(2)!='\"'){
+                    continue;
+                }
+                // hero id
+                j=Integer.parseInt(s.substring(3, 8));
+                currEq=findEquipById(j);
+                if(currEq==null){
+                    //System.out.println("Cannot find item "+j);
+                    continue;
+                }
+                //System.out.println(currEq.name);
+                s=br.readLine();
+                while(s.indexOf("star")<0){
+                    s=br.readLine();
+                }
+                // star
+                currEq.star=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("name")<0){
+                    s=br.readLine();
+                }
+                // name
+                currEq.name=s.substring(s.indexOf(":")+3, s.lastIndexOf(",")-1);
+                //System.out.println(currEq.name+"\t"+currEq.star);
+                s=br.readLine();
+                while(s.indexOf("para1")<0){
+                    s=br.readLine();
+                }
+                // att_born
+                currEq.att_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("para2")<0){
+                    s=br.readLine();
+                }
+                // def_born
+                currEq.def_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("tough")<0){
+                    s=br.readLine();
+                }
+                // tough_born
+                currEq.tough_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("atkGrowth")<0){
+                    s=br.readLine();
+                }
+                // atkGrowth
+                currEq.attGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("defGrowth")<0){
+                    s=br.readLine();
+                }
+                // defGrowth
+                currEq.defGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("toughGrowth")<0){
+                    s=br.readLine();
+                }
+                // toughGrowth
+                currEq.toughGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("slot")<0){
+                    s=br.readLine();
+                }
+                // slot
+                currEq.slot=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
+                s=br.readLine();
+                while(s.indexOf("hideProperty")<0){
+                    s=br.readLine();
+                }
+                // hideProperty
+                if(s.endsWith("[")){
+                    s=br.readLine();
+                    currEq.hideProperty[0]=Double.parseDouble(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();
+                    currEq.hideProperty[1]=Double.parseDouble(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();
+                    currEq.hideProperty[2]=Double.parseDouble(s.trim());
+                }
+                s=br.readLine();
+                while(s.indexOf("starStepEffect")<0){
+                    s=br.readLine();
+                }
+                // starStepEffect
+                if(s.endsWith("[")){
+                    s=br.readLine();    // [
+                    s=br.readLine();    // +1 效果
+                    currEq.stepEffect[0][0]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +1 效果
+                    currEq.stepEffect[0][1]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +1 效果
+                    currEq.stepEffect[0][2]=Integer.parseInt(s.trim());
+                    s=br.readLine();    // ],
+                    s=br.readLine();    // [
+                    s=br.readLine();    // +2 效果
+                    currEq.stepEffect[1][0]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +2 效果
+                    currEq.stepEffect[1][1]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
+                    s=br.readLine();    // +2 效果
+                    currEq.stepEffect[1][2]=Integer.parseInt(s.trim());
+                }
+                else if(currEq.star>4){
+                    Equip tmpEq=findEquipByName(currEq.name);
+                    if(tmpEq==null || tmpEq.stepEffect[0][0]==0){
+                        System.out.println("Code should be reached.");
+                    }
+                    currEq.stepEffect=tmpEq.stepEffect;
+                }
+            }
             f=new File("hero.json");
             br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
             while((s=br.readLine())!=null){
@@ -2433,120 +2574,6 @@ public class SLComputer {
                     }
                     allHero[i].skillIndex2=k;
                     allHero[i].backupSkills[k++]=allHero[i].skill2;
-                }
-            }
-            // loading items
-            f=new File("item.json");
-            br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
-            Equip currEq;
-            while((s=br.readLine())!=null){
-                if(s.length()<3 || s.charAt(2)!='\"'){
-                    continue;
-                }
-                // hero id
-                j=Integer.parseInt(s.substring(3, 8));
-                currEq=findEquipById(j);
-                if(currEq==null){
-                    //System.out.println("Cannot find item "+j);
-                    continue;
-                }
-                //System.out.println(currEq.name);
-                s=br.readLine();
-                while(s.indexOf("star")<0){
-                    s=br.readLine();
-                }
-                // star
-                currEq.star=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("name")<0){
-                    s=br.readLine();
-                }
-                // name
-                currEq.name=s.substring(s.indexOf(":")+3, s.lastIndexOf(",")-1);
-                //System.out.println(currEq.name+"\t"+currEq.star);
-                s=br.readLine();
-                while(s.indexOf("para1")<0){
-                    s=br.readLine();
-                }
-                // att_born
-                currEq.att_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("para2")<0){
-                    s=br.readLine();
-                }
-                // def_born
-                currEq.def_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("tough")<0){
-                    s=br.readLine();
-                }
-                // tough_born
-                currEq.tough_born=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("atkGrowth")<0){
-                    s=br.readLine();
-                }
-                // atkGrowth
-                currEq.attGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("defGrowth")<0){
-                    s=br.readLine();
-                }
-                // defGrowth
-                currEq.defGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("toughGrowth")<0){
-                    s=br.readLine();
-                }
-                // toughGrowth
-                currEq.toughGrowth=Double.parseDouble(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("slot")<0){
-                    s=br.readLine();
-                }
-                // slot
-                currEq.slot=Integer.parseInt(s.substring(s.indexOf(":")+2, s.lastIndexOf(",")));
-                s=br.readLine();
-                while(s.indexOf("hideProperty")<0){
-                    s=br.readLine();
-                }
-                // hideProperty
-                if(s.endsWith("[")){
-                    s=br.readLine();
-                    currEq.hideProperty[0]=Double.parseDouble(s.substring(0, s.lastIndexOf(",")).trim());
-                    s=br.readLine();
-                    currEq.hideProperty[1]=Double.parseDouble(s.substring(0, s.lastIndexOf(",")).trim());
-                    s=br.readLine();
-                    currEq.hideProperty[2]=Double.parseDouble(s.trim());
-                }
-                s=br.readLine();
-                while(s.indexOf("starStepEffect")<0){
-                    s=br.readLine();
-                }
-                // starStepEffect
-                if(s.endsWith("[")){
-                    s=br.readLine();    // [
-                    s=br.readLine();    // +1 效果
-                    currEq.stepEffect[0][0]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
-                    s=br.readLine();    // +1 效果
-                    currEq.stepEffect[0][1]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
-                    s=br.readLine();    // +1 效果
-                    currEq.stepEffect[0][2]=Integer.parseInt(s.trim());
-                    s=br.readLine();    // ],
-                    s=br.readLine();    // [
-                    s=br.readLine();    // +2 效果
-                    currEq.stepEffect[1][0]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
-                    s=br.readLine();    // +2 效果
-                    currEq.stepEffect[1][1]=Integer.parseInt(s.substring(0, s.lastIndexOf(",")).trim());
-                    s=br.readLine();    // +2 效果
-                    currEq.stepEffect[1][2]=Integer.parseInt(s.trim());
-                }
-                else if(currEq.star>4){
-                    Equip tmpEq=findEquipByName(currEq.name);
-                    if(tmpEq==null || tmpEq.stepEffect[0][0]==0){
-                        System.out.println("Code should be reached.");
-                    }
-                    currEq.stepEffect=tmpEq.stepEffect;
                 }
             }
             /*

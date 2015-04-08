@@ -20,12 +20,12 @@ public class Skill {
     // 发动技能的时机: 0 主动技, 1 被动技, 2 自爆, 3 回血, -1 非法类型
     public int timming(){
         // 非法类型
-        if(type<0 || (type>22 && type<29) || type>34 || type==6 || type==8 || type==9 || type==11
-                || type==12 || type==17 || type==18 || type==31 || type==32){
+        if(type<0 || (type>22 && type<29) || type>35 || type==6 || type==8 || type==9 || type==11
+                || type==12 || type==17 || type==18){
             return -1;
         }
         // 回血类
-        if(type==21){
+        if(type==21 || type==32){
             return 3;
         }
         // 自爆，阴封印
@@ -123,13 +123,16 @@ public class Skill {
                 s="战斗中有<font color=#FF0000>"+(int)((x+ratePlus)*(1+rateMul))+"</font>％的几率使得对方中毒，中毒的忍者死后不可被复活。";
                 break;
             case 32:
-                s="战斗胜利后我方恢复造成伤害的<font color=#FF0000>"+(int)((x+ratePlus)*(1+rateMul))+"</font>％的攻防值。";
+                s="战斗胜利后我方恢复造成碰撞伤害的<font color=#FF0000>"+(int)((x+ratePlus)*(1+rateMul))+"</font>％的攻防值。";
                 break;
             case 33:
                 s="战斗中有<font color=#FF0000>"+(int)((x+ratePlus)*(1+rateMul))+"</font>％的几率触发该忍术，当对方人物攻防值,星级都比我方低时，可让敌方变为1点攻防值，否则就降低敌方<font color=#FF0000>"+(int)((y+powerPlus)*(1+powerMul))+"</font>％的攻防值。";
                 break;
             case 34:
                 s="战斗中有<font color=#FF0000>"+(int)((x+ratePlus)*(1+rateMul))+"</font>％的几率触发该忍术，可使得对方人物不能再释放忍术。";
+                break;
+            case 35:
+                s="辉夜姬化身神树，战斗中有<font color=#FF0000>"+(int)((x+ratePlus)*(1+rateMul))+"</font>％的几率将敌方忍者攻防值降为1。";
                 break;
             default:
                 s="Unknow Skill Type.";

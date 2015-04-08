@@ -29,18 +29,18 @@ public class JDialogLogin extends javax.swing.JDialog {
             jComboBox1.addItem(s);
         }
         try {
-            //System.out.println(SLComputer.des.encrypt("18680555602"));
-            //System.out.println(SLComputer.des.encrypt("AND91_"+"523993916"));
+            //System.out.println(SLComputer.des.encrypt("424021718j"));
+            //System.out.println(SLComputer.des.encrypt("AND91_"+"514348277"));
             //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"shiji004"));
-            //System.out.println(SLComputer.des.encrypt("IOS91_"+"679346643"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"55249909"));
-            //System.out.println(SLComputer.des.encrypt("AND36_"+"478871259"));
+            //System.out.println(SLComputer.des.encrypt("IOS91_"+"529917701"));
+            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"22213935"));
+            //System.out.println(SLComputer.des.encrypt("AND36_"+"497105024"));
             //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"4037835"));
-            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"163111641"));
+            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"2978741"));
+            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"73399927"));
             //System.out.println(SLComputer.des.encrypt("ANDSN_"+"3687192672"));
             //System.out.println(SLComputer.des.encrypt("ANDTX_"+"DCEFE6ED248534E398322888E37C241A"));
-            //System.out.println(SLComputer.des.encrypt("IOSPP_27720121"));
+            //System.out.println(SLComputer.des.encrypt("woshiapp2@qq.com"));
         } catch (Exception ex) {
             Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,7 +94,7 @@ public class JDialogLogin extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156" }));
+        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156", "混服 157", "混服 158", "混服 159" }));
         jComboBoxServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxServerActionPerformed(evt);
@@ -157,7 +157,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", "7a92cd7838cf91697f55f817429f0f957bdeba206119285a", // 吐吐
                 "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", "2b5dfc233269e88ec9649cc854c00de2896db44fb926a25b", // 青苑
                 "8f2fa65804fc1c4cce7cefedf89d623b792b4717e7c5b82f", "8f2fa65804fc1c4cce7cefedf89d623b792b4717e7c5b82f", // 海天隐神1203
-                "71c0706be3da1b6c896db44fb926a25b", "da2e053cabd4f7d3f818f425a23eb770", // 测试小号
+                "adf3a08b5ba2b4de78d824a4a8f11df0df4f9f17ab7a9e21", "adf3a08b5ba2b4de78d824a4a8f11df0df4f9f17ab7a9e21", // 测试小号
                 "ae962dacfdfeb90af93963238cda7380", "7dff8bc041f8bab756732f9ae6f989dd", // 安卓91 1113
                 "e1f6663a678d20011fb93a5807de4b0a792b4717e7c5b82f", "e1f6663a678d20011fb93a5807de4b0a792b4717e7c5b82f", // 派大星
                 "81a62214b0e522408a1e54d926df55997bdeba206119285a", "81a62214b0e522408a1e54d926df55997bdeba206119285a", // hero京k
@@ -233,7 +233,7 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "743637835fefffbf", "0148ab3fe3314fdd98ffc23a0296cc5b", // 安卓多酷 807
                 "d142373a748d600357c1a3d9ed967ad0", "d142373a748d600357c1a3d9ed967ad0", // app 1215
                 "f2cf6579e63de76ce0371f5a00f107ae", "f2cf6579e63de76ce0371f5a00f107ae", // app 1215
-                "0d01918af103d168f29edfa6031edc70", "de64176e908655f4d1c470646f8d546a", // 豌豆荚 1216
+                "b9145940fc9222a75b1226679ff3daef", "de64176e908655f4d1c470646f8d546a", // 豌豆荚 1216
                 "87b0aebb11f1a60228f01650a3943329", "cd3ea4accbe3ed7fbc83c3318d0721fa792b4717e7c5b82f", // 苹果快用 1218_3
                 "676a8e887a1d663d464e423d584f61ab", "f90fde566949c8faeb1192855aecf10a", // 安卓360 1216_2
                 "9837213e4e0dd50ec3e6b9fc3804e704", "256702a42f6e8103b791eb7afb70cfa3", // 同步推 1216_2
@@ -354,11 +354,66 @@ public class JDialogLogin extends javax.swing.JDialog {
                 "8c566bff02908144cfcea5404067f208", "4d7284919b7b5beeb5aa59447a6fcda8", // 同步推 1410
                 "c8255816399a4c0bda5201bf61904638", "db7f75284c02bd30498f0b3d6b20d390792b4717e7c5b82f", // 新浪 1331
                 "b415ab43978e589aa0a5ab7c28b36768", "cf6cc35d0a8f867f0e6c3f499b437449", // 快用 1405_3
-                "470ecf14fbee2cf837f1ff736bc2cad5", "f2486383ccb9f37dff04bc227aea7c1f", // 安卓360 1413
+                "e3a9ede5d8a862d9d4ee0688afa20de8", "f2486383ccb9f37dff04bc227aea7c1f", // 安卓360 1413
                 "545c15f781174a93792b4717e7c5b82f", "545c15f781174a93792b4717e7c5b82f", // app 1111_5
                 "de8b2dcd9c026fbfd933927383ee50d3", "7f0ba163bc529b06a9e543f691f6088f", // 苹果91 1331
                 "470ecf14fbee2cf837f1ff736bc2cad5", "0841db1330328598328ea5adc3f20e11", // 苹果pp 1413
                 "d67d6146f9465b8273b36b2cad273f03", "391d9cbed94634792e3bac7f54daf9db", // 豌豆荚 1413_2
+                "1036ca27cae790fe297ccc304a073491792b4717e7c5b82f", "1036ca27cae790fe297ccc304a073491792b4717e7c5b82f", // app 1407_2
+                "58e4b2f0d9e53da635daec924fb02fa579b46576ace1f939792b4717e7c5b82f", "58e4b2f0d9e53da635daec924fb02fa579b46576ace1f939792b4717e7c5b82f", // app 1502
+                "574d125cd784c1bc9e5fba2c3e80f4e5", "574d125cd784c1bc9e5fba2c3e80f4e5", // app 1502_2
+                "082ece0f6e337b8e297ccc304a073491792b4717e7c5b82f", "082ece0f6e337b8e297ccc304a073491792b4717e7c5b82f", // app 1502_3
+                "a1639d017d49f4ebdd16af69ab634a2c7bdeba206119285a", "a1639d017d49f4ebdd16af69ab634a2c7bdeba206119285a", // app 1502_3
+                "b269f98b2ed19add009c9b08f3a744c2e057c97364101885", "b269f98b2ed19add009c9b08f3a744c2e057c97364101885", // app 1502
+                "75c5a144ab29c96e6347497415d9f48e", "75c5a144ab29c96e6347497415d9f48e", // app 1502_4
+                "7c08d9c3940950078658d1660c421e85792b4717e7c5b82f", "7c08d9c3940950078658d1660c421e85792b4717e7c5b82f", // app 1502_2
+                "cb0d29bb2d06db44fc609ae8dc7da6c8", "cb0d29bb2d06db44fc609ae8dc7da6c8", // app 1504_2
+                "96b400b50d3110ad6eb8d6e588a0b1de792b4717e7c5b82f", "70c300c53339ee827981932498cdeec3", // app 1504
+                "6438d3495b6492f1f93963238cda7380", "6036b3fe3450ee3454afe348898ad17ccc4a82b0781d8bcf", // 小米 1205
+                "4b7fa86cf51babf8fc609ae8dc7da6c8", "4b7fa86cf51babf8fc609ae8dc7da6c8", // app Hero京k 蹲街
+                "2343b7a3eb7567aad4f4d4173c703eed792b4717e7c5b82f", "2343b7a3eb7567aad4f4d4173c703eed792b4717e7c5b82f", // app 1507
+                "b5e96f245203b332792b4717e7c5b82f", "3b6590c1eb979d7da4fbf5914254ee3c", // 同步推 1509
+                "0e7407652efc268efc86b5bce4c00857", "b1cb381495ceb9c734f1bd58343367cf", // 安卓91 1511
+                "924e1b0fecb7f1735c270bbad40e982b792b4717e7c5b82f", "924e1b0fecb7f1735c270bbad40e982b792b4717e7c5b82f", // app 1502_4
+                "22e08403f44aafcf324ab3dc5bb28fd5", "c65abe728a306c87d203d8c9d0bbe430", // 安卓多酷 1514
+                "f3f08f30f2a05e53d4f4d4173c703eed792b4717e7c5b82f", "8a9b27efbabe11fab78c9e2d9870a1cb", // 安卓91 1324
+                "cdbc26fc073752477bdeba206119285a", "7dc85db11e775445239cdfccfd17ea3e", // 苹果91 1324
+                "8d0e374e8e905d30cbdd04b79fbc7eb97bdeba206119285a", "391d9cbed946347980215f800b4feb32", // 豌豆荚 1413_2
+                "818a631a498bfed32345fd922211a83d7bdeba206119285a", "818a631a498bfed32345fd922211a83d7bdeba206119285a", // app 1516
+                "93177acff740a25b297ccc304a073491792b4717e7c5b82f", "93177acff740a25b297ccc304a073491792b4717e7c5b82f", // app 1516
+                "765a3103c6e02b3c334360d5cac365b87bdeba206119285a", "765a3103c6e02b3c334360d5cac365b87bdeba206119285a", // app 1516_3
+                "1da91e01ae9a16853a4f4a51f145892b57c1a3d9ed967ad0", "1da91e01ae9a16853a4f4a51f145892b57c1a3d9ed967ad0", // app 1516_2
+                "201f62d44866c82f6eb8d6e588a0b1de792b4717e7c5b82f", "201f62d44866c82f6eb8d6e588a0b1de792b4717e7c5b82f", // app 1516_2
+                "5c31d7739169f5b930f7b6008c2771ad8eb59447645433b1", "5c31d7739169f5b930f7b6008c2771ad8eb59447645433b1", // app 1516_4
+                "d15060ceef9d59ca57c1a3d9ed967ad0", "d15060ceef9d59ca57c1a3d9ed967ad0", // app 1520
+                "52e9c9617c5ceff1e9781f752361d8d0792b4717e7c5b82f", "52e9c9617c5ceff1e9781f752361d8d0792b4717e7c5b82f", // app 1520
+                "7c8d1249e5045570fc609ae8dc7da6c8", "7c8d1249e5045570fc609ae8dc7da6c8", // app 1521
+                "ec04261a183cabaccd6782c330af57d3", "ec04261a183cabaccd6782c330af57d3", // app 1522
+                "bb8551f576be28ef3662da4685913df97bdeba206119285a", "bb8551f576be28ef3662da4685913df97bdeba206119285a", // app 1523
+                "6a11fe52a59344ffbc83c3318d0721fa792b4717e7c5b82f", "6a11fe52a59344ffbc83c3318d0721fa792b4717e7c5b82f", // app 506
+                "8314aabe87a2b995bc8c36e6fc830cbd0e6c3f499b437449", "8314aabe87a2b995bc8c36e6fc830cbd0e6c3f499b437449", // app 1527
+                "b146702f6e83b9c07d4c689344c556e89c01c38513f8c58c", "b146702f6e83b9c07d4c689344c556e89c01c38513f8c58c", // app 1527
+                "4d9e81313df047120e6c3f499b437449", "4d9e81313df047120e6c3f499b437449", // app 1529
+                "44923935977242c4d067b97056e9170a7bdeba206119285a", "44923935977242c4d067b97056e9170a7bdeba206119285a", // app 1530
+                "d156a31a52011d77e2eade6614fed130792b4717e7c5b82f", "d156a31a52011d77e2eade6614fed130792b4717e7c5b82f", // app 1530
+                "94eee6e96f1d9242149bb6df41531b067bdeba206119285a", "94eee6e96f1d9242149bb6df41531b067bdeba206119285a", // app 1303
+                "1036ca27cae790fe297ccc304a073491a537fa7b0c08c79e", "cee9c9405b87da431965dda304edd0d7", // 苹果91 1509
+                "d829a2ac69b896e2792b4717e7c5b82f", "d829a2ac69b896e2792b4717e7c5b82f", // app 1509
+                "631bae08548c155ccd6782c330af57d3", "631bae08548c155ccd6782c330af57d3", // app 1531
+                "65602a48c9b5864e792b4717e7c5b82f", "c4871494c9cbd9ec2aeb2994f7e1cdfd", // 苹果91 1529
+                "9409836fde26480cd4f4d4173c703eed792b4717e7c5b82f", "9409836fde26480cd4f4d4173c703eed792b4717e7c5b82f", // app 1531
+                "619a0d5a8f64356f7b8f34a707a12a23", "b7b06b790fc467cf5033e8478df7bf96", // 同步推 1523
+                "3f94284bb55de13700d1f9577f15840f", "3f94284bb55de13700d1f9577f15840f", // app 1602
+                "813c3eac1f55faad73b36b2cad273f03", "ab6d13c9f610d441146ad71c68ff3781", // 豌豆荚 1603_2
+                "3f227b4c9a0f2e1ef34155896d99be04ab6efd646c14049b792b4717e7c5b82f", "98aa94f1558dd71e7d69646a7edf3ada", // 同步推 1509
+                "c46de96ef061e92d3f353942d59dab94", "ce57f58affaa61b88c7e0b7030bdcf9a", // 苹果91 1509
+                "5ff99eb2dbf7d94fce7cefedf89d623b792b4717e7c5b82f", "5ff99eb2dbf7d94fce7cefedf89d623b792b4717e7c5b82f", // app 1603
+                "ac01bebc99eede77d73a02b7180ff964", "f90fde566949c8fa699adf7dbbf03ff3", // 安卓360 1520
+                "33e597990ca5e1e3a03d986f62ea6176792b4717e7c5b82f", "33e597990ca5e1e3a03d986f62ea6176792b4717e7c5b82f", // app 1407
+                "a37a0c5f3139acf88a0b39831702bb0e896db44fb926a25b", "488662fd6c236aabe876a44d78a935de", // 安卓360 1605
+                "b0c857a2b24880969286fe90f2f425060e6c3f499b437449", "488662fd6c236aab7c6b1b1ce1776ddb", // 安卓360 1605
+                "102a4dfb86fb6061f82d0ac7f152fdf8", "299ab10560fa3402e71a0e5f85122bce", // 苹果91 1603_2
+                "56e05cbaefd7896b346260417122b7b1", "c8280f161a641b78eb4fc0ecedbf740a", // 苹果91 1603_2
                 ""};
         int[] platform={0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -381,7 +436,12 @@ public class JDialogLogin extends javax.swing.JDialog {
                 2, 1, 1, 0, 0, 0, 0, 0, 0, 0,
                 0, 2, 0, 0, 1, 0, 0, 0, 0, 1,
                 1, 2, 2, 1, 2, 1, 3, 1, 0, 2,
-                2, 1};
+                2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 2, 1, 0, 0, 2, 1, 0, 1, 1,
+                2, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                2, 0, 0, 2, 0, 2, 0, 1, 2, 2,
+                0, 1, 0, 1, 1, 2, 2};
         String vip=null;
         int i;
         for(i=0; i+1<myvip.length; i+=2){

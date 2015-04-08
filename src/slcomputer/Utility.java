@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class Utility {
     public static void readTask(){
-        String name="task";
+        String name="hightask";
         File f1=new File(name+".json");
         File f2=new File(name+".txt");
         int i, j;
