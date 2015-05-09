@@ -4,8 +4,6 @@
  */
 package slcomputer.heros;
 
-import slcomputer.Hero;
-
 /**
  *
  * @author J

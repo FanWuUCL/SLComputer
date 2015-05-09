@@ -4,8 +4,8 @@
  */
 package slcomputer.invokelater;
 
-import slcomputer.SLComputer;
-import slcomputer.dialogs.JDialogAutoProgress;
+import slcomputer.main.SLComputer;
+import slcomputer.views.dialogs.JDialogAutoProgress;
 
 /**
  *

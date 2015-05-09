@@ -154,7 +154,7 @@ public class DesUtils {
    * @throws Exception  
    */
   public String decrypt(String strIn) throws Exception {
-    return new String(decrypt(hexStr2ByteArr(strIn)));
+    return new String(decrypt(hexStr2ByteArr(strIn)), "UTF-8");
   }
 
   /**  

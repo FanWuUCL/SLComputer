@@ -16,7 +16,7 @@ public class EqpQS_6 extends EqpQS{
     public EqpQS_6(int l){
         super();
         level=l;
-        id=42146;
-        eid=id+100;
+        eid=42146;
+        id=eid+100;
     }
 }

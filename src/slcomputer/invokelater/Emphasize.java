@@ -4,9 +4,9 @@
  */
 package slcomputer.invokelater;
 
-import slcomputer.SLComputer;
-import slcomputer.SLComputer;
-import slcomputer.SocketMaster;
+import slcomputer.main.SLComputer;
+import slcomputer.main.SLComputer;
+import slcomputer.runnable.SocketMaster;
 
 /**
  *
@@ -15,28 +15,32 @@ import slcomputer.SocketMaster;
 public class Emphasize implements Runnable{
     
     public boolean emph;
+    public boolean loggedin;
     public String usrName;
     
-    public Emphasize(boolean e){
+    public Emphasize(boolean l, boolean e){
+        loggedin=l;
         emph=e;
         usrName="";
     }
     
     @Override
     public void run(){
-        SLComputer.mf.emphasizeBattleButtons(emph);
-        SLComputer.mf.enableAutoBB(emph);
-        if(!emph){
+        SLComputer.mf.emphasizeBattleButtons(loggedin&&emph);
+        SLComputer.mf.enableAutoBB(loggedin, emph);
+        String title=SLComputer.mf.getTitle();
+        int index=title.indexOf("(");
+        if(!loggedin){
             SLComputer.mf.setSmartNumber(SLComputer.smartNumber_bk);
-            String title=SLComputer.mf.getTitle();
-            int index=title.indexOf("(");
             if(index>=0){
                 SLComputer.mf.setTitle(title.substring(0, index-1));
             }
         }
         else{
             SLComputer.mf.setSmartNumber(true);
-            SLComputer.mf.setTitle(SLComputer.mf.getTitle()+" ("+SocketMaster.globalName+" 已登陆)");
+            if(index<0){
+                SLComputer.mf.setTitle(SLComputer.mf.getTitle()+" ("+SocketMaster.globalName+" 已登陆)");
+            }
         }
     }
 }

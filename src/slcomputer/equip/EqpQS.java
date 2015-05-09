@@ -16,7 +16,7 @@ public class EqpQS extends Equip{
     public EqpQS(int l){
         super();
         level=l;
-        id=42146;
-        eid=id;
+        eid=42146;
+        id=eid;
     }
 }

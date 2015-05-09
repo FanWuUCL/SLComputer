@@ -2249,7 +2249,7 @@
     "defGrowth": 31.54,
     "toughGrowth": 0,
     "para3": [
-      10304
+      10305
     ],
     "limit": 0,
     "slot": 4,
@@ -2817,13 +2817,77 @@
     "atkGrowth": 44,
     "defGrowth": 31.54,
     "toughGrowth": 0,
-    "para3": null,
+    "para3": [
+      10297
+    ],
     "limit": 0,
     "slot": 4,
     "hideProperty": [
-      426,
       0,
-      0
+      0,
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        2,
+        400,
+        0
+      ],
+      [
+        1,
+        30,
+        0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "40147": {
+    "pid": "0",
+    "updateId": "40247",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "40887",
+    "star": 5,
+    "drop": 0,
+    "type": 0,
+    "exp": 600,
+    "name": "白牙之刃",
+    "description": "【活动卡】<武器>旗木家族的传家之宝，传说中的“木叶白牙”卡卡西父亲因此而得名，后成为卡卡西的珍爱之物。",
+    "para1": 400,
+    "para2": 283,
+    "tough": 0,
+    "atkGrowth": 44,
+    "defGrowth": 31.54,
+    "toughGrowth": 0,
+    "para3": [
+      10328
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
     ],
     "isColl": 1,
     "splitDrop": [
@@ -3988,7 +4052,7 @@
     "defGrowth": 31.54,
     "toughGrowth": 0,
     "para3": [
-      10304
+      10305
     ],
     "limit": 0,
     "slot": 4,
@@ -4384,9 +4448,51 @@
     "limit": 0,
     "slot": 4,
     "hideProperty": [
-      466,
       0,
-      0
+      0,
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "40247": {
+    "pid": "40147",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "40887",
+    "star": 6,
+    "drop": 0,
+    "type": 0,
+    "exp": 1000,
+    "name": "白牙之刃",
+    "description": "【活动卡】<武器>旗木家族的传家之宝，传说中的“木叶白牙”卡卡西父亲因此而得名，后成为卡卡西的珍爱之物。",
+    "para1": 435,
+    "para2": 283,
+    "tough": 0,
+    "atkGrowth": 47.85,
+    "defGrowth": 31.54,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      5
     ],
     "isColl": 1,
     "splitDrop": [
@@ -12093,7 +12199,71 @@
     "atkGrowth": 31.54,
     "defGrowth": 44,
     "toughGrowth": 0,
-    "para3": null,
+    "para3": [
+      10327
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      5
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        2,
+        0,
+        400
+      ],
+      [
+        1,
+        0,
+        30
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "45147": {
+    "pid": "0",
+    "updateId": "45247",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "45891",
+    "star": 5,
+    "drop": 0,
+    "type": 1,
+    "exp": 600,
+    "name": "卡卡西面罩",
+    "description": "【活动卡】<防具>刷时髦，留神秘，现在的年轻人啊，动不动就露来露去，一点都不酷了。",
+    "para1": 283,
+    "para2": 400,
+    "tough": 0,
+    "atkGrowth": 31.54,
+    "defGrowth": 44,
+    "toughGrowth": 0,
+    "para3": [
+      10328
+    ],
     "limit": 0,
     "slot": 4,
     "hideProperty": [
@@ -13584,6 +13754,50 @@
     "defGrowth": 45.675,
     "toughGrowth": 0,
     "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      5
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "45247": {
+    "pid": "45147",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "45891",
+    "star": 6,
+    "drop": 0,
+    "type": 1,
+    "exp": 1000,
+    "name": "卡卡西面罩",
+    "description": "【活动卡】<防具>刷时髦，留神秘，现在的年轻人啊，动不动就露来露去，一点都不酷了。",
+    "para1": 283,
+    "para2": 435,
+    "tough": 0,
+    "atkGrowth": 31.54,
+    "defGrowth": 47.85,
+    "toughGrowth": 0,
+    "para3": [
+      10328
+    ],
     "limit": 0,
     "slot": 4,
     "hideProperty": [

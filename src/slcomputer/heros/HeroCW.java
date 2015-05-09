@@ -4,8 +4,7 @@
  */
 package slcomputer.heros;
 
-import slcomputer.Hero;
-import slcomputer.Team;
+import slcomputer.computer.Team;
 
 /**
  *

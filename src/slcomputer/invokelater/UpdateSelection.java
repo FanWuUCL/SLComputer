@@ -4,7 +4,7 @@
  */
 package slcomputer.invokelater;
 
-import slcomputer.SLComputer;
+import slcomputer.main.SLComputer;
 
 /**
  *
