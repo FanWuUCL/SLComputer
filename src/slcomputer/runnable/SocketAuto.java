@@ -104,7 +104,7 @@ public class SocketAuto implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=SocketMaster.transform(length, (int)(SocketMaster.arguments[4])==0?2009000:2009000, SocketMaster.globalCer, command, extralength, extra);
+        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[4])==0?1000000:1000000), SocketMaster.globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -263,7 +263,7 @@ public class SocketAuto implements Runnable{
         }
         int code;
         int command=SocketMaster.c_bb_q1;
-        byte[] extra=SocketMaster.festival_extra(SocketMaster.globalID, SocketMaster.mode);
+        byte[] extra=SocketMaster.harvest_extra(SocketMaster.globalID, SocketMaster.mode, 0);   // emeng
         byte[] recvData=communicate(SocketMaster.osStatic, SocketMaster.isStatic, command, extra);
         if(recvData==null || recvData.length<4){
             return -1;
@@ -336,7 +336,7 @@ public class SocketAuto implements Runnable{
             return 2;
         }
         int command=SocketMaster.c_bb_battle;
-        byte[] extra=SocketMaster.festival_extra(SocketMaster.globalID, hardness);
+        byte[] extra=SocketMaster.harvest_extra(SocketMaster.globalID, hardness, 0); // emeng
         byte[] recvData=communicate(SocketMaster.osStatic, SocketMaster.isStatic, command, extra);
         if(recvData==null || recvData.length<76){
             return 2;
@@ -907,7 +907,7 @@ public class SocketAuto implements Runnable{
                     return 2;
                 }
                 command=SocketMaster.c_bb_q2;
-                extra=SocketMaster.festival_extra(SocketMaster.globalID, globalIndex);
+                extra=SocketMaster.harvest_extra(SocketMaster.globalID, globalIndex, 0); // emeng
                 recvData=communicate(SocketMaster.osStatic, SocketMaster.isStatic, command, extra);
                 if(recvData==null || recvData.length<160){
                     return 2;

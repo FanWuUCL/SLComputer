@@ -82,11 +82,11 @@ public class SocketMaster implements Runnable{
     public static final int c_sacrifice_heros=0x00026875; // id+heroPos+number+(heroPos)*number
     public static final int c_union_buy_assignment=0x00026c78;    //id+0/1/2/3, 用festival_extra
     public static final int c_union_census=0x00026c71;    // id, 用monster_check_extra
-    public static final int c_bb_q0=0x00026370;   // id, 用monster_check_extra
-    public static final int c_bb_q1=0x00026363;   // id+0攻击/1防御试炼, 用festival_extra
-    public static final int c_bb_q2=0x00026366;   // id+0/1/2/3/4, 用festival_extra
-    public static final int c_bb_battle=0x00026378; // id+0困难/1普通/2容易，用festival_extra
-    public static final int c_chest_open=0x00026963;  // id+0/1/2, 2代表金钥匙，用festival_extra
+    public static final int c_bb_q0=0x00026370;   // id+0普通/1噩梦, 用festival_extra
+    public static final int c_bb_q1=0x00026363;   // id+0攻击/1防御试炼+0普通/1噩梦, 用harvest_extra
+    public static final int c_bb_q2=0x00026366;   // id+0/1/2/3/4+0普通/1噩梦, 用harvest_extra
+    public static final int c_bb_battle=0x00026378; // id+0困难/1普通/2容易+0普通/1噩梦，用harvest_extra
+    public static final int c_chest_open=0x00026963;  // id+0/1/2+number, 2代表金钥匙，用harvest_extra
     public static int startSignal;
     public static final int commandCooldown=6000;
     public static Socket clientStatic;
@@ -298,7 +298,7 @@ public class SocketMaster implements Runnable{
      * @return 
      */
     public static byte[] login_extra(String usr, String pss, int platform){
-        int usrL=usr.length();
+        int usrL=usr.length()-1;
         int pssL=pss.length();
         byte[] extra=new byte[usrL+pssL+20];
         extra[0]=extra[1]=extra[2]=extra[3]=extra[4]=extra[5]=extra[6]=extra[7]=extra[8]=extra[9]=extra[10]=extra[11]=0;
@@ -962,7 +962,7 @@ public class SocketMaster implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, (int)arguments[4]==0?2009000:2009000, globalCer, command, extralength, extra);
+        byte[] data=transform(length, 2000000+((int)(arguments[4])==0?1000000:1000000), globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -1009,7 +1009,7 @@ public class SocketMaster implements Runnable{
             return -1;
         }
         int command=c_bb_q0;
-        byte[] extra=monster_check_extra(globalID);
+        byte[] extra=festival_extra(globalID, 0);   // emeng
         byte[] recvData=communicate(osStatic, isStatic, command, extra);
         int code;
         if(recvData==null || recvData.length<4){
@@ -1042,7 +1042,7 @@ public class SocketMaster implements Runnable{
             mode=globalIndex;
         }
         command=c_bb_q1;
-        extra=festival_extra(globalID, mode);
+        extra=harvest_extra(globalID, mode, 0); // emeng
         recvData=communicate(osStatic, isStatic, command, extra);
         if(recvData==null || recvData.length<4){
             return -1;
@@ -1108,7 +1108,7 @@ public class SocketMaster implements Runnable{
                 return 0;
             }
             command=c_bb_q2;
-            extra=festival_extra(globalID, globalIndex);
+            extra=harvest_extra(globalID, globalIndex, 0);  // emeng
             recvData=communicate(osStatic, isStatic, command, extra);
             if(recvData==null || recvData.length<4){
                 return -1;
@@ -1178,7 +1178,7 @@ public class SocketMaster implements Runnable{
             return 2;
         }
         int command=c_bb_battle;
-        byte[] extra=festival_extra(globalID, hardness);
+        byte[] extra=harvest_extra(globalID, hardness, 0); // emeng
         byte[] recvData=communicate(osStatic, isStatic, command, extra);
         if(recvData==null || recvData.length<76){
             return 2;
@@ -1503,7 +1503,7 @@ public class SocketMaster implements Runnable{
                     return 2;
                 }
                 command=c_bb_q2;
-                extra=festival_extra(globalID, globalIndex);
+                extra=harvest_extra(globalID, globalIndex, 0);  // emeng
                 recvData=communicate(osStatic, isStatic, command, extra);
                 if(recvData==null || recvData.length<160){
                     return 2;
@@ -1720,7 +1720,7 @@ public class SocketMaster implements Runnable{
                     case 2: num=character.numGoldenKey; break;
                     default: num=0;
                 }
-                extra=festival_extra(globalID, i);
+                extra=harvest_extra(globalID, i, 1);
                 for(j=0; j<num; j++){
                     if(diag==null){
                         return;
@@ -1755,8 +1755,9 @@ public class SocketMaster implements Runnable{
                         }
                     }
                     else if(recvData.length>=44){
-                        id=((recvData[36]&0xff)<<24) | ((recvData[37]&0xff)<<16) | ((recvData[38]&0xff)<<8) | (recvData[39]&0xff);
-                        inum=((recvData[40]&0xff)<<24) | ((recvData[41]&0xff)<<16) | ((recvData[42]&0xff)<<8) | (recvData[43]&0xff);
+                        int pos=40;
+                        id=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                        inum=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
                         insertItem(result, id, inum);
                         if(id==47109){
                             character.numSilverKey++; total++;

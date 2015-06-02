@@ -2630,7 +2630,8 @@
     "defGrowth": 31.54,
     "toughGrowth": 0,
     "para3": [
-      10303
+      10303,
+      10330
     ],
     "limit": 0,
     "slot": 4,
@@ -11234,7 +11235,9 @@
     "atkGrowth": 25.5,
     "defGrowth": 36.3,
     "toughGrowth": 0,
-    "para3": null,
+    "para3": [
+      10329
+    ],
     "limit": 0,
     "slot": 4,
     "hideProperty": [

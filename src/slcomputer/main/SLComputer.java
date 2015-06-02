@@ -145,6 +145,10 @@
  * 1. 数据更新至2.9。
  * 2. 增加开宝箱功能。
  * 3. 试炼模式的进入方式略微修改，试炼结束不会自动注销，点进入试炼后可以直接开始下一次试炼。
+ * 
+ * Version 5.0
+ * 1. 数据更新至3.0。
+ * 2. 强化vip的验证，现在绑定账号应该比以前更快更方便了。
  */
 package slcomputer.main;
 
@@ -220,10 +224,10 @@ public class SLComputer {
     public static boolean dreamMode;
     public static boolean watchBattle;
     
-    public static final int major=4;
-    public static final int minor=4;
-    public static final int vip=64;
-    public static final String testVersion=".1";
+    public static final int major=5;
+    public static final int minor=0;
+    public static final int vip=90;
+    public static final String testVersion=".beta";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -1176,7 +1180,7 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=457;
+        int heroNumber=461;
         int equipAttNumber=93;
         int equipDefNumber=90;
         int eqpTfNumber=90;
@@ -1300,6 +1304,8 @@ public class SLComputer {
         allHero[i++]=new HeroDTMSR_6(1);
         allHero[i++]=new HeroXZY_6(1);
         allHero[i++]=new HeroHYKKX_6(1);
+        allHero[i++]=new HeroSNY_6(1);
+        allHero[i++]=new HeroSNB_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1471,6 +1477,8 @@ public class SLComputer {
         allHero[i++]=new HeroDTMSR(1);
         allHero[i++]=new HeroXZY(1);
         allHero[i++]=new HeroHYKKX(1);
+        allHero[i++]=new HeroSNY(1);
+        allHero[i++]=new HeroSNB(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);

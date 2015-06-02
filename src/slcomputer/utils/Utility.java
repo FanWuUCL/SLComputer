@@ -121,19 +121,19 @@ public class Utility {
         try {
             String test = "";
             //DesUtils des = new DesUtils(new String(SLComputer.zhengzhi));
-            //System.out.println(des.encrypt("fenge"));
-            //System.out.println(des.encrypt(change("EMAIL-lightning2z@126.com")));
-            //System.out.println(des.encrypt(change("AND91_"+"514348277")));
-            //System.out.println(des.encrypt(change("ANDZSY_"+"DY13818696122")));
-            //System.out.println(des.encrypt(change("IOS91_"+"589367946")));
-            //System.out.println(des.encrypt(change("ANDWD_"+"23005887")));
-            //System.out.println(des.encrypt(change("AND36_"+"258392331")));
+            //System.out.println(des.encrypt("15270833387"));
+            //System.out.println(des.encrypt(change("EMAIL-"+"13983999115@qq.com")));
+            //System.out.println(des.encrypt(change("AND91_"+"573337272")));
+            //System.out.println(des.encrypt(change("ANDZSY_"+"15270833387")));
+            //System.out.println(des.encrypt(change("IOS91_"+"556789153")));
+            //System.out.println(des.encrypt(change("ANDWD_"+"30872091")));
+            //System.out.println(des.encrypt(change("AND36_"+"615072925")));
             //System.out.println(des.encrypt(change("ANDUC_"+"723197520")));
-            //System.out.println(des.encrypt(change("IOSTB_"+"3343933")));
-            //System.out.println(des.encrypt(change("ANDDK_"+"73399927")));
+            //System.out.println(des.encrypt(change("IOSTB_"+"10225173")));
+            //System.out.println(des.encrypt(change("ANDDK_"+"835796562")));
             //System.out.println(des.encrypt(change("ANDSN_"+"3687192672")));
             //System.out.println(des.encrypt(change("ANDTX_"+"DCEFE6ED248534E398322888E37C241A")));
-            //System.out.println(des.encrypt(change("IOSAS_292058")));
+            //System.out.println(des.encrypt(change("ANDMI_2014022115735532")));
             //System.out.println(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04"));
             //System.out.println(EnigmaUtil.checksum(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04")));
         }

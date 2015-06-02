@@ -53,7 +53,7 @@ public class Team {
         skillRateMultiply=0;
         petSkillRate=0;
         backNumber=0;
-        backHeros=new Hero[10];
+        backHeros=new Hero[15];
         for(int i=0; i<backHeros.length; i++){
             backHeros[i]=null;
         }

@@ -536,6 +536,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItemLogin = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItemStartBB = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItemAutoBB = new javax.swing.JMenuItem();
         jMenuItemWatchBattle = new javax.swing.JCheckBoxMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -1470,7 +1471,8 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuAccount.add(jMenuItemLogin);
         jMenuAccount.add(jSeparator4);
 
-        jMenuItemStartBB.setText("进入试炼");
+        jMenuItemStartBB.setText("究极试炼");
+        jMenuItemStartBB.setActionCommand("究极试炼");
         jMenuItemStartBB.setEnabled(false);
         jMenuItemStartBB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1478,6 +1480,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jMenuAccount.add(jMenuItemStartBB);
+
+        jMenuItem1.setText("噩梦试炼(建设中)");
+        jMenuItem1.setEnabled(false);
+        jMenuAccount.add(jMenuItem1);
 
         jMenuItemAutoBB.setText("自动试炼");
         jMenuItemAutoBB.setEnabled(false);
@@ -3569,6 +3575,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSumNorm;
     private javax.swing.JMenu jMenuAccount;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAutoBB;
     private javax.swing.JMenuItem jMenuItemChest;
     private javax.swing.JMenuItem jMenuItemLogin;

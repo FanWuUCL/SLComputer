@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import slcomputer.main.EnigmaUtil;
 import slcomputer.utils.AccountInfo;
 import slcomputer.main.SLComputer;
+import slcomputer.runnable.CheckVipRunnable;
 import slcomputer.runnable.SocketMaster;
 
 /**
@@ -161,24 +162,12 @@ public class JDialogLogin extends javax.swing.JDialog {
         else{
             account=(AccountInfo)jComboBox1.getSelectedItem();
         }
+        account.fwq=jComboBoxServer.getSelectedIndex();
+        SocketMaster.arguments[3]=jCheckBoxRemember.isSelected();
         account.usr=account.usr.trim();
         SocketMaster.usrSave=account.usr;
-        String usr=EnigmaUtil.checkVip(account.usr, count);
-        if(usr==null){
-            JOptionPane.showMessageDialog(this, "该功能只对vip用户开放。\nVip用户可以登记至多2个账号，只有登记过的账号才能使用此功能。", "版权", JOptionPane.ERROR_MESSAGE);
-            dispose();
-            return;
-        }
-        //System.out.println(account.usr);
-        account.fwq=jComboBoxServer.getSelectedIndex();
-        SocketMaster.setGlobalIP(account.fwq);
-        SocketMaster.arguments[0]=usr;
-        SocketMaster.arguments[1]=account.psd;
-        SocketMaster.arguments[2]=account.fwq;
-        SocketMaster.arguments[3]=jCheckBoxRemember.isSelected();
-        SocketMaster.cmdGlobal=SocketMaster.c_login;
-        SocketMaster sm=new SocketMaster();
-        new Thread(sm).start();
+        CheckVipRunnable cvr=new CheckVipRunnable(account);
+        new Thread(cvr).start();
         dispose();
     }//GEN-LAST:event_jButtonLoginActionPerformed
 

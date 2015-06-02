@@ -119,12 +119,19 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemStartBB">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#x8fdb;&#x5165;&#x8bd5;&#x70bc;"/>
+                <Property name="text" type="java.lang.String" value="&#x7a76;&#x6781;&#x8bd5;&#x70bc;"/>
+                <Property name="actionCommand" type="java.lang.String" value="&#x7a76;&#x6781;&#x8bd5;&#x70bc;"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemStartBBActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x5669;&#x68a6;&#x8bd5;&#x70bc;(&#x5efa;&#x8bbe;&#x4e2d;)"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAutoBB">
               <Properties>
