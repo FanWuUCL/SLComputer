@@ -149,6 +149,9 @@
  * Version 5.0
  * 1. 数据更新至3.0。
  * 2. 强化vip的验证，现在绑定账号应该比以前更快更方便了。
+ * 3. 添加噩梦试炼的操作，添加噩梦试炼数据。
+ * 
+ * Version 5.1
  */
 package slcomputer.main;
 
@@ -202,8 +205,10 @@ public class SLComputer {
     public static Equip[] allEquiqAtt;
     public static Equip[] allEquiqDef;
     public static Equip[] allEqpTf;
-    public static SLData QXSL;
-    public static SLData FYSL;
+    public static SLData NQXSL;
+    public static SLData NFYSL;
+    public static SLData HQXSL;
+    public static SLData HFYSL;
     public static Team myTeam;
     public static Team[] backupTeams;
     public static Team teamCache;
@@ -216,6 +221,7 @@ public class SLComputer {
     public static Vector<AccountInfo> accounts;
     public static byte[] zhengzhi={105, 110, 116, 101, 103, 114, 105, 116, 121};
     public static DesUtils des;
+    public static int slSelection=0;
     // configure
     public static int sNumber;
     public static boolean smartNumber;
@@ -225,9 +231,9 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=5;
-    public static final int minor=0;
+    public static final int minor=1;
     public static final int vip=90;
-    public static final String testVersion=".beta";
+    public static final String testVersion=".tmp";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -261,37 +267,6 @@ public class SLComputer {
             + "如果你有好的建议或意见，也可以通过邮件联系我。谢谢支持！\n"
             + "                                lightning2\n"
             + "                              2015年1月20日\n";
-    /*
-    public static void change(){
-        try {
-            BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(new File("login.txt")),"UTF-8"));
-            BufferedWriter bw=new BufferedWriter(new FileWriter(new File("login2.txt")));
-            String line, acc1, acc2;
-            while((line=br.readLine())!=null){
-                if(line.indexOf(",")>0){
-                    int a, b, c;
-                    a=line.indexOf("\"");
-                    b=line.indexOf(",");
-                    c=line.lastIndexOf("\"");
-                    acc1=line.substring(a+1, b-1);
-                    acc2=line.substring(b+3, c);
-                    if(acc1.equals(acc2)){
-                        acc2="EMAIL-"+des.decrypt(acc1);
-                        acc2=des.encrypt(acc2);
-                    }
-                    acc2=des.decrypt(acc2);
-                    char cha=(char)(60-EnigmaUtil.checksum(acc2));
-                    if(cha>'9') cha=(char)(cha-10);
-                    acc2=des.encrypt(acc2+cha);
-                    line=line.substring(0, b+3)+acc2+line.substring(c);
-                }
-                bw.write(line+"\n");
-            }
-            bw.close();
-        } catch (Exception ex) {
-            Logger.getLogger(SLComputer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
     
     public static void log(String msg){
         if(debug==0){
@@ -1013,16 +988,26 @@ public class SLComputer {
     }
     
     public static void initSLTeams(){
-        QXSL=new SLData();
-        FYSL=new SLData();
-        FYSL.teamsHard=new Team[32];
-        FYSL.teamsNorm=new Team[32];
-        FYSL.teamsEasy=new Team[22];
-        QXSL.teamsHard=new Team[31];
-        QXSL.teamsNorm=new Team[32];
-        QXSL.teamsEasy=new Team[22];
-        File f=new File("bb_1.json");
+        NQXSL=new SLData();
+        NFYSL=new SLData();
+        NFYSL.teamsHard=new Team[32];
+        NFYSL.teamsNorm=new Team[32];
+        NFYSL.teamsEasy=new Team[22];
+        NQXSL.teamsHard=new Team[31];
+        NQXSL.teamsNorm=new Team[32];
+        NQXSL.teamsEasy=new Team[22];
+        
+        HQXSL=new SLData();
+        HFYSL=new SLData();
+        HFYSL.teamsHard=new Team[32];
+        HFYSL.teamsNorm=new Team[32];
+        HFYSL.teamsEasy=new Team[22];
+        HQXSL.teamsHard=new Team[31];
+        HQXSL.teamsNorm=new Team[32];
+        HQXSL.teamsEasy=new Team[22];
+        
         try {
+            File f=new File("bb_1.json");
             BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
             String line;
             int k, i, j;
@@ -1031,33 +1016,33 @@ public class SLComputer {
                 if(k>=0){
                     line=br.readLine();
                     line=line.trim();
-                    FYSL.basePlus[FYSL.maxLevel][0]=Double.parseDouble(line.substring(0, line.length()-1));
+                    NFYSL.basePlus[NFYSL.maxLevel][0]=Double.parseDouble(line.substring(0, line.length()-1));
                     line=br.readLine();
                     line=line.trim();
-                    FYSL.basePlus[FYSL.maxLevel][1]=Double.parseDouble(line.substring(0, line.length()-1));
+                    NFYSL.basePlus[NFYSL.maxLevel][1]=Double.parseDouble(line.substring(0, line.length()-1));
                     line=br.readLine();
                     line=line.trim();
-                    FYSL.basePlus[FYSL.maxLevel][2]=Double.parseDouble(line);
+                    NFYSL.basePlus[NFYSL.maxLevel][2]=Double.parseDouble(line);
                     line=br.readLine();
                     line=br.readLine();
                     i=line.indexOf(":");
                     j=line.indexOf(",");
-                    FYSL.skillPower[FYSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                    NFYSL.skillPower[NFYSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
                     line=br.readLine();
                     i=line.indexOf(":");
                     j=line.indexOf(",");
-                    FYSL.skillRate[FYSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                    NFYSL.skillRate[NFYSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
                 }
                 else if(line.indexOf("bodySkillPlus")>=0){
                     line=br.readLine();
                     line=line.trim();
-                    FYSL.bodySkill[FYSL.maxLevel][0]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    NFYSL.bodySkill[NFYSL.maxLevel][0]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
                     line=br.readLine();
                     line=line.trim();
-                    FYSL.bodySkill[FYSL.maxLevel][1]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    NFYSL.bodySkill[NFYSL.maxLevel][1]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
                     line=br.readLine();
                     line=line.trim();
-                    FYSL.bodySkill[FYSL.maxLevel++][2]=toughExp2Tough(Double.parseDouble(line));
+                    NFYSL.bodySkill[NFYSL.maxLevel++][2]=toughExp2Tough(Double.parseDouble(line));
                     //System.out.println("Level "+FYSL.maxLevel);
                     //System.out.println(FYSL.bodySkill[FYSL.maxLevel-1][0]+"\t"+FYSL.bodySkill[FYSL.maxLevel-1][1]+"\t"+FYSL.bodySkill[FYSL.maxLevel-1][2]);
                 }
@@ -1071,33 +1056,33 @@ public class SLComputer {
                 if(k>=0){
                     line=br.readLine();
                     line=line.trim();
-                    QXSL.basePlus[QXSL.maxLevel][0]=Double.parseDouble(line.substring(0, line.length()-1));
+                    NQXSL.basePlus[NQXSL.maxLevel][0]=Double.parseDouble(line.substring(0, line.length()-1));
                     line=br.readLine();
                     line=line.trim();
-                    QXSL.basePlus[QXSL.maxLevel][1]=Double.parseDouble(line.substring(0, line.length()-1));
+                    NQXSL.basePlus[NQXSL.maxLevel][1]=Double.parseDouble(line.substring(0, line.length()-1));
                     line=br.readLine();
                     line=line.trim();
-                    QXSL.basePlus[QXSL.maxLevel][2]=Double.parseDouble(line);
+                    NQXSL.basePlus[NQXSL.maxLevel][2]=Double.parseDouble(line);
                     line=br.readLine();
                     line=br.readLine();
                     i=line.indexOf(":");
                     j=line.indexOf(",");
-                    QXSL.skillPower[QXSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                    NQXSL.skillPower[NQXSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
                     line=br.readLine();
                     i=line.indexOf(":");
                     j=line.indexOf(",");
-                    QXSL.skillRate[QXSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                    NQXSL.skillRate[NQXSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
                 }
                 else if(line.indexOf("bodySkillPlus")>=0){
                     line=br.readLine();
                     line=line.trim();
-                    QXSL.bodySkill[QXSL.maxLevel][0]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    NQXSL.bodySkill[NQXSL.maxLevel][0]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
                     line=br.readLine();
                     line=line.trim();
-                    QXSL.bodySkill[QXSL.maxLevel][1]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    NQXSL.bodySkill[NQXSL.maxLevel][1]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
                     line=br.readLine();
                     line=line.trim();
-                    QXSL.bodySkill[QXSL.maxLevel++][2]=toughExp2Tough(Double.parseDouble(line));
+                    NQXSL.bodySkill[NQXSL.maxLevel++][2]=toughExp2Tough(Double.parseDouble(line));
                 }
             }
             //System.out.println("QXSL maxLevel="+QXSL.maxLevel);
@@ -1117,22 +1102,166 @@ public class SLComputer {
                 j=teamIndex%100-1;
                 switch(i){
                     case 8150:
-                        tmpTeam=FYSL.teamsHard;
+                        tmpTeam=NFYSL.teamsHard;
                         break;
                     case 8250:
-                        tmpTeam=FYSL.teamsNorm;
+                        tmpTeam=NFYSL.teamsNorm;
                         break;
                     case 8350:
-                        tmpTeam=FYSL.teamsEasy;
+                        tmpTeam=NFYSL.teamsEasy;
                         break;
                     case 8450:
-                        tmpTeam=QXSL.teamsHard;
+                        tmpTeam=NQXSL.teamsHard;
                         break;
                     case 8550:
-                        tmpTeam=QXSL.teamsNorm;
+                        tmpTeam=NQXSL.teamsNorm;
                         break;
                     case 8650:
-                        tmpTeam=QXSL.teamsEasy;
+                        tmpTeam=NQXSL.teamsEasy;
+                        break;
+                    default:
+                        break;
+                }
+                if(tmpTeam==null){
+                    continue;
+                }
+                line=br.readLine();
+                tmpTeam[j]=new Team();
+                Hero tmpHero;
+                while(line.indexOf("],")<0){
+                    line=br.readLine();     // hero id
+                    line=line.trim();
+                    k=Integer.parseInt(line.substring(0, line.indexOf(",")));
+                    tmpHero=dupHeroById(k);
+                    line=br.readLine();     // hero level
+                    line=br.readLine();     // weapon id
+                    line=line.trim();
+                    k=Integer.parseInt(line.substring(0, line.indexOf(",")));
+                    tmpHero.weapon=dupAttEqById(k);
+                    line=br.readLine();     // weapon level
+                    line=br.readLine();     // shield id
+                    line=line.trim();
+                    k=Integer.parseInt(line.substring(0, line.indexOf(",")));
+                    tmpHero.shield=dupDefEqById(k);
+                    line=br.readLine();     // shield level
+                    if(line.indexOf(",")>0){
+                        line=br.readLine();
+                    }
+                    tmpTeam[j].heros[tmpTeam[j].numberMax++]=tmpHero;
+                    line=br.readLine();     // "]"
+                    line=br.readLine();     // "[" or "],"
+                }
+                //System.out.println("number: "+tmpTeam[j].numberMax);
+            }
+            br.close();
+            
+            f=new File("hbb_1.json");
+            br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+            while((line=br.readLine())!=null){
+                k=line.indexOf("basePlus");
+                if(k>=0){
+                    line=br.readLine();
+                    line=line.trim();
+                    HFYSL.basePlus[HFYSL.maxLevel][0]=Double.parseDouble(line.substring(0, line.length()-1));
+                    line=br.readLine();
+                    line=line.trim();
+                    HFYSL.basePlus[HFYSL.maxLevel][1]=Double.parseDouble(line.substring(0, line.length()-1));
+                    line=br.readLine();
+                    line=line.trim();
+                    HFYSL.basePlus[HFYSL.maxLevel][2]=Double.parseDouble(line);
+                    line=br.readLine();
+                    line=br.readLine();
+                    i=line.indexOf(":");
+                    j=line.indexOf(",");
+                    HFYSL.skillPower[HFYSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                    line=br.readLine();
+                    i=line.indexOf(":");
+                    j=line.indexOf(",");
+                    HFYSL.skillRate[HFYSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                }
+                else if(line.indexOf("bodySkillPlus")>=0){
+                    line=br.readLine();
+                    line=line.trim();
+                    HFYSL.bodySkill[HFYSL.maxLevel][0]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    line=br.readLine();
+                    line=line.trim();
+                    HFYSL.bodySkill[HFYSL.maxLevel][1]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    line=br.readLine();
+                    line=line.trim();
+                    HFYSL.bodySkill[HFYSL.maxLevel++][2]=toughExp2Tough(Double.parseDouble(line));
+                    //System.out.println("Level "+HFYSL.maxLevel);
+                    //System.out.println(HFYSL.bodySkill[HFYSL.maxLevel-1][0]+"\t"+Double.parseDouble(line));
+                }
+            }
+            //System.out.println("FYSL maxLevel="+FYSL.maxLevel);
+            br.close();
+            f=new File("hbb_0.json");
+            br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+            while((line=br.readLine())!=null){
+                k=line.indexOf("basePlus");
+                if(k>=0){
+                    line=br.readLine();
+                    line=line.trim();
+                    HQXSL.basePlus[HQXSL.maxLevel][0]=Double.parseDouble(line.substring(0, line.length()-1));
+                    line=br.readLine();
+                    line=line.trim();
+                    HQXSL.basePlus[HQXSL.maxLevel][1]=Double.parseDouble(line.substring(0, line.length()-1));
+                    line=br.readLine();
+                    line=line.trim();
+                    HQXSL.basePlus[HQXSL.maxLevel][2]=Double.parseDouble(line);
+                    line=br.readLine();
+                    line=br.readLine();
+                    i=line.indexOf(":");
+                    j=line.indexOf(",");
+                    HQXSL.skillPower[HQXSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                    line=br.readLine();
+                    i=line.indexOf(":");
+                    j=line.indexOf(",");
+                    HQXSL.skillRate[HQXSL.maxLevel]=Double.parseDouble(line.substring(i+1, j));
+                }
+                else if(line.indexOf("bodySkillPlus")>=0){
+                    line=br.readLine();
+                    line=line.trim();
+                    HQXSL.bodySkill[HQXSL.maxLevel][0]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    line=br.readLine();
+                    line=line.trim();
+                    HQXSL.bodySkill[HQXSL.maxLevel][1]=toughExp2Tough(Double.parseDouble(line.substring(0, line.length()-1)));
+                    line=br.readLine();
+                    line=line.trim();
+                    HQXSL.bodySkill[HQXSL.maxLevel++][2]=toughExp2Tough(Double.parseDouble(line));
+                }
+            }
+            //System.out.println("QXSL maxLevel="+QXSL.maxLevel);
+            br.close();
+            f=new File("hbb_npc.json");
+            br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+            while((line=br.readLine())!=null){
+                k=line.indexOf("\"");
+                if(k<0){
+                    continue;
+                }
+                tmpTeam=null;
+                teamIndex=Integer.parseInt(line.substring(k+1, k+7));
+                i=teamIndex/100;
+                j=teamIndex%100-1;
+                switch(i){
+                    case 8150:
+                        tmpTeam=HFYSL.teamsHard;
+                        break;
+                    case 8250:
+                        tmpTeam=HFYSL.teamsNorm;
+                        break;
+                    case 8350:
+                        tmpTeam=HFYSL.teamsEasy;
+                        break;
+                    case 8450:
+                        tmpTeam=HQXSL.teamsHard;
+                        break;
+                    case 8550:
+                        tmpTeam=HQXSL.teamsNorm;
+                        break;
+                    case 8650:
+                        tmpTeam=HQXSL.teamsEasy;
                         break;
                     default:
                         break;

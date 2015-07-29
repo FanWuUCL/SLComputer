@@ -29,7 +29,7 @@ public class Hero {
     public String name;
     public String description;
     public int star;
-    // 木叶0, 雾忍1, 岩忍2, 砂忍3, 雨忍4, 音忍5, 晓6, 云忍7, 泷忍8， 雪忍9， 忍兽10，秽土转生11，忍宗12
+    // 木叶0, 雾忍1, 岩忍2, 砂忍3, 雨忍4, 音忍5, 晓6, 云忍7, 泷忍8， 雪忍9， 忍兽10，秽土转生11，忍宗12, 剧场版13
     public int style;
     public int gender;
     public int attOrDef;

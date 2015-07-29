@@ -5,6 +5,7 @@
 package slcomputer.invokelater;
 
 import slcomputer.main.SLComputer;
+import slcomputer.runnable.SocketMaster;
 
 /**
  *
@@ -51,7 +52,7 @@ public class UpdateSelection implements Runnable{
         SLComputer.mf.setEnemy(enemyHard, enemyNorm, enemyEasy);
         SLComputer.mf.setNumbers(myNumber, enemyNumber);
         if(!SLComputer.watchBattle && win){
-            SLComputer.mf.finalComputer();
+            SLComputer.mf.finalComputer(SocketMaster.bbType);
         }
         else{
             SLComputer.mf.setDetails(battle);

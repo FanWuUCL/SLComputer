@@ -49,9 +49,9 @@ public class MainFrame extends javax.swing.JFrame {
             300, 0, 55, 50, 1000);
         jButtonFinalComputer.setText("<html><font color=#DF0101>试炼终结者</font></html>");
         SLComputer.bf=new BattleField(jTextPaneBattleField);
-        jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsHard));
-        jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsNorm));
-        jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsEasy));
+        jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsHard));
+        jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsNorm));
+        jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsEasy));
         int i;
         for(i=0; i<5; i++){
             jComboBoxPets[i].setSelectedIndex(SLComputer.myTeam.pet[i]);
@@ -225,18 +225,40 @@ public class MainFrame extends javax.swing.JFrame {
         simulationTimes.add(jRadioButtonMenuItemSimulationTimes1000);
         simulationTimes.add(jRadioButtonMenuItemSimulationTimes3000);
         simulationTimes.add(jRadioButtonMenuItemSimulationTimes10000);
+        
+        slSelectionGroup=new javax.swing.ButtonGroup();
+        slSelectionGroup.add(jRadioButtonMenuItemNSL);
+        slSelectionGroup.add(jRadioButtonMenuItemHSL);
     }
     
-    public void changeTeamCaptains(int mode){
+    public void changeTeamCaptains(int mode, int slSelection){
+        if(mode<0){
+            mode=jComboBoxMode.getSelectedIndex();
+        }
+        //System.out.println("changeTeamCaptains "+mode+" "+slSelection);
         if(mode==0){
-            jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.QXSL.teamsHard));
-            jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.QXSL.teamsNorm));
-            jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.QXSL.teamsEasy));
+            if(slSelection==0){
+                jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.NQXSL.teamsHard));
+                jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.NQXSL.teamsNorm));
+                jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.NQXSL.teamsEasy));
+            }
+            else{
+                jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.HQXSL.teamsHard));
+                jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.HQXSL.teamsNorm));
+                jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.HQXSL.teamsEasy));
+            }
         }
         else{
-            jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsHard));
-            jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsNorm));
-            jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.FYSL.teamsEasy));
+            if(slSelection==0){
+                jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsHard));
+                jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsNorm));
+                jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsEasy));
+            }
+            else{
+                jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.HFYSL.teamsHard));
+                jComboBoxCaptainNorm.setModel(new DefaultComboBoxModel(SLComputer.HFYSL.teamsNorm));
+                jComboBoxCaptainEasy.setModel(new DefaultComboBoxModel(SLComputer.HFYSL.teamsEasy));
+            }
         }
     }
     
@@ -385,7 +407,7 @@ public class MainFrame extends javax.swing.JFrame {
         jComboBoxMyNumberHard = new javax.swing.JComboBox();
         jLabel31 = new javax.swing.JLabel();
         jComboBoxEnemyNumberHard = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        jButtonCompute = new javax.swing.JButton();
         jComboBoxCaptainNorm = new javax.swing.JComboBox();
         jComboBoxMyNumberNorm = new javax.swing.JComboBox();
         jLabel32 = new javax.swing.JLabel();
@@ -528,6 +550,9 @@ public class MainFrame extends javax.swing.JFrame {
         jRadioButtonMenuItemSimulationTimes1000 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItemSimulationTimes3000 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItemSimulationTimes10000 = new javax.swing.JRadioButtonMenuItem();
+        jMenuSelectSL = new javax.swing.JMenu();
+        jRadioButtonMenuItemNSL = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItemHSL = new javax.swing.JRadioButtonMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jCheckBoxMenuItemSmartNumber = new javax.swing.JCheckBoxMenuItem();
         jCheckBoxMenuItemSaveBE = new javax.swing.JCheckBoxMenuItem();
@@ -536,7 +561,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItemLogin = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItemStartBB = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemStartNBB = new javax.swing.JMenuItem();
         jMenuItemAutoBB = new javax.swing.JMenuItem();
         jMenuItemWatchBattle = new javax.swing.JCheckBoxMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -598,10 +623,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("计算");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCompute.setText("计算");
+        jButtonCompute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonComputeActionPerformed(evt);
             }
         });
 
@@ -1429,6 +1454,27 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuSimulationTimes.add(jRadioButtonMenuItemSimulationTimes10000);
 
         jMenuSettings.add(jMenuSimulationTimes);
+
+        jMenuSelectSL.setText("选择试炼");
+
+        jRadioButtonMenuItemNSL.setSelected(true);
+        jRadioButtonMenuItemNSL.setText("究极试炼");
+        jRadioButtonMenuItemNSL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItemNSLActionPerformed(evt);
+            }
+        });
+        jMenuSelectSL.add(jRadioButtonMenuItemNSL);
+
+        jRadioButtonMenuItemHSL.setText("噩梦试炼");
+        jRadioButtonMenuItemHSL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItemHSLActionPerformed(evt);
+            }
+        });
+        jMenuSelectSL.add(jRadioButtonMenuItemHSL);
+
+        jMenuSettings.add(jMenuSelectSL);
         jMenuSettings.add(jSeparator1);
 
         jCheckBoxMenuItemSmartNumber.setSelected(true);
@@ -1472,7 +1518,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuAccount.add(jSeparator4);
 
         jMenuItemStartBB.setText("究极试炼");
-        jMenuItemStartBB.setActionCommand("究极试炼");
         jMenuItemStartBB.setEnabled(false);
         jMenuItemStartBB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1481,9 +1526,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenuAccount.add(jMenuItemStartBB);
 
-        jMenuItem1.setText("噩梦试炼(建设中)");
-        jMenuItem1.setEnabled(false);
-        jMenuAccount.add(jMenuItem1);
+        jMenuItemStartNBB.setText("噩梦试炼");
+        jMenuItemStartNBB.setEnabled(false);
+        jMenuItemStartNBB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemStartNBBActionPerformed(evt);
+            }
+        });
+        jMenuAccount.add(jMenuItemStartNBB);
 
         jMenuItemAutoBB.setText("自动试炼");
         jMenuItemAutoBB.setEnabled(false);
@@ -1592,7 +1642,7 @@ public class MainFrame extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jComboBoxMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jButton1))
+                                                .addComponent(jButtonCompute))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel1)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1725,7 +1775,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)
+                            .addComponent(jButtonCompute)
                             .addComponent(jLabel3)
                             .addComponent(jTextFieldPlus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
@@ -1885,7 +1935,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jComboBoxModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxModeActionPerformed
         int i=jComboBoxMode.getSelectedIndex();
         //System.out.println(i+", "+j);
-        changeTeamCaptains(i);
+        changeTeamCaptains(i, SLComputer.slSelection);
         SLComputer.myTeam=SLComputer.backupTeams[i];
         for(i=0; i<5; i++){
             jComboBoxPets[i].setSelectedIndex(SLComputer.myTeam.pet[i]);
@@ -1940,15 +1990,25 @@ public class MainFrame extends javax.swing.JFrame {
         return effect;
     }
     
-    public void computeEnemy(){
+    public void computeEnemy(int slSelection){
         Team t=null;
         SLData slData;
         int mode=jComboBoxMode.getSelectedIndex();
         if(mode==0){
-            slData=SLComputer.QXSL;
+            if(slSelection==0){
+                slData=SLComputer.NQXSL;
+            }
+            else{
+                slData=SLComputer.HQXSL;
+            }
         }
         else{
-            slData=SLComputer.FYSL;
+            if(slSelection==0){
+                slData=SLComputer.NFYSL;
+            }
+            else{
+                slData=SLComputer.HFYSL;
+            }
         }
         // 试炼每3层的减益
         double powerDown=0;
@@ -2051,7 +2111,12 @@ public class MainFrame extends javax.swing.JFrame {
         int hardness;
         int heroLevel;
         if(level<=10){
-            heroLevel=1;
+            if(slSelection==1){
+                heroLevel=30;
+            }
+            else{
+                heroLevel=1;
+            }
         }
         else if(level<=30){
             heroLevel=30;
@@ -2096,32 +2161,72 @@ public class MainFrame extends javax.swing.JFrame {
                     //t.heros[i].potential=(t.heros[i].def_born+(heroLevel-1)*t.heros[i].defGrowth)*1.05;
                     t.heros[i].potential=10000;
                 }
-                if(i==0){
-                    if(heroLevel>1){
-                        t.heros[0].property_battle=20;
-                    }
-                    else{
-                        t.heros[0].property_battle=t.heros[0].property;
-                    }
-                }
-                else if(i==1){
-                    if(heroLevel>30){
-                        t.heros[1].property_battle=20;
-                    }
-                    else{
-                        t.heros[1].property_battle=t.heros[1].property;
-                    }
-                }
-                else if(i==2){
-                    if(heroLevel>50){
-                        t.heros[2].property_battle=20;
-                    }
-                    else{
-                        t.heros[2].property_battle=t.heros[1].property;
-                    }
-                }
-                else{
-                    t.heros[i].property_battle=t.heros[i].property;
+                switch(i){
+                    case 0:
+                        if(slSelection==0){
+                            if(level>10){
+                                t.heros[i].property_battle=20;
+                            }
+                            else{
+                                t.heros[i].property_battle=t.heros[i].property;
+                            }
+                        }
+                        else{
+                            t.heros[i].property_battle=20;
+                        }
+                        break;
+                    case 1:
+                        if(slSelection==0){
+                            if(level>30){
+                                t.heros[i].property_battle=20;
+                            }
+                            else{
+                                t.heros[i].property_battle=t.heros[i].property;
+                            }
+                        }
+                        else{
+                            t.heros[i].property_battle=20;
+                        }
+                        break;
+                    case 2:
+                        if(slSelection==0){
+                            if(level>120){
+                                t.heros[i].property_battle=20;
+                            }
+                            else{
+                                t.heros[i].property_battle=t.heros[i].property;
+                            }
+                        }
+                        else{
+                            t.heros[i].property_battle=20;
+                        }
+                        break;
+                    case 3:
+                    case 4:
+                        if(slSelection==0){
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        else if(level>30){
+                            t.heros[i].property_battle=20;
+                        }
+                        else{
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        break;
+                    case 5:
+                    case 6:
+                        if(slSelection==0){
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        else if(level>120){
+                            t.heros[i].property_battle=20;
+                        }
+                        else{
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        break;
+                    default:
+                        t.heros[i].property_battle=t.heros[i].property;
                 }
                 if(t.heros[i].weapon!=null){
                     t.heros[i].weapon.level=heroLevel;
@@ -2162,14 +2267,24 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
-    public void computeEnemySilent(int mode, int level, double HPM, double effectM, Team hardTeam, Team normTeam, Team easyTeam){
+    public void computeEnemySilent(int mode, int level, double HPM, double effectM, Team hardTeam, Team normTeam, Team easyTeam, int slSelection){
         Team t=null;
         SLData slData;
         if(mode==0){
-            slData=SLComputer.QXSL;
+            if(slSelection==0){
+                slData=SLComputer.NQXSL;
+            }
+            else{
+                slData=SLComputer.HQXSL;
+            }
         }
         else{
-            slData=SLComputer.FYSL;
+            if(slSelection==0){
+                slData=SLComputer.NFYSL;
+            }
+            else{
+                slData=SLComputer.HFYSL;
+            }
         }
         // 试炼每3层的减益
         double powerDown=HPM/100;
@@ -2226,7 +2341,12 @@ public class MainFrame extends javax.swing.JFrame {
         int hardness;
         int heroLevel;
         if(level<=10){
-            heroLevel=1;
+            if(slSelection==1){
+                heroLevel=30;
+            }
+            else{
+                heroLevel=1;
+            }
         }
         else if(level<=30){
             heroLevel=30;
@@ -2267,32 +2387,72 @@ public class MainFrame extends javax.swing.JFrame {
                 else{
                     t.heros[i].potential=10000;
                 }
-                if(i==0){
-                    if(heroLevel>1){
-                        t.heros[0].property_battle=20;
-                    }
-                    else{
-                        t.heros[0].property_battle=t.heros[0].property;
-                    }
-                }
-                else if(i==1){
-                    if(heroLevel>30){
-                        t.heros[1].property_battle=20;
-                    }
-                    else{
-                        t.heros[1].property_battle=t.heros[1].property;
-                    }
-                }
-                else if(i==2){
-                    if(heroLevel>50){
-                        t.heros[2].property_battle=20;
-                    }
-                    else{
-                        t.heros[2].property_battle=t.heros[1].property;
-                    }
-                }
-                else{
-                    t.heros[i].property_battle=t.heros[i].property;
+                switch(i){
+                    case 0:
+                        if(slSelection==0){
+                            if(level>10){
+                                t.heros[i].property_battle=20;
+                            }
+                            else{
+                                t.heros[i].property_battle=t.heros[i].property;
+                            }
+                        }
+                        else{
+                            t.heros[i].property_battle=20;
+                        }
+                        break;
+                    case 1:
+                        if(slSelection==0){
+                            if(level>30){
+                                t.heros[i].property_battle=20;
+                            }
+                            else{
+                                t.heros[i].property_battle=t.heros[i].property;
+                            }
+                        }
+                        else{
+                            t.heros[i].property_battle=20;
+                        }
+                        break;
+                    case 2:
+                        if(slSelection==0){
+                            if(level>120){
+                                t.heros[i].property_battle=20;
+                            }
+                            else{
+                                t.heros[i].property_battle=t.heros[i].property;
+                            }
+                        }
+                        else{
+                            t.heros[i].property_battle=20;
+                        }
+                        break;
+                    case 3:
+                    case 4:
+                        if(slSelection==0){
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        else if(level>30){
+                            t.heros[i].property_battle=20;
+                        }
+                        else{
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        break;
+                    case 5:
+                    case 6:
+                        if(slSelection==0){
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        else if(level>120){
+                            t.heros[i].property_battle=20;
+                        }
+                        else{
+                            t.heros[i].property_battle=t.heros[i].property;
+                        }
+                        break;
+                    default:
+                        t.heros[i].property_battle=t.heros[i].property;
                 }
                 if(t.heros[i].weapon!=null){
                     t.heros[i].weapon.level=heroLevel;
@@ -2307,9 +2467,9 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        computeEnemy();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonComputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonComputeActionPerformed
+        computeEnemy(SLComputer.slSelection);
+    }//GEN-LAST:event_jButtonComputeActionPerformed
 
     public void showMyTeam(boolean save){
         int i, j;
@@ -2608,8 +2768,8 @@ public class MainFrame extends javax.swing.JFrame {
         showMyTeam(true);
     }//GEN-LAST:event_jButtonShowMyTeamActionPerformed
 
-    public void goHard(){
-        computeEnemy();
+    public void goHard(int slSelection){
+        computeEnemy(slSelection);
         jTabbedPaneEnemy.setSelectedIndex(0);
         showMyTeam(true);
         int mode=jComboBoxMode.getSelectedIndex();
@@ -2657,11 +2817,11 @@ public class MainFrame extends javax.swing.JFrame {
             new Thread(sm).start();
             return;
         }
-        goHard();
+        goHard(SLComputer.slSelection);
     }//GEN-LAST:event_jButtonGoHardActionPerformed
 
-    public void goNorm(){
-        computeEnemy();
+    public void goNorm(int slSelection){
+        computeEnemy(slSelection);
         jTabbedPaneEnemy.setSelectedIndex(1);
         showMyTeam(true);
         int mode=jComboBoxMode.getSelectedIndex();
@@ -2709,11 +2869,11 @@ public class MainFrame extends javax.swing.JFrame {
             new Thread(sm).start();
             return;
         }
-        goNorm();
+        goNorm(SLComputer.slSelection);
     }//GEN-LAST:event_jButtonGoNormActionPerformed
 
-    public void goEasy(){
-        computeEnemy();
+    public void goEasy(int slSelection){
+        computeEnemy(slSelection);
         jTabbedPaneEnemy.setSelectedIndex(2);
         showMyTeam(true);
         int mode=jComboBoxMode.getSelectedIndex();
@@ -2761,12 +2921,12 @@ public class MainFrame extends javax.swing.JFrame {
             new Thread(sm).start();
             return;
         }
-        goEasy();
+        goEasy(SLComputer.slSelection);
     }//GEN-LAST:event_jButtonGoEasyActionPerformed
 
     public double[] finalComputerSilent(int mode, int level, double HPP, double effectP, double HPM, double effectM, int killFirst,
             int hardTeamNum, int normTeamNum, int easyTeamNum,
-            int hardNum, int normNum, int easyNum){
+            int hardNum, int normNum, int easyNum, int slSelection){
         SLComputer.bf.output=null;
         if(killFirst>0){
             killFirst=1-mode;
@@ -2779,33 +2939,63 @@ public class MainFrame extends javax.swing.JFrame {
         Team hard, norm, easy;
         
         if(mode==0){
-            teams=SLComputer.QXSL.teamsHard;
+            if(slSelection==0){
+                teams=SLComputer.NQXSL.teamsHard;
+            }
+            else{
+                teams=SLComputer.HQXSL.teamsHard;
+            }
         }
         else{
-            teams=SLComputer.FYSL.teamsHard;
+            if(slSelection==0){
+                teams=SLComputer.NFYSL.teamsHard;
+            }
+            else{
+                teams=SLComputer.HFYSL.teamsHard;
+            }
         }
         hard=teams[hardTeamNum%100-1];
         hard.number=hardNum>hard.numberMax?hard.numberMax:hardNum;
         
         if(mode==0){
-            teams=SLComputer.QXSL.teamsNorm;
+            if(slSelection==0){
+                teams=SLComputer.NQXSL.teamsNorm;
+            }
+            else{
+                teams=SLComputer.HQXSL.teamsNorm;
+            }
         }
         else{
-            teams=SLComputer.FYSL.teamsNorm;
+            if(slSelection==0){
+                teams=SLComputer.NFYSL.teamsNorm;
+            }
+            else{
+                teams=SLComputer.HFYSL.teamsNorm;
+            }
         }
         norm=teams[normTeamNum%100-1];
         norm.number=normNum>norm.numberMax?norm.numberMax:normNum;
         
         if(mode==0){
-            teams=SLComputer.QXSL.teamsEasy;
+            if(slSelection==0){
+                teams=SLComputer.NQXSL.teamsEasy;
+            }
+            else{
+                teams=SLComputer.HQXSL.teamsEasy;
+            }
         }
         else{
-            teams=SLComputer.FYSL.teamsEasy;
+            if(slSelection==0){
+                teams=SLComputer.NFYSL.teamsEasy;
+            }
+            else{
+                teams=SLComputer.HFYSL.teamsEasy;
+            }
         }
         easy=teams[easyTeamNum%100-1];
         easy.number=easyNum>easy.numberMax?easy.numberMax:easyNum;
         
-        computeEnemySilent(mode, level, HPM, effectM, hard, norm, easy);
+        computeEnemySilent(mode, level, HPM, effectM, hard, norm, easy, slSelection);
         showMyTeamSilent(mode, HPP, effectP);
         switch(SLComputer.sNumber){
             case 1:
@@ -2900,9 +3090,9 @@ public class MainFrame extends javax.swing.JFrame {
         return rate;
     }
     
-    public void finalComputer(){
+    public void finalComputer(int slSelection){
         SLComputer.bf.output=null;
-        computeEnemy();
+        computeEnemy(slSelection);
         showMyTeam(true);
         int mode=jComboBoxMode.getSelectedIndex();
         int level=Integer.parseInt(jTextFieldLevel.getText());
@@ -3024,11 +3214,28 @@ public class MainFrame extends javax.swing.JFrame {
             recommend="菜鸟";
         }
         * */
+        SLData tmpslData;
+        if(mode==0){
+            if(slSelection==0){
+                tmpslData=SLComputer.NQXSL;
+            }
+            else{
+                tmpslData=SLComputer.HQXSL;
+            }
+        }
+        else{
+            if(slSelection==0){
+                tmpslData=SLComputer.NFYSL;
+            }
+            else{
+                tmpslData=SLComputer.HFYSL;
+            }
+        }
         DecimalFormat decimalFormat = new DecimalFormat("###.00");
         recommend="第"+level+"层\n"
-                + "敌方忍术效果额外提升"+(int)(SLComputer.FYSL.skillPower[level-1]*100)+"%\n"
-                + "敌方忍术几率额外提升"+(int)(SLComputer.FYSL.skillRate[level-1]*100)+"%\n"
-                + "敌方体术附加"+(int)SLComputer.FYSL.bodySkill[level-1][0]+"\n"+
+                + "敌方忍术效果额外提升"+(int)(tmpslData.skillPower[level-1]*100)+"%\n"
+                + "敌方忍术几率额外提升"+(int)(tmpslData.skillRate[level-1]*100)+"%\n"
+                + "敌方体术附加"+(int)tmpslData.bodySkill[level-1][0]+"\n"+
                 "高难胜率："+decimalFormat.format(rateHard)+"%\n"+
                 "普通胜率："+decimalFormat.format(rateNorm)+"%\n"+
                 "菜鸟胜率："+decimalFormat.format(rateEasy)+"%\n\n";
@@ -3036,7 +3243,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void jButtonFinalComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalComputerActionPerformed
-        finalComputer();
+        finalComputer(SLComputer.slSelection);
     }//GEN-LAST:event_jButtonFinalComputerActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -3068,7 +3275,14 @@ public class MainFrame extends javax.swing.JFrame {
         catch(Exception e){
             return;
         }
-        if(level<SLComputer.QXSL.skillPower.length){
+        SLData tmpslData;
+        if(SLComputer.slSelection==0){
+            tmpslData=SLComputer.NQXSL;
+        }
+        else{
+            tmpslData=SLComputer.HQXSL;
+        }
+        if(level<tmpslData.skillPower.length){
             level++;
         }
         jTextFieldLevel.setText(level+"");
@@ -3356,7 +3570,13 @@ public class MainFrame extends javax.swing.JFrame {
         if(!SocketMaster.globalReady){
             return;
         }
+        if(SLComputer.slSelection==1){
+            jRadioButtonMenuItemNSL.setSelected(true);
+            SLComputer.slSelection=0;
+            changeTeamCaptains(-1, SLComputer.slSelection);
+        }
         SocketMaster.cmdGlobal=SocketMaster.c_bb_q0;
+        SocketMaster.bbType=0;
         SocketMaster sm=new SocketMaster();
         new Thread(sm).start();
     }//GEN-LAST:event_jMenuItemStartBBActionPerformed
@@ -3372,6 +3592,31 @@ public class MainFrame extends javax.swing.JFrame {
                 SocketMaster.character.numSilverKey, SocketMaster.character.numCopperKey);
         
     }//GEN-LAST:event_jMenuItemChestActionPerformed
+
+    private void jMenuItemStartNBBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStartNBBActionPerformed
+        if(!SocketMaster.globalReady){
+            return;
+        }
+        if(SLComputer.slSelection==0){
+            jRadioButtonMenuItemHSL.setSelected(true);
+            SLComputer.slSelection=1;
+            changeTeamCaptains(-1, SLComputer.slSelection);
+        }
+        SocketMaster.cmdGlobal=SocketMaster.c_bb_q0;
+        SocketMaster.bbType=1;
+        SocketMaster sm=new SocketMaster();
+        new Thread(sm).start();
+    }//GEN-LAST:event_jMenuItemStartNBBActionPerformed
+
+    private void jRadioButtonMenuItemNSLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemNSLActionPerformed
+        SLComputer.slSelection=0;
+        changeTeamCaptains(jComboBoxMode.getSelectedIndex(), 0);
+    }//GEN-LAST:event_jRadioButtonMenuItemNSLActionPerformed
+
+    private void jRadioButtonMenuItemHSLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemHSLActionPerformed
+        SLComputer.slSelection=1;
+        changeTeamCaptains(jComboBoxMode.getSelectedIndex(), 1);
+    }//GEN-LAST:event_jRadioButtonMenuItemHSLActionPerformed
 
     // 设置模式
     public void setMode(int mode){
@@ -3462,6 +3707,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void enableAutoBB(boolean loggedin, boolean en){
         this.jMenuItemStartBB.setEnabled(loggedin);
+        this.jMenuItemStartNBB.setEnabled(loggedin);
         this.jMenuItemChest.setEnabled(loggedin);
         this.jMenuItemAutoBB.setEnabled(loggedin&&en);
     }
@@ -3482,8 +3728,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCompute;
     private javax.swing.JButton jButtonCopyTeam;
     private javax.swing.JButton jButtonFinalComputer;
     private javax.swing.JButton jButtonGoEasy;
@@ -3575,13 +3821,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelSumNorm;
     private javax.swing.JMenu jMenuAccount;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAutoBB;
     private javax.swing.JMenuItem jMenuItemChest;
     private javax.swing.JMenuItem jMenuItemLogin;
     private javax.swing.JMenuItem jMenuItemLogout;
     private javax.swing.JMenuItem jMenuItemStartBB;
+    private javax.swing.JMenuItem jMenuItemStartNBB;
     private javax.swing.JCheckBoxMenuItem jMenuItemWatchBattle;
+    private javax.swing.JMenu jMenuSelectSL;
     private javax.swing.JMenu jMenuSettings;
     private javax.swing.JMenu jMenuSimulationTimes;
     private javax.swing.JPanel jPanel1;
@@ -3609,6 +3856,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonBQK7;
     private javax.swing.JRadioButton jRadioButtonBQK8;
     private javax.swing.JRadioButton jRadioButtonBQK9;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemHSL;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemNSL;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemSimulationTimes100;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemSimulationTimes1000;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemSimulationTimes10000;
@@ -3665,6 +3914,7 @@ public class MainFrame extends javax.swing.JFrame {
     public javax.swing.JComboBox[] jComboBoxPetsLevel;
     public javax.swing.ButtonGroup[] buttonGroup;
     public javax.swing.ButtonGroup simulationTimes;
+    public javax.swing.ButtonGroup slSelectionGroup;
     public javax.swing.JRadioButton[] jRadioButtons;
     public javax.swing.JComboBox[] jComboBoxBBuildingLevel;
     public int trialNumber;

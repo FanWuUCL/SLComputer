@@ -30,22 +30,6 @@ public class JDialogLogin extends javax.swing.JDialog {
         for(AccountInfo s:SLComputer.accounts){
             jComboBox1.addItem(s);
         }
-        try {
-            //System.out.println(SLComputer.des.encrypt("18502605563"));
-            //System.out.println(SLComputer.des.encrypt("AND91_"+"514348277"));
-            //System.out.println(SLComputer.des.encrypt("ANDZSY_"+"DY13818696122"));
-            //System.out.println(SLComputer.des.encrypt("IOS91_"+"589367946"));
-            //System.out.println(SLComputer.des.encrypt("ANDWD_"+"23005887"));
-            //System.out.println(SLComputer.des.encrypt("AND36_"+"258392331"));
-            //System.out.println(SLComputer.des.encrypt("ANDUC_"+"723197520"));
-            //System.out.println(SLComputer.des.encrypt("IOSTB_"+"3343933"));
-            //System.out.println(SLComputer.des.encrypt("ANDDK_"+"73399927"));
-            //System.out.println(SLComputer.des.encrypt("ANDSN_"+"3687192672"));
-            //System.out.println(SLComputer.des.encrypt("ANDTX_"+"DCEFE6ED248534E398322888E37C241A"));
-            //System.out.println(SLComputer.des.encrypt("IOSAS_292058"));
-        } catch (Exception ex) {
-            Logger.getLogger(JDialogLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
         Dimension d=getPreferredSize();
         Rectangle b=SLComputer.mf.getBounds();
         setBounds(b.x+b.width/3-d.width/2, b.y+b.height/3-d.height/2, d.width, d.height);
@@ -96,7 +80,7 @@ public class JDialogLogin extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156", "混服 157", "混服 158", "混服 159" }));
+        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156", "混服 157", "混服 158", "混服 159", "混服 160" }));
         jComboBoxServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxServerActionPerformed(evt);

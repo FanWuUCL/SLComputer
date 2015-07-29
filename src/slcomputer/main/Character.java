@@ -3,7 +3,12 @@
  * and open the template in the editor.
  */
 package slcomputer.main;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -93,13 +98,16 @@ public class Character {
             heros=new Vector<int[]>();
             for(i=0; i<length; i++){
                 m=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-                if(m!=16){
-                    System.out.println("Error: should be 16, but is "+m);
+                if(m!=19){
+                    System.out.println("Error: should be 19, but is "+m);
                     return;
                 }
-                int[] h=new int[m];
+                int[] h=new int[m+4];
                 for(j=0; j<m; j++){
                     h[j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
+                }
+                for(j=0; j < h[m-1]; j++) {
+                    h[j+m]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
                 heros.add(h);
             }
@@ -109,19 +117,19 @@ public class Character {
             //System.out.println("Number of items: "+length);
             for(i=0; i<length; i++){
                 m=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-                if(m!=11 && m!=12){
-                    System.out.println("Error: should be 11 or 12, but is "+m);
+                if(m!=13 && m!=14){
+                    System.out.println("Error: should be 13 or 14, but is "+m);
                     return;
                 }
-                int[] it=new int[16];
-                for(j=0; j<16; j++){
+                int[] it=new int[18];
+                for(j=0; j<18; j++){
                     it[j]=0;
                 }
                 for(j=0; j<m; j++){
                     it[j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
                 //System.out.println(i+" "+m+" "+it[m-1]);
-                if(m==12 && it[m-1]>0){
+                if(m==14 && it[m-1]>0){
                     for(j=0; j<it[m-1]; j++){
                         it[m+j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                     }
@@ -203,4 +211,5 @@ public class Character {
                 break;
         }
     }
+    
 }

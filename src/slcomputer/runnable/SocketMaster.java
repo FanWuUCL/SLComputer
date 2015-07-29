@@ -87,6 +87,7 @@ public class SocketMaster implements Runnable{
     public static final int c_bb_q2=0x00026366;   // id+0/1/2/3/4+0普通/1噩梦, 用harvest_extra
     public static final int c_bb_battle=0x00026378; // id+0困难/1普通/2容易+0普通/1噩梦，用harvest_extra
     public static final int c_chest_open=0x00026963;  // id+0/1/2+number, 2代表金钥匙，用harvest_extra
+    private static JWindowWait waitWindow;
     public static int startSignal;
     public static final int commandCooldown=6000;
     public static Socket clientStatic;
@@ -104,6 +105,7 @@ public class SocketMaster implements Runnable{
     public static int cmdGlobal;
     public static int starUsed, starTotal;
     public static int mode;
+    public static int bbType=0;
     // usr, psd, fwq, saveAcc, 平台
     public static Object[] arguments=new Object[5];
     public static String usrSave;
@@ -150,9 +152,10 @@ public class SocketMaster implements Runnable{
         int cmd=((para[8]&0xff)<<24) | ((para[9]&0xff)<<16) | ((para[10]&0xff)<<8) | (para[11]&0xff);
         byte[] ret=null;
         int i=0, tmp, time, sleepunit=10, timeout=10*1000/sleepunit, available=0;
+        int cmdLookAhead=50;
         //waitFrame=new JFrameWait();
         try {
-            while(i++<10){
+            while(i++<cmdLookAhead){
                 byte[] wrap=new byte[32];
                 if(is.read(wrap, 0, 31)!=31){
                     for(int j=0; j<31; j++){
@@ -216,7 +219,7 @@ public class SocketMaster implements Runnable{
                     break;
                 }
             }
-            if(i>10){
+            if(i>cmdLookAhead){
                 System.out.println("Can't find return package for command "+cmd);
             }
         } catch (Exception ex) {
@@ -914,6 +917,10 @@ public class SocketMaster implements Runnable{
                     globalIP="115.29.224.81";
                     globalPort=8030;
                     break;
+            case 59:    // 混160
+                    globalIP="218.244.141.250";
+                    globalPort=8030;
+                    break;
             case 0:
             default:
                 globalIP="112.124.41.217";
@@ -957,12 +964,16 @@ public class SocketMaster implements Runnable{
     }
     
     public static byte[] communicate(BufferedOutputStream os, BufferedInputStream is, int command, byte[] extra){
+        if(waitWindow!=null) {
+            waitWindow.closeDiag();
+        }
         if(os==null || is==null){
             return null;
         }
+        
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, 2000000+((int)(arguments[4])==0?1000000:1000000), globalCer, command, extralength, extra);
+        byte[] data=transform(length, 2000000+((int)(arguments[4])==0?1001000:1000000), globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -979,7 +990,7 @@ public class SocketMaster implements Runnable{
             encrypt(para);
         }
         byte[] recvData;
-        JWindowWait waitWindow=new JWindowWait();
+        waitWindow=new JWindowWait();
         waitWindow.start();
         try {
             os.write(data);
@@ -1024,6 +1035,22 @@ public class SocketMaster implements Runnable{
                 return 0;
             }
         }
+        if(bbType==1){
+            extra=festival_extra(globalID, 1);   // emeng
+            recvData=communicate(osStatic, isStatic, command, extra);
+            if(recvData==null || recvData.length<4){
+                return -1;
+            }
+            else if(recvData.length==4){
+                code=((recvData[0]&0xff)<<24) | ((recvData[1]&0xff)<<16) | ((recvData[2]&0xff)<<8) | (recvData[3]&0xff);
+                if(code==4){
+                    return -1;
+                }
+                else{
+                    return 0;
+                }
+            }
+        }
         int pos, challengeTimes, bestQX, bestFY, challengeMax, rank;
         pos=8;
         mode=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -1042,7 +1069,7 @@ public class SocketMaster implements Runnable{
             mode=globalIndex;
         }
         command=c_bb_q1;
-        extra=harvest_extra(globalID, mode, 0); // emeng
+        extra=harvest_extra(globalID, mode, bbType); // emeng
         recvData=communicate(osStatic, isStatic, command, extra);
         if(recvData==null || recvData.length<4){
             return -1;
@@ -1108,7 +1135,7 @@ public class SocketMaster implements Runnable{
                 return 0;
             }
             command=c_bb_q2;
-            extra=harvest_extra(globalID, globalIndex, 0);  // emeng
+            extra=harvest_extra(globalID, globalIndex, bbType);  // emeng
             recvData=communicate(osStatic, isStatic, command, extra);
             if(recvData==null || recvData.length<4){
                 return -1;
@@ -1178,7 +1205,7 @@ public class SocketMaster implements Runnable{
             return 2;
         }
         int command=c_bb_battle;
-        byte[] extra=harvest_extra(globalID, hardness, 0); // emeng
+        byte[] extra=harvest_extra(globalID, hardness, bbType); // emeng
         byte[] recvData=communicate(osStatic, isStatic, command, extra);
         if(recvData==null || recvData.length<76){
             return 2;
@@ -1503,7 +1530,7 @@ public class SocketMaster implements Runnable{
                     return 2;
                 }
                 command=c_bb_q2;
-                extra=harvest_extra(globalID, globalIndex, 0);  // emeng
+                extra=harvest_extra(globalID, globalIndex, bbType);  // emeng
                 recvData=communicate(osStatic, isStatic, command, extra);
                 if(recvData==null || recvData.length<160){
                     return 2;
@@ -1813,8 +1840,8 @@ public class SocketMaster implements Runnable{
                             // 准备完成，开始试炼
                             buttons=new Emphasize(true, true);
                             SwingUtilities.invokeLater(buttons);
-                            JOptionPane.showMessageDialog(SLComputer.mf, "进入究极试炼模式，从现在开始点击任一挑战按钮将视为游戏内挑战对应难度试炼。",
-                            "究极试炼", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(SLComputer.mf, "进入"+(bbType==0?"究极":"噩梦")+"试炼模式，从现在开始点击任一挑战按钮将视为游戏内挑战对应难度试炼。",
+                            bbType==0?"究极试炼":"噩梦试炼", JOptionPane.INFORMATION_MESSAGE);
                             break;
                         default:
                             connectionBroken();
