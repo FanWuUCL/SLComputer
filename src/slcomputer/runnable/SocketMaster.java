@@ -42,6 +42,7 @@ import slcomputer.main.Character;
 import slcomputer.main.SLComputer;
 import slcomputer.invokelater.Emphasize;
 import slcomputer.invokelater.Progress;
+import slcomputer.utils.Utility;
 
 /**
  *
@@ -107,7 +108,7 @@ public class SocketMaster implements Runnable{
     public static int mode;
     public static int bbType=0;
     // usr, psd, fwq, saveAcc, 平台
-    public static Object[] arguments=new Object[5];
+    public static Object[] arguments=new Object[8];
     public static String usrSave;
     public static boolean onWork=false;
 
@@ -122,13 +123,11 @@ public class SocketMaster implements Runnable{
         data[6]=(byte)((length & 0xff0000)>>16);
         data[7]=(byte)((length & 0xff00)>>8);
         data[8]=(byte)(length & 0xff);
-        // app 0x 00 1e 98 08
+        // version
         data[9]=(byte)((version & 0xff000000)>>24);
         data[10]=(byte)((version & 0xff0000)>>16);
         data[11]=(byte)((version & 0xff00)>>8);
         data[12]=(byte)(version & 0xff);
-        /* 混服 0x 00 1e 9b f0 */
-        //data[12]=(byte)0x69;
         data[13]=(byte)((certification>>24) & 0xff);
         data[14]=(byte)((certification>>16) & 0xff);
         data[15]=(byte)((certification>>8) & 0xff);
@@ -145,11 +144,26 @@ public class SocketMaster implements Runnable{
             data[31+i]=extra[i];
         }
         data[31+extralength]='E'; data[32+extralength]='n'; data[33+extralength]='d';
+        //for(i=0; i<data.length; i++){
+            //System.out.printf("%2x ", data[i]);
+        //}
         return data;
     }
     
+    private static boolean expectedCmd(int recv, int[] cmds){
+        for(int c:cmds){
+            if(c==recv){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public static byte[] findEnd(BufferedInputStream is, byte[] para){
-        int cmd=((para[8]&0xff)<<24) | ((para[9]&0xff)<<16) | ((para[10]&0xff)<<8) | (para[11]&0xff);
+        int[] cmds=new int[(para.length-8)/4];
+        for(int i=0; i<cmds.length; i++){
+            cmds[i]=((para[8+i*4]&0xff)<<24) | ((para[9+i*4]&0xff)<<16) | ((para[10+i*4]&0xff)<<8) | (para[11+i*4]&0xff);
+        }
         byte[] ret=null;
         int i=0, tmp, time, sleepunit=10, timeout=10*1000/sleepunit, available=0;
         int cmdLookAhead=50;
@@ -170,7 +184,7 @@ public class SocketMaster implements Runnable{
                 }
                 int recvCmd=((wrap[23]&0xff)<<24) | ((wrap[24]&0xff)<<16) | ((wrap[25]&0xff)<<8) | (wrap[26]&0xff);
                 int length=decrypt(wrap, 27);
-                if(recvCmd!=cmd){
+                if(!expectedCmd(recvCmd, cmds)){
                     tmp=0;
                     time=0;
                     while(tmp<length){
@@ -220,7 +234,7 @@ public class SocketMaster implements Runnable{
                 }
             }
             if(i>cmdLookAhead){
-                System.out.println("Can't find return package for command "+cmd);
+                System.out.println("Can't find return package for expected commands.");
             }
         } catch (Exception ex) {
             System.out.println("Some error occured.");
@@ -232,10 +246,10 @@ public class SocketMaster implements Runnable{
      * login数据封包
      * @param usr user name
      * @param mode 直接登录时为0，选择子账号时为1
-     * @param platform 平台：0 app, 1 and91
+     * @param platform 平台：0 app, 1 and91, 2 IOS混, 3 快用, 4 官方邮箱
      * @return 
      */
-    public static byte[] login_extra(String usr, int mode, int platform){
+    public static byte[] login_extra(String usr, int mode, String uusr, String psd, int platform){
         String pss;
         switch(platform){
             case 1: // android 91，小米，安卓官方
@@ -260,6 +274,15 @@ public class SocketMaster implements Runnable{
                     pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
                 }
                 break;
+            case 4:
+                if(mode==0){
+                    cmdGlobal=c_loginp;
+                    return login_extra(0, "", usr, psd, "CC749005-9EDE-4A7E-AE06-8482E2A1A687");
+                }
+                else{
+                    cmdGlobal=c_loginp;
+                    return login_extra(1, usr, uusr, psd, "CC749005-9EDE-4A7E-AE06-8482E2A1A687");
+                }
             case 0: // app
                 pss="8F2B6ECD-54B8-4746-BE67-2FDA84588174";
                 break;
@@ -319,6 +342,49 @@ public class SocketMaster implements Runnable{
         extra[19+usrL]=(byte)(pssL & 0xff);
         for(i=0; i<pssL; i++){
             extra[20+usrL+i]=(byte)(pss.charAt(i));
+        }
+        return extra;
+    }
+    
+    public static byte[] login_extra(int mode, String acc, String usr, String pss, String platform){
+        int accL=acc.length();
+        int usrL=usr.length()-1;
+        int pssL=pss.length();
+        int platL=platform.length();
+        byte[] extra=new byte[accL+usrL+pssL+platL+24];
+        extra[0]=extra[1]=extra[2]=extra[3]=0;
+        extra[4]=(byte)((mode >> 24) & 0xff);
+        extra[5]=(byte)((mode >> 16) & 0xff);
+        extra[6]=(byte)((mode >> 8) & 0xff);
+        extra[7]=(byte)(mode & 0xff);
+        extra[8]=(byte)((accL >> 24) & 0xff);
+        extra[9]=(byte)((accL >> 16) & 0xff);
+        extra[10]=(byte)((accL >> 8) & 0xff);
+        extra[11]=(byte)(accL & 0xff);
+        int i;
+        for(i=0; i<accL; i++){
+            extra[12+i]=(byte)(acc.charAt(i));
+        }
+        extra[12+accL]=(byte)((usrL >> 24) & 0xff);
+        extra[13+accL]=(byte)((usrL >> 16) & 0xff);
+        extra[14+accL]=(byte)((usrL >> 8) & 0xff);
+        extra[15+accL]=(byte)(usrL & 0xff);
+        for(i=0; i<usrL; i++){
+            extra[16+accL+i]=(byte)(usr.charAt(i));
+        }
+        extra[16+accL+usrL]=(byte)((pssL >> 24) & 0xff);
+        extra[17+accL+usrL]=(byte)((pssL >> 16) & 0xff);
+        extra[18+accL+usrL]=(byte)((pssL >> 8) & 0xff);
+        extra[19+accL+usrL]=(byte)(pssL & 0xff);
+        for(i=0; i<pssL; i++){
+            extra[20+accL+usrL+i]=(byte)(pss.charAt(i));
+        }
+        extra[20+accL+usrL+pssL]=(byte)((platL >> 24) & 0xff);
+        extra[21+accL+usrL+pssL]=(byte)((platL >> 16) & 0xff);
+        extra[22+accL+usrL+pssL]=(byte)((platL >> 8) & 0xff);
+        extra[23+accL+usrL+pssL]=(byte)(platL & 0xff);
+        for(i=0; i<platL; i++){
+            extra[24+accL+usrL+pssL+i]=(byte)(platform.charAt(i));
         }
         return extra;
     }
@@ -540,6 +606,29 @@ public class SocketMaster implements Runnable{
         }
         return extra;
     }
+    
+    public static boolean handshake(BufferedOutputStream os, BufferedInputStream is) throws IOException{
+        byte[] wrap=new byte[20];
+        byte[] recv=new byte[32];
+        int rlen;
+        rlen=is.read(wrap);
+        int num=(wrap[12] & 0xff) << 24 | (wrap[13] & 0xff) << 16 | (wrap[14] & 0xff) << 8 | wrap[15] & 0xff;
+
+        byte[] send=new byte[13];
+        for(int i=0; i<9; i++){
+            send[i]=wrap[i];
+        }
+        send[9]=send[10]=send[11]=0;
+
+        send[12]=(byte)Utility.getNum(num);
+        os.write(send);
+        os.flush();
+        rlen=is.read(recv);
+        if(rlen>0){
+            return true;
+        }
+        return false;
+    }
    
     public static boolean globalLoginSocket(String usr, int accIndex, boolean verbose){
         try{
@@ -549,6 +638,12 @@ public class SocketMaster implements Runnable{
             osStatic=new BufferedOutputStream(clientStatic.getOutputStream());
 
             isStatic=new BufferedInputStream(clientStatic.getInputStream());
+            
+            if(!handshake(osStatic, isStatic)){
+                System.out.println("Handshake Failed.");
+                globalReady=false;
+                return globalReady;
+            }
 
             globalCer=0;
             // 获取令牌
@@ -574,6 +669,11 @@ public class SocketMaster implements Runnable{
             osStatic=new BufferedOutputStream(clientStatic.getOutputStream());
 
             isStatic=new BufferedInputStream(clientStatic.getInputStream());
+            
+            if(!handshake(osStatic, isStatic)){
+                System.out.println("Handshake Failed.");
+                return false;
+            }
 
             // 获取令牌
             int[] arrCer=new int[2];
@@ -592,8 +692,8 @@ public class SocketMaster implements Runnable{
     public static boolean loginAccount(BufferedOutputStream os, BufferedInputStream is, String usr, int accIndex, int[] cer, String[] name, boolean verbose) throws Exception{
         cer[0]=0;
         int i, j, k, max;
-        byte[] extra=login_extra(usr, 0, (int)arguments[4]);
-        byte[] recvData=communicate(os, is, cmdGlobal, extra);
+        byte[] extra=login_extra(usr, 0, "", (String)arguments[1], (int)arguments[arguments.length-1]);
+        byte[] recvData=communicate(os, is, cmdGlobal, makeCommandList(c_login, c_loginp), extra);
         if(recvData==null){
             throw new Exception();
         }
@@ -654,8 +754,8 @@ public class SocketMaster implements Runnable{
                     throw new Exception();
                 }
             }
-            extra=login_extra(accUsr[accIndex], 1, (int)arguments[4]);
-            recvData=communicate(os, is, cmdGlobal, extra);
+            extra=login_extra(accUsr[accIndex], 1, usr, (String)arguments[1], (int)arguments[arguments.length-1]);
+            recvData=communicate(os, is, cmdGlobal, makeCommandList(c_login, c_loginp), extra);
             if(recvData==null){
                 throw new Exception();
             }
@@ -797,7 +897,7 @@ public class SocketMaster implements Runnable{
                     globalIP="115.29.234.133";
                     globalPort=8020;
                     break;
-            case 29:
+            case 29:    // 混89
                     globalIP="115.29.190.63";
                     globalPort=8010;
                     break;
@@ -921,6 +1021,18 @@ public class SocketMaster implements Runnable{
                     globalIP="218.244.141.250";
                     globalPort=8030;
                     break;
+            case 60:    // 混161
+                globalIP="218.244.146.146";
+                globalPort=8040;
+                break;
+            case 61:
+                globalIP="112.124.23.169";
+                globalPort=8030;
+                break;
+            case 62:    // 混163
+                globalIP="115.29.224.81";
+                globalPort=8040;
+                break;
             case 0:
             default:
                 globalIP="112.124.41.217";
@@ -939,31 +1051,62 @@ public class SocketMaster implements Runnable{
     public static void encrypt(byte[] data){
         int i, b;
         for(i=0; i<data.length; i++){
-            data[i]=tran26(data[i]);
+            //data[i]=tran26(data[i]);
         }
     }
     
     public static void decrypt(byte[] data){
         int i, b;
         for(i=0; i<data.length; i++){
-            data[i]=tran26(data[i]);
+            //data[i]=tran26(data[i]);
         }
     }
     
     public static int decrypt(byte[] data, int pos){
         byte[] numByte=new byte[4];
         for(int i=0; i<numByte.length; i++){
-            if((int)arguments[4]!=0){
-                numByte[i]=tran26(data[pos+i]);
+            if((int)arguments[arguments.length-1]!=0){
+                //numByte[i]=tran26(data[pos+i]);
             }
             else{
-                numByte[i]=tran26(data[pos+i]);
+                //numByte[i]=tran26(data[pos+i]);
             }
+            numByte[i]=data[pos+i];
         }
         return ((numByte[0]&0xff)<<24) | ((numByte[1]&0xff)<<16) | ((numByte[2]&0xff)<<8) | (numByte[3]&0xff);
     }
     
-    public static byte[] communicate(BufferedOutputStream os, BufferedInputStream is, int command, byte[] extra){
+    private static int[] makeCommandList(int a, int b, int c, int d){
+        int[] cst=new int[4];
+        cst[0]=a;
+        cst[1]=b;
+        cst[2]=c;
+        cst[3]=d;
+        return cst;
+    }
+    
+    private static int[] makeCommandList(int a, int b, int c){
+        int[] cst=new int[3];
+        cst[0]=a;
+        cst[1]=b;
+        cst[2]=c;
+        return cst;
+    }
+    
+    private static int[] makeCommandList(int a, int b){
+        int[] cst=new int[2];
+        cst[0]=a;
+        cst[1]=b;
+        return cst;
+    }
+    
+    private static int[] makeCommandList(int a){
+        int[] cst=new int[1];
+        cst[0]=a;
+        return cst;
+    }
+    
+    public static byte[] communicate(BufferedOutputStream os, BufferedInputStream is, int command, int[] expectCommands, byte[] extra){
         if(waitWindow!=null) {
             waitWindow.closeDiag();
         }
@@ -973,15 +1116,17 @@ public class SocketMaster implements Runnable{
         
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, 2000000+((int)(arguments[4])==0?1001000:1000000), globalCer, command, extralength, extra);
-        byte[] para=new byte[12];
+        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1003000:((arguments[arguments.length-1])==4?1003000:1003000)), globalCer, command, extralength, extra);
+        byte[] para=new byte[8+expectCommands.length*4];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
-        para[8]=(byte)((command >> 24) & 0xff);
-        para[9]=(byte)((command >> 16) & 0xff);
-        para[10]=(byte)((command >> 8) & 0xff);
-        para[11]=(byte)(command & 0xff);
-        if((int)arguments[4]!=0){
+        for(int i=0; i<expectCommands.length; i++){
+            para[8+i*4]=(byte)((expectCommands[i] >> 24) & 0xff);
+            para[9+i*4]=(byte)((expectCommands[i] >> 16) & 0xff);
+            para[10+i*4]=(byte)((expectCommands[i] >> 8) & 0xff);
+            para[11+i*4]=(byte)(expectCommands[i] & 0xff);
+        }
+        if((int)arguments[arguments.length-1]!=0){
             encrypt(data);
             encrypt(para);
         }
@@ -1000,7 +1145,7 @@ public class SocketMaster implements Runnable{
             recvData=null;
         }
         if(recvData!=null){
-            if((int)arguments[4]!=0){
+            if((int)arguments[arguments.length-1]!=0){
                 decrypt(recvData);
             }
             else{
@@ -1021,7 +1166,7 @@ public class SocketMaster implements Runnable{
         }
         int command=c_bb_q0;
         byte[] extra=festival_extra(globalID, 0);   // emeng
-        byte[] recvData=communicate(osStatic, isStatic, command, extra);
+        byte[] recvData=communicate(osStatic, isStatic, command, makeCommandList(command), extra);
         int code;
         if(recvData==null || recvData.length<4){
             return -1;
@@ -1037,7 +1182,7 @@ public class SocketMaster implements Runnable{
         }
         if(bbType==1){
             extra=festival_extra(globalID, 1);   // emeng
-            recvData=communicate(osStatic, isStatic, command, extra);
+            recvData=communicate(osStatic, isStatic, command, makeCommandList(command), extra);
             if(recvData==null || recvData.length<4){
                 return -1;
             }
@@ -1059,6 +1204,7 @@ public class SocketMaster implements Runnable{
             challengeTimes=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             bestQX=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             bestFY=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            pos+=8;
             challengeMax=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             rank=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             globalIndex=-1;
@@ -1070,7 +1216,7 @@ public class SocketMaster implements Runnable{
         }
         command=c_bb_q1;
         extra=harvest_extra(globalID, mode, bbType); // emeng
-        recvData=communicate(osStatic, isStatic, command, extra);
+        recvData=communicate(osStatic, isStatic, command, makeCommandList(command), extra);
         if(recvData==null || recvData.length<4){
             return -1;
         }
@@ -1094,6 +1240,7 @@ public class SocketMaster implements Runnable{
         challengeTimes=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         bestQX=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         bestFY=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=8;
         challengeMax=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         rank=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         pos+=8;
@@ -1136,7 +1283,7 @@ public class SocketMaster implements Runnable{
             }
             command=c_bb_q2;
             extra=harvest_extra(globalID, globalIndex, bbType);  // emeng
-            recvData=communicate(osStatic, isStatic, command, extra);
+            recvData=communicate(osStatic, isStatic, command, makeCommandList(command), extra);
             if(recvData==null || recvData.length<4){
                 return -1;
             }
@@ -1149,7 +1296,7 @@ public class SocketMaster implements Runnable{
                     return 0;
                 }
             }
-            pos=28;
+            pos=28+8;
             if(mode!=(((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff))){
                 return 0;
             } pos+=4;
@@ -1206,7 +1353,7 @@ public class SocketMaster implements Runnable{
         }
         int command=c_bb_battle;
         byte[] extra=harvest_extra(globalID, hardness, bbType); // emeng
-        byte[] recvData=communicate(osStatic, isStatic, command, extra);
+        byte[] recvData=communicate(osStatic, isStatic, command, makeCommandList(command), extra);
         if(recvData==null || recvData.length<76){
             return 2;
         }
@@ -1468,7 +1615,7 @@ public class SocketMaster implements Runnable{
             return 3;
         }
         // 试炼概况
-        pos+=28;
+        pos+=28+8;
         // 试炼详情
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         if(length>0){
@@ -1531,11 +1678,11 @@ public class SocketMaster implements Runnable{
                 }
                 command=c_bb_q2;
                 extra=harvest_extra(globalID, globalIndex, bbType);  // emeng
-                recvData=communicate(osStatic, isStatic, command, extra);
+                recvData=communicate(osStatic, isStatic, command, makeCommandList(command), extra);
                 if(recvData==null || recvData.length<160){
                     return 2;
                 }
-                pos=28;
+                pos=28+8;
                 if(mode!=(((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff))){
                     return 2;
                 } pos+=4;

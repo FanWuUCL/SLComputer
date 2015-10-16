@@ -2184,7 +2184,8 @@
     "defGrowth": 30.53,
     "toughGrowth": 0,
     "para3": [
-      10229
+      10229,
+      15102
     ],
     "limit": 0,
     "slot": 4,
@@ -2631,7 +2632,8 @@
     "toughGrowth": 0,
     "para3": [
       10303,
-      10330
+      10330,
+      15113
     ],
     "limit": 0,
     "slot": 4,
@@ -2883,6 +2885,66 @@
     "para3": [
       10328
     ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        2,
+        400,
+        0
+      ],
+      [
+        1,
+        30,
+        0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "40148": {
+    "pid": "0",
+    "updateId": "40248",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "40886",
+    "star": 5,
+    "drop": 0,
+    "type": 0,
+    "exp": 600,
+    "name": "求道玉黑棒",
+    "description": "【活动卡】<武器>求道玉固态时凝结的黑棒，只有获得十尾或六道之力方能操纵，能使世间一切忍术无效化。",
+    "para1": 420,
+    "para2": 293,
+    "tough": 0,
+    "atkGrowth": 46.2,
+    "defGrowth": 32.23,
+    "toughGrowth": 0,
+    "para3": null,
     "limit": 0,
     "slot": 4,
     "hideProperty": [
@@ -4432,7 +4494,7 @@
         20
       ]
     ],
-    "_index": "40888",
+    "_index": "48000",
     "star": 6,
     "drop": 0,
     "type": 0,
@@ -4474,7 +4536,7 @@
         20
       ]
     ],
-    "_index": "40887",
+    "_index": "48000",
     "star": 6,
     "drop": 0,
     "type": 0,
@@ -4493,7 +4555,49 @@
     "hideProperty": [
       0,
       0,
-      5
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "40248": {
+    "pid": "40148",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 0,
+    "exp": 1000,
+    "name": "求道玉黑棒",
+    "description": "【活动卡】<武器>求道玉固态时凝结的黑棒，只有获得十尾或六道之力方能操纵，能使世间一切忍术无效化。",
+    "para1": 455,
+    "para2": 293,
+    "tough": 0,
+    "atkGrowth": 47.775,
+    "defGrowth": 32.23,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
     ],
     "isColl": 1,
     "splitDrop": [
@@ -7489,7 +7593,8 @@
     "defGrowth": 33,
     "toughGrowth": 20,
     "para3": [
-      10326
+      10326,
+      15109
     ],
     "limit": 0,
     "slot": 4,
@@ -7580,6 +7685,126 @@
     "dropSource": [
       [
         5
+      ]
+    ]
+  },
+  "42147": {
+    "pid": "0",
+    "updateId": "42247",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "42898",
+    "star": 5,
+    "drop": 0,
+    "type": 33,
+    "exp": 600,
+    "name": "零尾",
+    "description": "【活动卡】<宝物>零尾虚无，无尾之兽，剧场版《羁绊》中出现，并非十尾的一部份，依靠人们心中的黑暗而产生巨大的黑暗查克拉。",
+    "para1": 300,
+    "para2": 300,
+    "tough": 400,
+    "atkGrowth": 33,
+    "defGrowth": 33,
+    "toughGrowth": 20,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      4
+    ],
+    "isColl": 0,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        3,
+        5,
+        5
+      ],
+      [
+        3,
+        5,
+        5
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ]
+  },
+  "42148": {
+    "pid": "0",
+    "updateId": "42248",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "42898",
+    "star": 5,
+    "drop": 0,
+    "type": 33,
+    "exp": 600,
+    "name": "悟",
+    "description": "【活动卡】<宝物>剧场版《血狱》中出现，极乐之箱开启后出现的怪物。可以读取人心，随悟而生，随悟而动，随悟而终。",
+    "para1": 300,
+    "para2": 300,
+    "tough": 400,
+    "atkGrowth": 33,
+    "defGrowth": 33,
+    "toughGrowth": 20,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      4
+    ],
+    "isColl": 0,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        3,
+        5,
+        5
+      ],
+      [
+        3,
+        5,
+        5
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
       ]
     ]
   },
@@ -8714,8 +8939,92 @@
       10
     ],
     "splitCost": 200000,
-    "starStepEffect": [],
-    "dropSource": []
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "42247": {
+    "pid": "42147",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 33,
+    "exp": 1000,
+    "name": "零尾",
+    "description": "【活动卡】<宝物>零尾虚无，无尾之兽，剧场版《羁绊》中出现，并非十尾的一部份，依靠人们心中的黑暗而产生巨大的黑暗查克拉。",
+    "para1": 300,
+    "para2": 300,
+    "tough": 430,
+    "atkGrowth": 33,
+    "defGrowth": 33,
+    "toughGrowth": 21.5,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      4
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "42248": {
+    "pid": "42148",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 33,
+    "exp": 1000,
+    "name": "悟",
+    "description": "【活动卡】<宝物>剧场版《血狱》中出现，极乐之箱开启后出现的怪物。可以读取人心，随悟而生，随悟而动，随悟而终。",
+    "para1": 300,
+    "para2": 300,
+    "tough": 430,
+    "atkGrowth": 33,
+    "defGrowth": 33,
+    "toughGrowth": 21.5,
+    "para3": null,
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      4
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0
   },
   "42314": {
     "pid": "42114",
@@ -11372,7 +11681,8 @@
     "defGrowth": 41.2,
     "toughGrowth": 0,
     "para3": [
-      10296
+      10296,
+      15108
     ],
     "limit": 0,
     "slot": 4,
@@ -12301,6 +12611,61 @@
         6
       ]
     ]
+  },
+  "45148": {
+    "pid": "0",
+    "updateId": "45248",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "45891",
+    "star": 5,
+    "drop": 0,
+    "type": 1,
+    "exp": 600,
+    "name": "极乐之箱",
+    "description": "【活动卡】相传是六道仙人时代的最终兵器，自带神龙特效，能实现人一个愿望，开箱密码:左手右手一个慢动作。",
+    "para1": 293,
+    "para2": 420,
+    "tough": 0,
+    "atkGrowth": 32.23,
+    "defGrowth": 46.2,
+    "toughGrowth": 0,
+    "para3": [
+      10216
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
+    ],
+    "isColl": 0,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        4,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        5
+      ]
+    ],
+    "dropSource": []
   },
   "45210": {
     "pid": "45110",
@@ -13817,6 +14182,61 @@
     "splitCost": 200000,
     "starStepEffect": 0,
     "dropSource": 0
+  },
+  "45248": {
+    "pid": "45148",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 1,
+    "exp": 1000,
+    "name": "极乐之箱",
+    "description": "【活动卡】相传是六道仙人时代的最终兵器，自带神龙特效，能实现人一个愿望，开箱密码:左手右手一个慢动作。",
+    "para1": 293,
+    "para2": 455,
+    "tough": 0,
+    "atkGrowth": 32.23,
+    "defGrowth": 47.775,
+    "toughGrowth": 0,
+    "para3": [
+      10329
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": [
+      [
+        4,
+        5,
+        5
+      ],
+      [
+        4,
+        5,
+        5
+      ]
+    ],
+    "dropSource": []
   },
   "45310": {
     "pid": "45110",
@@ -15619,7 +16039,7 @@
     "type": 19,
     "exp": 0,
     "name": "宝石袋",
-    "description": "能开出2～6级宝石的神奇袋子。",
+    "description": "能开出2～6级红黄蓝宝石的神奇袋子。",
     "para1": 0,
     "para2": 0,
     "tough": 0,
@@ -15646,7 +16066,7 @@
     "type": 19,
     "exp": 0,
     "name": "宝石箱",
-    "description": "能开出4～8级宝石的神奇箱子。",
+    "description": "能开出4～8级红黄蓝宝石的神奇箱子。",
     "para1": 0,
     "para2": 0,
     "tough": 0,
@@ -15754,7 +16174,7 @@
     "type": 21,
     "exp": 0,
     "name": "香水瓶",
-    "description": "三八妇女节的专属道具，会在妇女节活动后消失。",
+    "description": "5-20节日的专属道具，会在节日活动后消失。",
     "para1": 0,
     "para2": 0,
     "tough": 0,
@@ -15942,8 +16362,8 @@
     "drop": 0,
     "type": 21,
     "exp": 0,
-    "name": "大蛇丸的秘药",
-    "description": "大蛇丸的秘药配方，谁也不知道是干吗用的",
+    "name": "粽子礼盒",
+    "description": "端午节的专属道具，可用于节日活动兑换。",
     "para1": 0,
     "para2": 0,
     "tough": 0,
@@ -16491,6 +16911,303 @@
     "defGrowth": 0,
     "toughGrowth": 0,
     "para3": 52032,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47175": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 36,
+    "exp": 0,
+    "name": "仙灵",
+    "description": "汇天地之灵气，聚日月之精华，源自三大修炼圣地的纯天然仙术神灵",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47176": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 37,
+    "exp": 0,
+    "name": "妙木山神油",
+    "description": "自来也的秘密武器，有延时助攻之效，可用于<木叶、云忍、岩忍、砂忍>势力的忍者的仙术修炼",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47177": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 37,
+    "exp": 0,
+    "name": "龙地洞仙水",
+    "description": "大蛇丸最爱，具有开通任督二脉，激发潜能之功效，可用于<音忍、晓、雨忍、泷隐>势力的忍者的仙术修炼",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47178": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 37,
+    "exp": 0,
+    "name": "湿骨林秘药",
+    "description": "纲手婆婆的私密美容药，具备护肤驻颜之功效，可用于<忍宗、秽土转生、雾忍、剧场版>势力的忍者的仙术修炼",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47179": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 38,
+    "exp": 0,
+    "name": "小军粮丸",
+    "description": "忍者们作战时吃的食物，可以瞬间增强查克拉，用于忍者之间查克拉的传承",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47180": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 39,
+    "exp": 0,
+    "name": "大军粮丸",
+    "description": "忍者们训练时吃的食物，可以强筋健骨，用于忍者之间体术的传承",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47181": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 40,
+    "exp": 0,
+    "name": "融合石",
+    "description": "用于融合橙色、紫色、绿色以及多彩的宝石",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47182": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 19,
+    "exp": 0,
+    "name": "高级宝石箱",
+    "description": "封印6到10级宝石的神秘箱子",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": 56003,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47183": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 5,
+    "exp": 0,
+    "name": "纪念卡扭蛋",
+    "description": "能开出纪念卡的专属扭蛋",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": 52033,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47184": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 21,
+    "exp": 0,
+    "name": "月饼",
+    "description": "中秋节专属道具，能够用于活动兑换",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0
+  },
+  "47185": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 3,
+    "drop": 0,
+    "type": 100,
+    "exp": 0,
+    "name": "中秋礼盒",
+    "description": "中秋节专属道具，能够用于活动兑换",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": 56004,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,

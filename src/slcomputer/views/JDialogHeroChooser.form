@@ -292,11 +292,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWD0">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -304,7 +308,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWDLevel0">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -315,6 +319,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -322,11 +336,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWD1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -334,7 +352,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWDLevel1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -345,6 +363,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -352,11 +380,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWD2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -364,7 +396,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWDLevel2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -375,6 +407,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -382,11 +424,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWD3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -394,7 +440,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxWDLevel3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -405,6 +451,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -647,11 +703,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSD0">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -659,11 +719,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSD1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -671,11 +735,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSD2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -683,11 +751,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSD3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -695,7 +767,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSDLevel0">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -706,6 +778,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -713,7 +795,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSDLevel1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -724,6 +806,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -731,7 +823,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSDLevel2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -742,6 +834,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -749,7 +851,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxSDLevel3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -760,6 +862,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1277,11 +1389,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPD0">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1289,11 +1405,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPD1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1301,11 +1421,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPD2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1313,11 +1437,15 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPD3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="8">
                 <StringItem index="0" value="&#x672a;&#x9576;&#x5d4c;"/>
                 <StringItem index="1" value="&#x7ea2;&#x5b9d;&#x77f3;"/>
                 <StringItem index="2" value="&#x84dd;&#x5b9d;&#x77f3;"/>
                 <StringItem index="3" value="&#x9ec4;&#x5b9d;&#x77f3;"/>
+                <StringItem index="4" value="&#x7d2b;&#x5b9d;&#x77f3;"/>
+                <StringItem index="5" value="&#x7eff;&#x5b9d;&#x77f3;"/>
+                <StringItem index="6" value="&#x6a59;&#x5b9d;&#x77f3;"/>
+                <StringItem index="7" value="&#x591a;&#x5f69;&#x77f3;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1325,7 +1453,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPDLevel0">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -1336,6 +1464,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1343,7 +1481,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPDLevel1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -1354,6 +1492,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1361,7 +1509,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPDLevel2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -1372,6 +1520,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -1379,7 +1537,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxPDLevel3">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="10">
+              <StringArray count="20">
                 <StringItem index="0" value="1&#x7ea7;"/>
                 <StringItem index="1" value="2&#x7ea7;"/>
                 <StringItem index="2" value="3&#x7ea7;"/>
@@ -1390,6 +1548,16 @@
                 <StringItem index="7" value="8&#x7ea7;"/>
                 <StringItem index="8" value="9&#x7ea7;"/>
                 <StringItem index="9" value="10&#x7ea7;"/>
+                <StringItem index="10" value="11&#x7ea7;"/>
+                <StringItem index="11" value="12&#x7ea7;"/>
+                <StringItem index="12" value="13&#x7ea7;"/>
+                <StringItem index="13" value="14&#x7ea7;"/>
+                <StringItem index="14" value="15&#x7ea7;"/>
+                <StringItem index="15" value="16&#x7ea7;"/>
+                <StringItem index="16" value="17&#x7ea7;"/>
+                <StringItem index="17" value="18&#x7ea7;"/>
+                <StringItem index="18" value="19&#x7ea7;"/>
+                <StringItem index="19" value="20&#x7ea7;"/>
               </StringArray>
             </Property>
           </Properties>

@@ -4,6 +4,7 @@
  */
 package slcomputer.heros;
 
+import java.util.ArrayList;
 import slcomputer.computer.Team;
 import slcomputer.computer.Skill;
 import slcomputer.equip.Equip;
@@ -73,10 +74,10 @@ public class Hero {
     public double pactTfSet;
     public double pactEffSet;
     // 缘
-    public int[] yuan1;
-    public int[] yuan2;
-    public int[] yuan3;
-    public int[] yuan4;
+    public ArrayList<DataY> yuan1;
+    public ArrayList<DataY> yuan2;
+    public ArrayList<DataY> yuan3;
+    public ArrayList<DataY> yuan4;
     public String yuanNames[];
     public boolean yuanActivated[];
     
@@ -110,7 +111,7 @@ public class Hero {
         skill2=null;
         skillIndex1=-1;
         skillIndex2=-1;
-        backupSkills=new Skill[20];
+        backupSkills=new Skill[24];
         int i;
         for(i=0; i<backupSkills.length; i++){
             backupSkills[i]=null;
@@ -182,6 +183,7 @@ public class Hero {
             Logger.getLogger(Hero.class.getName()).log(Level.SEVERE, null, ex);
         }
         h.description=description;
+        h.name=name;
         h.star=star;
         h.property=property;
         h.att_born=att_born;
@@ -285,7 +287,7 @@ public class Hero {
     }
     
     public double yuan(Team team, int index){
-        int yuan[];
+        ArrayList<DataY> yuan;
         yuanActivated[index-1]=true;
         switch(index){
             case 1:
@@ -307,42 +309,36 @@ public class Hero {
             yuanActivated[index-1]=false;
             return 0;
         }
-        double ret=(yuan[10]+yuan[11])/(double)100;
+        int length=yuan.size();
+        double ret=(yuan.get(length-4).getNumberAt(0)+yuan.get(length-3).getNumberAt(0))/(double)100;
         int i, j;
         int sum=0;
-        switch(yuan[1]){
+        switch(yuan.get(0).getNumberAt(0)){
             case 0:
-                for(i=2; i<yuan[0]; i++){
+            case 9:
+                for(i=1; i<length-4; i++){
                     for(j=0; j<team.number; j++) {
-                        if(team.heros[j].hid==yuan[i]){
+                        if(yuan.get(i).containsNumber(team.heros[j].hid)){
                             sum++;
                             break;
                         }
                     }
                     if(j==team.number){
                         for(j=0; j<team.backNumber; j++){
-                            if(team.backHeros[j].hid==yuan[i]){
+                            if(yuan.get(i).containsNumber(team.backHeros[j].hid)){
                                 sum++;
                                 break;
                             }
                         }
                     }
                 }
-                if(sum==yuan[0]-2){
+                if(sum==length-5){
                     return ret;
                 }
                 break;
             case 1:
-                if(!(weapon.eid==yuan[2] || shield.eid==yuan[2] || (pact!=null && pact.eid==yuan[2]))) {
-                    sum=1;
-                }
-                if(yuan[0]>3){
-                    if(!(weapon.eid==yuan[3] || shield.eid==yuan[3] || (pact!=null && pact.eid==yuan[3]))) {
-                        sum=1;
-                    }
-                }
-                if(yuan[0]>4){
-                    if(!(weapon.eid==yuan[4] || shield.eid==yuan[4] || (pact!=null && pact.eid==yuan[4]))) {
+                for(i=1; i<length-4; i++){
+                    if(!(yuan.get(i).containsNumber(weapon.eid) || yuan.get(i).containsNumber(shield.eid) || (pact!=null && yuan.get(i).containsNumber(pact.eid)))) {
                         sum=1;
                     }
                 }
@@ -352,38 +348,38 @@ public class Hero {
                 break;
             case 2:
                 for(i=0; i<5; i++){
-                    if(team.pet[i]==80109-yuan[2]){
+                    if(yuan.get(1).containsNumber(80109-team.pet[i])){
                         return ret;
                     }
                 }
                 break;
             case 3:
                 for(i=0; i<team.number; i++) {
-                    if(team.heros[i].gender==yuan[2]){
+                    if(yuan.get(1).containsNumber(team.heros[i].gender)){
                         sum++;
                     }
                 }
                 for(i=0; i<team.backNumber; i++){
-                    if(team.backHeros[i].gender==yuan[2]){
+                    if(yuan.get(1).containsNumber(team.backHeros[i].gender)){
                         sum++;
                     }
                 }
-                if(sum>=yuan[3]){
+                if(sum>=yuan.get(2).getNumberAt(0)){
                     return ret;
                 }
                 break;
             case 4:
                 for(i=0; i<team.number; i++) {
-                    if(team.heros[i].star>=yuan[2]){
+                    if(team.heros[i].star>=yuan.get(1).getNumberAt(0)){
                         sum++;
                     }
                 }
                 for(i=0; i<team.backNumber; i++){
-                    if(team.backHeros[i].star>=yuan[2]){
+                    if(team.backHeros[i].star>=yuan.get(1).getNumberAt(0)){
                         sum++;
                     }
                 }
-                if(sum>=yuan[4]){
+                if(sum>=yuan.get(3).getNumberAt(0)){
                     return ret;
                 }
                 break;
@@ -400,13 +396,13 @@ public class Hero {
                 }
                 // 检查除了该忍者外是否有指定group的忍者
                 for(i=0; i<team.number; i++) {
-                    if(team.heros[i].style==yuan[2] && team.heros[i].hid!=this.hid){
+                    if(team.heros[i].style==yuan.get(1).getNumberAt(0) && team.heros[i].hid!=this.hid){
                         sum=1;
                     }
                 }
                 if(sum!=1){
                     for(i=0; i<team.backNumber; i++) {
-                        if(team.backHeros[i].style==yuan[2] && team.backHeros[i].hid!=this.hid){
+                        if(team.backHeros[i].style==yuan.get(1).getNumberAt(0) && team.backHeros[i].hid!=this.hid){
                             sum=1;
                         }
                     }
@@ -415,9 +411,9 @@ public class Hero {
                 if(sum==1) {
                     if(j==1){
                         for(i=0; i<team.number; i++) {
-                            if(team.heros[i].style==yuan[2] && team.heros[i].id!=this.id){
-                                team.heros[i].yuanAtt+=yuan[12]/(double)100;
-                                team.heros[i].yuanDef+=yuan[13]/(double)100;
+                            if(team.heros[i].style==yuan.get(1).getNumberAt(0) && team.heros[i].id!=this.id){
+                                team.heros[i].yuanAtt+=yuan.get(length-2).getNumberAt(0)/(double)100;
+                                team.heros[i].yuanDef+=yuan.get(length-1).getNumberAt(0)/(double)100;
                             }
                         }
                     }
@@ -426,7 +422,7 @@ public class Hero {
                 break;
             case 6:
             case 7:
-                if(weapon.star>=yuan[2] && shield.star>=yuan[2]) {
+                if(weapon.star>=yuan.get(1).getNumberAt(0) && shield.star>=yuan.get(1).getNumberAt(0)) {
                     return ret;
                 }
                 break;
@@ -456,7 +452,7 @@ public class Hero {
         String s="<html><font color=";
         switch(star){
             case 6:
-                s+="#FFD700>";  // FFD700
+                s+="#FF0000>";  // FFD700
                 break;
             case 5:
                 s+="#FF4500>";
@@ -485,7 +481,7 @@ public class Hero {
         String s="<font color=";
         switch(star){
             case 6:
-                s+="#FFD700>";
+                s+="#FF0000>";
                 break;
             case 5:
                 s+="#FF4500>";

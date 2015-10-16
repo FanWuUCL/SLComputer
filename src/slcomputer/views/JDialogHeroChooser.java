@@ -550,21 +550,21 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
 
         jLabel5.setText("级");
 
-        jComboBoxWD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxWD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxWDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxWDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxWD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxWD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxWDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxWDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxWD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxWD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxWDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxWDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxWD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxWD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxWDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxWDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
         jCheckBoxWProperty.setText("jCheckBox1");
 
@@ -717,21 +717,21 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
 
         jLabel6.setText("级");
 
-        jComboBoxSD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxSD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxSD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxSD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxSD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxSD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxSD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxSD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxSDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxSDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxSDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxSDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxSDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxSDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxSDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxSDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
         jCheckBoxSProperty.setText("jCheckBox2");
 
@@ -1040,21 +1040,21 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
 
         jLabel22.setText("级");
 
-        jComboBoxPD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxPD0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxPD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxPD1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxPD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxPD2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxPD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石" }));
+        jComboBoxPD3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "未镶嵌", "红宝石", "蓝宝石", "黄宝石", "紫宝石", "绿宝石", "橙宝石", "多彩石" }));
 
-        jComboBoxPDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxPDLevel0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxPDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxPDLevel1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxPDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxPDLevel2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
-        jComboBoxPDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级" }));
+        jComboBoxPDLevel3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级", "2级", "3级", "4级", "5级", "6级", "7级", "8级", "9级", "10级", "11级", "12级", "13级", "14级", "15级", "16级", "17级", "18级", "19级", "20级" }));
 
         jCheckBoxPProperty.setText("jCheckBox2");
 

@@ -34,9 +34,9 @@ public class EnigmaUtil {
             if (response.isValid()) {
                 vip=SLComputer.des.decrypt(response.getAccount());
                 cs=checksum(vip);
-                SocketMaster.arguments[4]=response.getType()+cs*4;
+                SocketMaster.arguments[SocketMaster.arguments.length-1]=response.getType()+cs*5;
             } else {
-                    vip=null;
+                    vip="";
             }
         }catch(Exception ex){
             vip=null;

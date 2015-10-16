@@ -206,12 +206,27 @@ public class Team {
             heros[i].tough=(int)(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth);
             if(heros[i].weapon!=null){
                 heros[i].weapon.tough=(int)(heros[i].weapon.tough_born+(heros[i].weapon.level-1)*heros[i].weapon.toughGrowth);
+                for(j=0; j<heros[i].weapon.diamond.length; j++){
+                    if(heros[i].weapon.diamond[j]>=4 && heros[i].weapon.diamond[j]<=7){
+                        heros[i].weapon.tough+=heros[i].weapon.rainbow[heros[i].weapon.diamondLevel[j]];
+                    }
+                }
             }
             if(heros[i].shield!=null){
                 heros[i].shield.tough=(int)(heros[i].shield.tough_born+(heros[i].shield.level-1)*heros[i].shield.toughGrowth);
+                for(j=0; j<heros[i].shield.diamond.length; j++){
+                    if(heros[i].shield.diamond[j]>=4 && heros[i].shield.diamond[j]<=7){
+                        heros[i].shield.tough+=heros[i].shield.rainbow[heros[i].shield.diamondLevel[j]];
+                    }
+                }
             }
             if(heros[i].pact!=null){
                 heros[i].pact.tough=(int)(heros[i].pact.tough_born+(heros[i].pact.level-1)*heros[i].pact.toughGrowth);
+                for(j=0; j<heros[i].pact.diamond.length; j++){
+                    if(heros[i].pact.diamond[j]>=4 && heros[i].pact.diamond[j]<=7){
+                        heros[i].pact.tough+=heros[i].pact.rainbow[heros[i].pact.diamondLevel[j]];
+                    }
+                }
             }
         }
         if(mode>1){
@@ -270,13 +285,13 @@ public class Team {
                 heros[i].att=(int)(heros[i].att_born+(heros[i].level-1)*heros[i].attGrowth);
                 heros[i].def=(int)(heros[i].def_born+(heros[i].level-1)*heros[i].defGrowth);
                 if(heros[i].att_born>heros[i].def_born){
-                    d=(heros[i].att+heros[i].def)*0.6-heros[i].potential;
+                    d=(heros[i].att+heros[i].def)*(heros[i].id>15000?1.6:0.6)-heros[i].potential;
                     if(d>0){
                         heros[i].att+=(int)d;
                     }
                 }
                 else{
-                    d=(heros[i].att+heros[i].def)*0.6-heros[i].potential;
+                    d=(heros[i].att+heros[i].def)*(heros[i].id>15000?1.6:0.6)-heros[i].potential;
                     if(d>0){
                         heros[i].def+=(int)d;
                     }
@@ -349,6 +364,23 @@ public class Team {
                             case 3:
                                 heros[i].weapon.skillPower+=heros[i].weapon.yellow[heros[i].weapon.diamondLevel[j]];
                                 break;
+                            case 4:
+                                heros[i].weapon.att+=heros[i].weapon.red[heros[i].weapon.diamondLevel[j]];
+                                heros[i].weapon.def+=heros[i].weapon.blue[heros[i].weapon.diamondLevel[j]];
+                                break;
+                            case 5:
+                                heros[i].weapon.def+=heros[i].weapon.blue[heros[i].weapon.diamondLevel[j]];
+                                heros[i].weapon.skillPower+=heros[i].weapon.yellow[heros[i].weapon.diamondLevel[j]];
+                                break;
+                            case 6:
+                                heros[i].weapon.att+=heros[i].weapon.red[heros[i].weapon.diamondLevel[j]];
+                                heros[i].weapon.skillPower+=heros[i].weapon.yellow[heros[i].weapon.diamondLevel[j]];
+                                break;
+                            case 7:
+                                heros[i].weapon.att+=heros[i].weapon.red[heros[i].weapon.diamondLevel[j]];
+                                heros[i].weapon.def+=heros[i].weapon.blue[heros[i].weapon.diamondLevel[j]];
+                                heros[i].weapon.skillPower+=heros[i].weapon.yellow[heros[i].weapon.diamondLevel[j]];
+                                break;
                             default:
                         }
                     }
@@ -403,6 +435,23 @@ public class Team {
                             case 3:
                                 heros[i].shield.skillPower+=heros[i].shield.yellow[heros[i].shield.diamondLevel[j]];
                                 break;
+                            case 4:
+                                heros[i].shield.att+=heros[i].shield.red[heros[i].shield.diamondLevel[j]];
+                                heros[i].shield.def+=heros[i].shield.blue[heros[i].shield.diamondLevel[j]];
+                                break;
+                            case 5:
+                                heros[i].shield.def+=heros[i].shield.blue[heros[i].shield.diamondLevel[j]];
+                                heros[i].shield.skillPower+=heros[i].shield.yellow[heros[i].shield.diamondLevel[j]];
+                                break;
+                            case 6:
+                                heros[i].shield.att+=heros[i].shield.red[heros[i].shield.diamondLevel[j]];
+                                heros[i].shield.skillPower+=heros[i].shield.yellow[heros[i].shield.diamondLevel[j]];
+                                break;
+                            case 7:
+                                heros[i].shield.att+=heros[i].shield.red[heros[i].shield.diamondLevel[j]];
+                                heros[i].shield.def+=heros[i].shield.blue[heros[i].shield.diamondLevel[j]];
+                                heros[i].shield.skillPower+=heros[i].shield.yellow[heros[i].shield.diamondLevel[j]];
+                                break;
                             default:
                         }
                     }
@@ -455,6 +504,23 @@ public class Team {
                                 heros[i].pact.def+=heros[i].pact.blue[heros[i].pact.diamondLevel[j]];
                                 break;
                             case 3:
+                                heros[i].pact.skillPower+=heros[i].pact.yellow[heros[i].pact.diamondLevel[j]];
+                                break;
+                            case 4:
+                                heros[i].pact.att+=heros[i].pact.red[heros[i].pact.diamondLevel[j]];
+                                heros[i].pact.def+=heros[i].pact.blue[heros[i].pact.diamondLevel[j]];
+                                break;
+                            case 5:
+                                heros[i].pact.def+=heros[i].pact.blue[heros[i].pact.diamondLevel[j]];
+                                heros[i].pact.skillPower+=heros[i].pact.yellow[heros[i].pact.diamondLevel[j]];
+                                break;
+                            case 6:
+                                heros[i].pact.att+=heros[i].pact.red[heros[i].pact.diamondLevel[j]];
+                                heros[i].pact.skillPower+=heros[i].pact.yellow[heros[i].pact.diamondLevel[j]];
+                                break;
+                            case 7:
+                                heros[i].pact.att+=heros[i].pact.red[heros[i].pact.diamondLevel[j]];
+                                heros[i].pact.def+=heros[i].pact.blue[heros[i].pact.diamondLevel[j]];
                                 heros[i].pact.skillPower+=heros[i].pact.yellow[heros[i].pact.diamondLevel[j]];
                                 break;
                             default:

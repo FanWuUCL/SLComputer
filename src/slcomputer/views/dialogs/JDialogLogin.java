@@ -30,6 +30,10 @@ public class JDialogLogin extends javax.swing.JDialog {
         for(AccountInfo s:SLComputer.accounts){
             jComboBox1.addItem(s);
         }
+        echoChar=jPasswordFieldPsd.getEchoChar();
+        if(SLComputer.accounts.size()>1){
+            jPasswordFieldPsd.setText(SLComputer.accounts.elementAt(0).psd);
+        }
         Dimension d=getPreferredSize();
         Rectangle b=SLComputer.mf.getBounds();
         setBounds(b.x+b.width/3-d.width/2, b.y+b.height/3-d.height/2, d.width, d.height);
@@ -45,26 +49,20 @@ public class JDialogLogin extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jCheckBoxRemember = new javax.swing.JCheckBox();
         jButtonOblivia = new javax.swing.JButton();
         jButtonLogin = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordFieldPsd = new javax.swing.JPasswordField();
+        jCheckBoxRemember = new javax.swing.JCheckBox();
+        jCheckBoxShowPsd = new javax.swing.JCheckBox();
         jComboBoxServer = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("登陆");
-
-        jLabel1.setText("账号");
-
-        jComboBox1.setEditable(true);
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jCheckBoxRemember.setText("记住账号");
 
         jButtonOblivia.setText("忘记此账号");
         jButtonOblivia.addActionListener(new java.awt.event.ActionListener() {
@@ -80,49 +78,104 @@ public class JDialogLogin extends javax.swing.JDialog {
             }
         });
 
-        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156", "混服 157", "混服 158", "混服 159", "混服 160" }));
+        jLabel1.setText("账号");
+
+        jComboBox1.setEditable(true);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("密码");
+
+        jCheckBoxRemember.setText("记住账号");
+
+        jCheckBoxShowPsd.setText("显示密码");
+        jCheckBoxShowPsd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxShowPsdActionPerformed(evt);
+            }
+        });
+
+        jComboBoxServer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "APP 1", "APP 2", "APP 3", "APP 5", "APP 9", "APP 11", "APP 13", "APP 21", "混服 1", "混服 2", "混服 3", "混服 4", "混服 5", "混服 6", "混服 7", "混服 11", "混服 12", "混服 13", "混服 14", "混服 16", "混服 20", "混服 24", "混服 29", "混服 33", "混服 40", "混服 45", "混服 50", "混服 76", "混服 78", "混服 89", "混服 96", "混服 100", "混服 106", "混服 121", "混服 127", "混服 130", "混服 135", "混服 138", "混服 139", "混服 140", "混服 141", "混服 142", "混服 143", "混服 144", "混服 145", "混服 146", "混服 147", "混服 148", "混服 149", "混服 150", "混服 151", "混服 152", "混服 153", "混服 154", "混服 155", "混服 156", "混服 157", "混服 158", "混服 159", "混服 160", "混服 161", "混服 162", "混服 163" }));
         jComboBoxServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxServerActionPerformed(evt);
             }
         });
 
+        jLabel3.setText("为什么要输密码？鼠标停在我身上");
+        jLabel3.setToolTipText("因为合并平台而被官方强制绑定邮箱的账号需要用账号和密码登陆，其他平台密码留空即可。");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jComboBoxServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPasswordFieldPsd, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jCheckBoxShowPsd))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jCheckBoxRemember)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxRemember))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jPasswordFieldPsd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBoxShowPsd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonOblivia)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBoxServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBoxRemember))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonOblivia)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonLogin)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBoxRemember))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonOblivia)
                     .addComponent(jButtonLogin))
@@ -146,6 +199,7 @@ public class JDialogLogin extends javax.swing.JDialog {
         else{
             account=(AccountInfo)jComboBox1.getSelectedItem();
         }
+        account.psd=new String(jPasswordFieldPsd.getPassword());
         account.fwq=jComboBoxServer.getSelectedIndex();
         SocketMaster.arguments[3]=jCheckBoxRemember.isSelected();
         account.usr=account.usr.trim();
@@ -186,17 +240,33 @@ public class JDialogLogin extends javax.swing.JDialog {
         AccountInfo acc=(AccountInfo)jComboBox1.getSelectedItem();
         //System.out.println(acc.fwq);
         if(acc!=null && acc.fwq>=0 && acc.fwq<jComboBoxServer.getItemCount()){
-            this.jComboBoxServer.setSelectedIndex(acc.fwq);
+            jComboBoxServer.setSelectedIndex(acc.fwq);
+            jPasswordFieldPsd.setText(acc.psd);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jCheckBoxShowPsdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxShowPsdActionPerformed
+        if(jCheckBoxShowPsd.isSelected()){
+            jPasswordFieldPsd.setEchoChar((char)0);
+        }
+        else{
+            jPasswordFieldPsd.setEchoChar(echoChar);
+        }
+    }//GEN-LAST:event_jCheckBoxShowPsdActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JButton jButtonOblivia;
     private javax.swing.JCheckBox jCheckBoxRemember;
+    private javax.swing.JCheckBox jCheckBoxShowPsd;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBoxServer;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordFieldPsd;
     // End of variables declaration//GEN-END:variables
     private int count;
+    private char echoChar;
 }

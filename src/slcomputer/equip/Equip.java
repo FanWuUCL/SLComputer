@@ -37,12 +37,13 @@ public class Equip {
     // 插槽奖励
     public double[] hideProperty;
     public boolean propertyEnabled;
-    // 宝石：0 未镶嵌，1 红宝石，2 蓝宝石，3 黄宝石
+    // 宝石：0 未镶嵌，1 红宝石，2 蓝宝石，3 黄宝石，4 紫宝石，5 绿宝石，6 橙宝石，7 多彩宝石
     public int[] diamond;
     public int[] diamondLevel;
-    public final int[] red={30, 45, 68, 102, 153, 230, 345, 518, 777, 1166};
-    public final int[] blue={30, 45, 68, 102, 153, 230, 345, 518, 777, 1166};
-    public final double[] yellow={0.25, 0.5, 0.75, 1, 1.5, 2, 2.5, 3, 4, 5};
+    public final int[] red={75, 102, 138, 187, 254, 345, 469, 637, 866, 1177, 1294, 1423, 1565, 1721, 1893, 2082, 2290, 2519, 2770, 3047};
+    public final int[] blue={75, 102, 138, 187, 254, 345, 469, 637, 866, 1177, 1294, 1423, 1565, 1721, 1893, 2082, 2290, 2519, 2770, 3047};
+    public final double[] yellow={0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10};
+    public final double[] rainbow={10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200};
     // 进阶奖励
     public int stepEffect[][];
     public int step;
@@ -123,7 +124,7 @@ public class Equip {
         String s="<html><font color=";
         switch(star){
             case 6:
-                s+="#FFD700>";
+                s+="#FF0000>";
                 break;
             case 5:
                 s+="#FF8000>";

@@ -4,19 +4,20 @@
  */
 package slcomputer.utils;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import slcomputer.equip.Equip;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import slcomputer.heros.Hero;
 import slcomputer.main.EnigmaUtil;
 import slcomputer.main.SLComputer;
-import slcomputer.utils.DesUtils;
 
 /**
  *
@@ -111,6 +112,58 @@ public class Utility {
         }
     }
     
+    public static void readNewCrypto(){
+        String name="newCrypto";
+        File f=new File(name+".txt");
+        int i, j;
+        String[] spl;
+        try {
+            BufferedReader br=new BufferedReader(new FileReader(f));
+            String s;
+            String t;
+            while((s=br.readLine())!=null){
+                if(s.equals("")){
+                    continue;
+                }
+                s=s.substring(42, 62);
+                spl=s.split("\\s+");
+                for(i=0; i<spl.length; i++){
+                    System.out.print(Integer.parseInt(spl[i], 16)+",");
+                }
+                
+                s=br.readLine();
+                s=s.substring(14, 25);
+                spl=s.split("\\s+");
+                for(i=0; i<spl.length; i++){
+                    System.out.print(Integer.parseInt(spl[i], 16)+",");
+                }
+                
+                s=br.readLine();
+                s=s.substring(38, 49);
+                spl=s.split("\\s+");
+                
+                System.out.println(Integer.parseInt(spl[3], 16));
+            }
+            br.close();
+        } catch (Exception ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static int getNum(int i) {
+        if (i == 0) {
+            return 1;
+        } else if ((i % 4)==0) {
+            return getNum(i / 4) + 4;
+        } else if ((i % 3) == 0) {
+            return getNum(i - 3) + 3;
+        } else if ((i % 2) == 0) {
+            return getNum(i / 2) + 2;
+        } else {
+            return getNum(i - 1) + 1;
+        }
+    }
+    
     public static String change(String s){
         char cha=(char)(60-EnigmaUtil.checksum(s));
         if(cha>'9') cha=(char)(cha-10);
@@ -122,20 +175,22 @@ public class Utility {
             String test = "";
             //DesUtils des = new DesUtils(new String(SLComputer.zhengzhi));
             //System.out.println(des.encrypt("15270833387"));
-            //System.out.println(des.encrypt(change("EMAIL-"+"3160884371@qq.com")));
-            //System.out.println(des.encrypt(change("AND91_"+"545776187")));
-            //System.out.println(des.encrypt(change("ANDZSY_"+"yhs1465735776")));
-            //System.out.println(des.encrypt(change("IOS91_"+"543239579")));
-            //System.out.println(des.encrypt(change("ANDWD_"+"122659963")));
-            //System.out.println(des.encrypt(change("AND36_"+"1492050565")));
-            //System.out.println(des.encrypt(change("ANDUC_"+"247262464")));
-            //System.out.println(des.encrypt(change("IOSTB_"+"3510059")));
-            //System.out.println(des.encrypt(change("ANDDK_"+"151730422")));
+            //System.out.println(des.encrypt(change("EMAIL-"+"496662984@qq.com")));
+            //System.out.println(des.encrypt(change("AND91_"+"460968309")));
+            //System.out.println(des.encrypt(change("ANDZSY_"+"Aaz911213")));
+            //System.out.println(des.encrypt(change("IOS91_"+"304034606")));
+            //System.out.println(des.encrypt(change("ANDWD_"+"21046389")));
+            //System.out.println(des.encrypt(change("AND36_"+"375243481")));
+            //System.out.println(des.encrypt(change("ANDUC_"+"845340264")));
+            //System.out.println(des.encrypt(change("IOSTB_"+"7785711")));
+            //System.out.println(des.encrypt(change("ANDDK_"+"70512279")));
             //System.out.println(des.encrypt(change("ANDSN_"+"3687192672")));
             //System.out.println(des.encrypt(change("ANDTX_"+"D407B82F884125A1DDA9A167116DDB18")));
-            //System.out.println(des.encrypt(change("ANDMI_12179991")));
+            //System.out.println(des.encrypt(change("407810683@qq.com")));
             //System.out.println(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04"));
             //System.out.println(EnigmaUtil.checksum(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04")));
+
+            //System.out.println(getNum(43319));
         }
         catch (Exception e) {
           e.printStackTrace();

@@ -104,7 +104,7 @@ public class SocketAuto implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[4])==0?1001000:1000000), SocketMaster.globalCer, command, extralength, extra);
+        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])==0?1003000:((SocketMaster.arguments[SocketMaster.arguments.length-1])==4?1003000:1003000)), SocketMaster.globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -112,7 +112,7 @@ public class SocketAuto implements Runnable{
         para[9]=(byte)((command >> 16) & 0xff);
         para[10]=(byte)((command >> 8) & 0xff);
         para[11]=(byte)(command & 0xff);
-        if((int)(SocketMaster.arguments[4])!=0){
+        if((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])!=0){
             SocketMaster.encrypt(data);
             SocketMaster.encrypt(para);
         }
@@ -129,7 +129,7 @@ public class SocketAuto implements Runnable{
             recvData=null;
         }
         if(recvData!=null){
-            if((int)(SocketMaster.arguments[4])!=0){
+            if((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])!=0){
                 SocketMaster.decrypt(recvData);
             }
             else{
@@ -285,6 +285,7 @@ public class SocketAuto implements Runnable{
         challengeTimes=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         bestQX=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         bestFY=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+        pos+=8;
         challengeMax=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         rank=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         pos+=8;
@@ -321,14 +322,17 @@ public class SocketAuto implements Runnable{
         return 1;
     }
     
-    public int mappingName(String name){
-        int i;
-        for(i=0; i<names.length; i++){
-            if(names[i]!=null && names[i].equals(name)){
+    public static int mappingRef(HeroLight[] team, int ref){
+        for(int i=0; i<team.length; i++){
+            if(team[i].ref==ref){
                 return i;
             }
         }
-        return names.length-1;
+        return team.length-1;
+    }
+    
+    public void printSkill(String h, int id, String s){
+        //System.out.println(h+"\t"+id+":"+s);
     }
     
     public int battle(int hardness){
@@ -447,10 +451,10 @@ public class SocketAuto implements Runnable{
                 return 3;
             }
             if(SocketMaster.mode==0){
-                nameIndex=mappingName(attHero.name);
+                nameIndex=mappingRef(attTeam, attHero.ref);
             }
             else{
-                nameIndex=mappingName(defHero.name);
+                nameIndex=mappingRef(defTeam, defHero.ref);
             }
             pos+=4;
             attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
@@ -520,6 +524,7 @@ public class SocketAuto implements Runnable{
             if(x!=0){
                 skill=SocketMaster.referenceSkill(x);
                 skillDetail0+=attHero.name+" 发动 "+skill.name+"\n";
+                printSkill(attHero.name, skill.id, skill.name);
                 skilled=true;
                 attSkilled=true;
                 if(SocketMaster.mode==0){
@@ -741,6 +746,7 @@ public class SocketAuto implements Runnable{
             if(x!=0){
                 skill=SocketMaster.referenceSkill(x);
                 skillDetail0+=attHero.name+" 发动 "+skill.name+"\n";
+                printSkill(attHero.name, skill.id, skill.name);
                 if(SocketMaster.mode==0){
                     if(skillNames[2*nameIndex]==null || skillNames[2*nameIndex].id==skill.id){
                         skillNameIndex=2*nameIndex;
@@ -842,7 +848,7 @@ public class SocketAuto implements Runnable{
             return 3;
         }
         // 试炼概况
-        pos+=28;
+        pos+=28+8;
         // 试炼详情
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         if(length>0){
@@ -912,7 +918,7 @@ public class SocketAuto implements Runnable{
                 if(recvData==null || recvData.length<160){
                     return 2;
                 }
-                pos=28;
+                pos=28+8;
                 if(SocketMaster.mode!=(((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff))){
                     return 2;
                 } pos+=4;

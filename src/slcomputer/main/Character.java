@@ -89,7 +89,7 @@ public class Character {
             defNumber=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             defWinNumber=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             arenaMoney=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-            pos+=20;
+            pos+=24;
             length=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             pos+=length*12; 
             pos+=4;

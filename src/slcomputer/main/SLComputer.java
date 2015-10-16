@@ -152,6 +152,16 @@
  * 3. 添加噩梦试炼的操作，添加噩梦试炼数据。
  * 
  * Version 5.1
+ * 1. 数据更新至3.1.1。
+ * 2. 6星装备和忍者现采用更加明显的红色来表示。
+ * 3. 修复开宝箱bug。
+ * 4. 试炼敌人的体术大幅提升。
+ * 5. （暂未解决）试炼敌人的数值暂时偏低，仙术暂未加入。
+ * 
+ * Version 5.2
+ * 1. 数据更新至3.3。
+ * 2. 宝石种类和等级都随新版本做了更改。
+ * 3. 修复开宝箱bug。
  */
 package slcomputer.main;
 
@@ -173,6 +183,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -231,9 +242,9 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=5;
-    public static final int minor=1;
-    public static final int vip=90;
-    public static final String testVersion=".tmp";
+    public static final int minor=2;
+    public static final int vip=84;
+    public static final String testVersion=".2";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -255,6 +266,8 @@ public class SLComputer {
                 + "（如果菜单里选择了观看战斗，则不会自动计算胜率，而是显示战斗详情，需要自行点一次试炼终结者计算胜率）。本工具暂时不支持调整阵容，若要调整阵容，请用手机登陆游戏进行调整。\n"
             + "16. 如果不需要换阵容无脑打试炼的话，本工具可以提供自动打试炼的功能，会根据胜率自动打胜率最高的。\n"
             + "17. 自动试炼前需要设置一些参数，用于指导自动试炼时选难度和加buff的策略，每个参数的含义可以通过“查看策略”按钮了解详情。\n"
+            + "18. 登陆账号成功以后，可以用菜单-账号-开宝箱功能一键开所有金银铜宝箱。\n"
+            + "19. 若账号已经登陆，但是不能自动试炼，请先从菜单-账号里选择你要进入的试炼（究极试炼或噩梦试炼）。"
             + "\n每次版本更新的时候，请把SLComputer/usr文件夹复制到新版本的对应位置，就可以把以前的阵容全部搬到新版本来了。\n";
 
     // 作者信息，若你对本程序做了任何的修改，请保留下面的信息
@@ -393,7 +406,7 @@ public class SLComputer {
                 return skills[i];
             }
         }
-        System.out.println("Warning: Cannot find skill "+id);
+        //System.out.println("Warning: Cannot find skill "+id);
         return null;
     }
     
@@ -879,7 +892,7 @@ public class SLComputer {
                         if(split.length>=2){
                             ai.fwq=Integer.parseInt(split[1]);
                             if(split.length>=3){
-                                ai.psd=des.decrypt(split[2]);
+                                ai.psd=split[2];
                             }
                         }
                     }
@@ -984,7 +997,8 @@ public class SLComputer {
         else if(exp>=100){
             tough=50;
         }
-        return tough;
+        //return tough;
+        return exp;
     }
     
     public static void initSLTeams(){
@@ -1309,9 +1323,9 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=461;
-        int equipAttNumber=93;
-        int equipDefNumber=90;
+        int heroNumber=505;
+        int equipAttNumber=95;
+        int equipDefNumber=92;
         int eqpTfNumber=90;
         int backupNumber=8;
         int i;
@@ -1435,6 +1449,22 @@ public class SLComputer {
         allHero[i++]=new HeroHYKKX_6(1);
         allHero[i++]=new HeroSNY_6(1);
         allHero[i++]=new HeroSNB_6(1);
+        allHero[i++]=new HeroQSZJJN_6(1);
+        allHero[i++]=new HeroQSFJJN_6(1);
+        allHero[i++]=new HeroBFSMJN_6(1);
+        allHero[i++]=new HeroZLYJN_6(1);
+        allHero[i++]=new HeroYZBYJN_6(1);
+        allHero[i++]=new HeroDSWJN_6(1);
+        allHero[i++]=new HeroQSGSJN_6(1);
+        allHero[i++]=new HeroYFRZJN_6(1);
+        allHero[i++]=new HeroYZBDTJN_6(1);
+        allHero[i++]=new HeroXWCMJN_6(1);
+        allHero[i++]=new HeroZCTZJN_6(1);
+        allHero[i++]=new HeroZMMJN_6(1);
+        allHero[i++]=new HeroSJYBZJN_6(1);
+        allHero[i++]=new HeroYZBBJN_6(1);
+        allHero[i++]=new HeroPEJN_6(1);
+        allHero[i++]=new HeroXNJN_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1493,6 +1523,10 @@ public class SLComputer {
         allHero[i++]=new HeroFY_6(1);
         allHero[i++]=new HeroSJY_6(1);
         allHero[i++]=new HeroXWBR_6(1);
+        allHero[i++]=new HeroYZBZZJN_6(1);
+        allHero[i++]=new HeroWALJN_6(1);
+        allHero[i++]=new HeroXWMRJN_6(1);
+        allHero[i++]=new HeroCYYJN_6(1);
         num6StarHero=i;
         allHero[i++]=new HeroQSZJ(1);  // 五星开始：千手柱间
         allHero[i++]=new HeroQSFJ(1);
@@ -1608,6 +1642,22 @@ public class SLComputer {
         allHero[i++]=new HeroHYKKX(1);
         allHero[i++]=new HeroSNY(1);
         allHero[i++]=new HeroSNB(1);
+        allHero[i++]=new HeroQSZJJN(1);
+        allHero[i++]=new HeroQSFJJN(1);
+        allHero[i++]=new HeroBFSMJN(1);
+        allHero[i++]=new HeroZLYJN(1);
+        allHero[i++]=new HeroYZBYJN(1);
+        allHero[i++]=new HeroDSWJN(1);
+        allHero[i++]=new HeroQSGSJN(1);
+        allHero[i++]=new HeroYFRZJN(1);
+        allHero[i++]=new HeroYZBDTJN(1);
+        allHero[i++]=new HeroXWCMJN(1);
+        allHero[i++]=new HeroZCTZJN(1);
+        allHero[i++]=new HeroZMMJN(1);
+        allHero[i++]=new HeroSJYBZJN(1);
+        allHero[i++]=new HeroYZBBJN(1);
+        allHero[i++]=new HeroPEJN(1);
+        allHero[i++]=new HeroXNJN(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -1666,6 +1716,10 @@ public class SLComputer {
         allHero[i++]=new HeroFY_5(1);
         allHero[i++]=new HeroSJY_5(1);
         allHero[i++]=new HeroXWBR_5(1);
+        allHero[i++]=new HeroYZBZZJN_5(1);
+        allHero[i++]=new HeroWALJN_5(1);
+        allHero[i++]=new HeroXWMRJN_5(1);
+        allHero[i++]=new HeroCYYJN_5(1);
         allHero[i++]=new HeroQMKKX(1);  // 四星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM(1);
         allHero[i++]=new HeroGSGJ(1);
@@ -1722,6 +1776,10 @@ public class SLComputer {
         allHero[i++]=new HeroFY(1);
         allHero[i++]=new HeroSJY(1);
         allHero[i++]=new HeroXWBR(1);
+        allHero[i++]=new HeroYZBZZJN(1);
+        allHero[i++]=new HeroWALJN(1);
+        allHero[i++]=new HeroXWMRJN(1);
+        allHero[i++]=new HeroCYYJN(1);
         allHero[i++]=new HeroGDSY(1);  // 三星开始：鬼灯水月
         allHero[i++]=new HeroTCZW(1);
         allHero[i++]=new HeroXRH(1);
@@ -1809,6 +1867,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqAXLZL_6(1);
         allEquiqAtt[i++]=new EquiqSWSLJ_6(1);
         allEquiqAtt[i++]=new EquiqBYZR_6(1);
+        allEquiqAtt[i++]=new EquiqQDYHB_6(1);
         allEquiqAtt[i++]=new EquiqZSDD_6(1);  // 四星升六星
         allEquiqAtt[i++]=new EquiqDDJJ_6(1);
         allEquiqAtt[i++]=new EquiqCDFZ_6(1);
@@ -1844,6 +1903,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqAXLZL(1);
         allEquiqAtt[i++]=new EquiqSWSLJ(1);
         allEquiqAtt[i++]=new EquiqBYZR(1);
+        allEquiqAtt[i++]=new EquiqQDYHB(1);
         allEquiqAtt[i++]=new EquiqZSDD_5(1);  // 四星升五星
         allEquiqAtt[i++]=new EquiqDDJJ_5(1);
         allEquiqAtt[i++]=new EquiqCDFZ_5(1);
@@ -1906,6 +1966,7 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqYWMJ_6(1);
         allEquiqDef[i++]=new EquiqXZNHZK_6(1);
         allEquiqDef[i++]=new EquiqKKXMZ_6(1);
+        allEquiqDef[i++]=new EquiqJLZX_6(1);
         allEquiqDef[i++]=new EquiqABMJ_6(1);  // 四星升六星
         allEquiqDef[i++]=new EquiqZZY_6(1);
         allEquiqDef[i++]=new EquiqZZHS_6(1);
@@ -1940,6 +2001,7 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqYWMJ(1);
         allEquiqDef[i++]=new EquiqXZNHZK(1);
         allEquiqDef[i++]=new EquiqKKXMZ(1);
+        allEquiqDef[i++]=new EquiqJLZX(1);
         allEquiqDef[i++]=new EquiqABMJ_5(1);  // 四星升五星
         allEquiqDef[i++]=new EquiqZZY_5(1);
         allEquiqDef[i++]=new EquiqZZHS_5(1);
@@ -2128,27 +2190,29 @@ public class SLComputer {
         SocketMaster.onWork=false;
     }
 
-    public static String yuanDescription(int yuan[]){
+    public static String yuanDescription(ArrayList<DataY> yuan){
         String desc="   ";
         String AD, tmpS="";
         int p, pe;
-        if(yuan[10]>0){
+        int length=yuan.size();
+        if(yuan.get(length-4).getNumberAt(0)>0){
             AD="攻击力";
-            p=yuan[10];
-            pe=yuan[12];
+            p=yuan.get(length-4).getNumberAt(0);
+            pe=yuan.get(length-2).getNumberAt(0);
         }
         else{
             AD="防御力";
-            p=yuan[11];
-            pe=yuan[13];
+            p=yuan.get(length-3).getNumberAt(0);
+            pe=yuan.get(length-1).getNumberAt(0);
         }
         int i,j;
-        switch(yuan[1]){
+        switch(yuan.get(0).getNumberAt(0)){
             case 0:
+            case 9:
                 desc+="与";
-                for(i=2; i<yuan[0]; i++){
+                for(i=1; i<yuan.size()-4; i++){
                     for(j=0; j<allHero.length; j++){
-                        if(yuan[i]==allHero[j].hid){
+                        if(yuan.get(i).getNumberAt(0)==allHero[j].hid){
                             desc=desc+"["+allHero[j].name+"]";
                             break;
                         }
@@ -2158,23 +2222,23 @@ public class SLComputer {
                 break;
             case 1:
                 desc+="装备";
-                for(i=2; i<yuan[0]; i++){
+                for(i=1; i<yuan.size()-4; i++){
                     for(j=0; j<allEquiqAtt.length; j++){
-                        if(yuan[i]==allEquiqAtt[j].id){
+                        if(yuan.get(i).getNumberAt(0)==allEquiqAtt[j].id){
                             desc=desc+"["+allEquiqAtt[j].name+"]";
                             break;
                         }
                     }
                     if(j==allEquiqAtt.length){
                         for(j=0; j<allEquiqDef.length; j++){
-                            if(yuan[i]==allEquiqDef[j].id){
+                            if(yuan.get(i).getNumberAt(0)==allEquiqDef[j].id){
                                 desc=desc+"["+allEquiqDef[j].name+"]";
                                 break;
                             }
                         }
                         if(j==allEquiqDef.length){
                             for(j=0; j<allEqpTf.length; j++){
-                                if(yuan[i]==allEqpTf[j].id){
+                                if(yuan.get(i).getNumberAt(0)==allEqpTf[j].id){
                                     desc=desc+"["+allEqpTf[j].name+"]";
                                     break;
                                 }
@@ -2186,7 +2250,7 @@ public class SLComputer {
                 break;
             case 2:
                 desc+="尾兽祭坛中召唤";
-                switch(yuan[2]){
+                switch(yuan.get(1).getNumberAt(0)){
                     case 80099: desc+="[神树]"; break;
                     case 80100: desc+="[九摩诃]"; break;
                     case 80101: desc+="[牛鬼]"; break;
@@ -2201,8 +2265,8 @@ public class SLComputer {
                 desc+="为尾兽时提高"+AD+p+"%";
                 break;
             case 3:
-                desc+="当阵容中存在大于或等于"+yuan[3]+"名";
-                if(yuan[2]==0){
+                desc+="当阵容中存在大于或等于"+yuan.get(2).getNumberAt(0)+"名";
+                if(yuan.get(1).getNumberAt(0)==0){
                     desc+="女";
                 }
                 else{
@@ -2211,12 +2275,12 @@ public class SLComputer {
                 desc+="忍者时，提高"+AD+p+"%";
                 break;
             case 4:
-                desc+="当阵容中存在至少"+yuan[4]+"名"+yuan[2];
+                desc+="当阵容中存在至少"+yuan.get(3).getNumberAt(0)+"名"+yuan.get(1).getNumberAt(0);
                 desc+="星及以上忍者时，提高"+AD+p+"%";
                 break;
             case 5:
                 desc+="当阵容中有其他";
-                switch(yuan[2]){
+                switch(yuan.get(1).getNumberAt(0)){
                     case 0: tmpS="木叶忍者"; break;
                     case 1: tmpS="雾忍忍者"; break;
                     case 2: tmpS="岩忍忍者"; break;
@@ -2234,7 +2298,7 @@ public class SLComputer {
                 desc=desc+tmpS+"时，提高"+AD+p+"%，同时其他上阵的"+tmpS+"提高"+AD+pe+"%";
                 break;
             case 7:
-                desc+="同时装备任意"+yuan[2]+"星及以上武器和防具时，提高"+AD+p+"%";
+                desc+="同时装备任意"+yuan.get(1).getNumberAt(0)+"星及以上武器和防具时，提高"+AD+p+"%";
                 break;
             case 8:
                 desc+="当阵容中有大于1个此忍者同时上阵时，提高"+AD+p+"%";
@@ -2245,7 +2309,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=1802;
+        int skillNumber=1953;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;
@@ -2437,6 +2501,12 @@ public class SLComputer {
                 }
                 //System.out.println(allHero[i].name);
                 s=br.readLine();
+                while(s.indexOf("name")<0){
+                    s=br.readLine();
+                }
+                // name
+                allHero[i].name=s.substring(s.indexOf(":")+3, s.lastIndexOf("\""));
+                s=br.readLine();
                 while(s.indexOf("description")<0){
                     s=br.readLine();
                 }
@@ -2519,8 +2589,7 @@ public class SLComputer {
                 if(s.indexOf("]")<0){
                     s=br.readLine();
                     if(s.length()>6 && s.charAt(6)=='['){
-                        allHero[i].yuan1=new int[14];
-                        allHero[i].yuan1[0]=1;
+                        allHero[i].yuan1=new ArrayList<DataY>();
                         s=br.readLine();
                         allHero[i].yuanNames[0]=s.trim();
                         allHero[i].yuanNames[0]=allHero[i].yuanNames[0].substring(1, allHero[i].yuanNames[0].length()-2);
@@ -2529,10 +2598,29 @@ public class SLComputer {
                         }
                         s=br.readLine();
                         while(s.charAt(8)!=']'){
-                            if(s.indexOf(",")>0){
-                                s=s.substring(0, s.indexOf(","));
+                            DataY tmpDataY=null;
+                            if(s.charAt(10)=='['){
+                                s=br.readLine();
+                                while(s.charAt(10)!=']'){
+                                    if(s.indexOf(",")>0){
+                                        s=s.substring(0, s.indexOf(","));
+                                    }
+                                    if(tmpDataY==null){
+                                        tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                    }
+                                    else{
+                                        tmpDataY.insertNumber(Integer.parseInt(s.trim()));
+                                    }
+                                    s=br.readLine();
+                                }
                             }
-                            allHero[i].yuan1[allHero[i].yuan1[0]++]=Integer.parseInt(s.trim());
+                            else{
+                                if(s.indexOf(",")>0){
+                                    s=s.substring(0, s.indexOf(","));
+                                }
+                                tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                            }
+                            allHero[i].yuan1.add(tmpDataY);
                             //System.out.print(allHero[i].yuan1[allHero[i].yuan1[0]-1]+" ");
                             s=br.readLine();
                         }
@@ -2544,29 +2632,28 @@ public class SLComputer {
                         if(s.indexOf(",")>0){
                             s=s.substring(0, s.indexOf(","));
                         }
-                        allHero[i].yuan1[10]=Integer.parseInt(s.trim());
+                        allHero[i].yuan1.add(new DataY(Integer.parseInt(s.trim())));
                         s=br.readLine();
                         if(s.indexOf(",")>0){
                             s=s.substring(0, s.indexOf(","));
                         }
-                        allHero[i].yuan1[11]=Integer.parseInt(s.trim());
+                        allHero[i].yuan1.add(new DataY(Integer.parseInt(s.trim())));
                         s=br.readLine();
                         if(s.indexOf(",")>0){
                             s=s.substring(0, s.indexOf(","));
                         }
-                        allHero[i].yuan1[12]=Integer.parseInt(s.trim());
+                        allHero[i].yuan1.add(new DataY(Integer.parseInt(s.trim())));
                         s=br.readLine();
                         if(s.indexOf(",")>0){
                             s=s.substring(0, s.indexOf(","));
                         }
-                        allHero[i].yuan1[13]=Integer.parseInt(s.trim());
+                        allHero[i].yuan1.add(new DataY(Integer.parseInt(s.trim())));
                         allHero[i].yuanNames[0]+=yuanDescription(allHero[i].yuan1);
                         s=br.readLine();
                         s=br.readLine();
                         s=br.readLine();
                         if(s.length()>6 && s.charAt(6)=='['){
-                            allHero[i].yuan2=new int[14];
-                            allHero[i].yuan2[0]=1;
+                            allHero[i].yuan2=new ArrayList<DataY>();
                             s=br.readLine();
                             allHero[i].yuanNames[1]=s.trim();
                             allHero[i].yuanNames[1]=allHero[i].yuanNames[1].substring(1, allHero[i].yuanNames[1].length()-2);
@@ -2575,10 +2662,30 @@ public class SLComputer {
                             }
                             s=br.readLine();
                             while(s.charAt(8)!=']'){
-                                if(s.indexOf(",")>0){
-                                    s=s.substring(0, s.indexOf(","));
+                                DataY tmpDataY=null;
+                                if(s.charAt(10)=='['){
+                                    s=br.readLine();
+                                    while(s.charAt(10)!=']'){
+                                        if(s.indexOf(",")>0){
+                                            s=s.substring(0, s.indexOf(","));
+                                        }
+                                        if(tmpDataY==null){
+                                            tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                        }
+                                        else{
+                                            tmpDataY.insertNumber(Integer.parseInt(s.trim()));
+                                        }
+                                        s=br.readLine();
+                                    }
                                 }
-                                allHero[i].yuan2[allHero[i].yuan2[0]++]=Integer.parseInt(s.trim());
+                                else{
+                                    if(s.indexOf(",")>0){
+                                        s=s.substring(0, s.indexOf(","));
+                                    }
+                                    tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                }
+                                allHero[i].yuan2.add(tmpDataY);
+                                //System.out.print(allHero[i].yuan2[allHero[i].yuan2[0]-1]+" ");
                                 s=br.readLine();
                             }
                             while(s.charAt(8)!='['){
@@ -2588,29 +2695,28 @@ public class SLComputer {
                             if(s.indexOf(",")>0){
                                 s=s.substring(0, s.indexOf(","));
                             }
-                            allHero[i].yuan2[10]=Integer.parseInt(s.trim());
+                            allHero[i].yuan2.add(new DataY(Integer.parseInt(s.trim())));
                             s=br.readLine();
                             if(s.indexOf(",")>0){
                                 s=s.substring(0, s.indexOf(","));
                             }
-                            allHero[i].yuan2[11]=Integer.parseInt(s.trim());
+                            allHero[i].yuan2.add(new DataY(Integer.parseInt(s.trim())));
                             s=br.readLine();
                             if(s.indexOf(",")>0){
                                 s=s.substring(0, s.indexOf(","));
                             }
-                            allHero[i].yuan2[12]=Integer.parseInt(s.trim());
+                            allHero[i].yuan2.add(new DataY(Integer.parseInt(s.trim())));
                             s=br.readLine();
                             if(s.indexOf(",")>0){
                                 s=s.substring(0, s.indexOf(","));
                             }
-                            allHero[i].yuan2[13]=Integer.parseInt(s.trim());
+                            allHero[i].yuan2.add(new DataY(Integer.parseInt(s.trim())));
                             allHero[i].yuanNames[1]+=yuanDescription(allHero[i].yuan2);
                             s=br.readLine();
                             s=br.readLine();
                             s=br.readLine();
                             if(s.length()>6 && s.charAt(6)=='['){
-                                allHero[i].yuan3=new int[14];
-                                allHero[i].yuan3[0]=1;
+                                allHero[i].yuan3=new ArrayList<DataY>();
                                 s=br.readLine();
                                 allHero[i].yuanNames[2]=s.trim();
                                 allHero[i].yuanNames[2]=allHero[i].yuanNames[2].substring(1, allHero[i].yuanNames[2].length()-2);
@@ -2619,10 +2725,30 @@ public class SLComputer {
                                 }
                                 s=br.readLine();
                                 while(s.charAt(8)!=']'){
-                                    if(s.indexOf(",")>0){
-                                        s=s.substring(0, s.indexOf(","));
+                                    DataY tmpDataY=null;
+                                    if(s.charAt(10)=='['){
+                                        s=br.readLine();
+                                        while(s.charAt(10)!=']'){
+                                            if(s.indexOf(",")>0){
+                                                s=s.substring(0, s.indexOf(","));
+                                            }
+                                            if(tmpDataY==null){
+                                                tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                            }
+                                            else{
+                                                tmpDataY.insertNumber(Integer.parseInt(s.trim()));
+                                            }
+                                            s=br.readLine();
+                                        }
                                     }
-                                    allHero[i].yuan3[allHero[i].yuan3[0]++]=Integer.parseInt(s.trim());
+                                    else{
+                                        if(s.indexOf(",")>0){
+                                            s=s.substring(0, s.indexOf(","));
+                                        }
+                                        tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                    }
+                                    allHero[i].yuan3.add(tmpDataY);
+                                    //System.out.print(allHero[i].yuan3[allHero[i].yuan3[0]-1]+" ");
                                     s=br.readLine();
                                 }
                                 while(s.charAt(8)!='['){
@@ -2632,29 +2758,28 @@ public class SLComputer {
                                 if(s.indexOf(",")>0){
                                     s=s.substring(0, s.indexOf(","));
                                 }
-                                allHero[i].yuan3[10]=Integer.parseInt(s.trim());
+                                allHero[i].yuan3.add(new DataY(Integer.parseInt(s.trim())));
                                 s=br.readLine();
                                 if(s.indexOf(",")>0){
                                     s=s.substring(0, s.indexOf(","));
                                 }
-                                allHero[i].yuan3[11]=Integer.parseInt(s.trim());
+                                allHero[i].yuan3.add(new DataY(Integer.parseInt(s.trim())));
                                 s=br.readLine();
                                 if(s.indexOf(",")>0){
                                     s=s.substring(0, s.indexOf(","));
                                 }
-                                allHero[i].yuan3[12]=Integer.parseInt(s.trim());
+                                allHero[i].yuan3.add(new DataY(Integer.parseInt(s.trim())));
                                 s=br.readLine();
                                 if(s.indexOf(",")>0){
                                     s=s.substring(0, s.indexOf(","));
                                 }
-                                allHero[i].yuan3[13]=Integer.parseInt(s.trim());
+                                allHero[i].yuan3.add(new DataY(Integer.parseInt(s.trim())));
                                 allHero[i].yuanNames[2]+=yuanDescription(allHero[i].yuan3);
                                 s=br.readLine();
                                 s=br.readLine();
                                 s=br.readLine();
                                 if(s.length()>6 && s.charAt(6)=='['){
-                                    allHero[i].yuan4=new int[14];
-                                    allHero[i].yuan4[0]=1;
+                                    allHero[i].yuan4=new ArrayList<DataY>();
                                     s=br.readLine();
                                     allHero[i].yuanNames[3]=s.trim();
                                     allHero[i].yuanNames[3]=allHero[i].yuanNames[3].substring(1, allHero[i].yuanNames[3].length()-2);
@@ -2663,10 +2788,30 @@ public class SLComputer {
                                     }
                                     s=br.readLine();
                                     while(s.charAt(8)!=']'){
-                                        if(s.indexOf(",")>0){
-                                            s=s.substring(0, s.indexOf(","));
+                                        DataY tmpDataY=null;
+                                        if(s.charAt(10)=='['){
+                                            s=br.readLine();
+                                            while(s.charAt(10)!=']'){
+                                                if(s.indexOf(",")>0){
+                                                    s=s.substring(0, s.indexOf(","));
+                                                }
+                                                if(tmpDataY==null){
+                                                    tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                                }
+                                                else{
+                                                    tmpDataY.insertNumber(Integer.parseInt(s.trim()));
+                                                }
+                                                s=br.readLine();
+                                            }
                                         }
-                                        allHero[i].yuan4[allHero[i].yuan4[0]++]=Integer.parseInt(s.trim());
+                                        else{
+                                            if(s.indexOf(",")>0){
+                                                s=s.substring(0, s.indexOf(","));
+                                            }
+                                            tmpDataY=new DataY(Integer.parseInt(s.trim()));
+                                        }
+                                        allHero[i].yuan4.add(tmpDataY);
+                                        //System.out.print(allHero[i].yuan4[allHero[i].yuan4[0]-1]+" ");
                                         s=br.readLine();
                                     }
                                     while(s.charAt(8)!='['){
@@ -2676,22 +2821,22 @@ public class SLComputer {
                                     if(s.indexOf(",")>0){
                                         s=s.substring(0, s.indexOf(","));
                                     }
-                                    allHero[i].yuan4[10]=Integer.parseInt(s.trim());
+                                    allHero[i].yuan4.add(new DataY(Integer.parseInt(s.trim())));
                                     s=br.readLine();
                                     if(s.indexOf(",")>0){
                                         s=s.substring(0, s.indexOf(","));
                                     }
-                                    allHero[i].yuan4[11]=Integer.parseInt(s.trim());
+                                    allHero[i].yuan4.add(new DataY(Integer.parseInt(s.trim())));
                                     s=br.readLine();
                                     if(s.indexOf(",")>0){
                                         s=s.substring(0, s.indexOf(","));
                                     }
-                                    allHero[i].yuan4[12]=Integer.parseInt(s.trim());
+                                    allHero[i].yuan4.add(new DataY(Integer.parseInt(s.trim())));
                                     s=br.readLine();
                                     if(s.indexOf(",")>0){
                                         s=s.substring(0, s.indexOf(","));
                                     }
-                                    allHero[i].yuan4[13]=Integer.parseInt(s.trim());
+                                    allHero[i].yuan4.add(new DataY(Integer.parseInt(s.trim())));
                                     allHero[i].yuanNames[3]+=yuanDescription(allHero[i].yuan4);
                                     s=br.readLine();
                                     s=br.readLine();
