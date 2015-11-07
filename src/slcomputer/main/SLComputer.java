@@ -162,6 +162,13 @@
  * 1. 数据更新至3.3。
  * 2. 宝石种类和等级都随新版本做了更改。
  * 3. 修复开宝箱bug。
+ * 
+ * Version 5.3
+ * 1. 数据更新至3.4.
+ * TODO 第17个忍者位
+ * TODO 试炼数据包分析
+ * TODO 细胞培养相关
+ * TODO 装备技能相关
  */
 package slcomputer.main;
 
@@ -242,9 +249,9 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=5;
-    public static final int minor=2;
-    public static final int vip=84;
-    public static final String testVersion=".2";
+    public static final int minor=3;
+    public static final int vip=88;
+    public static final String testVersion=".0";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -1315,7 +1322,7 @@ public class SLComputer {
         } catch (Exception ex) {
             Logger.getLogger(SLComputer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //System.out.println(NQXSL.maxLevel+", "+NFYSL.maxLevel+", "+HQXSL.maxLevel+", "+HFYSL.maxLevel);
     }
     
     public static void initPublic(){
@@ -1323,9 +1330,9 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=505;
-        int equipAttNumber=95;
-        int equipDefNumber=92;
+        int heroNumber=509;
+        int equipAttNumber=97;
+        int equipDefNumber=94;
         int eqpTfNumber=90;
         int backupNumber=8;
         int i;
@@ -1465,6 +1472,8 @@ public class SLComputer {
         allHero[i++]=new HeroYZBBJN_6(1);
         allHero[i++]=new HeroPEJN_6(1);
         allHero[i++]=new HeroXNJN_6(1);
+        allHero[i++]=new HeroQMKKXJN_6(1);
+        allHero[i++]=new HeroMKKJN_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1658,6 +1667,8 @@ public class SLComputer {
         allHero[i++]=new HeroYZBBJN(1);
         allHero[i++]=new HeroPEJN(1);
         allHero[i++]=new HeroXNJN(1);
+        allHero[i++]=new HeroQMKKXJN(1);
+        allHero[i++]=new HeroMKKJN(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -1868,6 +1879,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqSWSLJ_6(1);
         allEquiqAtt[i++]=new EquiqBYZR_6(1);
         allEquiqAtt[i++]=new EquiqQDYHB_6(1);
+        allEquiqAtt[i++]=new EquiqLHZR_6(1);
         allEquiqAtt[i++]=new EquiqZSDD_6(1);  // 四星升六星
         allEquiqAtt[i++]=new EquiqDDJJ_6(1);
         allEquiqAtt[i++]=new EquiqCDFZ_6(1);
@@ -1904,6 +1916,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqSWSLJ(1);
         allEquiqAtt[i++]=new EquiqBYZR(1);
         allEquiqAtt[i++]=new EquiqQDYHB(1);
+        allEquiqAtt[i++]=new EquiqLHZR(1);
         allEquiqAtt[i++]=new EquiqZSDD_5(1);  // 四星升五星
         allEquiqAtt[i++]=new EquiqDDJJ_5(1);
         allEquiqAtt[i++]=new EquiqCDFZ_5(1);
@@ -1967,6 +1980,7 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqXZNHZK_6(1);
         allEquiqDef[i++]=new EquiqKKXMZ_6(1);
         allEquiqDef[i++]=new EquiqJLZX_6(1);
+        allEquiqDef[i++]=new EquiqSSMJ_6(1);
         allEquiqDef[i++]=new EquiqABMJ_6(1);  // 四星升六星
         allEquiqDef[i++]=new EquiqZZY_6(1);
         allEquiqDef[i++]=new EquiqZZHS_6(1);
@@ -2002,6 +2016,7 @@ public class SLComputer {
         allEquiqDef[i++]=new EquiqXZNHZK(1);
         allEquiqDef[i++]=new EquiqKKXMZ(1);
         allEquiqDef[i++]=new EquiqJLZX(1);
+        allEquiqDef[i++]=new EquiqSSMJ(1);
         allEquiqDef[i++]=new EquiqABMJ_5(1);  // 四星升五星
         allEquiqDef[i++]=new EquiqZZY_5(1);
         allEquiqDef[i++]=new EquiqZZHS_5(1);
@@ -2309,7 +2324,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=1953;
+        int skillNumber=5287;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;
@@ -2383,7 +2398,6 @@ public class SLComputer {
                     //System.out.println("Cannot find item "+j);
                     continue;
                 }
-                //System.out.println(currEq.name);
                 s=br.readLine();
                 while(s.indexOf("star")<0){
                     s=br.readLine();
@@ -2480,6 +2494,25 @@ public class SLComputer {
                         System.out.println("Code should be reached.");
                     }
                     currEq.stepEffect=tmpEq.stepEffect;
+                }
+                s=br.readLine();
+                while(s.indexOf("skillList")<0){
+                    s=br.readLine();
+                }
+                if(s.endsWith("[")){
+                    s=br.readLine();
+                    k=0;
+                    while(s.length()>4 && s.charAt(4)!=']'){
+                        s=br.readLine();
+                        s=s.substring(0, s.lastIndexOf(",")).trim();
+                        currEq.backupSkills[k++]=findSkill(Integer.parseInt(s));
+                        if(k==currEq.backupSkills.length){
+                            System.out.println("Code shouldn't be reached: item backup skills exceeds number limit: "+k);
+                        }
+                        s=br.readLine();
+                        s=br.readLine();
+                        s=br.readLine();
+                    }
                 }
             }
             f=new File("hero.json");

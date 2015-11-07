@@ -6,6 +6,7 @@ package slcomputer.equip;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import slcomputer.computer.Skill;
 
 /**
  *
@@ -47,6 +48,9 @@ public class Equip {
     // 进阶奖励
     public int stepEffect[][];
     public int step;
+    // 装备技能
+    public int skillIndex;
+    public Skill[] backupSkills;
     
     public Equip(){
         id=0;
@@ -77,6 +81,11 @@ public class Equip {
             }
         }
         step=0;
+        skillIndex=0;
+        backupSkills=new Skill[60];
+        for(i=0; i<backupSkills.length; i++){
+            backupSkills[i]=null;
+        }
     }
     
     // 返回此类的一个新对象，并且复制所有内容
@@ -113,6 +122,8 @@ public class Equip {
             e.slot=slot;
             e.hideProperty=hideProperty;
             e.stepEffect=stepEffect;
+            e.skillIndex=skillIndex;
+            e.backupSkills=backupSkills;
         } catch (Exception ex) {
             Logger.getLogger(Equip.class.getName()).log(Level.SEVERE, null, ex);
         }

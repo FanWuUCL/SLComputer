@@ -175,18 +175,18 @@ public class Utility {
             String test = "";
             //DesUtils des = new DesUtils(new String(SLComputer.zhengzhi));
             //System.out.println(des.encrypt("15270833387"));
-            //System.out.println(des.encrypt(change("EMAIL-"+"496662984@qq.com")));
+            //System.out.println(des.encrypt(change("EMAIL-"+"mzya3n299@qq.com")));
             //System.out.println(des.encrypt(change("AND91_"+"460968309")));
             //System.out.println(des.encrypt(change("ANDZSY_"+"Aaz911213")));
-            //System.out.println(des.encrypt(change("IOS91_"+"304034606")));
+            //System.out.println(des.encrypt(change("IOS91_"+"569050952")));
             //System.out.println(des.encrypt(change("ANDWD_"+"21046389")));
             //System.out.println(des.encrypt(change("AND36_"+"375243481")));
-            //System.out.println(des.encrypt(change("ANDUC_"+"845340264")));
-            //System.out.println(des.encrypt(change("IOSTB_"+"7785711")));
+            //System.out.println(des.encrypt(change("ANDUC_"+"699944144")));
+            //System.out.println(des.encrypt(change("IOSTB_"+"12605939")));
             //System.out.println(des.encrypt(change("ANDDK_"+"70512279")));
             //System.out.println(des.encrypt(change("ANDSN_"+"3687192672")));
             //System.out.println(des.encrypt(change("ANDTX_"+"D407B82F884125A1DDA9A167116DDB18")));
-            //System.out.println(des.encrypt(change("407810683@qq.com")));
+            //System.out.println(des.encrypt(change("mzya3n299@qq.com")));
             //System.out.println(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04"));
             //System.out.println(EnigmaUtil.checksum(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04")));
 
@@ -195,5 +195,7 @@ public class Utility {
         catch (Exception e) {
           e.printStackTrace();
         }
+        
+        
     }
 }

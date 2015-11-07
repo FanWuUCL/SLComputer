@@ -608,19 +608,26 @@ public class SocketMaster implements Runnable{
     }
     
     public static boolean handshake(BufferedOutputStream os, BufferedInputStream is) throws IOException{
-        byte[] wrap=new byte[20];
+        byte[] wrap=new byte[32];
         byte[] recv=new byte[32];
         int rlen;
         rlen=is.read(wrap);
-        int num=(wrap[12] & 0xff) << 24 | (wrap[13] & 0xff) << 16 | (wrap[14] & 0xff) << 8 | wrap[15] & 0xff;
+        int num;
 
-        byte[] send=new byte[13];
+        byte[] send=new byte[18];
         for(int i=0; i<9; i++){
             send[i]=wrap[i];
         }
-        send[9]=send[10]=send[11]=0;
+        for(int i=0; i<4; i++){
+            num=(wrap[i*2+12] & 0xff) << 8 | wrap[i*2+13] & 0xff;
+            send[12+i]=(byte)Utility.getNum(num);
+        }
+        send[9]=(byte)(int)(Math.random()*128);
+        send[10]=(byte)(int)(Math.random()*128);
+        send[11]=(byte)(int)(Math.random()*256);
+        send[16]=(byte)(int)(Math.random()*128);
+        send[17]=(byte)(int)(Math.random()*256);
 
-        send[12]=(byte)Utility.getNum(num);
         os.write(send);
         os.flush();
         rlen=is.read(recv);
@@ -780,6 +787,16 @@ public class SocketMaster implements Runnable{
             System.out.println("Level: "+character.level);
             System.out.println("G:"+character.numGoldenKey+", S:"+character.numSilverKey+", C:"+character.numCopperKey);
         }
+        /*
+            File f=new File("info.txt");
+            BufferedWriter bw=new BufferedWriter(new FileWriter(f));
+            for(i=0; i<recvData.length; i++){
+                bw.write((recvData[i]&0xff)+" ");
+                if(i%32==31){
+                    bw.write("\n");
+                }
+            }
+            bw.close();*/
         return true;
     }
     
@@ -1116,7 +1133,7 @@ public class SocketMaster implements Runnable{
         
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1003000:((arguments[arguments.length-1])==4?1003000:1003000)), globalCer, command, extralength, extra);
+        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1004000:((arguments[arguments.length-1])==4?1004000:1004000)), globalCer, command, extralength, extra);
         byte[] para=new byte[8+expectCommands.length*4];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -1599,6 +1616,69 @@ public class SocketMaster implements Runnable{
                 battleDetails+=skillDetail1;
                 battleDetails+=defHero.name+" 死亡\n";
             }
+            pos+=8; // #4 #2
+            int attEqSkill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            int defEqSkill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(attEqSkill+defEqSkill>0){
+                //System.out.println(attEqSkill+", "+defEqSkill);
+                pos+=4; // #2
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                //System.out.println();
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                //System.out.println();
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+            }
+            else{
+                pos+=17*4;
+            }
+            pos+=4; // #2
+            attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         }
         // 每5关奖励
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;

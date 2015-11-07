@@ -737,7 +737,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxMyNumberHard">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="16">
             <StringItem index="0" value="1"/>
             <StringItem index="1" value="2"/>
             <StringItem index="2" value="3"/>
@@ -752,6 +752,8 @@
             <StringItem index="11" value="12"/>
             <StringItem index="12" value="13"/>
             <StringItem index="13" value="14"/>
+            <StringItem index="14" value="15"/>
+            <StringItem index="15" value="16"/>
           </StringArray>
         </Property>
       </Properties>
@@ -812,7 +814,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxMyNumberNorm">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="16">
             <StringItem index="0" value="1"/>
             <StringItem index="1" value="2"/>
             <StringItem index="2" value="3"/>
@@ -827,6 +829,8 @@
             <StringItem index="11" value="12"/>
             <StringItem index="12" value="13"/>
             <StringItem index="13" value="14"/>
+            <StringItem index="14" value="15"/>
+            <StringItem index="15" value="16"/>
           </StringArray>
         </Property>
       </Properties>
@@ -879,7 +883,7 @@
     <Component class="javax.swing.JComboBox" name="jComboBoxMyNumberEasy">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="14">
+          <StringArray count="16">
             <StringItem index="0" value="1"/>
             <StringItem index="1" value="2"/>
             <StringItem index="2" value="3"/>
@@ -894,6 +898,8 @@
             <StringItem index="11" value="12"/>
             <StringItem index="12" value="13"/>
             <StringItem index="13" value="14"/>
+            <StringItem index="14" value="15"/>
+            <StringItem index="15" value="16"/>
           </StringArray>
         </Property>
       </Properties>

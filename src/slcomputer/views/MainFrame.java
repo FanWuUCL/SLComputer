@@ -607,7 +607,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBoxCaptainHard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "山椒鱼半藏" }));
 
-        jComboBoxMyNumberHard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" }));
+        jComboBoxMyNumberHard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
         jComboBoxMyNumberHard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMyNumberHardActionPerformed(evt);
@@ -632,7 +632,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBoxCaptainNorm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "山椒鱼半藏" }));
 
-        jComboBoxMyNumberNorm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" }));
+        jComboBoxMyNumberNorm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
         jComboBoxMyNumberNorm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMyNumberNormActionPerformed(evt);
@@ -650,7 +650,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jComboBoxCaptainEasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "山椒鱼半藏" }));
 
-        jComboBoxMyNumberEasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" }));
+        jComboBoxMyNumberEasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16" }));
         jComboBoxMyNumberEasy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMyNumberEasyActionPerformed(evt);

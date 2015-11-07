@@ -104,7 +104,7 @@ public class SocketAuto implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])==0?1003000:((SocketMaster.arguments[SocketMaster.arguments.length-1])==4?1003000:1003000)), SocketMaster.globalCer, command, extralength, extra);
+        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])==0?1004000:((SocketMaster.arguments[SocketMaster.arguments.length-1])==4?1004000:1004000)), SocketMaster.globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -832,6 +832,69 @@ public class SocketAuto implements Runnable{
                 battleDetails+=skillDetail1;
                 battleDetails+=defHero.name+" 死亡\n";
             }
+            pos+=8; // #4 #2
+            int attEqSkill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            int defEqSkill=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            if(attEqSkill+defEqSkill>0){
+                //System.out.println(attEqSkill+", "+defEqSkill);
+                pos+=4; // #2
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                //System.out.println();
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                for(j=0; j<length; j++){
+                    x=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                    //System.out.print(x+" ");
+                }
+                //System.out.println();
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.print(length+" ");
+                length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+                //System.out.println(length+" ");
+            }
+            else{
+                pos+=17*4;
+            }
+            pos+=4; // #2
+            attHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
+            defHero.hp=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
         }
         // 每5关奖励
         length=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;

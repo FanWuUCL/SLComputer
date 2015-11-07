@@ -9,6 +9,7 @@ package slcomputer.computer;
  * @author J
  */
 public class SLData {
+    static public int MAXLEVEL=180;
     public int maxLevel;
     public double[][] basePlus;
     public double[][] bodySkill;
@@ -20,9 +21,9 @@ public class SLData {
     
     public SLData(){
         maxLevel=0;
-        basePlus=new double[170][3];
-        bodySkill=new double[170][3];
-        skillPower=new double[170];
-        skillRate=new double[170];
+        basePlus=new double[MAXLEVEL][3];
+        bodySkill=new double[MAXLEVEL][3];
+        skillPower=new double[MAXLEVEL];
+        skillRate=new double[MAXLEVEL];
     }
 }
