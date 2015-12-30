@@ -89,7 +89,7 @@ public class Character {
             defNumber=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             defWinNumber=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             arenaMoney=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-            pos+=24;
+            pos+=44;
             length=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             pos+=length*12; 
             pos+=4;
@@ -97,19 +97,20 @@ public class Character {
             
             heros=new Vector<int[]>();
             for(i=0; i<length; i++){
+                int tmpsep=20;
                 m=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-                if(m!=23){
-                    System.out.println("Error: should be 23, but is "+m);
+                if(m!=24){
+                    System.out.println("Error: should be 24, but is "+m);
                     return;
                 }
                 int[] h=new int[m+4];
-                for(j=0; j<19; j++){
+                for(j=0; j<tmpsep; j++){
                     h[j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
-                for(j=0; j < h[18]; j++) {
-                    h[j+19]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
+                for(j=0; j < h[tmpsep-1]; j++) {
+                    h[j+tmpsep]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
-                for(j=23; j<m+4; j++){
+                for(j=tmpsep+4; j<m+4; j++){
                     h[j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
                 heros.add(h);
@@ -119,12 +120,13 @@ public class Character {
             length=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
             //System.out.println("Number of items: "+length);
             for(i=0; i<length; i++){
+                int tmpsep=17;
                 m=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-                if(m!=15 && m!=16){
-                    System.out.println("Error: should be 15 or 16, but is "+m);
+                if(m!=tmpsep-1 && m!=tmpsep){
+                    System.out.println("Error: should be "+(tmpsep-1)+" or "+tmpsep+", but is "+m);
                     return;
                 }
-                int[] it=new int[20];
+                int[] it=new int[tmpsep+4];
                 for(j=0; j<it.length; j++){
                     it[j]=0;
                 }
@@ -132,7 +134,7 @@ public class Character {
                     it[j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
                 //System.out.println(i+" "+m+" "+it[m-1]);
-                if(m==16 && it[m-1]>0){
+                if(m==tmpsep && it[m-1]>0){
                     for(j=0; j<it[m-1]; j++){
                         it[m+j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                     }

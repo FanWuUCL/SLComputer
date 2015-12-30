@@ -28,26 +28,28 @@ public class JDialogChooseMode extends javax.swing.JDialog {
         String s="";
         switch(timesMax){
             case 0:
-                s="(五人阵)";
-                break;
-            case 1:
                 s="(六人阵)";
                 break;
-            case 2:
+            case 1:
                 s="(八人阵)";
                 break;
-            case 3:
+            case 2:
                 s="(十人阵)";
                 break;
-            case 4:
+            case 3:
                 s="(十二人阵)";
                 break;
-            case 5:
+            case 4:
                 s="(十四人阵)";
+                break;
+            case 5:
+                s="(十六人阵)";
                 break;
             case 6:
                 s="(十六人阵)";
                 break;
+            default:
+                s="(未指定)";
         }
         setTitle("究极试炼");
         jLabelRank.setText("当前排名："+(rank==0?"无排名":(""+rank))+s);

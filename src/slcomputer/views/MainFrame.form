@@ -414,8 +414,8 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButtonMyHero11" min="-2" pref="90" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabelMyAtt" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jButtonMyHero17" min="-2" pref="90" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jButtonLoveHut" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -639,9 +639,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelMyAtt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonShowMyTeam" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonLoveHut" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonMyHero17" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -1156,11 +1156,6 @@
     <Component class="javax.swing.JLabel" name="jLabelMyDef">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x603b;&#x9632;&#x5fa1;&#xff1a;"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabelMyAtt">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x603b;&#x653b;&#x51fb;&#xff1a;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxSacLevel">
@@ -2460,6 +2455,14 @@
     <Component class="javax.swing.JLabel" name="jLabelBM">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x5f00;-&#x4f11;-&#x751f;-&#x4f24;-&#x675c;-&#x666f;-&#x60ca;-&#x6b7b;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonMyHero17">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="&lt;&#x672a;&#x9009;&#x53d6;&gt;"/>
+        <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+          <Insets value="[2, 2, 2, 2]"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>

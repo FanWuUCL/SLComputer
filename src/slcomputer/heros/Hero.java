@@ -80,6 +80,11 @@ public class Hero {
     public ArrayList<DataY> yuan4;
     public String yuanNames[];
     public boolean yuanActivated[];
+    // 细胞强化
+    public int cellStrengthenAtt;
+    public int cellStrengthenDef;
+    public int cellStrengthenTf;
+    public double cellStrengthenSkill;
     
     public Hero(){
         hid=0;
@@ -138,6 +143,10 @@ public class Hero {
         yuanActivated=new boolean[4];
         yuanNames[0]=yuanNames[1]=yuanNames[2]=yuanNames[3]=null;
         yuanActivated[0]=yuanActivated[1]=yuanActivated[2]=yuanActivated[3]=false;
+        cellStrengthenAtt=0;
+        cellStrengthenDef=0;
+        cellStrengthenTf=0;
+        cellStrengthenSkill=0;
     }
     
     // 返回此类的一个新对象，并且复制所有内容
@@ -171,6 +180,10 @@ public class Hero {
         for(int i=0; i<yuanActivated.length; i++){
             h.yuanActivated[i]=yuanActivated[i];
         }
+        h.cellStrengthenAtt=cellStrengthenAtt;
+        h.cellStrengthenDef=cellStrengthenDef;
+        h.cellStrengthenTf=cellStrengthenTf;
+        h.cellStrengthenSkill=cellStrengthenSkill;
         return h;
     }
     

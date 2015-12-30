@@ -160,7 +160,7 @@ public class Team {
         return bm;
     }
     
-    // att=(att_born+(level-1)*attGrowth+(potentialAll-potential))*(1+allYuan)*(1+0.01*powerAtt/Def)*(base+usrEx)+equip
+    // att=(att_born+(level-1)*attGrowth+(potentialAll-potential))*(1+allYuan)*(1+0.01*powerAtt/Def)*(base+usrEx)+loveHut+cellStrengthen+equip
     // 试炼高层提供的忍术几率 exSkillRate%
     public double compute(int mode, double base, double usrExAtt, double usrExDef, double extraBodyskill, boolean dreamMode){
         double sum=0;
@@ -204,6 +204,7 @@ public class Team {
         int bmEq=0;
         for(i=0; i<number; i++){
             heros[i].tough=(int)(heros[i].tough_born+(heros[i].level-1)*heros[i].toughGrowth);
+            heros[i].tough+=heros[i].cellStrengthenTf;
             if(heros[i].weapon!=null){
                 heros[i].weapon.tough=(int)(heros[i].weapon.tough_born+(heros[i].weapon.level-1)*heros[i].weapon.toughGrowth);
                 for(j=0; j<heros[i].weapon.diamond.length; j++){
@@ -301,17 +302,21 @@ public class Team {
                 heros[i].att*=(1+(powerAtt+bmAtt)/100);
                 heros[i].att*=Math.abs(base+usrExAtt);
                 heros[i].att=(int)(heros[i].att);
+                heros[i].att+=heros[i].cellStrengthenAtt;
                 heros[i].att+=(int)loveAtt;
                 heros[i].def=(int)(heros[i].def);
                 heros[i].def*=(1+heros[i].yuanDef);
                 heros[i].def*=(1+(powerDef+bmDef)/100);
                 heros[i].def*=Math.abs(base+usrExDef);
                 heros[i].def=(int)(heros[i].def);
+                heros[i].def+=heros[i].cellStrengthenDef;
                 heros[i].def+=(int)loveDef;
             }
             else{
-                heros[i].att=(heros[i].attSet-heros[i].weaponAttSet-heros[i].shieldAttSet-loveAtt)*Math.abs(base+usrExAtt)+heros[i].weaponAttSet+heros[i].shieldAttSet+loveAtt;
-                heros[i].def=(heros[i].defSet-heros[i].weaponDefSet-heros[i].shieldDefSet-loveDef)*Math.abs(base+usrExDef)+heros[i].weaponDefSet+heros[i].shieldDefSet+loveDef;
+                heros[i].att=(heros[i].attSet-heros[i].weaponAttSet-heros[i].shieldAttSet-heros[i].cellStrengthenAtt-loveAtt)*Math.abs(base+usrExAtt)
+                        +heros[i].weaponAttSet+heros[i].shieldAttSet+heros[i].cellStrengthenAtt+loveAtt;
+                heros[i].def=(heros[i].defSet-heros[i].weaponDefSet-heros[i].shieldDefSet-heros[i].cellStrengthenDef-loveDef)*Math.abs(base+usrExDef)
+                        +heros[i].weaponDefSet+heros[i].shieldDefSet+heros[i].cellStrengthenDef+loveDef;
                 heros[i].att=(int)heros[i].att;
                 heros[i].def=(int)heros[i].def;
             }
@@ -537,6 +542,7 @@ public class Team {
                     heros[i].def+=heros[i].pact.def;
                     heros[i].powerRatio+=heros[i].pact.skillPower;
                 }
+                heros[i].powerRatio+=heros[i].cellStrengthenSkill;
             }
             else{
                 heros[i].weapon.att=heros[i].weaponAttSet;
@@ -545,7 +551,7 @@ public class Team {
                 heros[i].shield.def=heros[i].shieldDefSet;
                 heros[i].pact.att=heros[i].pactAttSet;
                 heros[i].pact.def=heros[i].pactDefSet;
-                heros[i].powerRatio=heros[i].weaponEffSet+heros[i].shieldEffSet+heros[i].pactEffSet;
+                heros[i].powerRatio=heros[i].weaponEffSet+heros[i].shieldEffSet+heros[i].pactEffSet+heros[i].cellStrengthenSkill;
                 if(heros[i].weapon!=null && heros[i].weapon.propertyEnabled){
                     heros[i].rateRatio+=heros[i].weapon.hideProperty[2];
                 }

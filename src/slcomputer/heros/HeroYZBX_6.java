@@ -2,21 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package slcomputer.equip;
+package slcomputer.heros;
 
 /**
  *
  * @author J
  */
-public class EquiqLHZR_6 extends EquiqLHZR{
-    public EquiqLHZR_6(){
+public class HeroYZBX_6 extends HeroYZBX{
+    public HeroYZBX_6(){
         this(1);
     }
     
-    public EquiqLHZR_6(int l){
+    public HeroYZBX_6(int l){
         super();
         level=l;
-        eid=40149;
-        id=eid+100;
+        hid=10338;
+        id=hid+1000;
     }
 }

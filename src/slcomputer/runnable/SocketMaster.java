@@ -1133,7 +1133,7 @@ public class SocketMaster implements Runnable{
         
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1004000:((arguments[arguments.length-1])==4?1004000:1004000)), globalCer, command, extralength, extra);
+        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1005000:((arguments[arguments.length-1])==4?1005000:1005000)), globalCer, command, extralength, extra);
         byte[] para=new byte[8+expectCommands.length*4];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;

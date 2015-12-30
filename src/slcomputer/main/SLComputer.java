@@ -165,10 +165,15 @@
  * 
  * Version 5.3
  * 1. 数据更新至3.4.
- * TODO 第17个忍者位
- * TODO 试炼数据包分析
- * TODO 细胞培养相关
+ * TODO 第17个忍者位 DONE
+ * TODO 试炼数据包分析 DONE
+ * TODO 细胞强化相关 DONE
  * TODO 装备技能相关
+ * 
+ * Version 5.4
+ * 1. 数据更新至3.5。
+ * 2. 可添加第17位忍者信息。
+ * 3. 可补充细胞强化信息。
  */
 package slcomputer.main;
 
@@ -249,8 +254,8 @@ public class SLComputer {
     public static boolean watchBattle;
     
     public static final int major=5;
-    public static final int minor=3;
-    public static final int vip=88;
+    public static final int minor=4;
+    public static final int vip=54;
     public static final String testVersion=".0";
     public static final int debug=1;
     public static BufferedWriter logger=null;
@@ -509,6 +514,12 @@ public class SLComputer {
                 br.write(t.heros[i].shieldAttSet+"\n");
                 br.write(t.heros[i].shieldDefSet+"\n");
                 br.write(t.heros[i].shieldEffSet+"\n");
+                br.write("cellStrength\n");
+                br.write(t.heros[i].cellStrengthenAtt+"\n");
+                br.write(t.heros[i].cellStrengthenDef+"\n");
+                br.write(t.heros[i].cellStrengthenTf+"\n");
+                br.write(t.heros[i].cellStrengthenSkill+"\n");
+                
                 br.write(""+t.heros[i].property_battle+"\n");
                 br.write(""+t.heros[i].potential+"\n");
             }
@@ -693,6 +704,18 @@ public class SLComputer {
                     t.heros[i].shieldDefSet=Double.parseDouble(s);
                     s=br.readLine();
                     t.heros[i].shieldEffSet=Double.parseDouble(s);
+                    s=br.readLine();
+                }
+                // read cell strengthen data
+                if(s.indexOf("cellStrength")>=0){
+                    s=br.readLine();
+                    t.heros[i].cellStrengthenAtt=Integer.parseInt(s);
+                    s=br.readLine();
+                    t.heros[i].cellStrengthenDef=Integer.parseInt(s);
+                    s=br.readLine();
+                    t.heros[i].cellStrengthenTf=Integer.parseInt(s);
+                    s=br.readLine();
+                    t.heros[i].cellStrengthenSkill=Double.parseDouble(s);
                     s=br.readLine();
                 }
                 t.heros[i].property_battle=Integer.parseInt(s);
@@ -1330,7 +1353,7 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=509;
+        int heroNumber=531;
         int equipAttNumber=97;
         int equipDefNumber=94;
         int eqpTfNumber=90;
@@ -1456,6 +1479,10 @@ public class SLComputer {
         allHero[i++]=new HeroHYKKX_6(1);
         allHero[i++]=new HeroSNY_6(1);
         allHero[i++]=new HeroSNB_6(1);
+        allHero[i++]=new HeroYZBX_6(1);
+        allHero[i++]=new HeroKLT_6(1);
+        allHero[i++]=new HeroYZBSLN_6(1);
+        allHero[i++]=new HeroQDDD_6(1);
         allHero[i++]=new HeroQSZJJN_6(1);
         allHero[i++]=new HeroQSFJJN_6(1);
         allHero[i++]=new HeroBFSMJN_6(1);
@@ -1474,6 +1501,13 @@ public class SLComputer {
         allHero[i++]=new HeroXNJN_6(1);
         allHero[i++]=new HeroQMKKXJN_6(1);
         allHero[i++]=new HeroMKKJN_6(1);
+        allHero[i++]=new HeroEWYMRJN_6(1);
+        allHero[i++]=new HeroSCJN_6(1);
+        allHero[i++]=new HeroLZJN_6(1);
+        allHero[i++]=new HeroFJN_6(1);
+        allHero[i++]=new HeroYGJN_6(1);
+        allHero[i++]=new HeroFuJN_6(1);
+        allHero[i++]=new HeroFYWALJN_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1651,6 +1685,10 @@ public class SLComputer {
         allHero[i++]=new HeroHYKKX(1);
         allHero[i++]=new HeroSNY(1);
         allHero[i++]=new HeroSNB(1);
+        allHero[i++]=new HeroYZBX(1);
+        allHero[i++]=new HeroKLT(1);
+        allHero[i++]=new HeroYZBSLN(1);
+        allHero[i++]=new HeroQDDD(1);
         allHero[i++]=new HeroQSZJJN(1);
         allHero[i++]=new HeroQSFJJN(1);
         allHero[i++]=new HeroBFSMJN(1);
@@ -1669,6 +1707,13 @@ public class SLComputer {
         allHero[i++]=new HeroXNJN(1);
         allHero[i++]=new HeroQMKKXJN(1);
         allHero[i++]=new HeroMKKJN(1);
+        allHero[i++]=new HeroEWYMRJN(1);
+        allHero[i++]=new HeroSCJN(1);
+        allHero[i++]=new HeroLZJN(1);
+        allHero[i++]=new HeroFJN(1);
+        allHero[i++]=new HeroYGJN(1);
+        allHero[i++]=new HeroFuJN(1);
+        allHero[i++]=new HeroFYWALJN(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -2324,7 +2369,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=5287;
+        int skillNumber=5347;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;

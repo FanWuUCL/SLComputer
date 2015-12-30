@@ -123,7 +123,7 @@ public class MainFrame extends javax.swing.JFrame {
             jLabelEnemyNorm[i]=new javax.swing.JLabel();
             jLabelEnemyEasy[i]=new javax.swing.JLabel();
         }
-        numberMax=16;
+        numberMax=17;
         jLabelMyTeam=new javax.swing.JLabel[numberMax];
         for(i=0; i<numberMax; i++){
             jLabelMyTeam[i]=new javax.swing.JLabel();
@@ -145,6 +145,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonHeroChoosers[13]=jButtonMyHero14;
         jButtonHeroChoosers[14]=jButtonMyHero15;
         jButtonHeroChoosers[15]=jButtonMyHero16;
+        jButtonHeroChoosers[16]=jButtonMyHero17;
         for(i=0; i<numberMax; i++){
             jButtonHeroChoosers[i].addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,7 +360,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         }
         if(i>=jButtonHeroChoosers.length){
-            System.out.println("jButtonHeroChooserActionPerformed(): i is out of bound.");
+            System.out.println("jButtonHeroChooserActionPerformed(): i is out of boundary.");
             return;
         }
         if(switchEnabled){
@@ -447,7 +448,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelSumNorm = new javax.swing.JLabel();
         jLabelSumEasy = new javax.swing.JLabel();
         jLabelMyDef = new javax.swing.JLabel();
-        jLabelMyAtt = new javax.swing.JLabel();
         jComboBoxSacLevel = new javax.swing.JComboBox();
         jTabbedPaneEnemy = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -541,6 +541,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButtonLoveHut = new javax.swing.JButton();
         jButtonMyHero16 = new javax.swing.JButton();
         jLabelBM = new javax.swing.JLabel();
+        jButtonMyHero17 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuSettings = new javax.swing.JMenu();
         jMenuSimulationTimes = new javax.swing.JMenu();
@@ -773,8 +774,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabelSumEasy.setText("总攻击：");
 
         jLabelMyDef.setText("总防御：");
-
-        jLabelMyAtt.setText("总攻击：");
 
         jComboBoxSacLevel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1级祭坛", "2级祭坛", "3级祭坛", "4级祭坛", "5级祭坛", "6级祭坛", "7级祭坛", "8级祭坛", "9级祭坛", "10级祭坛" }));
 
@@ -1394,6 +1393,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabelBM.setText("开-休-生-伤-杜-景-惊-死");
 
+        jButtonMyHero17.setLabel("<未选取>");
+        jButtonMyHero17.setMargin(new java.awt.Insets(2, 2, 2, 2));
+
         jMenuSettings.setText("设置");
 
         jMenuSimulationTimes.setText("模拟次数");
@@ -1735,8 +1737,8 @@ public class MainFrame extends javax.swing.JFrame {
                                         .addComponent(jButtonMyHero10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButtonMyHero11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelMyAtt)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jButtonMyHero17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButtonLoveHut))
                                     .addComponent(jLabelMyDef))
@@ -1915,9 +1917,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jButtonMyHero16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelMyAtt)
                             .addComponent(jButtonShowMyTeam)
-                            .addComponent(jButtonLoveHut))
+                            .addComponent(jButtonLoveHut)
+                            .addComponent(jButtonMyHero17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelMyDef)
@@ -2577,8 +2579,7 @@ public class MainFrame extends javax.swing.JFrame {
         double summary=SLComputer.myTeam.compute(mode+2, 1, SLup*(1-mode), SLup*mode, 0, SLComputer.dreamMode);
         jLabelBM.setText(SLComputer.myTeam.bmString());
         SLComputer.log("My Team sum: "+summary);
-        jLabelMyAtt.setText("总攻击："+(int)SLComputer.myTeam.sumUp(0));
-        jLabelMyDef.setText("总防御："+(int)SLComputer.myTeam.sumUp(1));
+        jLabelMyDef.setText("总攻/防："+(int)SLComputer.myTeam.sumUp(0)+"/"+(int)SLComputer.myTeam.sumUp(1));
         jPanelMyTeam.removeAll();
         jPanelMyTeam.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         jPanelMyTeam.setPreferredSize(new Dimension(LABELW*SLComputer.myTeam.number, LABELH+19));
@@ -3745,6 +3746,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonMyHero14;
     private javax.swing.JButton jButtonMyHero15;
     private javax.swing.JButton jButtonMyHero16;
+    private javax.swing.JButton jButtonMyHero17;
     private javax.swing.JButton jButtonMyHero2;
     private javax.swing.JButton jButtonMyHero3;
     private javax.swing.JButton jButtonMyHero4;
@@ -3811,7 +3813,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelBM;
-    private javax.swing.JLabel jLabelMyAtt;
     private javax.swing.JLabel jLabelMyDef;
     private javax.swing.JLabel jLabelPEasy;
     private javax.swing.JLabel jLabelPHard;
