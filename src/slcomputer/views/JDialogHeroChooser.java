@@ -1605,7 +1605,7 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             h.cellStrengthenTf=0;
         }
         try{
-            h.cellStrengthenSkill=Integer.parseInt(jTextFieldCellSkill.getText());
+            h.cellStrengthenSkill=Double.parseDouble(jTextFieldCellSkill.getText());
         }
         catch(Exception e){
             h.cellStrengthenSkill=0;

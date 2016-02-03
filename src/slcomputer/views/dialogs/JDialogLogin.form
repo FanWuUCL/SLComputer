@@ -167,7 +167,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxServer">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="63">
+              <StringArray count="64">
                 <StringItem index="0" value="APP 1"/>
                 <StringItem index="1" value="APP 2"/>
                 <StringItem index="2" value="APP 3"/>
@@ -231,6 +231,7 @@
                 <StringItem index="60" value="&#x6df7;&#x670d; 161"/>
                 <StringItem index="61" value="&#x6df7;&#x670d; 162"/>
                 <StringItem index="62" value="&#x6df7;&#x670d; 163"/>
+                <StringItem index="63" value="&#x6df7;&#x670d; 164"/>
               </StringArray>
             </Property>
           </Properties>

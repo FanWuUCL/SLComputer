@@ -174,6 +174,8 @@
  * 1. 数据更新至3.5。
  * 2. 可添加第17位忍者信息。
  * 3. 可补充细胞强化信息。
+ * TODO 医疗室
+ * TODO 仙术
  */
 package slcomputer.main;
 
@@ -256,7 +258,7 @@ public class SLComputer {
     public static final int major=5;
     public static final int minor=4;
     public static final int vip=54;
-    public static final String testVersion=".0";
+    public static final String testVersion=".1";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -1353,7 +1355,7 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=531;
+        int heroNumber=533;
         int equipAttNumber=97;
         int equipDefNumber=94;
         int eqpTfNumber=90;
@@ -1508,6 +1510,7 @@ public class SLComputer {
         allHero[i++]=new HeroYGJN_6(1);
         allHero[i++]=new HeroFuJN_6(1);
         allHero[i++]=new HeroFYWALJN_6(1);
+        allHero[i++]=new HeroXWBRJN_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1714,6 +1717,7 @@ public class SLComputer {
         allHero[i++]=new HeroYGJN(1);
         allHero[i++]=new HeroFuJN(1);
         allHero[i++]=new HeroFYWALJN(1);
+        allHero[i++]=new HeroXWBRJN(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -2369,7 +2373,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=5347;
+        int skillNumber=5365;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;

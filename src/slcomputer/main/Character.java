@@ -178,22 +178,25 @@ public class Character {
             //System.out.println("Number of items: "+length);
             for(i=0; i<length; i++){
                 m=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
-                if(m!=11){
-                    System.out.println("Error: should be 11, but is "+m);
+                if(m!=13){
+                    System.out.println("Error: should be 13, but is "+m);
                     return;
                 }
-                int[] it=new int[18];
+                int[] it=new int[m+6];
                 for(j=0; j<it.length; j++){
                     it[j]=0;
                 }
-                for(j=0; j<m; j++){
+                for(j=0; j<11; j++){
                     it[j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
                 //System.out.println(i+" "+m+" "+it[m-1]);
-                if(it[m-1]>0){
-                    for(j=0; j<it[m-1]; j++){
-                        it[m+j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
+                if(it[10]>0){
+                    for(j=0; j<it[10]; j++){
+                        it[11+j]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                     }
+                }
+                for(j=11; j<m; j++){
+                    it[j+6]=((data[pos]&0xff)<<24) | ((data[pos+1]&0xff)<<16) | ((data[pos+2]&0xff)<<8) | (data[pos+3]&0xff); pos+=4;
                 }
                 pets.add(it);
             }
