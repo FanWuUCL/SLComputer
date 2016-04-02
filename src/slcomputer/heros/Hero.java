@@ -272,6 +272,9 @@ public class Hero {
             case 20:
                 s="全";
                 break;
+            case 30:
+                s="神";
+                break;
             default:
                 s="??";
                 break;

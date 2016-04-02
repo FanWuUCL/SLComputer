@@ -9762,7 +9762,7 @@
         10
       ]
     ],
-    "_index": "42898",
+    "_index": "42545",
     "star": 5,
     "drop": 0,
     "type": 33,
@@ -9838,7 +9838,7 @@
         10
       ]
     ],
-    "_index": "42898",
+    "_index": "42000",
     "star": 5,
     "drop": 0,
     "type": 33,
@@ -9917,7 +9917,7 @@
         10
       ]
     ],
-    "_index": "42898",
+    "_index": "42000",
     "star": 5,
     "drop": 0,
     "type": 33,
@@ -9984,6 +9984,87 @@
       ]
     ],
     "mark": 1
+  },
+  "42149": {
+    "pid": "0",
+    "updateId": "42249",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "42897",
+    "star": 5,
+    "drop": 0,
+    "type": 33,
+    "exp": 600,
+    "name": "须佐完全体",
+    "description": "【活动卡】<宝物>将万花筒写轮眼的瞳力发挥到了极致开启的终极形态，具有劈开大山、陨石和飞行的能力。",
+    "para1": 300,
+    "para2": 300,
+    "tough": 400,
+    "atkGrowth": 33,
+    "defGrowth": 33,
+    "toughGrowth": 20,
+    "para3": [
+      15219
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      4
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        3,
+        0,
+        5
+      ],
+      [
+        3,
+        5,
+        0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ],
+    "skillList": [
+      [
+        2940501,
+        0.25
+      ],
+      [
+        2920401,
+        0.25
+      ],
+      [
+        2932501,
+        0.25
+      ],
+      [
+        2992401,
+        0.25
+      ]
+    ],
+    "mark": 0
   },
   "42214": {
     "pid": "42114",
@@ -11633,6 +11714,69 @@
       ]
     ],
     "mark": 1
+  },
+  "42249": {
+    "pid": "42149",
+    "updateId": "0",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 33,
+    "exp": 1000,
+    "name": "须佐完全体",
+    "description": "【活动卡】<宝物>将万花筒写轮眼的瞳力发挥到了极致开启的终极形态，具有劈开大山、陨石和飞行的能力。",
+    "para1": 300,
+    "para2": 300,
+    "tough": 430,
+    "atkGrowth": 33,
+    "defGrowth": 33,
+    "toughGrowth": 21.5,
+    "para3": [
+      15219
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      4
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [
+      [
+        2940501,
+        0.25
+      ],
+      [
+        2920401,
+        0.25
+      ],
+      [
+        2932501,
+        0.25
+      ],
+      [
+        2992401,
+        0.25
+      ]
+    ],
+    "mark": 0
   },
   "42314": {
     "pid": "42114",
@@ -20683,12 +20827,12 @@
     "updateId": "0",
     "updateItems": 0,
     "_index": "null",
-    "star": 3,
+    "star": 5,
     "drop": 0,
-    "type": 21,
+    "type": 46,
     "exp": 0,
-    "name": "粽子礼盒",
-    "description": "端午节的专属道具，可用于节日活动兑换。",
+    "name": "忍战礼盒",
+    "description": "可兑换200忍战积分的神秘礼盒。",
     "para1": 0,
     "para2": 0,
     "tough": 0,
@@ -21769,6 +21913,35 @@
     "defGrowth": 0,
     "toughGrowth": 0,
     "para3": 56005,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [],
+    "mark": 0
+  },
+  "47192": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 99,
+    "exp": 0,
+    "name": "神树果实",
+    "description": "可以使6星+2的全属性忍者成神的神秘果实。",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
     "limit": 0,
     "slot": 0,
     "hideProperty": 0,

@@ -1155,7 +1155,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxProperty">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="11">
+              <StringArray count="12">
                 <StringItem index="0" value="&#x96f7;"/>
                 <StringItem index="1" value="&#x571f;"/>
                 <StringItem index="2" value="&#x6c34;"/>
@@ -1167,6 +1167,7 @@
                 <StringItem index="8" value="&#x8d85;&#x706b;"/>
                 <StringItem index="9" value="&#x8d85;&#x98ce;"/>
                 <StringItem index="10" value="&#x5168;"/>
+                <StringItem index="11" value="&#x795e;"/>
               </StringArray>
             </Property>
           </Properties>

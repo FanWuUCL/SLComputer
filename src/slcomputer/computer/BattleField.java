@@ -66,10 +66,10 @@ public class BattleField {
     public BattleField(javax.swing.JTextPane jTA){
         output=jTA;
         output.setContentType("text/plain");
-        attSkillable=new boolean[20];
-        defSkillable=new boolean[20];
-        attPoisoned=new boolean[20];
-        defPoisoned=new boolean[20];
+        attSkillable=new boolean[Team.MAXHERO];
+        defSkillable=new boolean[Team.MAXHERO];
+        attPoisoned=new boolean[Team.MAXHERO];
+        defPoisoned=new boolean[Team.MAXHERO];
     }
     
     public void sendMsg(String s){
@@ -158,7 +158,7 @@ public class BattleField {
         realPower = S.y/(double)100;
         int i;
         double tmp;
-        if(h.property_battle==20){
+        if(h.property_battle>=20){
             tmp=t.powerUpbyProperty[0];
             for(i=1; i<5; i++){
                 if(t.powerUpbyProperty[i]>tmp){
@@ -661,15 +661,15 @@ public class BattleField {
         int pl2=p2/10;
         int pp2=p2%10;
         // 全 VS 全
-        if(pl1==2 && pl2==2){
+        if(pl1==2 && pl2==2 || pl1==3 && pl2==3){
             return result;
         }
         int winner=0;
         // 确定谁克制谁
-        if(pl1==2){
+        if(pl1>=2 && pl1>pl2){
             winner=1;
         }
-        else if(pl2==2){
+        else if(pl2>=2 && pl2>pl1){
             winner=-1;
         }
         else{
@@ -686,13 +686,13 @@ public class BattleField {
         result[0]=15*winner;
         result[1]=-15*winner;
         // 确定双方加成比例
-        if(pl1==2){
+        if(pl1>=2){
             result[0]+=15;
         }
         else if(pl1==1){
             result[0]+=10;
         }
-        if(pl2==2){
+        if(pl2>=2){
             result[1]+=15;
         }
         else if(pl2==1){
@@ -781,14 +781,14 @@ public class BattleField {
         //if(output!=null){
         allMsg="     进攻方                VS                防御方\n";
         //}
-        boolean[] attStatus=new boolean[20];
-        boolean[] defStatus=new boolean[20];
+        boolean[] attStatus=new boolean[Team.MAXHERO];
+        boolean[] defStatus=new boolean[Team.MAXHERO];
         int i, j;
         // init conditions
         conditionAttDup=false;
         conditionDefDup=false;
         stayDead=killFirst;
-        for(i=0; i<20; i++){
+        for(i=0; i<Team.MAXHERO; i++){
             if(i<attacker.number && (i!=0 || killFirst!=0)){
                 attStatus[i]=true;
                 attSkillable[i]=true;
@@ -839,8 +839,8 @@ public class BattleField {
         isActive3Def=false;
         isActive6Def=false;
         isActive7Def=false;
-        petCacheAtt=20;
-        petCacheDef=20;
+        petCacheAtt=30;
+        petCacheDef=30;
         double petSkillPowerAtt=0, petSkillPowerDef=0;
         double petSkillPowerAtt2=0, petSkillPowerDef2=0;
         double pet3PowerAtt=0, pet3PowerDef=0;
@@ -921,7 +921,7 @@ public class BattleField {
             }
             else if(activePetAtt==7){
                 petCacheAtt=attHero.property_battle;
-                attHero.property_battle=20;
+                attHero.property_battle=30;
                 activePetAtt=0;
                 isActive7Att=true;
             }
@@ -1011,7 +1011,7 @@ public class BattleField {
                 }
                 else if(activePetDef==7){
                     petCacheDef=defHero.property_battle;
-                    defHero.property_battle=20;
+                    defHero.property_battle=30;
                     activePetDef=0;
                     isActive7Def=true;
                 }
@@ -1251,9 +1251,9 @@ public class BattleField {
                 attStatus[i]=false;
                 sendMsg(attHero.name+" 阵亡");
                 // 自爆
-                if(petCacheAtt!=20){
+                if(petCacheAtt!=30){
                     attHero.property_battle=petCacheAtt;
-                    petCacheAtt=20;
+                    petCacheAtt=30;
                 }
                 activePetAtt=0;
                 if(attSkillable[i] && ((attSkill=activate(attHero.skill1, 2, 0, attacker.skillRateMultiply+attHero.rateRatio/100, attacker.skillRatePlus, attStatus, attacker.number))!=null
@@ -1266,9 +1266,9 @@ public class BattleField {
                 defStatus[j]=false;
                 sendMsg(defHero.name+" 阵亡");
                 // 自爆
-                if(petCacheDef!=20){
+                if(petCacheDef!=30){
                     defHero.property_battle=petCacheDef;
-                    petCacheDef=20;
+                    petCacheDef=30;
                 }
                 activePetDef=0;
                 if(defSkillable[j] && ((defSkill=activate(defHero.skill1, 2, 1, defender.skillRateMultiply+defHero.rateRatio/100, defender.skillRatePlus, defStatus, defender.number))!=null
@@ -1286,9 +1286,9 @@ public class BattleField {
                     sendMsg(petSkillName(3)+" 生效");
                     sendMsg(defHero.name+" -"+(int)diff+" "+(int)defHero.def_battle);
                 }
-                if(petCacheAtt!=20){
+                if(petCacheAtt!=30){
                     attHero.property_battle=petCacheAtt;
-                    petCacheAtt=20;
+                    petCacheAtt=30;
                 }
                 isActive3Att=false;
                 isActive6Att=false;
@@ -1303,9 +1303,9 @@ public class BattleField {
                     sendMsg(petSkillName(3)+" 生效");
                     sendMsg(attHero.name+" -"+(int)diff+" "+(int)attHero.att_battle);
                 }
-                if(petCacheDef!=20){
+                if(petCacheDef!=30){
                     defHero.property_battle=petCacheDef;
-                    petCacheDef=20;
+                    petCacheDef=30;
                 }
                 isActive3Def=false;
                 isActive6Def=false;
@@ -1315,9 +1315,9 @@ public class BattleField {
             if(i>=0 && attHero==attacker.heros[i] && attHero.att_battle<=0){
                 attStatus[i]=false;
                 sendMsg(attHero.name+" 阵亡");
-                if(petCacheAtt!=20){
+                if(petCacheAtt!=30){
                     attHero.property_battle=petCacheAtt;
-                    petCacheAtt=20;
+                    petCacheAtt=30;
                 }
                 activePetAtt=0;
                 isActive3Att=false;
@@ -1337,15 +1337,15 @@ public class BattleField {
             if(j<0){
                 return 2;
             }
-            if(petCacheDef!=20){
+            if(petCacheDef!=30){
                 defHero.property_battle=petCacheDef;
-                petCacheDef=20;
+                petCacheDef=30;
             }
             return 0;
         }
-        if(petCacheAtt!=20){
+        if(petCacheAtt!=30){
             attHero.property_battle=petCacheAtt;
-            petCacheAtt=20;
+            petCacheAtt=30;
         }
         return 1;
     }

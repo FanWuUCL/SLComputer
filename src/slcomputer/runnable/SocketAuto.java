@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
+import slcomputer.computer.Team;
 import slcomputer.main.SLComputer;
 import slcomputer.views.dialogs.JDialogAutoProgress;
 import slcomputer.views.dialogs.JDialogChooseBuff;
@@ -65,7 +66,7 @@ public class SocketAuto implements Runnable{
     private int lastNightLevel;
     private int globalIndex;
     
-    private static final int MAX_NUMBER=20;
+    private static final int MAX_NUMBER=Team.MAXHERO;
     private String[] names;
     private Skill[] skillNames;
     private int[] skillActTimes;
@@ -104,7 +105,7 @@ public class SocketAuto implements Runnable{
         }
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])==0?1006000:((SocketMaster.arguments[SocketMaster.arguments.length-1])==4?1006000:1006000)), SocketMaster.globalCer, command, extralength, extra);
+        byte[] data=SocketMaster.transform(length, 2000000+((int)(SocketMaster.arguments[SocketMaster.arguments.length-1])==0?1007000:((SocketMaster.arguments[SocketMaster.arguments.length-1])==4?1007000:1007000)), SocketMaster.globalCer, command, extralength, extra);
         byte[] para=new byte[12];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;
@@ -940,6 +941,7 @@ public class SocketAuto implements Runnable{
             enemyHard=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             enemyNumber=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             pos+=4;
+            //System.out.println(myNumber+" vs "+enemyNumber);
             enemyNormal=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;
             pos+=8;
             enemyEasy=((recvData[pos]&0xff)<<24) | ((recvData[pos+1]&0xff)<<16) | ((recvData[pos+2]&0xff)<<8) | (recvData[pos+3]&0xff); pos+=4;

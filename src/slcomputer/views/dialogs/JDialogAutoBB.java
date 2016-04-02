@@ -121,12 +121,12 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         jLabel9.setText("忍术效果减");
 
         jTextFieldHPPTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldHPPTarget.setText("200");
+        jTextFieldHPPTarget.setText("400");
 
         jLabel4.setText("目标");
 
         jTextFieldHPPMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldHPPMax.setText("300");
+        jTextFieldHPPMax.setText("500");
 
         jLabel5.setText("上限");
 
@@ -134,13 +134,13 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         jTextFieldHPMTarget.setText("0");
 
         jTextFieldHPMMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldHPMMax.setText("20");
+        jTextFieldHPMMax.setText("0");
 
         jTextFieldEffectPTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldEffectPTarget.setText("40");
+        jTextFieldEffectPTarget.setText("55");
 
         jTextFieldEffectPMax.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldEffectPMax.setText("55");
+        jTextFieldEffectPMax.setText("60");
 
         jTextFieldEffectMTarget.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         jTextFieldEffectMTarget.setText("40");
@@ -270,7 +270,7 @@ public class JDialogAutoBB extends javax.swing.JDialog {
         jLabel1.setText("自动试炼直到打完第");
 
         jTextFieldLevel.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTextFieldLevel.setText("100");
+        jTextFieldLevel.setText("160");
 
         jLabel2.setText("层");
         jLabel2.setToolTipText("");

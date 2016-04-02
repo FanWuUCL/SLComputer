@@ -29,7 +29,10 @@ public class HeroLight {
     }
     
     public void setProperty(int p){
-        if(p<0 || p>=20){
+        if(p<=-3 || p>=30){
+            property="神";
+        }
+        else if(p<0 || p>=20){
             property="全";
         }
         else{

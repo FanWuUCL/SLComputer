@@ -12,6 +12,7 @@ import slcomputer.heros.Hero;
  */
 public class Team {
     public int number;
+    public static final int MAXHERO=30;
     public Hero[] heros;
     public int[] pet;
     // for the sake of simplicity, 0 means level 1
@@ -37,7 +38,7 @@ public class Team {
     public Team(){
         number=0;
         numberMax=0;
-        heros=new Hero[20];
+        heros=new Hero[MAXHERO];
         pet=new int[5];
         petLevel=new int[5];
         pet[0]=pet[1]=pet[2]=pet[3]=pet[4]=0;

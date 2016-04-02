@@ -229,7 +229,7 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
             }
             jComboBoxProperty.setSelectedIndex(propertyToIndex(h.property_battle));
             double powerFromPet=0;
-            if(h.property_battle==20){
+            if(h.property_battle>=20){
                 for(i=0; i<SLComputer.myTeam.powerUpbyProperty.length; i++){
                     if(powerFromPet<SLComputer.myTeam.powerUpbyProperty[i]){
                         powerFromPet=SLComputer.myTeam.powerUpbyProperty[i];
@@ -391,7 +391,10 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         if(index<10){
             return index+5;
         }
-        return 20;
+        if(index==10){
+            return 20;
+        }
+        return 30;
     }
     
     private int propertyToIndex(int property){
@@ -401,7 +404,10 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
         if(property<15){
             return property-5;
         }
-        return 10;
+        if(property==20){
+            return 10;
+        }
+        return 11;
     }
 
     /**
@@ -935,7 +941,7 @@ public class JDialogHeroChooser extends javax.swing.JDialog {
 
         jLabel7.setText("属性");
 
-        jComboBoxProperty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "雷", "土", "水", "火", "风", "超雷", "超土", "超水", "超火", "超风", "全" }));
+        jComboBoxProperty.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "雷", "土", "水", "火", "风", "超雷", "超土", "超水", "超火", "超风", "全", "神" }));
 
         jLabel8.setText("剩余潜力");
 

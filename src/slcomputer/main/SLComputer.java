@@ -176,6 +176,7 @@
  * 3. 可补充细胞强化信息。
  * TODO 医疗室
  * TODO 仙术
+ * TODO 神属性
  */
 package slcomputer.main;
 
@@ -258,7 +259,7 @@ public class SLComputer {
     public static final int major=5;
     public static final int minor=4;
     public static final int vip=54;
-    public static final String testVersion=".1";
+    public static final String testVersion=".2";
     public static final int debug=1;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -1355,10 +1356,10 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=533;
+        int heroNumber=541;
         int equipAttNumber=97;
         int equipDefNumber=94;
-        int eqpTfNumber=90;
+        int eqpTfNumber=92;
         int backupNumber=8;
         int i;
         allHero=new Hero[heroNumber+1];
@@ -1511,6 +1512,10 @@ public class SLComputer {
         allHero[i++]=new HeroFuJN_6(1);
         allHero[i++]=new HeroFYWALJN_6(1);
         allHero[i++]=new HeroXWBRJN_6(1);
+        allHero[i++]=new HeroDSDJN_6(1);
+        allHero[i++]=new HeroMJNJN_6(1);
+        allHero[i++]=new HeroJMKMRJN_6(1);
+        allHero[i++]=new HeroXZZZJN_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1718,6 +1723,10 @@ public class SLComputer {
         allHero[i++]=new HeroFuJN(1);
         allHero[i++]=new HeroFYWALJN(1);
         allHero[i++]=new HeroXWBRJN(1);
+        allHero[i++]=new HeroDSDJN(1);
+        allHero[i++]=new HeroMJNJN(1);
+        allHero[i++]=new HeroJMKMRJN(1);
+        allHero[i++]=new HeroXZZZJN(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -2116,6 +2125,7 @@ public class SLComputer {
         allEqpTf[i++]=new EqpYM_6();
         allEqpTf[i++]=new EqpWDMX_6();
         allEqpTf[i++]=new EqpQS_6();
+        allEqpTf[i++]=new EqpXZWQT_6();
         allEqpTf[i++]=new EqpLY_6();  // 四星升六星
         allEqpTf[i++]=new EqpSTS_6();
         allEqpTf[i++]=new EqpHMJian_6();
@@ -2143,6 +2153,7 @@ public class SLComputer {
         allEqpTf[i++]=new EqpYM();
         allEqpTf[i++]=new EqpWDMX();
         allEqpTf[i++]=new EqpQS();
+        allEqpTf[i++]=new EqpXZWQT();
         allEqpTf[i++]=new EqpLY_5();  // 四星升五星
         allEqpTf[i++]=new EqpSTS_5();
         allEqpTf[i++]=new EqpHMJian_5();
@@ -2373,7 +2384,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=5365;
+        int skillNumber=5403;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;

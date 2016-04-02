@@ -1054,6 +1054,10 @@ public class SocketMaster implements Runnable{
                 globalIP="121.199.29.109";
                 globalPort=8040;
                 break;
+            case 64:   // 混165
+                globalIP="114.215.198.67";
+                globalPort=8050;
+                break;
             case 0:
             default:
                 globalIP="112.124.41.217";
@@ -1137,7 +1141,7 @@ public class SocketMaster implements Runnable{
         
         int extralength=extra.length;
         int length=extralength+22;
-        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1006000:((arguments[arguments.length-1])==4?1006000:1006000)), globalCer, command, extralength, extra);
+        byte[] data=transform(length, 2000000+((int)(arguments[arguments.length-1])==0?1007000:((arguments[arguments.length-1])==4?1007000:1007000)), globalCer, command, extralength, extra);
         byte[] para=new byte[8+expectCommands.length*4];
         para[0]=0x53; para[1]=0x74; para[2]=0x61; para[3]=0x72; para[4]=0x74;
         para[5]=0x45; para[6]=0x6e; para[7]=0x64;

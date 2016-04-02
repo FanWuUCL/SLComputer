@@ -45,8 +45,8 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("SLComputer "+SLComputer.major+"."+SLComputer.minor+SLComputer.testVersion+(SLComputer.vip>0 && SLComputer.vip%(SLComputer.major+SLComputer.minor)==0?" 旗舰":" 免费"));
         trialNumber=100;
         mapComponents();
-        setAutoBBSetting(100, 99, 200, 0, 40, 40, 
-            300, 0, 55, 50, 1000);
+        setAutoBBSetting(160, 99, 400, 0, 55, 30, 
+            500, 0, 60, 50, 1000);
         jButtonFinalComputer.setText("<html><font color=#DF0101>试炼终结者</font></html>");
         SLComputer.bf=new BattleField(jTextPaneBattleField);
         jComboBoxCaptainHard.setModel(new DefaultComboBoxModel(SLComputer.NFYSL.teamsHard));
@@ -617,7 +617,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel31.setText("VS");
 
-        jComboBoxEnemyNumberHard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17" }));
+        jComboBoxEnemyNumberHard.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" }));
         jComboBoxEnemyNumberHard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEnemyNumberHardActionPerformed(evt);
@@ -642,7 +642,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel32.setText("VS");
 
-        jComboBoxEnemyNumberNorm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17" }));
+        jComboBoxEnemyNumberNorm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" }));
         jComboBoxEnemyNumberNorm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEnemyNumberNormActionPerformed(evt);
@@ -660,7 +660,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel33.setText("VS");
 
-        jComboBoxEnemyNumberEasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17" }));
+        jComboBoxEnemyNumberEasy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" }));
         jComboBoxEnemyNumberEasy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxEnemyNumberEasyActionPerformed(evt);
@@ -2619,7 +2619,7 @@ public class MainFrame extends javax.swing.JFrame {
                     +"<br>攻 "+showValueAtt+"<br>防 "+showValueDef+"</html>");
             tooltip="";
             powerFromPet=0;
-            if(SLComputer.myTeam.heros[i].property_battle==20){
+            if(SLComputer.myTeam.heros[i].property_battle>=20){
                 for(j=0; j<SLComputer.myTeam.powerUpbyProperty.length; j++){
                     if(powerFromPet<SLComputer.myTeam.powerUpbyProperty[j]){
                         powerFromPet=SLComputer.myTeam.powerUpbyProperty[j];

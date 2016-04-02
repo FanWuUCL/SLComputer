@@ -169,7 +169,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldHPPTarget">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="200"/>
+            <Property name="text" type="java.lang.String" value="400"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -180,7 +180,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldHPPMax">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="300"/>
+            <Property name="text" type="java.lang.String" value="500"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -197,19 +197,19 @@
         <Component class="javax.swing.JTextField" name="jTextFieldHPMMax">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="20"/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEffectPTarget">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="40"/>
+            <Property name="text" type="java.lang.String" value="55"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEffectPMax">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="55"/>
+            <Property name="text" type="java.lang.String" value="60"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldEffectMTarget">
@@ -356,7 +356,7 @@
         <Component class="javax.swing.JTextField" name="jTextFieldLevel">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="11"/>
-            <Property name="text" type="java.lang.String" value="100"/>
+            <Property name="text" type="java.lang.String" value="160"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
