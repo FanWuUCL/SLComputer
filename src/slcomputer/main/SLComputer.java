@@ -177,6 +177,7 @@
  * TODO 医疗室
  * TODO 仙术
  * TODO 神属性
+ * TODO 零尾虚无
  */
 package slcomputer.main;
 
@@ -259,8 +260,8 @@ public class SLComputer {
     public static final int major=5;
     public static final int minor=4;
     public static final int vip=54;
-    public static final String testVersion=".2";
-    public static final int debug=1;
+    public static final String testVersion=".3";
+    public static final int debug=0;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
             + "1. 在左上方选取试炼模式。\n"
@@ -285,16 +286,7 @@ public class SLComputer {
             + "19. 若账号已经登陆，但是不能自动试炼，请先从菜单-账号里选择你要进入的试炼（究极试炼或噩梦试炼）。"
             + "\n每次版本更新的时候，请把SLComputer/usr文件夹复制到新版本的对应位置，就可以把以前的阵容全部搬到新版本来了。\n";
 
-    // 作者信息，若你对本程序做了任何的修改，请保留下面的信息
-    public static final String author="关于作者：\n"
-            + "此工具由百度贴吧<lightning2>开发，并通过百度贴吧发布，任何转载请注明【转载】。"
-            + "本作者不对任何通过其他方式获取的此工具负责。\n"
-            //+ "若想购买旗舰版，请参考此帖： http://tieba.baidu.com/p/3401419635 。\n"
-            + "BUG提交：\n"
-            + "如果你发现了程序的bug，欢迎发邮件到lightning2a@126.com，并请附上相关截图或文字信息。"
-            + "如果你有好的建议或意见，也可以通过邮件联系我。谢谢支持！\n"
-            + "                                lightning2\n"
-            + "                              2015年1月20日\n";
+    public static final String author="作者：lightning2\n";
     
     public static void log(String msg){
         if(debug==0){
@@ -2384,7 +2376,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=5403;
+        int skillNumber=5413;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;

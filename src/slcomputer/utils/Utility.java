@@ -186,7 +186,7 @@ public class Utility {
             //System.out.println(des.encrypt(change("ANDDK_"+"70512279")));
             //System.out.println(des.encrypt(change("ANDSN_"+"3687192672")));
             //System.out.println(des.encrypt(change("ANDTX_"+"D407B82F884125A1DDA9A167116DDB18")));
-            System.out.println(des.encrypt(change("27223965016@qq.com")));
+            //System.out.println(des.encrypt(change("1345303259@qq.com")));
             //System.out.println(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04"));
             //System.out.println(EnigmaUtil.checksum(des.decrypt("48eccc3144a6e6e219410fc72b583b77bf99942c097325e411002880726a9c04")));
 
