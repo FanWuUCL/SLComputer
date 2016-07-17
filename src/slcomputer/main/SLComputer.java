@@ -260,7 +260,7 @@ public class SLComputer {
     public static final int major=5;
     public static final int minor=4;
     public static final int vip=54;
-    public static final String testVersion=".3";
+    public static final String testVersion=".5";
     public static final int debug=0;
     public static BufferedWriter logger=null;
     public static final String usage="使用说明：\n"
@@ -271,7 +271,7 @@ public class SLComputer {
             + "5. 点击“计算”按钮，可以显示出敌方阵容以及详细攻/防数值。\n"
             + "6. 下半部分可以填写你自己的阵容，包括尾兽祭坛和作战建筑。作战建筑没有或未开启选择“停止运转”即可。\n"
             + "7. 按从左往右的顺序依次点击[未选取]按钮可以选择忍者，需要填写相应的装备和等级，忍者属性，剩余潜力点，忍术抗性以及洗练过的技能，若未点过任何潜力点填写10000即可。（点了潜力点的默认潜力点没加错地方。。。若计算结果不准，请适当微调单个忍者的剩余潜力点）\n"
-            + "8. 每个模式下支持保存4组阵容（免费版只支持1组），复制/粘贴阵容可以快速地帮你产生一个相同的阵容。所有阵容在每次刷新显示的时候都会自动保存。\n"
+            + "8. 每个模式下支持保存4组阵容，复制/粘贴阵容可以快速地帮你产生一个相同的阵容。所有阵容在每次刷新显示的时候都会自动保存。\n"
             + "9. 敌我阵容都输入完成后，点击各难度下的“挑战”按钮可以在右上方显示一次模拟战斗，但是不会计算胜率。\n"
             + "10. 敌我阵容都输入完成后，点击“试炼终结者”按钮将会每个难度模拟战斗100次（模拟次数可在设置中调整）并计算胜率，一键解决试炼难度选择问题！\n"
             + "11. 点击 排兵布阵 按钮可以进入忍者换位模式，该模式下可以交换阵容内任意两个忍者的位置，再次点击 排兵布阵 按钮退出该模式。（此功能只对旗舰版用户开放）\n"
@@ -1348,8 +1348,8 @@ public class SLComputer {
         if(!f.exists() || f.isFile()){
             f.mkdir();
         }
-        int heroNumber=541;
-        int equipAttNumber=97;
+        int heroNumber=549;
+        int equipAttNumber=99;
         int equipDefNumber=94;
         int eqpTfNumber=92;
         int backupNumber=8;
@@ -1508,6 +1508,10 @@ public class SLComputer {
         allHero[i++]=new HeroMJNJN_6(1);
         allHero[i++]=new HeroJMKMRJN_6(1);
         allHero[i++]=new HeroXZZZJN_6(1);
+        allHero[i++]=new HeroQSXD_6(1);
+        allHero[i++]=new HeroMYERZ_6(1);
+        allHero[i++]=new HeroMYLR_6(1);
+        allHero[i++]=new HeroMYXH_6(1);
         allHero[i++]=new HeroQMKKX_6(1);  // 四星升六星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_6(1);
         allHero[i++]=new HeroGSGJ_6(1);
@@ -1719,6 +1723,10 @@ public class SLComputer {
         allHero[i++]=new HeroMJNJN(1);
         allHero[i++]=new HeroJMKMRJN(1);
         allHero[i++]=new HeroXZZZJN(1);
+        allHero[i++]=new HeroQSXD(1);
+        allHero[i++]=new HeroMYERZ(1);
+        allHero[i++]=new HeroMYLR(1);
+        allHero[i++]=new HeroMYXH(1);
         allHero[i++]=new HeroQMKKX_5(1);  // 四星升五星开始：旗木卡卡西
         allHero[i++]=new HeroYFASM_5(1);
         allHero[i++]=new HeroGSGJ_5(1);
@@ -1930,6 +1938,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqBYZR_6(1);
         allEquiqAtt[i++]=new EquiqQDYHB_6(1);
         allEquiqAtt[i++]=new EquiqLHZR_6(1);
+        allEquiqAtt[i++]=new EquiqQDYWQT_6(1);
         allEquiqAtt[i++]=new EquiqZSDD_6(1);  // 四星升六星
         allEquiqAtt[i++]=new EquiqDDJJ_6(1);
         allEquiqAtt[i++]=new EquiqCDFZ_6(1);
@@ -1967,6 +1976,7 @@ public class SLComputer {
         allEquiqAtt[i++]=new EquiqBYZR(1);
         allEquiqAtt[i++]=new EquiqQDYHB(1);
         allEquiqAtt[i++]=new EquiqLHZR(1);
+        allEquiqAtt[i++]=new EquiqQDYWQT(1);
         allEquiqAtt[i++]=new EquiqZSDD_5(1);  // 四星升五星
         allEquiqAtt[i++]=new EquiqDDJJ_5(1);
         allEquiqAtt[i++]=new EquiqCDFZ_5(1);
@@ -2376,7 +2386,7 @@ public class SLComputer {
     }
     
     public static void initSkill(){
-        int skillNumber=5413;
+        int skillNumber=5433;
         skills=new Skill[skillNumber];
         int i=0, j, k;
         String s;

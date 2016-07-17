@@ -3734,6 +3734,87 @@
     ],
     "mark": 1
   },
+  "40150": {
+    "pid": "0",
+    "updateId": "40250",
+    "updateItems": [
+      200000,
+      0,
+      [
+        47199,
+        10
+      ]
+    ],
+    "_index": "40884",
+    "star": 5,
+    "drop": 0,
+    "type": 0,
+    "exp": 600,
+    "name": "求道玉完全体",
+    "description": "【活动卡】<武器>求道玉的究级形态，只有获得十尾或六道之力方能操纵，能使世间一切忍术无效化。",
+    "para1": 425,
+    "para2": 296,
+    "tough": 0,
+    "atkGrowth": 46.7,
+    "defGrowth": 32.55,
+    "toughGrowth": 0,
+    "para3": [
+      15218
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      1,
+      5
+    ],
+    "splitCost": 100000,
+    "starStepEffect": [
+      [
+        2,
+        400,
+        0
+      ],
+      [
+        1,
+        30,
+        0
+      ]
+    ],
+    "dropSource": [
+      [
+        5
+      ],
+      [
+        6
+      ]
+    ],
+    "skillList": [
+      [
+        2951301,
+        0.25
+      ],
+      [
+        2943801,
+        0.25
+      ],
+      [
+        2974701,
+        0.25
+      ],
+      [
+        2965901,
+        0.25
+      ]
+    ],
+    "mark": 1
+  },
   "40210": {
     "pid": "40110",
     "updateId": "40310",
@@ -6070,6 +6151,69 @@
       ],
       [
         2975301,
+        0.25
+      ]
+    ],
+    "mark": 1
+  },
+  "40250": {
+    "pid": "40150",
+    "updateId": "0",
+    "updateItems": [
+      400000,
+      0,
+      [
+        47199,
+        20
+      ]
+    ],
+    "_index": "48000",
+    "star": 6,
+    "drop": 0,
+    "type": 0,
+    "exp": 1000,
+    "name": "求道玉完全体",
+    "description": "【活动卡】<武器>求道玉的究级形态，只有获得十尾或六道之力方能操纵，能使世间一切忍术无效化。",
+    "para1": 460,
+    "para2": 296,
+    "tough": 0,
+    "atkGrowth": 48.253,
+    "defGrowth": 32.55,
+    "toughGrowth": 0,
+    "para3": [
+      15218
+    ],
+    "limit": 0,
+    "slot": 4,
+    "hideProperty": [
+      0,
+      0,
+      6
+    ],
+    "isColl": 1,
+    "splitDrop": [
+      47199,
+      6,
+      10
+    ],
+    "splitCost": 200000,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [
+      [
+        2951301,
+        0.25
+      ],
+      [
+        2943801,
+        0.25
+      ],
+      [
+        2974701,
+        0.25
+      ],
+      [
+        2965901,
         0.25
       ]
     ],
@@ -21965,6 +22109,122 @@
     "name": "0尾碎片包",
     "description": "装有零尾碎片的袋子，谁也不知道装的哪一块儿。",
     "para1": 80098,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [],
+    "mark": 0
+  },
+  "47194": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 21,
+    "exp": 0,
+    "name": "名望丸",
+    "description": "可以激活忍者攻击值的神秘药丸。",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [],
+    "mark": 0
+  },
+  "47195": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 21,
+    "exp": 0,
+    "name": "凝聚丸",
+    "description": "可以激活忍者防御击的神秘药丸。",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [],
+    "mark": 0
+  },
+  "47196": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 21,
+    "exp": 0,
+    "name": "运势丸",
+    "description": "可以激活忍者防御值的神秘药丸。",
+    "para1": 0,
+    "para2": 0,
+    "tough": 0,
+    "atkGrowth": 0,
+    "defGrowth": 0,
+    "toughGrowth": 0,
+    "para3": null,
+    "limit": 0,
+    "slot": 0,
+    "hideProperty": 0,
+    "isColl": 0,
+    "splitDrop": 0,
+    "splitCost": 0,
+    "starStepEffect": 0,
+    "dropSource": 0,
+    "skillList": [],
+    "mark": 0
+  },
+  "47197": {
+    "pid": "0",
+    "updateId": "0",
+    "updateItems": 0,
+    "_index": "null",
+    "star": 5,
+    "drop": 0,
+    "type": 21,
+    "exp": 0,
+    "name": "勇气丸",
+    "description": "可以激活忍者攻击值的神秘药丸。",
+    "para1": 0,
     "para2": 0,
     "tough": 0,
     "atkGrowth": 0,
